@@ -1,0 +1,26 @@
+# Lcom/phonegap/GeoListener;->stop()V [access_flags=]
+#
+# Parameters:
+# local registers: v0...v1
+#
+# - return:void
+
+stop-BB@0x0 : [ stop-BB@0x8 stop-BB@0x12 ]
+	0       (00000000) iget-object          v0, v1, Lcom/phonegap/GeoListener;->mGps Lcom/phonegap/GpsListener;
+	1       (00000004) if-eqz               v0, +007h
+
+stop-BB@0x8 : [ stop-BB@0x12 ]
+	2       (00000008) iget-object          v0, v1, Lcom/phonegap/GeoListener;->mGps Lcom/phonegap/GpsListener;
+	3       (0000000c) invoke-virtual       v0, Lcom/phonegap/GpsListener;->stop()V
+
+stop-BB@0x12 : [ stop-BB@0x1a stop-BB@0x24 ]
+	4       (00000012) iget-object          v0, v1, Lcom/phonegap/GeoListener;->mNetwork Lcom/phonegap/NetworkListener;
+	5       (00000016) if-eqz               v0, +007h
+
+stop-BB@0x1a : [ stop-BB@0x24 ]
+	6       (0000001a) iget-object          v0, v1, Lcom/phonegap/GeoListener;->mNetwork Lcom/phonegap/NetworkListener;
+	7       (0000001e) invoke-virtual       v0, Lcom/phonegap/NetworkListener;->stop()V
+
+stop-BB@0x24 : 
+	8       (00000024) return-void          
+

@@ -1,0 +1,22 @@
+# Lcom/phonegap/SimpleCrypto;->decrypt(Ljava/lang/String; Ljava/lang/String;)Ljava/lang/String; [access_flags=public static]
+#
+# Parameters:
+# - local registers: v0...v3
+# - v4:java.lang.String
+# - v5:java.lang.String
+#
+# - return:java.lang.String
+
+decrypt-BB@0x0 : 
+	0       (00000000) invoke-virtual       v4, Ljava/lang/String;->getBytes()[B
+	1       (00000006) move-result-object   v3
+	2       (00000008) invoke-static        v3, Lcom/phonegap/SimpleCrypto;->getRawKey([B)[B
+	3       (0000000e) move-result-object   v1
+	4       (00000010) invoke-static        v5, Lcom/phonegap/SimpleCrypto;->toByte(Ljava/lang/String;)[B
+	5       (00000016) move-result-object   v0
+	6       (00000018) invoke-static        v1, v0, Lcom/phonegap/SimpleCrypto;->decrypt([B [B)[B
+	7       (0000001e) move-result-object   v2
+	8       (00000020) new-instance         v3, Ljava/lang/String;
+	9       (00000024) invoke-direct        v3, v2, Ljava/lang/String;-><init>([B)V
+	10      (0000002a) return-object        v3
+

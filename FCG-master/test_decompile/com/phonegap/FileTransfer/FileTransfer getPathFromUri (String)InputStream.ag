@@ -1,0 +1,31 @@
+# Lcom/phonegap/FileTransfer;->getPathFromUri(Ljava/lang/String;)Ljava/io/InputStream; [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v2
+# - v3:java.lang.String
+#
+# - return:java.io.InputStream
+
+getPathFromUri-BB@0x0 : [ getPathFromUri-BB@0x10 getPathFromUri-BB@0x2e ]
+	0       (00000000) const-string         v1, "content:"
+	1       (00000004) invoke-virtual       v3, v1, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+	2       (0000000a) move-result          v1
+	3       (0000000c) if-eqz               v1, +011h
+
+getPathFromUri-BB@0x10 : [ getPathFromUri-BB@0x2c ]
+	4       (00000010) invoke-static        v3, Landroid/net/Uri;->parse(Ljava/lang/String;)Landroid/net/Uri;
+	5       (00000016) move-result-object   v0
+	6       (00000018) iget-object          v1, v2, Lcom/phonegap/FileTransfer;->ctx Lcom/phonegap/api/PhonegapActivity;
+	7       (0000001c) invoke-virtual       v1, Lcom/phonegap/api/PhonegapActivity;->getContentResolver()Landroid/content/ContentResolver;
+	8       (00000022) move-result-object   v1
+	9       (00000024) invoke-virtual       v1, v0, Landroid/content/ContentResolver;->openInputStream(Landroid/net/Uri;)Ljava/io/InputStream;
+	10      (0000002a) move-result-object   v1
+
+getPathFromUri-BB@0x2c : 
+	11      (0000002c) return-object        v1
+
+getPathFromUri-BB@0x2e : [ getPathFromUri-BB@0x2c ]
+	12      (0000002e) new-instance         v1, Ljava/io/FileInputStream;
+	13      (00000032) invoke-direct        v1, v3, Ljava/io/FileInputStream;-><init>(Ljava/lang/String;)V
+	14      (00000038) goto                 -6h
+

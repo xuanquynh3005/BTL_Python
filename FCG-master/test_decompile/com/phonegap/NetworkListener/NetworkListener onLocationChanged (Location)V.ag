@@ -1,0 +1,28 @@
+# Lcom/phonegap/NetworkListener;->onLocationChanged(Landroid/location/Location;)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v2
+# - v3:android.location.Location
+#
+# - return:void
+
+onLocationChanged-BB@0x0 : [ onLocationChanged-BB@0x2c onLocationChanged-BB@0x36 ]
+	0       (00000000) sget-object          v0, Ljava/lang/System;->out Ljava/io/PrintStream;
+	1       (00000004) const-string         v1, "NetworkListener: The location has been updated!"
+	2       (00000008) invoke-virtual       v0, v1, Ljava/io/PrintStream;->println(Ljava/lang/String;)V
+	3       (0000000e) const/4              v0, 1
+	4       (00000010) iput-boolean         v0, v2, Lcom/phonegap/NetworkListener;->hasData Z
+	5       (00000014) iput-object          v3, v2, Lcom/phonegap/NetworkListener;->cLoc Landroid/location/Location;
+	6       (00000018) iget-object          v0, v2, Lcom/phonegap/NetworkListener;->owner Lcom/phonegap/GeoListener;
+	7       (0000001c) iget-object          v0, v0, Lcom/phonegap/GeoListener;->mGps Lcom/phonegap/GpsListener;
+	8       (00000020) invoke-virtual       v0, Lcom/phonegap/GpsListener;->hasLocation()Z
+	9       (00000026) move-result          v0
+	10      (00000028) if-nez               v0, +007h
+
+onLocationChanged-BB@0x2c : [ onLocationChanged-BB@0x36 ]
+	11      (0000002c) iget-object          v0, v2, Lcom/phonegap/NetworkListener;->owner Lcom/phonegap/GeoListener;
+	12      (00000030) invoke-virtual       v0, v3, Lcom/phonegap/GeoListener;->success(Landroid/location/Location;)V
+
+onLocationChanged-BB@0x36 : 
+	13      (00000036) return-void          
+

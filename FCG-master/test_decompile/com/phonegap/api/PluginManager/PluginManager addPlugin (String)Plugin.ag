@@ -1,0 +1,40 @@
+# Lcom/phonegap/api/PluginManager;->addPlugin(Ljava/lang/String;)Lcom/phonegap/api/Plugin; [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v4
+# - v5:java.lang.String
+#
+# - return:com.phonegap.api.Plugin
+
+addPlugin-BB@0x0 : [ addPlugin-BB@0x10 ]
+	0       (00000000) invoke-direct        v4, v5, Lcom/phonegap/api/PluginManager;->getClassByName(Ljava/lang/String;)Ljava/lang/Class;
+	1       (00000006) move-result-object   v1
+	2       (00000008) invoke-direct        v4, v5, v1, Lcom/phonegap/api/PluginManager;->addPlugin(Ljava/lang/String; Ljava/lang/Class;)Lcom/phonegap/api/Plugin;
+	3       (0000000e) move-result-object   v1
+	0:d
+	(Ljava/lang/ClassNotFoundException; -> 12 addPlugin-BB@0x12)
+
+addPlugin-BB@0x10 : 
+	4       (00000010) return-object        v1
+
+addPlugin-BB@0x12 : [ addPlugin-BB@0x10 ]
+	5       (00000012) move-exception       v1
+	6       (00000014) move-object          v0, v1
+	7       (00000016) invoke-virtual       v0, Ljava/lang/ClassNotFoundException;->printStackTrace()V
+	8       (0000001c) sget-object          v1, Ljava/lang/System;->out Ljava/io/PrintStream;
+	9       (00000020) new-instance         v2, Ljava/lang/StringBuilder;
+	10      (00000024) invoke-direct        v2, Ljava/lang/StringBuilder;-><init>()V
+	11      (0000002a) const-string         v3, "Error adding plugin "
+	12      (0000002e) invoke-virtual       v2, v3, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	13      (00000034) move-result-object   v2
+	14      (00000036) invoke-virtual       v2, v5, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	15      (0000003c) move-result-object   v2
+	16      (0000003e) const-string         v3, "."
+	17      (00000042) invoke-virtual       v2, v3, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	18      (00000048) move-result-object   v2
+	19      (0000004a) invoke-virtual       v2, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	20      (00000050) move-result-object   v2
+	21      (00000052) invoke-virtual       v1, v2, Ljava/io/PrintStream;->println(Ljava/lang/String;)V
+	22      (00000058) const/4              v1, 0
+	23      (0000005a) goto                 -25h
+

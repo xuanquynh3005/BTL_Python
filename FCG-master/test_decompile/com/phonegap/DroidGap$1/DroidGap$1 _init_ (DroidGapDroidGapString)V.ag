@@ -1,0 +1,17 @@
+# Lcom/phonegap/DroidGap$1;-><init>(Lcom/phonegap/DroidGap; Lcom/phonegap/DroidGap; Ljava/lang/String;)V [access_flags=constructor]
+#
+# Parameters:
+# - local registers: v0...v0
+# - v1:com.phonegap.DroidGap
+# - v2:com.phonegap.DroidGap
+# - v3:java.lang.String
+#
+# - return:void
+
+<init>-BB@0x0 : 
+	0       (00000000) iput-object          v1, v0, Lcom/phonegap/DroidGap$1;->this$0 Lcom/phonegap/DroidGap;
+	1       (00000004) iput-object          v2, v0, Lcom/phonegap/DroidGap$1;->val$me Lcom/phonegap/DroidGap;
+	2       (00000008) iput-object          v3, v0, Lcom/phonegap/DroidGap$1;->val$url Ljava/lang/String;
+	3       (0000000c) invoke-direct        v0, Ljava/lang/Object;-><init>()V
+	4       (00000012) return-void          
+

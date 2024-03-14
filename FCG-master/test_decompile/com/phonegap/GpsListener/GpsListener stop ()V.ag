@@ -1,0 +1,20 @@
+# Lcom/phonegap/GpsListener;->stop()V [access_flags=public]
+#
+# Parameters:
+# local registers: v0...v1
+#
+# - return:void
+
+stop-BB@0x0 : [ stop-BB@0x8 stop-BB@0x12 ]
+	0       (00000000) iget-boolean         v0, v1, Lcom/phonegap/GpsListener;->running Z
+	1       (00000004) if-eqz               v0, +007h
+
+stop-BB@0x8 : [ stop-BB@0x12 ]
+	2       (00000008) iget-object          v0, v1, Lcom/phonegap/GpsListener;->mLocMan Landroid/location/LocationManager;
+	3       (0000000c) invoke-virtual       v0, v1, Landroid/location/LocationManager;->removeUpdates(Landroid/location/LocationListener;)V
+
+stop-BB@0x12 : 
+	4       (00000012) const/4              v0, 0
+	5       (00000014) iput-boolean         v0, v1, Lcom/phonegap/GpsListener;->running Z
+	6       (00000018) return-void          
+

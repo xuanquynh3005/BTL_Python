@@ -1,0 +1,12 @@
+# Lcom/phonegap/FileTransfer$2;->getAcceptedIssuers()[Ljava/security/cert/X509Certificate; [access_flags=public]
+#
+# Parameters:
+# local registers: v0...v1
+#
+# - return:java.security.cert.X509Certificate[]
+
+getAcceptedIssuers-BB@0x0 : 
+	0       (00000000) const/4              v0, 0
+	1       (00000002) new-array            v0, v0, [Ljava/security/cert/X509Certificate;
+	2       (00000006) return-object        v0
+

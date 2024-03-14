@@ -1,0 +1,59 @@
+# Lcom/phonegap/AccelListener;->start()I [access_flags=public]
+#
+# Parameters:
+# local registers: v0...v4
+#
+# - return:int
+
+start-BB@0x0 : [ start-BB@0xe start-BB@0x1a ]
+	0       (00000000) const/4              v3, 0
+	1       (00000002) iget                 v1, v4, Lcom/phonegap/AccelListener;->status I
+	2       (00000006) sget                 v2, Lcom/phonegap/AccelListener;->RUNNING I
+	3       (0000000a) if-eq                v1, v2, +008h
+
+start-BB@0xe : [ start-BB@0x1a start-BB@0x20 ]
+	4       (0000000e) iget                 v1, v4, Lcom/phonegap/AccelListener;->status I
+	5       (00000012) sget                 v2, Lcom/phonegap/AccelListener;->STARTING I
+	6       (00000016) if-ne                v1, v2, +005h
+
+start-BB@0x1a : [ start-BB@0x1e ]
+	7       (0000001a) iget                 v1, v4, Lcom/phonegap/AccelListener;->status I
+
+start-BB@0x1e : 
+	8       (0000001e) return               v1
+
+start-BB@0x20 : [ start-BB@0x32 start-BB@0x78 ]
+	9       (00000020) iget-object          v1, v4, Lcom/phonegap/AccelListener;->sensorManager Landroid/hardware/SensorManager;
+	10      (00000024) const/4              v2, 1
+	11      (00000026) invoke-virtual       v1, v2, Landroid/hardware/SensorManager;->getSensorList(I)Ljava/util/List;
+	12      (0000002c) move-result-object   v0
+	13      (0000002e) if-eqz               v0, +025h
+
+start-BB@0x32 : [ start-BB@0x3e start-BB@0x78 ]
+	14      (00000032) invoke-interface     v0, Ljava/util/List;->size()I
+	15      (00000038) move-result          v1
+	16      (0000003a) if-lez               v1, +01fh
+
+start-BB@0x3e : [ start-BB@0x72 ]
+	17      (0000003e) invoke-interface     v0, v3, Ljava/util/List;->get(I)Ljava/lang/Object;
+	18      (00000044) move-result-object   v1
+	19      (00000046) check-cast           v1, Landroid/hardware/Sensor;
+	20      (0000004a) iput-object          v1, v4, Lcom/phonegap/AccelListener;->mSensor Landroid/hardware/Sensor;
+	21      (0000004e) iget-object          v1, v4, Lcom/phonegap/AccelListener;->sensorManager Landroid/hardware/SensorManager;
+	22      (00000052) iget-object          v2, v4, Lcom/phonegap/AccelListener;->mSensor Landroid/hardware/Sensor;
+	23      (00000056) invoke-virtual       v1, v4, v2, v3, Landroid/hardware/SensorManager;->registerListener(Landroid/hardware/SensorEventListener; Landroid/hardware/Sensor; I)Z
+	24      (0000005c) sget                 v1, Lcom/phonegap/AccelListener;->STARTING I
+	25      (00000060) invoke-direct        v4, v1, Lcom/phonegap/AccelListener;->setStatus(I)V
+	26      (00000066) invoke-static        Ljava/lang/System;->currentTimeMillis()J
+	27      (0000006c) move-result-wide     v1
+	28      (0000006e) iput-wide            v1, v4, Lcom/phonegap/AccelListener;->lastAccessTime J
+
+start-BB@0x72 : [ start-BB@0x1e ]
+	29      (00000072) iget                 v1, v4, Lcom/phonegap/AccelListener;->status I
+	30      (00000076) goto                 -2ch
+
+start-BB@0x78 : [ start-BB@0x72 ]
+	31      (00000078) sget                 v1, Lcom/phonegap/AccelListener;->ERROR_FAILED_TO_START I
+	32      (0000007c) invoke-direct        v4, v1, Lcom/phonegap/AccelListener;->setStatus(I)V
+	33      (00000082) goto                 -8h
+

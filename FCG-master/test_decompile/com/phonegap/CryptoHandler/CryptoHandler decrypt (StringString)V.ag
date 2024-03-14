@@ -1,0 +1,37 @@
+# Lcom/phonegap/CryptoHandler;->decrypt(Ljava/lang/String; Ljava/lang/String;)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v4
+# - v5:java.lang.String
+# - v6:java.lang.String
+#
+# - return:void
+
+decrypt-BB@0x0 : [ decrypt-BB@0x40 ]
+	0       (00000000) invoke-static        v5, v6, Lcom/phonegap/SimpleCrypto;->decrypt(Ljava/lang/String; Ljava/lang/String;)Ljava/lang/String;
+	1       (00000006) move-result-object   v0
+	2       (00000008) new-instance         v2, Ljava/lang/StringBuilder;
+	3       (0000000c) invoke-direct        v2, Ljava/lang/StringBuilder;-><init>()V
+	4       (00000012) const-string         v3, "Crypto.gotPlainString('"
+	5       (00000016) invoke-virtual       v2, v3, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	6       (0000001c) move-result-object   v2
+	7       (0000001e) invoke-virtual       v2, v6, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	8       (00000024) move-result-object   v2
+	9       (00000026) const-string         v3, "')"
+	10      (0000002a) invoke-virtual       v2, v3, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	11      (00000030) move-result-object   v2
+	12      (00000032) invoke-virtual       v2, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	13      (00000038) move-result-object   v2
+	14      (0000003a) invoke-virtual       v4, v2, Lcom/phonegap/CryptoHandler;->sendJavascript(Ljava/lang/String;)V
+	0:3f
+	(Ljava/lang/Exception; -> 42 decrypt-BB@0x42)
+
+decrypt-BB@0x40 : 
+	15      (00000040) return-void          
+
+decrypt-BB@0x42 : [ decrypt-BB@0x40 ]
+	16      (00000042) move-exception       v2
+	17      (00000044) move-object          v1, v2
+	18      (00000046) invoke-virtual       v1, Ljava/lang/Exception;->printStackTrace()V
+	19      (0000004c) goto                 -6h
+

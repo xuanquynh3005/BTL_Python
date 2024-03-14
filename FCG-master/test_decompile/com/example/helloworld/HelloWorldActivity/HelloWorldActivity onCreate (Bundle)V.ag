@@ -1,0 +1,14 @@
+# Lcom/example/helloworld/HelloWorldActivity;->onCreate(Landroid/os/Bundle;)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v1
+# - v2:android.os.Bundle
+#
+# - return:void
+
+onCreate-BB@0x0 : 
+	0       (00000000) invoke-super         v1, v2, Lcom/phonegap/DroidGap;->onCreate(Landroid/os/Bundle;)V
+	1       (00000006) const-string         v0, "file:///android_asset/www/index.html"
+	2       (0000000a) invoke-super         v1, v0, Lcom/phonegap/DroidGap;->loadUrl(Ljava/lang/String;)V
+	3       (00000010) return-void          
+

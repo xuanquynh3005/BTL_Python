@@ -1,0 +1,25 @@
+# Lcom/phonegap/Notification;->vibrate(J)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v4
+# - v5:long
+#
+# - return:void
+
+vibrate-BB@0x0 : [ vibrate-BB@0xc vibrate-BB@0x10 ]
+	0       (00000000) const-wide/16        v1, 0
+	1       (00000004) cmp-long             v1, v4, v1
+	2       (00000008) if-nez               v1, +004h
+
+vibrate-BB@0xc : [ vibrate-BB@0x10 ]
+	3       (0000000c) const-wide/16        v4, 500
+
+vibrate-BB@0x10 : 
+	4       (00000010) iget-object          v1, v3, Lcom/phonegap/Notification;->ctx Lcom/phonegap/api/PhonegapActivity;
+	5       (00000014) const-string         v2, "vibrator"
+	6       (00000018) invoke-virtual       v1, v2, Lcom/phonegap/api/PhonegapActivity;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+	7       (0000001e) move-result-object   v0
+	8       (00000020) check-cast           v0, Landroid/os/Vibrator;
+	9       (00000024) invoke-virtual       v0, v4, v5, Landroid/os/Vibrator;->vibrate(J)V
+	10      (0000002a) return-void          
+

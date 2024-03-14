@@ -1,0 +1,158 @@
+# Lcom/phonegap/App;->execute(Ljava/lang/String; Lorg/json/JSONArray; Ljava/lang/String;)Lcom/phonegap/api/PluginResult; [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v6
+# - v7:java.lang.String
+# - v8:org.json.JSONArray
+# - v9:java.lang.String
+#
+# - return:com.phonegap.api.PluginResult
+
+execute-BB@0x0 : [ execute-BB@0x8 ]
+	0       (00000000) sget-object          v3, Lcom/phonegap/api/PluginResult$Status;->OK Lcom/phonegap/api/PluginResult$Status;
+	1       (00000004) const-string         v2, ""
+
+execute-BB@0x8 : [ execute-BB@0x18 execute-BB@0x2a ]
+	2       (00000008) const-string         v4, "clearCache"
+	3       (0000000c) invoke-virtual       v7, v4, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	4       (00000012) move-result          v4
+	5       (00000014) if-eqz               v4, +00bh
+	8:53
+	(Lorg/json/JSONException; -> 56 execute-BB@0x56)
+
+execute-BB@0x18 : [ execute-BB@0x1e ]
+	6       (00000018) invoke-virtual       v6, Lcom/phonegap/App;->clearCache()V
+	8:53
+	(Lorg/json/JSONException; -> 56 execute-BB@0x56)
+
+execute-BB@0x1e : [ execute-BB@0x28 ]
+	7       (0000001e) new-instance         v4, Lcom/phonegap/api/PluginResult;
+	8       (00000022) invoke-direct        v4, v3, v2, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; Ljava/lang/String;)V
+	8:53
+	(Lorg/json/JSONException; -> 56 execute-BB@0x56)
+
+execute-BB@0x28 : 
+	9       (00000028) return-object        v4
+	8:53
+	(Lorg/json/JSONException; -> 56 execute-BB@0x56)
+
+execute-BB@0x2a : [ execute-BB@0x3a execute-BB@0x6a ]
+	10      (0000002a) const-string         v4, "loadUrl"
+	11      (0000002e) invoke-virtual       v7, v4, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	12      (00000034) move-result          v4
+	13      (00000036) if-eqz               v4, +01ah
+	8:53
+	(Lorg/json/JSONException; -> 56 execute-BB@0x56)
+
+execute-BB@0x3a : [ execute-BB@0x1e ]
+	14      (0000003a) const/4              v4, 0
+	15      (0000003c) invoke-virtual       v8, v4, Lorg/json/JSONArray;->getString(I)Ljava/lang/String;
+	16      (00000042) move-result-object   v4
+	17      (00000044) const/4              v5, 1
+	18      (00000046) invoke-virtual       v8, v5, Lorg/json/JSONArray;->optJSONObject(I)Lorg/json/JSONObject;
+	19      (0000004c) move-result-object   v5
+	20      (0000004e) invoke-virtual       v6, v4, v5, Lcom/phonegap/App;->loadUrl(Ljava/lang/String; Lorg/json/JSONObject;)V
+	21      (00000054) goto                 -1bh
+
+execute-BB@0x56 : [ execute-BB@0x28 ]
+	22      (00000056) move-exception       v4
+	23      (00000058) move-object          v1, v4
+	24      (0000005a) new-instance         v4, Lcom/phonegap/api/PluginResult;
+	25      (0000005e) sget-object          v5, Lcom/phonegap/api/PluginResult$Status;->JSON_EXCEPTION Lcom/phonegap/api/PluginResult$Status;
+	26      (00000062) invoke-direct        v4, v5, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status;)V
+	27      (00000068) goto                 -20h
+
+execute-BB@0x6a : [ execute-BB@0x7a execute-BB@0x82 ]
+	28      (0000006a) const-string         v4, "cancelLoadUrl"
+	29      (0000006e) invoke-virtual       v7, v4, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	30      (00000074) move-result          v4
+	31      (00000076) if-eqz               v4, +006h
+	6a:121
+	(Lorg/json/JSONException; -> 56 execute-BB@0x56)
+
+execute-BB@0x7a : [ execute-BB@0x1e ]
+	32      (0000007a) invoke-virtual       v6, Lcom/phonegap/App;->cancelLoadUrl()V
+	33      (00000080) goto                 -31h
+	6a:121
+	(Lorg/json/JSONException; -> 56 execute-BB@0x56)
+
+execute-BB@0x82 : [ execute-BB@0x92 execute-BB@0x9a ]
+	34      (00000082) const-string         v4, "clearHistory"
+	35      (00000086) invoke-virtual       v7, v4, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	36      (0000008c) move-result          v4
+	37      (0000008e) if-eqz               v4, +006h
+	6a:121
+	(Lorg/json/JSONException; -> 56 execute-BB@0x56)
+
+execute-BB@0x92 : [ execute-BB@0x1e ]
+	38      (00000092) invoke-virtual       v6, Lcom/phonegap/App;->clearHistory()V
+	39      (00000098) goto                 -3dh
+	6a:121
+	(Lorg/json/JSONException; -> 56 execute-BB@0x56)
+
+execute-BB@0x9a : [ execute-BB@0xaa execute-BB@0xc6 ]
+	40      (0000009a) const-string         v4, "addService"
+	41      (0000009e) invoke-virtual       v7, v4, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	42      (000000a4) move-result          v4
+	43      (000000a6) if-eqz               v4, +010h
+	6a:121
+	(Lorg/json/JSONException; -> 56 execute-BB@0x56)
+
+execute-BB@0xaa : [ execute-BB@0x1e ]
+	44      (000000aa) const/4              v4, 0
+	45      (000000ac) invoke-virtual       v8, v4, Lorg/json/JSONArray;->getString(I)Ljava/lang/String;
+	46      (000000b2) move-result-object   v4
+	47      (000000b4) const/4              v5, 1
+	48      (000000b6) invoke-virtual       v8, v5, Lorg/json/JSONArray;->getString(I)Ljava/lang/String;
+	49      (000000bc) move-result-object   v5
+	50      (000000be) invoke-virtual       v6, v4, v5, Lcom/phonegap/App;->addService(Ljava/lang/String; Ljava/lang/String;)V
+	51      (000000c4) goto                 -53h
+	6a:121
+	(Lorg/json/JSONException; -> 56 execute-BB@0x56)
+
+execute-BB@0xc6 : [ execute-BB@0xd6 execute-BB@0xe8 ]
+	52      (000000c6) const-string         v4, "overrideBackbutton"
+	53      (000000ca) invoke-virtual       v7, v4, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	54      (000000d0) move-result          v4
+	55      (000000d2) if-eqz               v4, +00bh
+	6a:121
+	(Lorg/json/JSONException; -> 56 execute-BB@0x56)
+
+execute-BB@0xd6 : [ execute-BB@0x1e ]
+	56      (000000d6) const/4              v4, 0
+	57      (000000d8) invoke-virtual       v8, v4, Lorg/json/JSONArray;->getBoolean(I)Z
+	58      (000000de) move-result          v4
+	59      (000000e0) invoke-virtual       v6, v4, Lcom/phonegap/App;->overrideBackbutton(Z)V
+	60      (000000e6) goto                 -64h
+	6a:121
+	(Lorg/json/JSONException; -> 56 execute-BB@0x56)
+
+execute-BB@0xe8 : [ execute-BB@0xf8 execute-BB@0x10c ]
+	61      (000000e8) const-string         v4, "isBackbuttonOverridden"
+	62      (000000ec) invoke-virtual       v7, v4, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	63      (000000f2) move-result          v4
+	64      (000000f4) if-eqz               v4, +00ch
+	6a:121
+	(Lorg/json/JSONException; -> 56 execute-BB@0x56)
+
+execute-BB@0xf8 : [ execute-BB@0x28 ]
+	65      (000000f8) invoke-virtual       v6, Lcom/phonegap/App;->isBackbuttonOverridden()Z
+	66      (000000fe) move-result          v0
+	67      (00000100) new-instance         v4, Lcom/phonegap/api/PluginResult;
+	68      (00000104) invoke-direct        v4, v3, v0, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; Z)V
+	69      (0000010a) goto                 -71h
+	6a:121
+	(Lorg/json/JSONException; -> 56 execute-BB@0x56)
+
+execute-BB@0x10c : [ execute-BB@0x11c execute-BB@0x1e ]
+	70      (0000010c) const-string         v4, "exitApp"
+	71      (00000110) invoke-virtual       v7, v4, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	72      (00000116) move-result          v4
+	73      (00000118) if-eqz               v4, -07dh
+	6a:121
+	(Lorg/json/JSONException; -> 56 execute-BB@0x56)
+
+execute-BB@0x11c : [ execute-BB@0x1e ]
+	74      (0000011c) invoke-virtual       v6, Lcom/phonegap/App;->exitApp()V
+	75      (00000122) goto/16              -082h
+

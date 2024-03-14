@@ -1,0 +1,110 @@
+# Lcom/phonegap/NetworkManager;->execute(Ljava/lang/String; Lorg/json/JSONArray; Ljava/lang/String;)Lcom/phonegap/api/PluginResult; [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v9
+# - v10:java.lang.String
+# - v11:org.json.JSONArray
+# - v12:java.lang.String
+#
+# - return:com.phonegap.api.PluginResult
+
+execute-BB@0x0 : [ execute-BB@0x8 ]
+	0       (00000000) sget-object          v6, Lcom/phonegap/api/PluginResult$Status;->OK Lcom/phonegap/api/PluginResult$Status;
+	1       (00000004) const-string         v5, ""
+
+execute-BB@0x8 : [ execute-BB@0x18 execute-BB@0x2c ]
+	2       (00000008) const-string         v7, "isAvailable"
+	3       (0000000c) invoke-virtual       v10, v7, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	4       (00000012) move-result          v7
+	5       (00000014) if-eqz               v7, +00ch
+	8:4d
+	(Lorg/json/JSONException; -> 50 execute-BB@0x50)
+
+execute-BB@0x18 : [ execute-BB@0x2a ]
+	6       (00000018) invoke-virtual       v9, Lcom/phonegap/NetworkManager;->isAvailable()Z
+	7       (0000001e) move-result          v0
+	8       (00000020) new-instance         v7, Lcom/phonegap/api/PluginResult;
+	9       (00000024) invoke-direct        v7, v6, v0, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; Z)V
+	8:4d
+	(Lorg/json/JSONException; -> 50 execute-BB@0x50)
+
+execute-BB@0x2a : 
+	10      (0000002a) return-object        v7
+	8:4d
+	(Lorg/json/JSONException; -> 50 execute-BB@0x50)
+
+execute-BB@0x2c : [ execute-BB@0x3c execute-BB@0x64 ]
+	11      (0000002c) const-string         v7, "isWifiActive"
+	12      (00000030) invoke-virtual       v10, v7, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	13      (00000036) move-result          v7
+	14      (00000038) if-eqz               v7, +016h
+	8:4d
+	(Lorg/json/JSONException; -> 50 execute-BB@0x50)
+
+execute-BB@0x3c : [ execute-BB@0x2a ]
+	15      (0000003c) invoke-virtual       v9, Lcom/phonegap/NetworkManager;->isWifiActive()Z
+	16      (00000042) move-result          v0
+	17      (00000044) new-instance         v7, Lcom/phonegap/api/PluginResult;
+	18      (00000048) invoke-direct        v7, v6, v0, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; Z)V
+	19      (0000004e) goto                 -12h
+
+execute-BB@0x50 : [ execute-BB@0x2a ]
+	20      (00000050) move-exception       v7
+	21      (00000052) move-object          v1, v7
+	22      (00000054) new-instance         v7, Lcom/phonegap/api/PluginResult;
+	23      (00000058) sget-object          v8, Lcom/phonegap/api/PluginResult$Status;->JSON_EXCEPTION Lcom/phonegap/api/PluginResult$Status;
+	24      (0000005c) invoke-direct        v7, v8, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status;)V
+	25      (00000062) goto                 -1ch
+
+execute-BB@0x64 : [ execute-BB@0x74 execute-BB@0x9c ]
+	26      (00000064) const-string         v7, "isReachable"
+	27      (00000068) invoke-virtual       v10, v7, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	28      (0000006e) move-result          v7
+	29      (00000070) if-eqz               v7, +016h
+	64:e3
+	(Lorg/json/JSONException; -> 50 execute-BB@0x50)
+
+execute-BB@0x74 : [ execute-BB@0x2a ]
+	30      (00000074) const/4              v7, 0
+	31      (00000076) invoke-virtual       v11, v7, Lorg/json/JSONArray;->getString(I)Ljava/lang/String;
+	32      (0000007c) move-result-object   v7
+	33      (0000007e) const/4              v8, 1
+	34      (00000080) invoke-virtual       v11, v8, Lorg/json/JSONArray;->getBoolean(I)Z
+	35      (00000086) move-result          v8
+	36      (00000088) invoke-virtual       v9, v7, v8, Lcom/phonegap/NetworkManager;->isReachable(Ljava/lang/String; Z)I
+	37      (0000008e) move-result          v2
+	38      (00000090) new-instance         v7, Lcom/phonegap/api/PluginResult;
+	39      (00000094) invoke-direct        v7, v6, v2, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; I)V
+	40      (0000009a) goto                 -38h
+	64:e3
+	(Lorg/json/JSONException; -> 50 execute-BB@0x50)
+
+execute-BB@0x9c : [ execute-BB@0xac execute-BB@0xda ]
+	41      (0000009c) const-string         v7, "getConnectionInfo"
+	42      (000000a0) invoke-virtual       v10, v7, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	43      (000000a6) move-result          v7
+	44      (000000a8) if-eqz               v7, +019h
+	64:e3
+	(Lorg/json/JSONException; -> 50 execute-BB@0x50)
+
+execute-BB@0xac : [ execute-BB@0x2a ]
+	45      (000000ac) iput-object          v12, v9, Lcom/phonegap/NetworkManager;->connectionCallbackId Ljava/lang/String;
+	46      (000000b0) iget-object          v7, v9, Lcom/phonegap/NetworkManager;->sockMan Landroid/net/ConnectivityManager;
+	47      (000000b4) invoke-virtual       v7, Landroid/net/ConnectivityManager;->getActiveNetworkInfo()Landroid/net/NetworkInfo;
+	48      (000000ba) move-result-object   v3
+	49      (000000bc) new-instance         v4, Lcom/phonegap/api/PluginResult;
+	50      (000000c0) invoke-direct        v9, v3, Lcom/phonegap/NetworkManager;->getConnectionInfo(Landroid/net/NetworkInfo;)Ljava/lang/String;
+	51      (000000c6) move-result-object   v7
+	52      (000000c8) invoke-direct        v4, v6, v7, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; Ljava/lang/String;)V
+	53      (000000ce) const/4              v7, 1
+	54      (000000d0) invoke-virtual       v4, v7, Lcom/phonegap/api/PluginResult;->setKeepCallback(Z)V
+	55      (000000d6) move-object          v7, v4
+	56      (000000d8) goto                 -57h
+	64:e3
+	(Lorg/json/JSONException; -> 50 execute-BB@0x50)
+
+execute-BB@0xda : [ execute-BB@0x2a ]
+	57      (000000da) new-instance         v7, Lcom/phonegap/api/PluginResult;
+	58      (000000de) invoke-direct        v7, v6, v5, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; Ljava/lang/String;)V
+	59      (000000e4) goto                 -5dh
+

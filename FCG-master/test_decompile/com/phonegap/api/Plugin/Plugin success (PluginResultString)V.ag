@@ -1,0 +1,16 @@
+# Lcom/phonegap/api/Plugin;->success(Lcom/phonegap/api/PluginResult; Ljava/lang/String;)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v2
+# - v3:com.phonegap.api.PluginResult
+# - v4:java.lang.String
+#
+# - return:void
+
+success-BB@0x0 : 
+	0       (00000000) iget-object          v0, v2, Lcom/phonegap/api/Plugin;->ctx Lcom/phonegap/api/PhonegapActivity;
+	1       (00000004) invoke-virtual       v3, v4, Lcom/phonegap/api/PluginResult;->toSuccessCallbackString(Ljava/lang/String;)Ljava/lang/String;
+	2       (0000000a) move-result-object   v1
+	3       (0000000c) invoke-virtual       v0, v1, Lcom/phonegap/api/PhonegapActivity;->sendJavascript(Ljava/lang/String;)V
+	4       (00000012) return-void          
+

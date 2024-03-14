@@ -1,0 +1,105 @@
+# Lcom/phonegap/FileUtils;->transferTo(Ljava/lang/String; Lorg/json/JSONObject; Ljava/lang/String; Z)Lorg/json/JSONObject; [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v5
+# - v6:java.lang.String
+# - v7:org.json.JSONObject
+# - v8:java.lang.String
+# - v9:boolean
+#
+# - return:org.json.JSONObject
+
+transferTo-BB@0x0 : [ transferTo-BB@0x4 transferTo-BB@0x24 ]
+	0       (00000000) if-eqz               v8, +012h
+
+transferTo-BB@0x4 : [ transferTo-BB@0x14 transferTo-BB@0x24 ]
+	1       (00000004) const-string         v3, ":"
+	2       (00000008) invoke-virtual       v8, v3, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+	3       (0000000e) move-result          v3
+	4       (00000010) if-eqz               v3, +00ah
+
+transferTo-BB@0x14 : 
+	5       (00000014) new-instance         v3, Lcom/phonegap/file/EncodingException;
+	6       (00000018) const-string         v4, "Bad file name"
+	7       (0000001c) invoke-direct        v3, v4, Lcom/phonegap/file/EncodingException;-><init>(Ljava/lang/String;)V
+	8       (00000022) throw                v3
+
+transferTo-BB@0x24 : [ transferTo-BB@0x3a transferTo-BB@0x4a ]
+	9       (00000024) new-instance         v2, Ljava/io/File;
+	10      (00000028) invoke-direct        v2, v6, Ljava/io/File;-><init>(Ljava/lang/String;)V
+	11      (0000002e) invoke-virtual       v2, Ljava/io/File;->exists()Z
+	12      (00000034) move-result          v3
+	13      (00000036) if-nez               v3, +00ah
+
+transferTo-BB@0x3a : 
+	14      (0000003a) new-instance         v3, Ljava/io/FileNotFoundException;
+	15      (0000003e) const-string         v4, "The source does not exist"
+	16      (00000042) invoke-direct        v3, v4, Ljava/io/FileNotFoundException;-><init>(Ljava/lang/String;)V
+	17      (00000048) throw                v3
+
+transferTo-BB@0x4a : [ transferTo-BB@0x6c transferTo-BB@0x7c ]
+	18      (0000004a) new-instance         v1, Ljava/io/File;
+	19      (0000004e) const-string         v3, "fullPath"
+	20      (00000052) invoke-virtual       v7, v3, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+	21      (00000058) move-result-object   v3
+	22      (0000005a) invoke-direct        v1, v3, Ljava/io/File;-><init>(Ljava/lang/String;)V
+	23      (00000060) invoke-virtual       v1, Ljava/io/File;->exists()Z
+	24      (00000066) move-result          v3
+	25      (00000068) if-nez               v3, +00ah
+
+transferTo-BB@0x6c : 
+	26      (0000006c) new-instance         v3, Ljava/io/FileNotFoundException;
+	27      (00000070) const-string         v4, "The source does not exist"
+	28      (00000074) invoke-direct        v3, v4, Ljava/io/FileNotFoundException;-><init>(Ljava/lang/String;)V
+	29      (0000007a) throw                v3
+
+transferTo-BB@0x7c : [ transferTo-BB@0xa0 transferTo-BB@0xb0 ]
+	30      (0000007c) invoke-direct        v5, v8, v2, v1, Lcom/phonegap/FileUtils;->createDestination(Ljava/lang/String; Ljava/io/File; Ljava/io/File;)Ljava/io/File;
+	31      (00000082) move-result-object   v0
+	32      (00000084) invoke-virtual       v2, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
+	33      (0000008a) move-result-object   v3
+	34      (0000008c) invoke-virtual       v0, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
+	35      (00000092) move-result-object   v4
+	36      (00000094) invoke-virtual       v3, v4, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	37      (0000009a) move-result          v3
+	38      (0000009c) if-eqz               v3, +00ah
+
+transferTo-BB@0xa0 : 
+	39      (000000a0) new-instance         v3, Lcom/phonegap/file/InvalidModificationException;
+	40      (000000a4) const-string         v4, "Can't copy a file onto itself"
+	41      (000000a8) invoke-direct        v3, v4, Lcom/phonegap/file/InvalidModificationException;-><init>(Ljava/lang/String;)V
+	42      (000000ae) throw                v3
+
+transferTo-BB@0xb0 : [ transferTo-BB@0xbc transferTo-BB@0xd4 ]
+	43      (000000b0) invoke-virtual       v2, Ljava/io/File;->isDirectory()Z
+	44      (000000b6) move-result          v3
+	45      (000000b8) if-eqz               v3, +00eh
+
+transferTo-BB@0xbc : [ transferTo-BB@0xc0 transferTo-BB@0xca ]
+	46      (000000bc) if-eqz               v9, +007h
+
+transferTo-BB@0xc0 : [ transferTo-BB@0xc8 ]
+	47      (000000c0) invoke-direct        v5, v2, v0, Lcom/phonegap/FileUtils;->moveDirectory(Ljava/io/File; Ljava/io/File;)Lorg/json/JSONObject;
+	48      (000000c6) move-result-object   v3
+
+transferTo-BB@0xc8 : 
+	49      (000000c8) return-object        v3
+
+transferTo-BB@0xca : [ transferTo-BB@0xc8 ]
+	50      (000000ca) invoke-direct        v5, v2, v0, Lcom/phonegap/FileUtils;->copyDirectory(Ljava/io/File; Ljava/io/File;)Lorg/json/JSONObject;
+	51      (000000d0) move-result-object   v3
+	52      (000000d2) goto                 -5h
+
+transferTo-BB@0xd4 : [ transferTo-BB@0xd8 transferTo-BB@0xe2 ]
+	53      (000000d4) if-eqz               v9, +007h
+
+transferTo-BB@0xd8 : [ transferTo-BB@0xc8 ]
+	54      (000000d8) invoke-direct        v5, v2, v0, Lcom/phonegap/FileUtils;->moveFile(Ljava/io/File; Ljava/io/File;)Lorg/json/JSONObject;
+	55      (000000de) move-result-object   v3
+	56      (000000e0) goto                 -ch
+
+transferTo-BB@0xe2 : [ transferTo-BB@0xc8 ]
+	57      (000000e2) invoke-direct        v5, v2, v0, Lcom/phonegap/FileUtils;->copyFile(Ljava/io/File; Ljava/io/File;)Lorg/json/JSONObject;
+	58      (000000e8) move-result-object   v3
+	59      (000000ea) goto                 -11h
+

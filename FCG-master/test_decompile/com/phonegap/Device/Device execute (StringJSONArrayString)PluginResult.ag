@@ -1,0 +1,65 @@
+# Lcom/phonegap/Device;->execute(Ljava/lang/String; Lorg/json/JSONArray; Ljava/lang/String;)Lcom/phonegap/api/PluginResult; [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v6
+# - v7:java.lang.String
+# - v8:org.json.JSONArray
+# - v9:java.lang.String
+#
+# - return:com.phonegap.api.PluginResult
+
+execute-BB@0x0 : [ execute-BB@0x8 ]
+	0       (00000000) sget-object          v3, Lcom/phonegap/api/PluginResult$Status;->OK Lcom/phonegap/api/PluginResult$Status;
+	1       (00000004) const-string         v2, ""
+
+execute-BB@0x8 : [ execute-BB@0x18 execute-BB@0x7c ]
+	2       (00000008) const-string         v4, "getDeviceInfo"
+	3       (0000000c) invoke-virtual       v7, v4, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	4       (00000012) move-result          v4
+	5       (00000014) if-eqz               v4, +034h
+	8:85
+	(Lorg/json/JSONException; -> 88 execute-BB@0x88)
+
+execute-BB@0x18 : [ execute-BB@0x7a ]
+	6       (00000018) new-instance         v1, Lorg/json/JSONObject;
+	7       (0000001c) invoke-direct        v1, Lorg/json/JSONObject;-><init>()V
+	8       (00000022) const-string         v4, "uuid"
+	9       (00000026) sget-object          v5, Lcom/phonegap/Device;->uuid Ljava/lang/String;
+	10      (0000002a) invoke-virtual       v1, v4, v5, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	11      (00000030) const-string         v4, "version"
+	12      (00000034) invoke-virtual       v6, Lcom/phonegap/Device;->getOSVersion()Ljava/lang/String;
+	13      (0000003a) move-result-object   v5
+	14      (0000003c) invoke-virtual       v1, v4, v5, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	15      (00000042) const-string         v4, "platform"
+	16      (00000046) sget-object          v5, Lcom/phonegap/Device;->platform Ljava/lang/String;
+	17      (0000004a) invoke-virtual       v1, v4, v5, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	18      (00000050) const-string         v4, "name"
+	19      (00000054) invoke-virtual       v6, Lcom/phonegap/Device;->getProductName()Ljava/lang/String;
+	20      (0000005a) move-result-object   v5
+	21      (0000005c) invoke-virtual       v1, v4, v5, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	22      (00000062) const-string         v4, "phonegap"
+	23      (00000066) sget-object          v5, Lcom/phonegap/Device;->phonegapVersion Ljava/lang/String;
+	24      (0000006a) invoke-virtual       v1, v4, v5, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	25      (00000070) new-instance         v4, Lcom/phonegap/api/PluginResult;
+	26      (00000074) invoke-direct        v4, v3, v1, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; Lorg/json/JSONObject;)V
+	8:85
+	(Lorg/json/JSONException; -> 88 execute-BB@0x88)
+
+execute-BB@0x7a : 
+	27      (0000007a) return-object        v4
+	8:85
+	(Lorg/json/JSONException; -> 88 execute-BB@0x88)
+
+execute-BB@0x7c : [ execute-BB@0x7a ]
+	28      (0000007c) new-instance         v4, Lcom/phonegap/api/PluginResult;
+	29      (00000080) invoke-direct        v4, v3, v2, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; Ljava/lang/String;)V
+	30      (00000086) goto                 -6h
+
+execute-BB@0x88 : [ execute-BB@0x7a ]
+	31      (00000088) move-exception       v4
+	32      (0000008a) move-object          v0, v4
+	33      (0000008c) new-instance         v4, Lcom/phonegap/api/PluginResult;
+	34      (00000090) sget-object          v5, Lcom/phonegap/api/PluginResult$Status;->JSON_EXCEPTION Lcom/phonegap/api/PluginResult$Status;
+	35      (00000094) invoke-direct        v4, v5, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status;)V
+	36      (0000009a) goto                 -10h
+

@@ -1,0 +1,29 @@
+# Lcom/phonegap/FileUtils;->getParent(Ljava/lang/String;)Lorg/json/JSONObject; [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v1
+# - v2:java.lang.String
+#
+# - return:org.json.JSONObject
+
+getParent-BB@0x0 : [ getParent-BB@0xc getParent-BB@0x16 ]
+	0       (00000000) invoke-direct        v1, v2, Lcom/phonegap/FileUtils;->atRootDirectory(Ljava/lang/String;)Z
+	1       (00000006) move-result          v0
+	2       (00000008) if-eqz               v0, +007h
+
+getParent-BB@0xc : [ getParent-BB@0x14 ]
+	3       (0000000c) invoke-direct        v1, v2, Lcom/phonegap/FileUtils;->getEntry(Ljava/lang/String;)Lorg/json/JSONObject;
+	4       (00000012) move-result-object   v0
+
+getParent-BB@0x14 : 
+	5       (00000014) return-object        v0
+
+getParent-BB@0x16 : [ getParent-BB@0x14 ]
+	6       (00000016) new-instance         v0, Ljava/io/File;
+	7       (0000001a) invoke-direct        v0, v2, Ljava/io/File;-><init>(Ljava/lang/String;)V
+	8       (00000020) invoke-virtual       v0, Ljava/io/File;->getParent()Ljava/lang/String;
+	9       (00000026) move-result-object   v0
+	10      (00000028) invoke-direct        v1, v0, Lcom/phonegap/FileUtils;->getEntry(Ljava/lang/String;)Lorg/json/JSONObject;
+	11      (0000002e) move-result-object   v0
+	12      (00000030) goto                 -eh
+

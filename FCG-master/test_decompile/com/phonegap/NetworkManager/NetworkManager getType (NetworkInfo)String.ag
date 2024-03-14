@@ -1,0 +1,113 @@
+# Lcom/phonegap/NetworkManager;->getType(Landroid/net/NetworkInfo;)Ljava/lang/String; [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v3
+# - v4:android.net.NetworkInfo
+#
+# - return:java.lang.String
+
+getType-BB@0x0 : [ getType-BB@0x4 getType-BB@0x104 ]
+	0       (00000000) if-eqz               v4, +082h
+
+getType-BB@0x4 : [ getType-BB@0x24 getType-BB@0x2a ]
+	1       (00000004) invoke-virtual       v4, Landroid/net/NetworkInfo;->getTypeName()Ljava/lang/String;
+	2       (0000000a) move-result-object   v0
+	3       (0000000c) invoke-virtual       v0, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	4       (00000012) move-result-object   v1
+	5       (00000014) const-string         v2, "wifi"
+	6       (00000018) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	7       (0000001e) move-result          v1
+	8       (00000020) if-eqz               v1, +005h
+
+getType-BB@0x24 : [ getType-BB@0x28 ]
+	9       (00000024) const-string         v1, "wifi"
+
+getType-BB@0x28 : 
+	10      (00000028) return-object        v1
+
+getType-BB@0x2a : [ getType-BB@0x42 getType-BB@0x10a ]
+	11      (0000002a) invoke-virtual       v0, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	12      (00000030) move-result-object   v1
+	13      (00000032) const-string         v2, "mobile"
+	14      (00000036) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	15      (0000003c) move-result          v1
+	16      (0000003e) if-eqz               v1, +066h
+
+getType-BB@0x42 : [ getType-BB@0x62 getType-BB@0x92 ]
+	17      (00000042) invoke-virtual       v4, Landroid/net/NetworkInfo;->getSubtypeName()Ljava/lang/String;
+	18      (00000048) move-result-object   v0
+	19      (0000004a) invoke-virtual       v0, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	20      (00000050) move-result-object   v1
+	21      (00000052) const-string         v2, "gsm"
+	22      (00000056) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	23      (0000005c) move-result          v1
+	24      (0000005e) if-nez               v1, +01ah
+
+getType-BB@0x62 : [ getType-BB@0x7a getType-BB@0x92 ]
+	25      (00000062) invoke-virtual       v0, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	26      (00000068) move-result-object   v1
+	27      (0000006a) const-string         v2, "gprs"
+	28      (0000006e) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	29      (00000074) move-result          v1
+	30      (00000076) if-nez               v1, +00eh
+
+getType-BB@0x7a : [ getType-BB@0x92 getType-BB@0x98 ]
+	31      (0000007a) invoke-virtual       v0, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	32      (00000080) move-result-object   v1
+	33      (00000082) const-string         v2, "edge"
+	34      (00000086) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	35      (0000008c) move-result          v1
+	36      (0000008e) if-eqz               v1, +005h
+
+getType-BB@0x92 : [ getType-BB@0x28 ]
+	37      (00000092) const-string         v1, "2g"
+	38      (00000096) goto                 -37h
+
+getType-BB@0x98 : [ getType-BB@0xb0 getType-BB@0xc8 ]
+	39      (00000098) invoke-virtual       v0, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	40      (0000009e) move-result-object   v1
+	41      (000000a0) const-string         v2, "cdma"
+	42      (000000a4) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	43      (000000aa) move-result          v1
+	44      (000000ac) if-nez               v1, +00eh
+
+getType-BB@0xb0 : [ getType-BB@0xc8 getType-BB@0xce ]
+	45      (000000b0) invoke-virtual       v0, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	46      (000000b6) move-result-object   v1
+	47      (000000b8) const-string         v2, "umts"
+	48      (000000bc) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	49      (000000c2) move-result          v1
+	50      (000000c4) if-eqz               v1, +005h
+
+getType-BB@0xc8 : [ getType-BB@0x28 ]
+	51      (000000c8) const-string         v1, "3g"
+	52      (000000cc) goto                 -52h
+
+getType-BB@0xce : [ getType-BB@0xe6 getType-BB@0xfe ]
+	53      (000000ce) invoke-virtual       v0, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	54      (000000d4) move-result-object   v1
+	55      (000000d6) const-string         v2, "lte"
+	56      (000000da) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	57      (000000e0) move-result          v1
+	58      (000000e2) if-nez               v1, +00eh
+
+getType-BB@0xe6 : [ getType-BB@0xfe getType-BB@0x10a ]
+	59      (000000e6) invoke-virtual       v0, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	60      (000000ec) move-result-object   v1
+	61      (000000ee) const-string         v2, "umb"
+	62      (000000f2) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	63      (000000f8) move-result          v1
+	64      (000000fa) if-eqz               v1, +008h
+
+getType-BB@0xfe : [ getType-BB@0x28 ]
+	65      (000000fe) const-string         v1, "4g"
+	66      (00000102) goto                 -6dh
+
+getType-BB@0x104 : [ getType-BB@0x28 ]
+	67      (00000104) const-string         v1, "none"
+	68      (00000108) goto                 -70h
+
+getType-BB@0x10a : [ getType-BB@0x28 ]
+	69      (0000010a) const-string         v1, "unknown"
+	70      (0000010e) goto                 -73h
+

@@ -1,0 +1,45 @@
+# Lcom/phonegap/ContactAccessorSdk5;->populateContact(Lorg/json/JSONObject; Lorg/json/JSONArray; Lorg/json/JSONArray; Lorg/json/JSONArray; Lorg/json/JSONArray; Lorg/json/JSONArray; Lorg/json/JSONArray; Lorg/json/JSONArray;)Lorg/json/JSONObject; [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v3
+# - v4:org.json.JSONObject
+# - v5:org.json.JSONArray
+# - v6:org.json.JSONArray
+# - v7:org.json.JSONArray
+# - v8:org.json.JSONArray
+# - v9:org.json.JSONArray
+# - v10:org.json.JSONArray
+# - v11:org.json.JSONArray
+#
+# - return:org.json.JSONObject
+
+populateContact-BB@0x0 : [ populateContact-BB@0x46 ]
+	0       (00000000) const-string         v1, "organizations"
+	1       (00000004) invoke-virtual       v4, v1, v5, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	2       (0000000a) const-string         v1, "addresses"
+	3       (0000000e) invoke-virtual       v4, v1, v6, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	4       (00000014) const-string         v1, "phoneNumbers"
+	5       (00000018) invoke-virtual       v4, v1, v7, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	6       (0000001e) const-string         v1, "emails"
+	7       (00000022) invoke-virtual       v4, v1, v8, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	8       (00000028) const-string         v1, "ims"
+	9       (0000002c) invoke-virtual       v4, v1, v9, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	10      (00000032) const-string         v1, "websites"
+	11      (00000036) invoke-virtual       v4, v1, v10, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	12      (0000003c) const-string         v1, "photos"
+	13      (00000040) invoke-virtual       v4, v1, v11, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	0:45
+	(Lorg/json/JSONException; -> 48 populateContact-BB@0x48)
+
+populateContact-BB@0x46 : 
+	14      (00000046) return-object        v4
+
+populateContact-BB@0x48 : [ populateContact-BB@0x46 ]
+	15      (00000048) move-exception       v1
+	16      (0000004a) move-object          v0, v1
+	17      (0000004c) const-string         v1, "ContactsAccessor"
+	18      (00000050) invoke-virtual       v0, Lorg/json/JSONException;->getMessage()Ljava/lang/String;
+	19      (00000056) move-result-object   v2
+	20      (00000058) invoke-static        v1, v2, v0, Landroid/util/Log;->e(Ljava/lang/String; Ljava/lang/String; Ljava/lang/Throwable;)I
+	21      (0000005e) goto                 -ch
+

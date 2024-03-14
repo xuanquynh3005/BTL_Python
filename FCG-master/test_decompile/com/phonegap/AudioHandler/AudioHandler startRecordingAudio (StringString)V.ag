@@ -1,0 +1,26 @@
+# Lcom/phonegap/AudioHandler;->startRecordingAudio(Ljava/lang/String; Ljava/lang/String;)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v2
+# - v3:java.lang.String
+# - v4:java.lang.String
+#
+# - return:void
+
+startRecordingAudio-BB@0x0 : [ startRecordingAudio-BB@0x10 startRecordingAudio-BB@0x12 ]
+	0       (00000000) iget-object          v1, v2, Lcom/phonegap/AudioHandler;->players Ljava/util/HashMap;
+	1       (00000004) invoke-virtual       v1, v3, Ljava/util/HashMap;->containsKey(Ljava/lang/Object;)Z
+	2       (0000000a) move-result          v1
+	3       (0000000c) if-eqz               v1, +003h
+
+startRecordingAudio-BB@0x10 : 
+	4       (00000010) return-void          
+
+startRecordingAudio-BB@0x12 : [ startRecordingAudio-BB@0x10 ]
+	5       (00000012) new-instance         v0, Lcom/phonegap/AudioPlayer;
+	6       (00000016) invoke-direct        v0, v2, v3, Lcom/phonegap/AudioPlayer;-><init>(Lcom/phonegap/AudioHandler; Ljava/lang/String;)V
+	7       (0000001c) iget-object          v1, v2, Lcom/phonegap/AudioHandler;->players Ljava/util/HashMap;
+	8       (00000020) invoke-virtual       v1, v3, v0, Ljava/util/HashMap;->put(Ljava/lang/Object; Ljava/lang/Object;)Ljava/lang/Object;
+	9       (00000026) invoke-virtual       v0, v4, Lcom/phonegap/AudioPlayer;->startRecording(Ljava/lang/String;)V
+	10      (0000002c) goto                 -eh
+

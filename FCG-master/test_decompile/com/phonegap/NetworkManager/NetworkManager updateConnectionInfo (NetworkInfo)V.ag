@@ -1,0 +1,14 @@
+# Lcom/phonegap/NetworkManager;->updateConnectionInfo(Landroid/net/NetworkInfo;)V [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v1
+# - v2:android.net.NetworkInfo
+#
+# - return:void
+
+updateConnectionInfo-BB@0x0 : 
+	0       (00000000) invoke-direct        v1, v2, Lcom/phonegap/NetworkManager;->getConnectionInfo(Landroid/net/NetworkInfo;)Ljava/lang/String;
+	1       (00000006) move-result-object   v0
+	2       (00000008) invoke-direct        v1, v0, Lcom/phonegap/NetworkManager;->sendUpdate(Ljava/lang/String;)V
+	3       (0000000e) return-void          
+

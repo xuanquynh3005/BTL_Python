@@ -1,0 +1,22 @@
+# Lcom/phonegap/Notification$2$3;->onClick(Landroid/content/DialogInterface; I)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v4
+# - v5:android.content.DialogInterface
+# - v6:int
+#
+# - return:void
+
+onClick-BB@0x0 : 
+	0       (00000000) invoke-interface     v5, Landroid/content/DialogInterface;->dismiss()V
+	1       (00000006) iget-object          v0, v4, Lcom/phonegap/Notification$2$3;->this$1 Lcom/phonegap/Notification$2;
+	2       (0000000a) iget-object          v0, v0, Lcom/phonegap/Notification$2;->val$notification Lcom/phonegap/Notification;
+	3       (0000000e) new-instance         v1, Lcom/phonegap/api/PluginResult;
+	4       (00000012) sget-object          v2, Lcom/phonegap/api/PluginResult$Status;->OK Lcom/phonegap/api/PluginResult$Status;
+	5       (00000016) const/4              v3, 3
+	6       (00000018) invoke-direct        v1, v2, v3, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; I)V
+	7       (0000001e) iget-object          v2, v4, Lcom/phonegap/Notification$2$3;->this$1 Lcom/phonegap/Notification$2;
+	8       (00000022) iget-object          v2, v2, Lcom/phonegap/Notification$2;->val$callbackId Ljava/lang/String;
+	9       (00000026) invoke-virtual       v0, v1, v2, Lcom/phonegap/Notification;->success(Lcom/phonegap/api/PluginResult; Ljava/lang/String;)V
+	10      (0000002c) return-void          
+

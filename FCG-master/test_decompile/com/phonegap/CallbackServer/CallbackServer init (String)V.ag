@@ -1,0 +1,41 @@
+# Lcom/phonegap/CallbackServer;->init(Ljava/lang/String;)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v2
+# - v3:java.lang.String
+#
+# - return:void
+
+init-BB@0x0 : [ init-BB@0x6 init-BB@0x22 ]
+	0       (00000000) const/4              v1, 1
+	1       (00000002) if-eqz               v3, +010h
+
+init-BB@0x6 : [ init-BB@0x16 init-BB@0x22 ]
+	2       (00000006) const-string         v0, "file://"
+	3       (0000000a) invoke-virtual       v3, v0, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+	4       (00000010) move-result          v0
+	5       (00000012) if-nez               v0, +008h
+
+init-BB@0x16 : [ init-BB@0x20 ]
+	6       (00000016) iput-boolean         v1, v2, Lcom/phonegap/CallbackServer;->usePolling Z
+	7       (0000001a) invoke-virtual       v2, Lcom/phonegap/CallbackServer;->stopServer()V
+
+init-BB@0x20 : 
+	8       (00000020) return-void          
+
+init-BB@0x22 : [ init-BB@0x2e init-BB@0x3a ]
+	9       (00000022) invoke-static        Landroid/net/Proxy;->getDefaultHost()Ljava/lang/String;
+	10      (00000028) move-result-object   v0
+	11      (0000002a) if-eqz               v0, +008h
+
+init-BB@0x2e : [ init-BB@0x20 ]
+	12      (0000002e) iput-boolean         v1, v2, Lcom/phonegap/CallbackServer;->usePolling Z
+	13      (00000032) invoke-virtual       v2, Lcom/phonegap/CallbackServer;->stopServer()V
+	14      (00000038) goto                 -ch
+
+init-BB@0x3a : [ init-BB@0x20 ]
+	15      (0000003a) const/4              v0, 0
+	16      (0000003c) iput-boolean         v0, v2, Lcom/phonegap/CallbackServer;->usePolling Z
+	17      (00000040) invoke-virtual       v2, Lcom/phonegap/CallbackServer;->startServer()V
+	18      (00000046) goto                 -13h
+

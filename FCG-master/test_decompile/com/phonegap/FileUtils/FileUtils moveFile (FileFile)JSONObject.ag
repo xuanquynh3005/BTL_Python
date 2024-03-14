@@ -1,0 +1,35 @@
+# Lcom/phonegap/FileUtils;->moveFile(Ljava/io/File; Ljava/io/File;)Lorg/json/JSONObject; [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v2
+# - v3:java.io.File
+# - v4:java.io.File
+#
+# - return:org.json.JSONObject
+
+moveFile-BB@0x0 : [ moveFile-BB@0xc moveFile-BB@0x28 ]
+	0       (00000000) invoke-virtual       v4, Ljava/io/File;->exists()Z
+	1       (00000006) move-result          v0
+	2       (00000008) if-eqz               v0, +010h
+
+moveFile-BB@0xc : [ moveFile-BB@0x18 moveFile-BB@0x28 ]
+	3       (0000000c) invoke-virtual       v4, Ljava/io/File;->isDirectory()Z
+	4       (00000012) move-result          v0
+	5       (00000014) if-eqz               v0, +00ah
+
+moveFile-BB@0x18 : 
+	6       (00000018) new-instance         v0, Lcom/phonegap/file/InvalidModificationException;
+	7       (0000001c) const-string         v1, "Can't rename a file to a directory"
+	8       (00000020) invoke-direct        v0, v1, Lcom/phonegap/file/InvalidModificationException;-><init>(Ljava/lang/String;)V
+	9       (00000026) throw                v0
+
+moveFile-BB@0x28 : [ moveFile-BB@0x34 moveFile-BB@0x34 ]
+	10      (00000028) invoke-virtual       v3, v4, Ljava/io/File;->renameTo(Ljava/io/File;)Z
+	11      (0000002e) move-result          v0
+	12      (00000030) if-nez               v0, +002h
+
+moveFile-BB@0x34 : 
+	13      (00000034) invoke-direct        v2, v4, Lcom/phonegap/FileUtils;->getEntry(Ljava/io/File;)Lorg/json/JSONObject;
+	14      (0000003a) move-result-object   v0
+	15      (0000003c) return-object        v0
+

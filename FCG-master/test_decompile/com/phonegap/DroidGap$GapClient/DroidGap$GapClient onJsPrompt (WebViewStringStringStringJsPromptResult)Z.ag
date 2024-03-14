@@ -1,0 +1,256 @@
+# Lcom/phonegap/DroidGap$GapClient;->onJsPrompt(Landroid/webkit/WebView; Ljava/lang/String; Ljava/lang/String; Ljava/lang/String; Landroid/webkit/JsPromptResult;)Z [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v17
+# - v18:android.webkit.WebView
+# - v19:java.lang.String
+# - v20:java.lang.String
+# - v21:java.lang.String
+# - v22:android.webkit.JsPromptResult
+#
+# - return:boolean
+
+onJsPrompt-BB@0x0 : [ onJsPrompt-BB@0x38 onJsPrompt-BB@0x3a ]
+	0       (00000000) const/4              v15, 0
+	1       (00000002) move-object/from16   v0, v17
+	2       (00000006) iget-object          v0, v0, Lcom/phonegap/DroidGap$GapClient;->ctx Lcom/phonegap/DroidGap;
+	3       (0000000a) move-object          v4, v0
+	4       (0000000c) invoke-static        v4, Lcom/phonegap/DroidGap;->access$300(Lcom/phonegap/DroidGap;)Ljava/lang/String;
+	5       (00000012) move-result-object   v4
+	6       (00000014) move-object/from16   v0, v17
+	7       (00000018) iget-object          v0, v0, Lcom/phonegap/DroidGap$GapClient;->ctx Lcom/phonegap/DroidGap;
+	8       (0000001c) move-object          v5, v0
+	9       (0000001e) move-object          v0, v5
+	10      (00000020) move-object/from16   v1, v19
+	11      (00000024) invoke-static        v0, v1, Lcom/phonegap/DroidGap;->access$200(Lcom/phonegap/DroidGap; Ljava/lang/String;)Ljava/lang/String;
+	12      (0000002a) move-result-object   v5
+	13      (0000002c) invoke-virtual       v4, v5, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	14      (00000032) move-result          v4
+	15      (00000034) if-eqz               v4, +003h
+
+onJsPrompt-BB@0x38 : [ onJsPrompt-BB@0x3a ]
+	16      (00000038) const/4              v15, 1
+
+onJsPrompt-BB@0x3a : [ onJsPrompt-BB@0x3e onJsPrompt-BB@0xec ]
+	17      (0000003a) if-eqz               v15, +059h
+
+onJsPrompt-BB@0x3e : [ onJsPrompt-BB@0x42 onJsPrompt-BB@0xec ]
+	18      (0000003e) if-eqz               v21, +057h
+
+onJsPrompt-BB@0x42 : [ onJsPrompt-BB@0x50 onJsPrompt-BB@0xec ]
+	19      (00000042) invoke-virtual/range v21, Ljava/lang/String;->length()I
+	20      (00000048) move-result          v4
+	21      (0000004a) const/4              v5, 3
+	22      (0000004c) if-le                v4, v5, +050h
+
+onJsPrompt-BB@0x50 : [ onJsPrompt-BB@0x74 onJsPrompt-BB@0xec ]
+	23      (00000050) const/4              v4, 0
+	24      (00000052) const/4              v5, 4
+	25      (00000054) move-object/from16   v0, v21
+	26      (00000058) move                 v1, v4
+	27      (0000005a) move                 v2, v5
+	28      (0000005c) invoke-virtual       v0, v1, v2, Ljava/lang/String;->substring(I I)Ljava/lang/String;
+	29      (00000062) move-result-object   v4
+	30      (00000064) const-string         v5, "gap:"
+	31      (00000068) invoke-virtual       v4, v5, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	32      (0000006e) move-result          v4
+	33      (00000070) if-eqz               v4, +03eh
+
+onJsPrompt-BB@0x74 : [ onJsPrompt-BB@0xdc ]
+	34      (00000074) new-instance         v10, Lorg/json/JSONArray;
+	35      (00000078) const/4              v4, 4
+	36      (0000007a) move-object/from16   v0, v21
+	37      (0000007e) move                 v1, v4
+	38      (00000080) invoke-virtual       v0, v1, Ljava/lang/String;->substring(I)Ljava/lang/String;
+	39      (00000086) move-result-object   v4
+	40      (00000088) invoke-direct        v10, v4, Lorg/json/JSONArray;-><init>(Ljava/lang/String;)V
+	41      (0000008e) const/4              v4, 0
+	42      (00000090) invoke-virtual       v10, v4, Lorg/json/JSONArray;->getString(I)Ljava/lang/String;
+	43      (00000096) move-result-object   v5
+	44      (00000098) const/4              v4, 1
+	45      (0000009a) invoke-virtual       v10, v4, Lorg/json/JSONArray;->getString(I)Ljava/lang/String;
+	46      (000000a0) move-result-object   v6
+	47      (000000a2) const/4              v4, 2
+	48      (000000a4) invoke-virtual       v10, v4, Lorg/json/JSONArray;->getString(I)Ljava/lang/String;
+	49      (000000aa) move-result-object   v7
+	50      (000000ac) const/4              v4, 3
+	51      (000000ae) invoke-virtual       v10, v4, Lorg/json/JSONArray;->getBoolean(I)Z
+	52      (000000b4) move-result          v9
+	53      (000000b6) move-object/from16   v0, v17
+	54      (000000ba) iget-object          v0, v0, Lcom/phonegap/DroidGap$GapClient;->this$0 Lcom/phonegap/DroidGap;
+	55      (000000be) move-object          v4, v0
+	56      (000000c0) iget-object          v4, v4, Lcom/phonegap/DroidGap;->pluginManager Lcom/phonegap/api/PluginManager;
+	57      (000000c4) move-object/from16   v8, v20
+	58      (000000c8) invoke-virtual/range v4 ... v9, Lcom/phonegap/api/PluginManager;->exec(Ljava/lang/String; Ljava/lang/String; Ljava/lang/String; Ljava/lang/String; Z)Ljava/lang/String;
+	59      (000000ce) move-result-object   v14
+	60      (000000d0) move-object/from16   v0, v22
+	61      (000000d4) move-object          v1, v14
+	62      (000000d6) invoke-virtual       v0, v1, Landroid/webkit/JsPromptResult;->confirm(Ljava/lang/String;)V
+	74:db
+	(Lorg/json/JSONException; -> e0 onJsPrompt-BB@0xe0)
+
+onJsPrompt-BB@0xdc : 
+	63      (000000dc) const/4              v4, 1
+	64      (000000de) return               v4
+
+onJsPrompt-BB@0xe0 : [ onJsPrompt-BB@0xdc ]
+	65      (000000e0) move-exception       v4
+	66      (000000e2) move-object          v12, v4
+	67      (000000e4) invoke-virtual       v12, Lorg/json/JSONException;->printStackTrace()V
+	68      (000000ea) goto                 -7h
+
+onJsPrompt-BB@0xec : [ onJsPrompt-BB@0xf0 onJsPrompt-BB@0x12a ]
+	69      (000000ec) if-eqz               v15, +01fh
+
+onJsPrompt-BB@0xf0 : [ onJsPrompt-BB@0x106 onJsPrompt-BB@0x12a ]
+	70      (000000f0) const-string         v4, "gap_poll:"
+	71      (000000f4) move-object/from16   v0, v21
+	72      (000000f8) move-object          v1, v4
+	73      (000000fa) invoke-virtual       v0, v1, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	74      (00000100) move-result          v4
+	75      (00000102) if-eqz               v4, +014h
+
+onJsPrompt-BB@0x106 : [ onJsPrompt-BB@0xdc ]
+	76      (00000106) move-object/from16   v0, v17
+	77      (0000010a) iget-object          v0, v0, Lcom/phonegap/DroidGap$GapClient;->this$0 Lcom/phonegap/DroidGap;
+	78      (0000010e) move-object          v4, v0
+	79      (00000110) iget-object          v4, v4, Lcom/phonegap/DroidGap;->callbackServer Lcom/phonegap/CallbackServer;
+	80      (00000114) invoke-virtual       v4, Lcom/phonegap/CallbackServer;->getJavascript()Ljava/lang/String;
+	81      (0000011a) move-result-object   v14
+	82      (0000011c) move-object/from16   v0, v22
+	83      (00000120) move-object          v1, v14
+	84      (00000122) invoke-virtual       v0, v1, Landroid/webkit/JsPromptResult;->confirm(Ljava/lang/String;)V
+	85      (00000128) goto                 -26h
+
+onJsPrompt-BB@0x12a : [ onJsPrompt-BB@0x12e onJsPrompt-BB@0x238 ]
+	86      (0000012a) if-eqz               v15, +087h
+
+onJsPrompt-BB@0x12e : [ onJsPrompt-BB@0x144 onJsPrompt-BB@0x238 ]
+	87      (0000012e) const-string         v4, "gap_callbackServer:"
+	88      (00000132) move-object/from16   v0, v21
+	89      (00000136) move-object          v1, v4
+	90      (00000138) invoke-virtual       v0, v1, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	91      (0000013e) move-result          v4
+	92      (00000140) if-eqz               v4, +07ch
+
+onJsPrompt-BB@0x144 : [ onJsPrompt-BB@0x15e onJsPrompt-BB@0x1a8 ]
+	93      (00000144) const-string         v14, ""
+	94      (00000148) const-string         v4, "usePolling"
+	95      (0000014c) move-object/from16   v0, v20
+	96      (00000150) move-object          v1, v4
+	97      (00000152) invoke-virtual       v0, v1, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	98      (00000158) move-result          v4
+	99      (0000015a) if-eqz               v4, +027h
+
+onJsPrompt-BB@0x15e : [ onJsPrompt-BB@0x19a ]
+	100     (0000015e) new-instance         v4, Ljava/lang/StringBuilder;
+	101     (00000162) invoke-direct        v4, Ljava/lang/StringBuilder;-><init>()V
+	102     (00000168) const-string         v5, ""
+	103     (0000016c) invoke-virtual       v4, v5, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	104     (00000172) move-result-object   v4
+	105     (00000174) move-object/from16   v0, v17
+	106     (00000178) iget-object          v0, v0, Lcom/phonegap/DroidGap$GapClient;->this$0 Lcom/phonegap/DroidGap;
+	107     (0000017c) move-object          v5, v0
+	108     (0000017e) iget-object          v5, v5, Lcom/phonegap/DroidGap;->callbackServer Lcom/phonegap/CallbackServer;
+	109     (00000182) invoke-virtual       v5, Lcom/phonegap/CallbackServer;->usePolling()Z
+	110     (00000188) move-result          v5
+	111     (0000018a) invoke-virtual       v4, v5, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+	112     (00000190) move-result-object   v4
+	113     (00000192) invoke-virtual       v4, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	114     (00000198) move-result-object   v14
+
+onJsPrompt-BB@0x19a : [ onJsPrompt-BB@0xdc ]
+	115     (0000019a) move-object/from16   v0, v22
+	116     (0000019e) move-object          v1, v14
+	117     (000001a0) invoke-virtual       v0, v1, Landroid/webkit/JsPromptResult;->confirm(Ljava/lang/String;)V
+	118     (000001a6) goto                 -65h
+
+onJsPrompt-BB@0x1a8 : [ onJsPrompt-BB@0x1be onJsPrompt-BB@0x1d4 ]
+	119     (000001a8) const-string         v4, "restartServer"
+	120     (000001ac) move-object/from16   v0, v20
+	121     (000001b0) move-object          v1, v4
+	122     (000001b2) invoke-virtual       v0, v1, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	123     (000001b8) move-result          v4
+	124     (000001ba) if-eqz               v4, +00dh
+
+onJsPrompt-BB@0x1be : [ onJsPrompt-BB@0x19a ]
+	125     (000001be) move-object/from16   v0, v17
+	126     (000001c2) iget-object          v0, v0, Lcom/phonegap/DroidGap$GapClient;->this$0 Lcom/phonegap/DroidGap;
+	127     (000001c6) move-object          v4, v0
+	128     (000001c8) iget-object          v4, v4, Lcom/phonegap/DroidGap;->callbackServer Lcom/phonegap/CallbackServer;
+	129     (000001cc) invoke-virtual       v4, Lcom/phonegap/CallbackServer;->restartServer()V
+	130     (000001d2) goto                 -1ch
+
+onJsPrompt-BB@0x1d4 : [ onJsPrompt-BB@0x1ea onJsPrompt-BB@0x20a ]
+	131     (000001d4) const-string         v4, "getPort"
+	132     (000001d8) move-object/from16   v0, v20
+	133     (000001dc) move-object          v1, v4
+	134     (000001de) invoke-virtual       v0, v1, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	135     (000001e4) move-result          v4
+	136     (000001e6) if-eqz               v4, +012h
+
+onJsPrompt-BB@0x1ea : [ onJsPrompt-BB@0x19a ]
+	137     (000001ea) move-object/from16   v0, v17
+	138     (000001ee) iget-object          v0, v0, Lcom/phonegap/DroidGap$GapClient;->this$0 Lcom/phonegap/DroidGap;
+	139     (000001f2) move-object          v4, v0
+	140     (000001f4) iget-object          v4, v4, Lcom/phonegap/DroidGap;->callbackServer Lcom/phonegap/CallbackServer;
+	141     (000001f8) invoke-virtual       v4, Lcom/phonegap/CallbackServer;->getPort()I
+	142     (000001fe) move-result          v4
+	143     (00000200) invoke-static        v4, Ljava/lang/Integer;->toString(I)Ljava/lang/String;
+	144     (00000206) move-result-object   v14
+	145     (00000208) goto                 -37h
+
+onJsPrompt-BB@0x20a : [ onJsPrompt-BB@0x220 onJsPrompt-BB@0x19a ]
+	146     (0000020a) const-string         v4, "getToken"
+	147     (0000020e) move-object/from16   v0, v20
+	148     (00000212) move-object          v1, v4
+	149     (00000214) invoke-virtual       v0, v1, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	150     (0000021a) move-result          v4
+	151     (0000021c) if-eqz               v4, -041h
+
+onJsPrompt-BB@0x220 : [ onJsPrompt-BB@0x19a ]
+	152     (00000220) move-object/from16   v0, v17
+	153     (00000224) iget-object          v0, v0, Lcom/phonegap/DroidGap$GapClient;->this$0 Lcom/phonegap/DroidGap;
+	154     (00000228) move-object          v4, v0
+	155     (0000022a) iget-object          v4, v4, Lcom/phonegap/DroidGap;->callbackServer Lcom/phonegap/CallbackServer;
+	156     (0000022e) invoke-virtual       v4, Lcom/phonegap/CallbackServer;->getToken()Ljava/lang/String;
+	157     (00000234) move-result-object   v14
+	158     (00000236) goto                 -4eh
+
+onJsPrompt-BB@0x238 : [ onJsPrompt-BB@0xdc ]
+	159     (00000238) move-object/from16   v16, v22
+	160     (0000023c) new-instance         v11, Landroid/app/AlertDialog$Builder;
+	161     (00000240) move-object/from16   v0, v17
+	162     (00000244) iget-object          v0, v0, Lcom/phonegap/DroidGap$GapClient;->ctx Lcom/phonegap/DroidGap;
+	163     (00000248) move-object          v4, v0
+	164     (0000024a) invoke-direct        v11, v4, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
+	165     (00000250) move-object          v0, v11
+	166     (00000252) move-object/from16   v1, v20
+	167     (00000256) invoke-virtual       v0, v1, Landroid/app/AlertDialog$Builder;->setMessage(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
+	168     (0000025c) new-instance         v13, Landroid/widget/EditText;
+	169     (00000260) move-object/from16   v0, v17
+	170     (00000264) iget-object          v0, v0, Lcom/phonegap/DroidGap$GapClient;->ctx Lcom/phonegap/DroidGap;
+	171     (00000268) move-object          v4, v0
+	172     (0000026a) invoke-direct        v13, v4, Landroid/widget/EditText;-><init>(Landroid/content/Context;)V
+	173     (00000270) invoke-virtual       v11, v13, Landroid/app/AlertDialog$Builder;->setView(Landroid/view/View;)Landroid/app/AlertDialog$Builder;
+	174     (00000276) const/4              v4, 0
+	175     (00000278) invoke-virtual       v11, v4, Landroid/app/AlertDialog$Builder;->setCancelable(Z)Landroid/app/AlertDialog$Builder;
+	176     (0000027e) const                v4, 17039370
+	177     (00000284) new-instance         v5, Lcom/phonegap/DroidGap$GapClient$4;
+	178     (00000288) move-object          v0, v5
+	179     (0000028a) move-object/from16   v1, v17
+	180     (0000028e) move-object          v2, v13
+	181     (00000290) move-object/from16   v3, v16
+	182     (00000294) invoke-direct        v0, v1, v2, v3, Lcom/phonegap/DroidGap$GapClient$4;-><init>(Lcom/phonegap/DroidGap$GapClient; Landroid/widget/EditText; Landroid/webkit/JsPromptResult;)V
+	183     (0000029a) invoke-virtual       v11, v4, v5, Landroid/app/AlertDialog$Builder;->setPositiveButton(I Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+	184     (000002a0) const/high16         v4, 17039360
+	185     (000002a4) new-instance         v5, Lcom/phonegap/DroidGap$GapClient$5;
+	186     (000002a8) move-object          v0, v5
+	187     (000002aa) move-object/from16   v1, v17
+	188     (000002ae) move-object/from16   v2, v16
+	189     (000002b2) invoke-direct        v0, v1, v2, Lcom/phonegap/DroidGap$GapClient$5;-><init>(Lcom/phonegap/DroidGap$GapClient; Landroid/webkit/JsPromptResult;)V
+	190     (000002b8) invoke-virtual       v11, v4, v5, Landroid/app/AlertDialog$Builder;->setNegativeButton(I Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+	191     (000002be) invoke-virtual       v11, Landroid/app/AlertDialog$Builder;->create()Landroid/app/AlertDialog;
+	192     (000002c4) invoke-virtual       v11, Landroid/app/AlertDialog$Builder;->show()Landroid/app/AlertDialog;
+	193     (000002ca) goto/16              -0f7h
+

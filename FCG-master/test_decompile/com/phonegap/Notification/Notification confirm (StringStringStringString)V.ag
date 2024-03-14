@@ -1,0 +1,38 @@
+# Lcom/phonegap/Notification;->confirm(Ljava/lang/String; Ljava/lang/String; Ljava/lang/String; Ljava/lang/String;)V [access_flags=public synchronized]
+#
+# Parameters:
+# - local registers: v0...v8
+# - v9:java.lang.String
+# - v10:java.lang.String
+# - v11:java.lang.String
+# - v12:java.lang.String
+#
+# - return:void
+
+confirm-BB@0x0 : [ confirm-BB@0x2 ]
+	0       (00000000) monitor-enter        v8
+
+confirm-BB@0x2 : 
+	1       (00000002) iget-object          v2, v8, Lcom/phonegap/Notification;->ctx Lcom/phonegap/api/PhonegapActivity;
+	2       (00000006) move-object          v6, v8
+	3       (00000008) const-string         v1, ","
+	4       (0000000c) invoke-virtual       v11, v1, Ljava/lang/String;->split(Ljava/lang/String;)[Ljava/lang/String;
+	5       (00000012) move-result-object   v5
+	6       (00000014) new-instance         v0, Lcom/phonegap/Notification$2;
+	7       (00000018) move-object          v1, v8
+	8       (0000001a) move-object          v3, v9
+	9       (0000001c) move-object          v4, v10
+	10      (0000001e) move-object          v7, v12
+	11      (00000020) invoke-direct/range  v0 ... v7, Lcom/phonegap/Notification$2;-><init>(Lcom/phonegap/Notification; Lcom/phonegap/api/PhonegapActivity; Ljava/lang/String; Ljava/lang/String; [Ljava/lang/String; Lcom/phonegap/Notification; Ljava/lang/String;)V
+	12      (00000026) iget-object          v1, v8, Lcom/phonegap/Notification;->ctx Lcom/phonegap/api/PhonegapActivity;
+	13      (0000002a) invoke-virtual       v1, v0, Lcom/phonegap/api/PhonegapActivity;->runOnUiThread(Ljava/lang/Runnable;)V
+	14      (00000030) monitor-exit         v8
+	15      (00000032) return-void          
+	2:2f
+	(Ljava/lang/Throwable; -> 34 confirm-BB@0x34)
+
+confirm-BB@0x34 : 
+	16      (00000034) move-exception       v1
+	17      (00000036) monitor-exit         v8
+	18      (00000038) throw                v1
+

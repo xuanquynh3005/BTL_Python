@@ -1,0 +1,27 @@
+# Lcom/phonegap/GpsListener;-><init>(Lcom/phonegap/api/PhonegapActivity; I Lcom/phonegap/GeoListener;)V [access_flags=public constructor]
+#
+# Parameters:
+# - local registers: v0...v3
+# - v4:com.phonegap.api.PhonegapActivity
+# - v5:int
+# - v6:com.phonegap.GeoListener
+#
+# - return:void
+
+<init>-BB@0x0 : 
+	0       (00000000) const/4              v2, 0
+	1       (00000002) invoke-direct        v3, Ljava/lang/Object;-><init>()V
+	2       (00000008) iput-boolean         v2, v3, Lcom/phonegap/GpsListener;->hasData Z
+	3       (0000000c) iput-boolean         v2, v3, Lcom/phonegap/GpsListener;->running Z
+	4       (00000010) iput-object          v6, v3, Lcom/phonegap/GpsListener;->owner Lcom/phonegap/GeoListener;
+	5       (00000014) iput-object          v4, v3, Lcom/phonegap/GpsListener;->mCtx Lcom/phonegap/api/PhonegapActivity;
+	6       (00000018) iget-object          v0, v3, Lcom/phonegap/GpsListener;->mCtx Lcom/phonegap/api/PhonegapActivity;
+	7       (0000001c) const-string         v1, "location"
+	8       (00000020) invoke-virtual       v0, v1, Lcom/phonegap/api/PhonegapActivity;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+	9       (00000026) move-result-object   v0
+	10      (00000028) check-cast           v0, Landroid/location/LocationManager;
+	11      (0000002c) iput-object          v0, v3, Lcom/phonegap/GpsListener;->mLocMan Landroid/location/LocationManager;
+	12      (00000030) iput-boolean         v2, v3, Lcom/phonegap/GpsListener;->running Z
+	13      (00000034) invoke-virtual       v3, v5, Lcom/phonegap/GpsListener;->start(I)V
+	14      (0000003a) return-void          
+

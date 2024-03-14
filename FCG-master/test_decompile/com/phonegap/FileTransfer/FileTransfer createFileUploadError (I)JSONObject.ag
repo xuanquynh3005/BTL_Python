@@ -1,0 +1,44 @@
+# Lcom/phonegap/FileTransfer;->createFileUploadError(I)Lorg/json/JSONObject; [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v5
+# - v6:int
+#
+# - return:org.json.JSONObject
+
+createFileUploadError-BB@0x0 : [ createFileUploadError-BB@0x2 ]
+	0       (00000000) const/4              v1, 0
+
+createFileUploadError-BB@0x2 : [ createFileUploadError-BB@0xc ]
+	1       (00000002) new-instance         v2, Lorg/json/JSONObject;
+	2       (00000006) invoke-direct        v2, Lorg/json/JSONObject;-><init>()V
+	2:b
+	(Lorg/json/JSONException; -> 1a createFileUploadError-BB@0x1a)
+
+createFileUploadError-BB@0xc : [ createFileUploadError-BB@0x18 ]
+	3       (0000000c) const-string         v3, "code"
+	4       (00000010) invoke-virtual       v2, v3, v6, Lorg/json/JSONObject;->put(Ljava/lang/String; I)Lorg/json/JSONObject;
+	5       (00000016) move-object          v1, v2
+	c:15
+	(Lorg/json/JSONException; -> 32 createFileUploadError-BB@0x32)
+
+createFileUploadError-BB@0x18 : 
+	6       (00000018) return-object        v1
+
+createFileUploadError-BB@0x1a : [ createFileUploadError-BB@0x1e ]
+	7       (0000001a) move-exception       v3
+	8       (0000001c) move-object          v0, v3
+
+createFileUploadError-BB@0x1e : [ createFileUploadError-BB@0x18 ]
+	9       (0000001e) const-string         v3, "FileUploader"
+	10      (00000022) invoke-virtual       v0, Lorg/json/JSONException;->getMessage()Ljava/lang/String;
+	11      (00000028) move-result-object   v4
+	12      (0000002a) invoke-static        v3, v4, v0, Landroid/util/Log;->e(Ljava/lang/String; Ljava/lang/String; Ljava/lang/Throwable;)I
+	13      (00000030) goto                 -ch
+
+createFileUploadError-BB@0x32 : [ createFileUploadError-BB@0x1e ]
+	14      (00000032) move-exception       v3
+	15      (00000034) move-object          v0, v3
+	16      (00000036) move-object          v1, v2
+	17      (00000038) goto                 -dh
+

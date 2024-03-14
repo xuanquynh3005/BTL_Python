@@ -1,0 +1,69 @@
+# Lcom/phonegap/DroidGap$EclairClient;->onExceededDatabaseQuota(Ljava/lang/String; Ljava/lang/String; J J J Landroid/webkit/WebStorage$QuotaUpdater;)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v8
+# - v9:java.lang.String
+# - v10:java.lang.String
+# - v11:long
+# - v12:long
+# - v13:long
+# - v14:android.webkit.WebStorage$QuotaUpdater
+#
+# - return:void
+
+onExceededDatabaseQuota-BB@0x0 : [ onExceededDatabaseQuota-BB@0x7c onExceededDatabaseQuota-BB@0xbe ]
+	0       (00000000) iget-object          v2, v5, Lcom/phonegap/DroidGap$EclairClient;->TAG Ljava/lang/String;
+	1       (00000004) new-instance         v3, Ljava/lang/StringBuilder;
+	2       (00000008) invoke-direct        v3, Ljava/lang/StringBuilder;-><init>()V
+	3       (0000000e) const-string         v4, "event raised onExceededDatabaseQuota estimatedSize: "
+	4       (00000012) invoke-virtual       v3, v4, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	5       (00000018) move-result-object   v3
+	6       (0000001a) invoke-static        v10, v11, Ljava/lang/Long;->toString(J)Ljava/lang/String;
+	7       (00000020) move-result-object   v4
+	8       (00000022) invoke-virtual       v3, v4, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	9       (00000028) move-result-object   v3
+	10      (0000002a) const-string         v4, " currentQuota: "
+	11      (0000002e) invoke-virtual       v3, v4, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	12      (00000034) move-result-object   v3
+	13      (00000036) invoke-static        v8, v9, Ljava/lang/Long;->toString(J)Ljava/lang/String;
+	14      (0000003c) move-result-object   v4
+	15      (0000003e) invoke-virtual       v3, v4, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	16      (00000044) move-result-object   v3
+	17      (00000046) const-string         v4, " totalUsedQuota: "
+	18      (0000004a) invoke-virtual       v3, v4, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	19      (00000050) move-result-object   v3
+	20      (00000052) invoke-static        v12, v13, Ljava/lang/Long;->toString(J)Ljava/lang/String;
+	21      (00000058) move-result-object   v4
+	22      (0000005a) invoke-virtual       v3, v4, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	23      (00000060) move-result-object   v3
+	24      (00000062) invoke-virtual       v3, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	25      (00000068) move-result-object   v3
+	26      (0000006a) invoke-static        v2, v3, Landroid/util/Log;->d(Ljava/lang/String; Ljava/lang/String;)I
+	27      (00000070) iget-wide            v2, v5, Lcom/phonegap/DroidGap$EclairClient;->MAX_QUOTA J
+	28      (00000074) cmp-long             v2, v10, v2
+	29      (00000078) if-gez               v2, +023h
+
+onExceededDatabaseQuota-BB@0x7c : [ onExceededDatabaseQuota-BB@0xbc ]
+	30      (0000007c) move-wide            v0, v10
+	31      (0000007e) iget-object          v2, v5, Lcom/phonegap/DroidGap$EclairClient;->TAG Ljava/lang/String;
+	32      (00000082) new-instance         v3, Ljava/lang/StringBuilder;
+	33      (00000086) invoke-direct        v3, Ljava/lang/StringBuilder;-><init>()V
+	34      (0000008c) const-string         v4, "calling quotaUpdater.updateQuota newQuota: "
+	35      (00000090) invoke-virtual       v3, v4, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	36      (00000096) move-result-object   v3
+	37      (00000098) invoke-static        v0, v1, Ljava/lang/Long;->toString(J)Ljava/lang/String;
+	38      (0000009e) move-result-object   v4
+	39      (000000a0) invoke-virtual       v3, v4, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	40      (000000a6) move-result-object   v3
+	41      (000000a8) invoke-virtual       v3, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	42      (000000ae) move-result-object   v3
+	43      (000000b0) invoke-static        v2, v3, Landroid/util/Log;->d(Ljava/lang/String; Ljava/lang/String;)I
+	44      (000000b6) invoke-interface     v14, v0, v1, Landroid/webkit/WebStorage$QuotaUpdater;->updateQuota(J)V
+
+onExceededDatabaseQuota-BB@0xbc : 
+	45      (000000bc) return-void          
+
+onExceededDatabaseQuota-BB@0xbe : [ onExceededDatabaseQuota-BB@0xbc ]
+	46      (000000be) invoke-interface     v14, v8, v9, Landroid/webkit/WebStorage$QuotaUpdater;->updateQuota(J)V
+	47      (000000c4) goto                 -4h
+

@@ -1,0 +1,42 @@
+# Lcom/phonegap/ContactAccessorSdk5;->insertPhone(Ljava/util/ArrayList; Lorg/json/JSONObject;)V [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v3
+# - v4:java.util.ArrayList
+# - v5:org.json.JSONObject
+#
+# - return:void
+
+insertPhone-BB@0x0 : 
+	0       (00000000) sget-object          v0, Landroid/provider/ContactsContract$Data;->CONTENT_URI Landroid/net/Uri;
+	1       (00000004) invoke-static        v0, Landroid/content/ContentProviderOperation;->newInsert(Landroid/net/Uri;)Landroid/content/ContentProviderOperation$Builder;
+	2       (0000000a) move-result-object   v0
+	3       (0000000c) const-string         v1, "raw_contact_id"
+	4       (00000010) const/4              v2, 0
+	5       (00000012) invoke-virtual       v0, v1, v2, Landroid/content/ContentProviderOperation$Builder;->withValueBackReference(Ljava/lang/String; I)Landroid/content/ContentProviderOperation$Builder;
+	6       (00000018) move-result-object   v0
+	7       (0000001a) const-string         v1, "mimetype"
+	8       (0000001e) const-string         v2, "vnd.android.cursor.item/phone_v2"
+	9       (00000022) invoke-virtual       v0, v1, v2, Landroid/content/ContentProviderOperation$Builder;->withValue(Ljava/lang/String; Ljava/lang/Object;)Landroid/content/ContentProviderOperation$Builder;
+	10      (00000028) move-result-object   v0
+	11      (0000002a) const-string         v1, "data1"
+	12      (0000002e) const-string         v2, "value"
+	13      (00000032) invoke-virtual       v3, v5, v2, Lcom/phonegap/ContactAccessorSdk5;->getJsonString(Lorg/json/JSONObject; Ljava/lang/String;)Ljava/lang/String;
+	14      (00000038) move-result-object   v2
+	15      (0000003a) invoke-virtual       v0, v1, v2, Landroid/content/ContentProviderOperation$Builder;->withValue(Ljava/lang/String; Ljava/lang/Object;)Landroid/content/ContentProviderOperation$Builder;
+	16      (00000040) move-result-object   v0
+	17      (00000042) const-string         v1, "data2"
+	18      (00000046) const-string         v2, "type"
+	19      (0000004a) invoke-virtual       v3, v5, v2, Lcom/phonegap/ContactAccessorSdk5;->getJsonString(Lorg/json/JSONObject; Ljava/lang/String;)Ljava/lang/String;
+	20      (00000050) move-result-object   v2
+	21      (00000052) invoke-direct        v3, v2, Lcom/phonegap/ContactAccessorSdk5;->getPhoneType(Ljava/lang/String;)I
+	22      (00000058) move-result          v2
+	23      (0000005a) invoke-static        v2, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+	24      (00000060) move-result-object   v2
+	25      (00000062) invoke-virtual       v0, v1, v2, Landroid/content/ContentProviderOperation$Builder;->withValue(Ljava/lang/String; Ljava/lang/Object;)Landroid/content/ContentProviderOperation$Builder;
+	26      (00000068) move-result-object   v0
+	27      (0000006a) invoke-virtual       v0, Landroid/content/ContentProviderOperation$Builder;->build()Landroid/content/ContentProviderOperation;
+	28      (00000070) move-result-object   v0
+	29      (00000072) invoke-virtual       v4, v0, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+	30      (00000078) return-void          
+

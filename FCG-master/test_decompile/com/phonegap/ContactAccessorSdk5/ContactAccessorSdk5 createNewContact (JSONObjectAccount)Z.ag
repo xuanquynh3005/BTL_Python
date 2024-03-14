@@ -1,0 +1,607 @@
+# Lcom/phonegap/ContactAccessorSdk5;->createNewContact(Lorg/json/JSONObject; Landroid/accounts/Account;)Z [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v29
+# - v30:org.json.JSONObject
+# - v31:android.accounts.Account
+#
+# - return:boolean
+
+createNewContact-BB@0x0 : [ createNewContact-BB@0x5c ]
+	0       (00000000) new-instance         v16, Ljava/util/ArrayList;
+	1       (00000004) invoke-direct/range  v16, Ljava/util/ArrayList;-><init>()V
+	2       (0000000a) sget-object          v26, Landroid/provider/ContactsContract$RawContacts;->CONTENT_URI Landroid/net/Uri;
+	3       (0000000e) invoke-static/range  v26, Landroid/content/ContentProviderOperation;->newInsert(Landroid/net/Uri;)Landroid/content/ContentProviderOperation$Builder;
+	4       (00000014) move-result-object   v26
+	5       (00000016) const-string         v27, "account_type"
+	6       (0000001a) move-object/from16   v0, v31
+	7       (0000001e) iget-object          v0, v0, Landroid/accounts/Account;->type Ljava/lang/String;
+	8       (00000022) move-object/from16   v28, v0
+	9       (00000026) invoke-virtual/range v26 ... v28, Landroid/content/ContentProviderOperation$Builder;->withValue(Ljava/lang/String; Ljava/lang/Object;)Landroid/content/ContentProviderOperation$Builder;
+	10      (0000002c) move-result-object   v26
+	11      (0000002e) const-string         v27, "account_name"
+	12      (00000032) move-object/from16   v0, v31
+	13      (00000036) iget-object          v0, v0, Landroid/accounts/Account;->name Ljava/lang/String;
+	14      (0000003a) move-object/from16   v28, v0
+	15      (0000003e) invoke-virtual/range v26 ... v28, Landroid/content/ContentProviderOperation$Builder;->withValue(Ljava/lang/String; Ljava/lang/Object;)Landroid/content/ContentProviderOperation$Builder;
+	16      (00000044) move-result-object   v26
+	17      (00000046) invoke-virtual/range v26, Landroid/content/ContentProviderOperation$Builder;->build()Landroid/content/ContentProviderOperation;
+	18      (0000004c) move-result-object   v26
+	19      (0000004e) move-object/from16   v0, v16
+	20      (00000052) move-object/from16   v1, v26
+	21      (00000056) invoke-virtual       v0, v1, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+
+createNewContact-BB@0x5c : [ createNewContact-BB@0x88 createNewContact-BB@0x8c ]
+	22      (0000005c) const-string         v26, "name"
+	23      (00000060) move-object/from16   v0, v30
+	24      (00000064) move-object/from16   v1, v26
+	25      (00000068) invoke-virtual       v0, v1, Lorg/json/JSONObject;->optJSONObject(Ljava/lang/String;)Lorg/json/JSONObject;
+	26      (0000006e) move-result-object   v13
+	27      (00000070) const-string         v26, "displayName"
+	28      (00000074) move-object/from16   v0, v30
+	29      (00000078) move-object/from16   v1, v26
+	30      (0000007c) invoke-virtual       v0, v1, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+	31      (00000082) move-result-object   v6
+	32      (00000084) if-nez               v6, +004h
+	5c:18d
+	(Lorg/json/JSONException; -> 1e8 createNewContact-BB@0x1e8)
+
+createNewContact-BB@0x88 : [ createNewContact-BB@0x8c createNewContact-BB@0x18e ]
+	33      (00000088) if-eqz               v13, +083h
+	5c:18d
+	(Lorg/json/JSONException; -> 1e8 createNewContact-BB@0x1e8)
+
+createNewContact-BB@0x8c : [ createNewContact-BB@0x18e ]
+	34      (0000008c) sget-object          v26, Landroid/provider/ContactsContract$Data;->CONTENT_URI Landroid/net/Uri;
+	35      (00000090) invoke-static/range  v26, Landroid/content/ContentProviderOperation;->newInsert(Landroid/net/Uri;)Landroid/content/ContentProviderOperation$Builder;
+	36      (00000096) move-result-object   v26
+	37      (00000098) const-string         v27, "raw_contact_id"
+	38      (0000009c) const/16             v28, 0
+	39      (000000a0) invoke-virtual/range v26 ... v28, Landroid/content/ContentProviderOperation$Builder;->withValueBackReference(Ljava/lang/String; I)Landroid/content/ContentProviderOperation$Builder;
+	40      (000000a6) move-result-object   v26
+	41      (000000a8) const-string         v27, "mimetype"
+	42      (000000ac) const-string         v28, "vnd.android.cursor.item/name"
+	43      (000000b0) invoke-virtual/range v26 ... v28, Landroid/content/ContentProviderOperation$Builder;->withValue(Ljava/lang/String; Ljava/lang/Object;)Landroid/content/ContentProviderOperation$Builder;
+	44      (000000b6) move-result-object   v26
+	45      (000000b8) const-string         v27, "data1"
+	46      (000000bc) move-object/from16   v0, v26
+	47      (000000c0) move-object/from16   v1, v27
+	48      (000000c4) move-object          v2, v6
+	49      (000000c6) invoke-virtual       v0, v1, v2, Landroid/content/ContentProviderOperation$Builder;->withValue(Ljava/lang/String; Ljava/lang/Object;)Landroid/content/ContentProviderOperation$Builder;
+	50      (000000cc) move-result-object   v26
+	51      (000000ce) const-string         v27, "data3"
+	52      (000000d2) const-string         v28, "familyName"
+	53      (000000d6) move-object/from16   v0, v29
+	54      (000000da) move-object          v1, v13
+	55      (000000dc) move-object/from16   v2, v28
+	56      (000000e0) invoke-virtual       v0, v1, v2, Lcom/phonegap/ContactAccessorSdk5;->getJsonString(Lorg/json/JSONObject; Ljava/lang/String;)Ljava/lang/String;
+	57      (000000e6) move-result-object   v28
+	58      (000000e8) invoke-virtual/range v26 ... v28, Landroid/content/ContentProviderOperation$Builder;->withValue(Ljava/lang/String; Ljava/lang/Object;)Landroid/content/ContentProviderOperation$Builder;
+	59      (000000ee) move-result-object   v26
+	60      (000000f0) const-string         v27, "data5"
+	61      (000000f4) const-string         v28, "middleName"
+	62      (000000f8) move-object/from16   v0, v29
+	63      (000000fc) move-object          v1, v13
+	64      (000000fe) move-object/from16   v2, v28
+	65      (00000102) invoke-virtual       v0, v1, v2, Lcom/phonegap/ContactAccessorSdk5;->getJsonString(Lorg/json/JSONObject; Ljava/lang/String;)Ljava/lang/String;
+	66      (00000108) move-result-object   v28
+	67      (0000010a) invoke-virtual/range v26 ... v28, Landroid/content/ContentProviderOperation$Builder;->withValue(Ljava/lang/String; Ljava/lang/Object;)Landroid/content/ContentProviderOperation$Builder;
+	68      (00000110) move-result-object   v26
+	69      (00000112) const-string         v27, "data2"
+	70      (00000116) const-string         v28, "givenName"
+	71      (0000011a) move-object/from16   v0, v29
+	72      (0000011e) move-object          v1, v13
+	73      (00000120) move-object/from16   v2, v28
+	74      (00000124) invoke-virtual       v0, v1, v2, Lcom/phonegap/ContactAccessorSdk5;->getJsonString(Lorg/json/JSONObject; Ljava/lang/String;)Ljava/lang/String;
+	75      (0000012a) move-result-object   v28
+	76      (0000012c) invoke-virtual/range v26 ... v28, Landroid/content/ContentProviderOperation$Builder;->withValue(Ljava/lang/String; Ljava/lang/Object;)Landroid/content/ContentProviderOperation$Builder;
+	77      (00000132) move-result-object   v26
+	78      (00000134) const-string         v27, "data4"
+	79      (00000138) const-string         v28, "honorificPrefix"
+	80      (0000013c) move-object/from16   v0, v29
+	81      (00000140) move-object          v1, v13
+	82      (00000142) move-object/from16   v2, v28
+	83      (00000146) invoke-virtual       v0, v1, v2, Lcom/phonegap/ContactAccessorSdk5;->getJsonString(Lorg/json/JSONObject; Ljava/lang/String;)Ljava/lang/String;
+	84      (0000014c) move-result-object   v28
+	85      (0000014e) invoke-virtual/range v26 ... v28, Landroid/content/ContentProviderOperation$Builder;->withValue(Ljava/lang/String; Ljava/lang/Object;)Landroid/content/ContentProviderOperation$Builder;
+	86      (00000154) move-result-object   v26
+	87      (00000156) const-string         v27, "data6"
+	88      (0000015a) const-string         v28, "honorificSuffix"
+	89      (0000015e) move-object/from16   v0, v29
+	90      (00000162) move-object          v1, v13
+	91      (00000164) move-object/from16   v2, v28
+	92      (00000168) invoke-virtual       v0, v1, v2, Lcom/phonegap/ContactAccessorSdk5;->getJsonString(Lorg/json/JSONObject; Ljava/lang/String;)Ljava/lang/String;
+	93      (0000016e) move-result-object   v28
+	94      (00000170) invoke-virtual/range v26 ... v28, Landroid/content/ContentProviderOperation$Builder;->withValue(Ljava/lang/String; Ljava/lang/Object;)Landroid/content/ContentProviderOperation$Builder;
+	95      (00000176) move-result-object   v26
+	96      (00000178) invoke-virtual/range v26, Landroid/content/ContentProviderOperation$Builder;->build()Landroid/content/ContentProviderOperation;
+	97      (0000017e) move-result-object   v26
+	98      (00000180) move-object/from16   v0, v16
+	99      (00000184) move-object/from16   v1, v26
+	100     (00000188) invoke-virtual       v0, v1, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+	5c:18d
+	(Lorg/json/JSONException; -> 1e8 createNewContact-BB@0x1e8)
+
+createNewContact-BB@0x18e : [ createNewContact-BB@0x192 ]
+	101     (0000018e) const/16             v20, 0
+
+createNewContact-BB@0x192 : [ createNewContact-BB@0x1aa createNewContact-BB@0x212 ]
+	102     (00000192) const-string         v26, "phoneNumbers"
+	103     (00000196) move-object/from16   v0, v30
+	104     (0000019a) move-object/from16   v1, v26
+	105     (0000019e) invoke-virtual       v0, v1, Lorg/json/JSONObject;->getJSONArray(Ljava/lang/String;)Lorg/json/JSONArray;
+	106     (000001a4) move-result-object   v20
+	107     (000001a6) if-eqz               v20, +036h
+	192:1e1
+	(Lorg/json/JSONException; -> 1fe createNewContact-BB@0x1fe)
+
+createNewContact-BB@0x1aa : [ createNewContact-BB@0x1ac ]
+	108     (000001aa) const/4              v10, 0
+	192:1e1
+	(Lorg/json/JSONException; -> 1fe createNewContact-BB@0x1fe)
+
+createNewContact-BB@0x1ac : [ createNewContact-BB@0x1be createNewContact-BB@0x212 ]
+	109     (000001ac) invoke-virtual/range v20, Lorg/json/JSONArray;->length()I
+	110     (000001b2) move-result          v26
+	111     (000001b4) move                 v0, v10
+	112     (000001b6) move/from16          v1, v26
+	113     (000001ba) if-ge                v0, v1, +02ch
+	192:1e1
+	(Lorg/json/JSONException; -> 1fe createNewContact-BB@0x1fe)
+
+createNewContact-BB@0x1be : [ createNewContact-BB@0x1ac ]
+	114     (000001be) move-object/from16   v0, v20
+	115     (000001c2) move                 v1, v10
+	116     (000001c4) invoke-virtual       v0, v1, Lorg/json/JSONArray;->get(I)Ljava/lang/Object;
+	117     (000001ca) move-result-object   v19
+	118     (000001cc) check-cast           v19, Lorg/json/JSONObject;
+	119     (000001d0) move-object/from16   v0, v29
+	120     (000001d4) move-object/from16   v1, v16
+	121     (000001d8) move-object/from16   v2, v19
+	122     (000001dc) invoke-direct        v0, v1, v2, Lcom/phonegap/ContactAccessorSdk5;->insertPhone(Ljava/util/ArrayList; Lorg/json/JSONObject;)V
+	123     (000001e2) add-int/lit8         v10, v10, 1
+	124     (000001e6) goto                 -1dh
+
+createNewContact-BB@0x1e8 : [ createNewContact-BB@0x18e ]
+	125     (000001e8) move-exception       v26
+	126     (000001ea) move-object/from16   v7, v26
+	127     (000001ee) const-string         v26, "ContactsAccessor"
+	128     (000001f2) const-string         v27, "Could not get name object"
+	129     (000001f6) invoke-static/range  v26 ... v27, Landroid/util/Log;->d(Ljava/lang/String; Ljava/lang/String;)I
+	130     (000001fc) goto                 -37h
+
+createNewContact-BB@0x1fe : [ createNewContact-BB@0x212 ]
+	131     (000001fe) move-exception       v26
+	132     (00000200) move-object/from16   v7, v26
+	133     (00000204) const-string         v26, "ContactsAccessor"
+	134     (00000208) const-string         v27, "Could not get phone numbers"
+	135     (0000020c) invoke-static/range  v26 ... v27, Landroid/util/Log;->d(Ljava/lang/String; Ljava/lang/String;)I
+
+createNewContact-BB@0x212 : [ createNewContact-BB@0x214 ]
+	136     (00000212) const/4              v9, 0
+
+createNewContact-BB@0x214 : [ createNewContact-BB@0x22c createNewContact-BB@0x276 ]
+	137     (00000214) const-string         v26, "emails"
+	138     (00000218) move-object/from16   v0, v30
+	139     (0000021c) move-object/from16   v1, v26
+	140     (00000220) invoke-virtual       v0, v1, Lorg/json/JSONObject;->getJSONArray(Ljava/lang/String;)Lorg/json/JSONArray;
+	141     (00000226) move-result-object   v9
+	142     (00000228) if-eqz               v9, +027h
+	214:25b
+	(Lorg/json/JSONException; -> 262 createNewContact-BB@0x262)
+
+createNewContact-BB@0x22c : [ createNewContact-BB@0x22e ]
+	143     (0000022c) const/4              v10, 0
+	214:25b
+	(Lorg/json/JSONException; -> 262 createNewContact-BB@0x262)
+
+createNewContact-BB@0x22e : [ createNewContact-BB@0x240 createNewContact-BB@0x276 ]
+	144     (0000022e) invoke-virtual       v9, Lorg/json/JSONArray;->length()I
+	145     (00000234) move-result          v26
+	146     (00000236) move                 v0, v10
+	147     (00000238) move/from16          v1, v26
+	148     (0000023c) if-ge                v0, v1, +01dh
+	214:25b
+	(Lorg/json/JSONException; -> 262 createNewContact-BB@0x262)
+
+createNewContact-BB@0x240 : [ createNewContact-BB@0x22e ]
+	149     (00000240) invoke-virtual       v9, v10, Lorg/json/JSONArray;->get(I)Ljava/lang/Object;
+	150     (00000246) move-result-object   v8
+	151     (00000248) check-cast           v8, Lorg/json/JSONObject;
+	152     (0000024c) move-object/from16   v0, v29
+	153     (00000250) move-object/from16   v1, v16
+	154     (00000254) move-object          v2, v8
+	155     (00000256) invoke-direct        v0, v1, v2, Lcom/phonegap/ContactAccessorSdk5;->insertEmail(Ljava/util/ArrayList; Lorg/json/JSONObject;)V
+	156     (0000025c) add-int/lit8         v10, v10, 1
+	157     (00000260) goto                 -19h
+
+createNewContact-BB@0x262 : [ createNewContact-BB@0x276 ]
+	158     (00000262) move-exception       v26
+	159     (00000264) move-object/from16   v7, v26
+	160     (00000268) const-string         v26, "ContactsAccessor"
+	161     (0000026c) const-string         v27, "Could not get emails"
+	162     (00000270) invoke-static/range  v26 ... v27, Landroid/util/Log;->d(Ljava/lang/String; Ljava/lang/String;)I
+
+createNewContact-BB@0x276 : [ createNewContact-BB@0x278 ]
+	163     (00000276) const/4              v4, 0
+
+createNewContact-BB@0x278 : [ createNewContact-BB@0x290 createNewContact-BB@0x2da ]
+	164     (00000278) const-string         v26, "addresses"
+	165     (0000027c) move-object/from16   v0, v30
+	166     (00000280) move-object/from16   v1, v26
+	167     (00000284) invoke-virtual       v0, v1, Lorg/json/JSONObject;->getJSONArray(Ljava/lang/String;)Lorg/json/JSONArray;
+	168     (0000028a) move-result-object   v4
+	169     (0000028c) if-eqz               v4, +027h
+	278:2bf
+	(Lorg/json/JSONException; -> 2c6 createNewContact-BB@0x2c6)
+
+createNewContact-BB@0x290 : [ createNewContact-BB@0x292 ]
+	170     (00000290) const/4              v10, 0
+	278:2bf
+	(Lorg/json/JSONException; -> 2c6 createNewContact-BB@0x2c6)
+
+createNewContact-BB@0x292 : [ createNewContact-BB@0x2a4 createNewContact-BB@0x2da ]
+	171     (00000292) invoke-virtual       v4, Lorg/json/JSONArray;->length()I
+	172     (00000298) move-result          v26
+	173     (0000029a) move                 v0, v10
+	174     (0000029c) move/from16          v1, v26
+	175     (000002a0) if-ge                v0, v1, +01dh
+	278:2bf
+	(Lorg/json/JSONException; -> 2c6 createNewContact-BB@0x2c6)
+
+createNewContact-BB@0x2a4 : [ createNewContact-BB@0x292 ]
+	176     (000002a4) invoke-virtual       v4, v10, Lorg/json/JSONArray;->get(I)Ljava/lang/Object;
+	177     (000002aa) move-result-object   v3
+	178     (000002ac) check-cast           v3, Lorg/json/JSONObject;
+	179     (000002b0) move-object/from16   v0, v29
+	180     (000002b4) move-object/from16   v1, v16
+	181     (000002b8) move-object          v2, v3
+	182     (000002ba) invoke-direct        v0, v1, v2, Lcom/phonegap/ContactAccessorSdk5;->insertAddress(Ljava/util/ArrayList; Lorg/json/JSONObject;)V
+	183     (000002c0) add-int/lit8         v10, v10, 1
+	184     (000002c4) goto                 -19h
+
+createNewContact-BB@0x2c6 : [ createNewContact-BB@0x2da ]
+	185     (000002c6) move-exception       v26
+	186     (000002c8) move-object/from16   v7, v26
+	187     (000002cc) const-string         v26, "ContactsAccessor"
+	188     (000002d0) const-string         v27, "Could not get addresses"
+	189     (000002d4) invoke-static/range  v26 ... v27, Landroid/util/Log;->d(Ljava/lang/String; Ljava/lang/String;)I
+
+createNewContact-BB@0x2da : [ createNewContact-BB@0x2de ]
+	190     (000002da) const/16             v18, 0
+
+createNewContact-BB@0x2de : [ createNewContact-BB@0x2f6 createNewContact-BB@0x348 ]
+	191     (000002de) const-string         v26, "organizations"
+	192     (000002e2) move-object/from16   v0, v30
+	193     (000002e6) move-object/from16   v1, v26
+	194     (000002ea) invoke-virtual       v0, v1, Lorg/json/JSONObject;->getJSONArray(Ljava/lang/String;)Lorg/json/JSONArray;
+	195     (000002f0) move-result-object   v18
+	196     (000002f2) if-eqz               v18, +02bh
+	2de:32d
+	(Lorg/json/JSONException; -> 334 createNewContact-BB@0x334)
+
+createNewContact-BB@0x2f6 : [ createNewContact-BB@0x2f8 ]
+	197     (000002f6) const/4              v10, 0
+	2de:32d
+	(Lorg/json/JSONException; -> 334 createNewContact-BB@0x334)
+
+createNewContact-BB@0x2f8 : [ createNewContact-BB@0x30a createNewContact-BB@0x348 ]
+	198     (000002f8) invoke-virtual/range v18, Lorg/json/JSONArray;->length()I
+	199     (000002fe) move-result          v26
+	200     (00000300) move                 v0, v10
+	201     (00000302) move/from16          v1, v26
+	202     (00000306) if-ge                v0, v1, +021h
+	2de:32d
+	(Lorg/json/JSONException; -> 334 createNewContact-BB@0x334)
+
+createNewContact-BB@0x30a : [ createNewContact-BB@0x2f8 ]
+	203     (0000030a) move-object/from16   v0, v18
+	204     (0000030e) move                 v1, v10
+	205     (00000310) invoke-virtual       v0, v1, Lorg/json/JSONArray;->get(I)Ljava/lang/Object;
+	206     (00000316) move-result-object   v17
+	207     (00000318) check-cast           v17, Lorg/json/JSONObject;
+	208     (0000031c) move-object/from16   v0, v29
+	209     (00000320) move-object/from16   v1, v16
+	210     (00000324) move-object/from16   v2, v17
+	211     (00000328) invoke-direct        v0, v1, v2, Lcom/phonegap/ContactAccessorSdk5;->insertOrganization(Ljava/util/ArrayList; Lorg/json/JSONObject;)V
+	212     (0000032e) add-int/lit8         v10, v10, 1
+	213     (00000332) goto                 -1dh
+
+createNewContact-BB@0x334 : [ createNewContact-BB@0x348 ]
+	214     (00000334) move-exception       v26
+	215     (00000336) move-object/from16   v7, v26
+	216     (0000033a) const-string         v26, "ContactsAccessor"
+	217     (0000033e) const-string         v27, "Could not get organizations"
+	218     (00000342) invoke-static/range  v26 ... v27, Landroid/util/Log;->d(Ljava/lang/String; Ljava/lang/String;)I
+
+createNewContact-BB@0x348 : [ createNewContact-BB@0x34a ]
+	219     (00000348) const/4              v12, 0
+
+createNewContact-BB@0x34a : [ createNewContact-BB@0x362 createNewContact-BB@0x3ac ]
+	220     (0000034a) const-string         v26, "ims"
+	221     (0000034e) move-object/from16   v0, v30
+	222     (00000352) move-object/from16   v1, v26
+	223     (00000356) invoke-virtual       v0, v1, Lorg/json/JSONObject;->getJSONArray(Ljava/lang/String;)Lorg/json/JSONArray;
+	224     (0000035c) move-result-object   v12
+	225     (0000035e) if-eqz               v12, +027h
+	34a:391
+	(Lorg/json/JSONException; -> 398 createNewContact-BB@0x398)
+
+createNewContact-BB@0x362 : [ createNewContact-BB@0x364 ]
+	226     (00000362) const/4              v10, 0
+	34a:391
+	(Lorg/json/JSONException; -> 398 createNewContact-BB@0x398)
+
+createNewContact-BB@0x364 : [ createNewContact-BB@0x376 createNewContact-BB@0x3ac ]
+	227     (00000364) invoke-virtual       v12, Lorg/json/JSONArray;->length()I
+	228     (0000036a) move-result          v26
+	229     (0000036c) move                 v0, v10
+	230     (0000036e) move/from16          v1, v26
+	231     (00000372) if-ge                v0, v1, +01dh
+	34a:391
+	(Lorg/json/JSONException; -> 398 createNewContact-BB@0x398)
+
+createNewContact-BB@0x376 : [ createNewContact-BB@0x364 ]
+	232     (00000376) invoke-virtual       v12, v10, Lorg/json/JSONArray;->get(I)Ljava/lang/Object;
+	233     (0000037c) move-result-object   v11
+	234     (0000037e) check-cast           v11, Lorg/json/JSONObject;
+	235     (00000382) move-object/from16   v0, v29
+	236     (00000386) move-object/from16   v1, v16
+	237     (0000038a) move-object          v2, v11
+	238     (0000038c) invoke-direct        v0, v1, v2, Lcom/phonegap/ContactAccessorSdk5;->insertIm(Ljava/util/ArrayList; Lorg/json/JSONObject;)V
+	239     (00000392) add-int/lit8         v10, v10, 1
+	240     (00000396) goto                 -19h
+
+createNewContact-BB@0x398 : [ createNewContact-BB@0x3ac ]
+	241     (00000398) move-exception       v26
+	242     (0000039a) move-object/from16   v7, v26
+	243     (0000039e) const-string         v26, "ContactsAccessor"
+	244     (000003a2) const-string         v27, "Could not get emails"
+	245     (000003a6) invoke-static/range  v26 ... v27, Landroid/util/Log;->d(Ljava/lang/String; Ljava/lang/String;)I
+
+createNewContact-BB@0x3ac : [ createNewContact-BB@0x3c8 createNewContact-BB@0x420 ]
+	246     (000003ac) const-string         v26, "note"
+	247     (000003b0) move-object/from16   v0, v29
+	248     (000003b4) move-object/from16   v1, v30
+	249     (000003b8) move-object/from16   v2, v26
+	250     (000003bc) invoke-virtual       v0, v1, v2, Lcom/phonegap/ContactAccessorSdk5;->getJsonString(Lorg/json/JSONObject; Ljava/lang/String;)Ljava/lang/String;
+	251     (000003c2) move-result-object   v15
+	252     (000003c4) if-eqz               v15, +02eh
+
+createNewContact-BB@0x3c8 : [ createNewContact-BB@0x420 ]
+	253     (000003c8) sget-object          v26, Landroid/provider/ContactsContract$Data;->CONTENT_URI Landroid/net/Uri;
+	254     (000003cc) invoke-static/range  v26, Landroid/content/ContentProviderOperation;->newInsert(Landroid/net/Uri;)Landroid/content/ContentProviderOperation$Builder;
+	255     (000003d2) move-result-object   v26
+	256     (000003d4) const-string         v27, "raw_contact_id"
+	257     (000003d8) const/16             v28, 0
+	258     (000003dc) invoke-virtual/range v26 ... v28, Landroid/content/ContentProviderOperation$Builder;->withValueBackReference(Ljava/lang/String; I)Landroid/content/ContentProviderOperation$Builder;
+	259     (000003e2) move-result-object   v26
+	260     (000003e4) const-string         v27, "mimetype"
+	261     (000003e8) const-string         v28, "vnd.android.cursor.item/note"
+	262     (000003ec) invoke-virtual/range v26 ... v28, Landroid/content/ContentProviderOperation$Builder;->withValue(Ljava/lang/String; Ljava/lang/Object;)Landroid/content/ContentProviderOperation$Builder;
+	263     (000003f2) move-result-object   v26
+	264     (000003f4) const-string         v27, "data1"
+	265     (000003f8) move-object/from16   v0, v26
+	266     (000003fc) move-object/from16   v1, v27
+	267     (00000400) move-object          v2, v15
+	268     (00000402) invoke-virtual       v0, v1, v2, Landroid/content/ContentProviderOperation$Builder;->withValue(Ljava/lang/String; Ljava/lang/Object;)Landroid/content/ContentProviderOperation$Builder;
+	269     (00000408) move-result-object   v26
+	270     (0000040a) invoke-virtual/range v26, Landroid/content/ContentProviderOperation$Builder;->build()Landroid/content/ContentProviderOperation;
+	271     (00000410) move-result-object   v26
+	272     (00000412) move-object/from16   v0, v16
+	273     (00000416) move-object/from16   v1, v26
+	274     (0000041a) invoke-virtual       v0, v1, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+
+createNewContact-BB@0x420 : [ createNewContact-BB@0x43c createNewContact-BB@0x494 ]
+	275     (00000420) const-string         v26, "nickname"
+	276     (00000424) move-object/from16   v0, v29
+	277     (00000428) move-object/from16   v1, v30
+	278     (0000042c) move-object/from16   v2, v26
+	279     (00000430) invoke-virtual       v0, v1, v2, Lcom/phonegap/ContactAccessorSdk5;->getJsonString(Lorg/json/JSONObject; Ljava/lang/String;)Ljava/lang/String;
+	280     (00000436) move-result-object   v14
+	281     (00000438) if-eqz               v14, +02eh
+
+createNewContact-BB@0x43c : [ createNewContact-BB@0x494 ]
+	282     (0000043c) sget-object          v26, Landroid/provider/ContactsContract$Data;->CONTENT_URI Landroid/net/Uri;
+	283     (00000440) invoke-static/range  v26, Landroid/content/ContentProviderOperation;->newInsert(Landroid/net/Uri;)Landroid/content/ContentProviderOperation$Builder;
+	284     (00000446) move-result-object   v26
+	285     (00000448) const-string         v27, "raw_contact_id"
+	286     (0000044c) const/16             v28, 0
+	287     (00000450) invoke-virtual/range v26 ... v28, Landroid/content/ContentProviderOperation$Builder;->withValueBackReference(Ljava/lang/String; I)Landroid/content/ContentProviderOperation$Builder;
+	288     (00000456) move-result-object   v26
+	289     (00000458) const-string         v27, "mimetype"
+	290     (0000045c) const-string         v28, "vnd.android.cursor.item/nickname"
+	291     (00000460) invoke-virtual/range v26 ... v28, Landroid/content/ContentProviderOperation$Builder;->withValue(Ljava/lang/String; Ljava/lang/Object;)Landroid/content/ContentProviderOperation$Builder;
+	292     (00000466) move-result-object   v26
+	293     (00000468) const-string         v27, "data1"
+	294     (0000046c) move-object/from16   v0, v26
+	295     (00000470) move-object/from16   v1, v27
+	296     (00000474) move-object          v2, v14
+	297     (00000476) invoke-virtual       v0, v1, v2, Landroid/content/ContentProviderOperation$Builder;->withValue(Ljava/lang/String; Ljava/lang/Object;)Landroid/content/ContentProviderOperation$Builder;
+	298     (0000047c) move-result-object   v26
+	299     (0000047e) invoke-virtual/range v26, Landroid/content/ContentProviderOperation$Builder;->build()Landroid/content/ContentProviderOperation;
+	300     (00000484) move-result-object   v26
+	301     (00000486) move-object/from16   v0, v16
+	302     (0000048a) move-object/from16   v1, v26
+	303     (0000048e) invoke-virtual       v0, v1, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+
+createNewContact-BB@0x494 : [ createNewContact-BB@0x498 ]
+	304     (00000494) const/16             v25, 0
+
+createNewContact-BB@0x498 : [ createNewContact-BB@0x4b0 createNewContact-BB@0x502 ]
+	305     (00000498) const-string         v26, "websites"
+	306     (0000049c) move-object/from16   v0, v30
+	307     (000004a0) move-object/from16   v1, v26
+	308     (000004a4) invoke-virtual       v0, v1, Lorg/json/JSONObject;->getJSONArray(Ljava/lang/String;)Lorg/json/JSONArray;
+	309     (000004aa) move-result-object   v25
+	310     (000004ac) if-eqz               v25, +02bh
+	498:4e7
+	(Lorg/json/JSONException; -> 4ee createNewContact-BB@0x4ee)
+
+createNewContact-BB@0x4b0 : [ createNewContact-BB@0x4b2 ]
+	311     (000004b0) const/4              v10, 0
+	498:4e7
+	(Lorg/json/JSONException; -> 4ee createNewContact-BB@0x4ee)
+
+createNewContact-BB@0x4b2 : [ createNewContact-BB@0x4c4 createNewContact-BB@0x502 ]
+	312     (000004b2) invoke-virtual/range v25, Lorg/json/JSONArray;->length()I
+	313     (000004b8) move-result          v26
+	314     (000004ba) move                 v0, v10
+	315     (000004bc) move/from16          v1, v26
+	316     (000004c0) if-ge                v0, v1, +021h
+	498:4e7
+	(Lorg/json/JSONException; -> 4ee createNewContact-BB@0x4ee)
+
+createNewContact-BB@0x4c4 : [ createNewContact-BB@0x4b2 ]
+	317     (000004c4) move-object/from16   v0, v25
+	318     (000004c8) move                 v1, v10
+	319     (000004ca) invoke-virtual       v0, v1, Lorg/json/JSONArray;->get(I)Ljava/lang/Object;
+	320     (000004d0) move-result-object   v24
+	321     (000004d2) check-cast           v24, Lorg/json/JSONObject;
+	322     (000004d6) move-object/from16   v0, v29
+	323     (000004da) move-object/from16   v1, v16
+	324     (000004de) move-object/from16   v2, v24
+	325     (000004e2) invoke-direct        v0, v1, v2, Lcom/phonegap/ContactAccessorSdk5;->insertWebsite(Ljava/util/ArrayList; Lorg/json/JSONObject;)V
+	326     (000004e8) add-int/lit8         v10, v10, 1
+	327     (000004ec) goto                 -1dh
+
+createNewContact-BB@0x4ee : [ createNewContact-BB@0x502 ]
+	328     (000004ee) move-exception       v26
+	329     (000004f0) move-object/from16   v7, v26
+	330     (000004f4) const-string         v26, "ContactsAccessor"
+	331     (000004f8) const-string         v27, "Could not get websites"
+	332     (000004fc) invoke-static/range  v26 ... v27, Landroid/util/Log;->d(Ljava/lang/String; Ljava/lang/String;)I
+
+createNewContact-BB@0x502 : [ createNewContact-BB@0x51e createNewContact-BB@0x58e ]
+	333     (00000502) const-string         v26, "birthday"
+	334     (00000506) move-object/from16   v0, v29
+	335     (0000050a) move-object/from16   v1, v30
+	336     (0000050e) move-object/from16   v2, v26
+	337     (00000512) invoke-virtual       v0, v1, v2, Lcom/phonegap/ContactAccessorSdk5;->getJsonString(Lorg/json/JSONObject; Ljava/lang/String;)Ljava/lang/String;
+	338     (00000518) move-result-object   v5
+	339     (0000051a) if-eqz               v5, +03ah
+
+createNewContact-BB@0x51e : [ createNewContact-BB@0x58e ]
+	340     (0000051e) sget-object          v26, Landroid/provider/ContactsContract$Data;->CONTENT_URI Landroid/net/Uri;
+	341     (00000522) invoke-static/range  v26, Landroid/content/ContentProviderOperation;->newInsert(Landroid/net/Uri;)Landroid/content/ContentProviderOperation$Builder;
+	342     (00000528) move-result-object   v26
+	343     (0000052a) const-string         v27, "raw_contact_id"
+	344     (0000052e) const/16             v28, 0
+	345     (00000532) invoke-virtual/range v26 ... v28, Landroid/content/ContentProviderOperation$Builder;->withValueBackReference(Ljava/lang/String; I)Landroid/content/ContentProviderOperation$Builder;
+	346     (00000538) move-result-object   v26
+	347     (0000053a) const-string         v27, "mimetype"
+	348     (0000053e) const-string         v28, "vnd.android.cursor.item/contact_event"
+	349     (00000542) invoke-virtual/range v26 ... v28, Landroid/content/ContentProviderOperation$Builder;->withValue(Ljava/lang/String; Ljava/lang/Object;)Landroid/content/ContentProviderOperation$Builder;
+	350     (00000548) move-result-object   v26
+	351     (0000054a) const-string         v27, "data2"
+	352     (0000054e) const/16             v28, 3
+	353     (00000552) invoke-static/range  v28, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+	354     (00000558) move-result-object   v28
+	355     (0000055a) invoke-virtual/range v26 ... v28, Landroid/content/ContentProviderOperation$Builder;->withValue(Ljava/lang/String; Ljava/lang/Object;)Landroid/content/ContentProviderOperation$Builder;
+	356     (00000560) move-result-object   v26
+	357     (00000562) const-string         v27, "data1"
+	358     (00000566) move-object/from16   v0, v26
+	359     (0000056a) move-object/from16   v1, v27
+	360     (0000056e) move-object          v2, v5
+	361     (00000570) invoke-virtual       v0, v1, v2, Landroid/content/ContentProviderOperation$Builder;->withValue(Ljava/lang/String; Ljava/lang/Object;)Landroid/content/ContentProviderOperation$Builder;
+	362     (00000576) move-result-object   v26
+	363     (00000578) invoke-virtual/range v26, Landroid/content/ContentProviderOperation$Builder;->build()Landroid/content/ContentProviderOperation;
+	364     (0000057e) move-result-object   v26
+	365     (00000580) move-object/from16   v0, v16
+	366     (00000584) move-object/from16   v1, v26
+	367     (00000588) invoke-virtual       v0, v1, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+
+createNewContact-BB@0x58e : [ createNewContact-BB@0x592 ]
+	368     (0000058e) const/16             v22, 0
+
+createNewContact-BB@0x592 : [ createNewContact-BB@0x5aa createNewContact-BB@0x5fc ]
+	369     (00000592) const-string         v26, "photos"
+	370     (00000596) move-object/from16   v0, v30
+	371     (0000059a) move-object/from16   v1, v26
+	372     (0000059e) invoke-virtual       v0, v1, Lorg/json/JSONObject;->getJSONArray(Ljava/lang/String;)Lorg/json/JSONArray;
+	373     (000005a4) move-result-object   v22
+	374     (000005a6) if-eqz               v22, +02bh
+	592:5e1
+	(Lorg/json/JSONException; -> 5e8 createNewContact-BB@0x5e8)
+
+createNewContact-BB@0x5aa : [ createNewContact-BB@0x5ac ]
+	375     (000005aa) const/4              v10, 0
+	592:5e1
+	(Lorg/json/JSONException; -> 5e8 createNewContact-BB@0x5e8)
+
+createNewContact-BB@0x5ac : [ createNewContact-BB@0x5be createNewContact-BB@0x5fc ]
+	376     (000005ac) invoke-virtual/range v22, Lorg/json/JSONArray;->length()I
+	377     (000005b2) move-result          v26
+	378     (000005b4) move                 v0, v10
+	379     (000005b6) move/from16          v1, v26
+	380     (000005ba) if-ge                v0, v1, +021h
+	592:5e1
+	(Lorg/json/JSONException; -> 5e8 createNewContact-BB@0x5e8)
+
+createNewContact-BB@0x5be : [ createNewContact-BB@0x5ac ]
+	381     (000005be) move-object/from16   v0, v22
+	382     (000005c2) move                 v1, v10
+	383     (000005c4) invoke-virtual       v0, v1, Lorg/json/JSONArray;->get(I)Ljava/lang/Object;
+	384     (000005ca) move-result-object   v21
+	385     (000005cc) check-cast           v21, Lorg/json/JSONObject;
+	386     (000005d0) move-object/from16   v0, v29
+	387     (000005d4) move-object/from16   v1, v16
+	388     (000005d8) move-object/from16   v2, v21
+	389     (000005dc) invoke-direct        v0, v1, v2, Lcom/phonegap/ContactAccessorSdk5;->insertPhoto(Ljava/util/ArrayList; Lorg/json/JSONObject;)V
+	390     (000005e2) add-int/lit8         v10, v10, 1
+	391     (000005e6) goto                 -1dh
+
+createNewContact-BB@0x5e8 : [ createNewContact-BB@0x5fc ]
+	392     (000005e8) move-exception       v26
+	393     (000005ea) move-object/from16   v7, v26
+	394     (000005ee) const-string         v26, "ContactsAccessor"
+	395     (000005f2) const-string         v27, "Could not get photos"
+	396     (000005f6) invoke-static/range  v26 ... v27, Landroid/util/Log;->d(Ljava/lang/String; Ljava/lang/String;)I
+
+createNewContact-BB@0x5fc : [ createNewContact-BB@0x600 ]
+	397     (000005fc) const/16             v23, 1
+
+createNewContact-BB@0x600 : [ createNewContact-BB@0x62a ]
+	398     (00000600) move-object/from16   v0, v29
+	399     (00000604) iget-object          v0, v0, Lcom/phonegap/ContactAccessorSdk5;->mApp Landroid/app/Activity;
+	400     (00000608) move-object/from16   v26, v0
+	401     (0000060c) invoke-virtual/range v26, Landroid/app/Activity;->getContentResolver()Landroid/content/ContentResolver;
+	402     (00000612) move-result-object   v26
+	403     (00000614) const-string         v27, "com.android.contacts"
+	404     (00000618) move-object/from16   v0, v26
+	405     (0000061c) move-object/from16   v1, v27
+	406     (00000620) move-object/from16   v2, v16
+	407     (00000624) invoke-virtual       v0, v1, v2, Landroid/content/ContentResolver;->applyBatch(Ljava/lang/String; Ljava/util/ArrayList;)[Landroid/content/ContentProviderResult;
+	600:629
+	(Landroid/os/RemoteException; -> 62c createNewContact-BB@0x62c)
+	(Landroid/content/OperationApplicationException; -> 654 createNewContact-BB@0x654)
+
+createNewContact-BB@0x62a : 
+	408     (0000062a) return               v23
+
+createNewContact-BB@0x62c : [ createNewContact-BB@0x62a ]
+	409     (0000062c) move-exception       v26
+	410     (0000062e) move-object/from16   v7, v26
+	411     (00000632) const-string         v26, "ContactsAccessor"
+	412     (00000636) invoke-virtual       v7, Landroid/os/RemoteException;->getMessage()Ljava/lang/String;
+	413     (0000063c) move-result-object   v27
+	414     (0000063e) move-object/from16   v0, v26
+	415     (00000642) move-object/from16   v1, v27
+	416     (00000646) move-object          v2, v7
+	417     (00000648) invoke-static        v0, v1, v2, Landroid/util/Log;->e(Ljava/lang/String; Ljava/lang/String; Ljava/lang/Throwable;)I
+	418     (0000064e) const/16             v23, 0
+	419     (00000652) goto                 -14h
+
+createNewContact-BB@0x654 : [ createNewContact-BB@0x62a ]
+	420     (00000654) move-exception       v26
+	421     (00000656) move-object/from16   v7, v26
+	422     (0000065a) const-string         v26, "ContactsAccessor"
+	423     (0000065e) invoke-virtual       v7, Landroid/content/OperationApplicationException;->getMessage()Ljava/lang/String;
+	424     (00000664) move-result-object   v27
+	425     (00000666) move-object/from16   v0, v26
+	426     (0000066a) move-object/from16   v1, v27
+	427     (0000066e) move-object          v2, v7
+	428     (00000670) invoke-static        v0, v1, v2, Landroid/util/Log;->e(Ljava/lang/String; Ljava/lang/String; Ljava/lang/Throwable;)I
+	429     (00000676) const/16             v23, 0
+	430     (0000067a) goto                 -28h
+

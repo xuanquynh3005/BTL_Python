@@ -1,0 +1,28 @@
+# Lcom/phonegap/DroidGap;->onDestroy()V [access_flags=public]
+#
+# Parameters:
+# local registers: v0...v2
+#
+# - return:void
+
+onDestroy-BB@0x0 : [ onDestroy-BB@0xe onDestroy-BB@0x42 ]
+	0       (00000000) invoke-super         v2, Lcom/phonegap/api/PhonegapActivity;->onDestroy()V
+	1       (00000006) iget-object          v0, v2, Lcom/phonegap/DroidGap;->appView Landroid/webkit/WebView;
+	2       (0000000a) if-eqz               v0, +01ch
+
+onDestroy-BB@0xe : [ onDestroy-BB@0x42 ]
+	3       (0000000e) iget-object          v0, v2, Lcom/phonegap/DroidGap;->appView Landroid/webkit/WebView;
+	4       (00000012) const-string         v1, "javascript:try{PhoneGap.onPause.fire();}catch(e){};"
+	5       (00000016) invoke-virtual       v0, v1, Landroid/webkit/WebView;->loadUrl(Ljava/lang/String;)V
+	6       (0000001c) iget-object          v0, v2, Lcom/phonegap/DroidGap;->appView Landroid/webkit/WebView;
+	7       (00000020) const-string         v1, "javascript:try{PhoneGap.onDestroy.fire();}catch(e){};"
+	8       (00000024) invoke-virtual       v0, v1, Landroid/webkit/WebView;->loadUrl(Ljava/lang/String;)V
+	9       (0000002a) iget-object          v0, v2, Lcom/phonegap/DroidGap;->appView Landroid/webkit/WebView;
+	10      (0000002e) const-string         v1, "about:blank"
+	11      (00000032) invoke-virtual       v0, v1, Landroid/webkit/WebView;->loadUrl(Ljava/lang/String;)V
+	12      (00000038) iget-object          v0, v2, Lcom/phonegap/DroidGap;->pluginManager Lcom/phonegap/api/PluginManager;
+	13      (0000003c) invoke-virtual       v0, Lcom/phonegap/api/PluginManager;->onDestroy()V
+
+onDestroy-BB@0x42 : 
+	14      (00000042) return-void          
+

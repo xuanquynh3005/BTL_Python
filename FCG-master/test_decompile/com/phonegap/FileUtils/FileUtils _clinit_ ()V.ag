@@ -1,0 +1,39 @@
+# Lcom/phonegap/FileUtils;-><clinit>()V [access_flags=static constructor]
+#
+# Parameters:
+# local registers: v0...v3
+#
+# - return:void
+
+<clinit>-BB@0x0 : 
+	0       (00000000) const/4              v3, 3
+	1       (00000002) const/4              v2, 2
+	2       (00000004) const/4              v1, 1
+	3       (00000006) sput                 v1, Lcom/phonegap/FileUtils;->NOT_FOUND_ERR I
+	4       (0000000a) sput                 v2, Lcom/phonegap/FileUtils;->SECURITY_ERR I
+	5       (0000000e) sput                 v3, Lcom/phonegap/FileUtils;->ABORT_ERR I
+	6       (00000012) const/4              v0, 4
+	7       (00000014) sput                 v0, Lcom/phonegap/FileUtils;->NOT_READABLE_ERR I
+	8       (00000018) const/4              v0, 5
+	9       (0000001a) sput                 v0, Lcom/phonegap/FileUtils;->ENCODING_ERR I
+	10      (0000001e) const/4              v0, 6
+	11      (00000020) sput                 v0, Lcom/phonegap/FileUtils;->NO_MODIFICATION_ALLOWED_ERR I
+	12      (00000024) const/4              v0, 7
+	13      (00000026) sput                 v0, Lcom/phonegap/FileUtils;->INVALID_STATE_ERR I
+	14      (0000002a) const/16             v0, 8
+	15      (0000002e) sput                 v0, Lcom/phonegap/FileUtils;->SYNTAX_ERR I
+	16      (00000032) const/16             v0, 9
+	17      (00000036) sput                 v0, Lcom/phonegap/FileUtils;->INVALID_MODIFICATION_ERR I
+	18      (0000003a) const/16             v0, 10
+	19      (0000003e) sput                 v0, Lcom/phonegap/FileUtils;->QUOTA_EXCEEDED_ERR I
+	20      (00000042) const/16             v0, 11
+	21      (00000046) sput                 v0, Lcom/phonegap/FileUtils;->TYPE_MISMATCH_ERR I
+	22      (0000004a) const/16             v0, 12
+	23      (0000004e) sput                 v0, Lcom/phonegap/FileUtils;->PATH_EXISTS_ERR I
+	24      (00000052) const/4              v0, 0
+	25      (00000054) sput                 v0, Lcom/phonegap/FileUtils;->TEMPORARY I
+	26      (00000058) sput                 v1, Lcom/phonegap/FileUtils;->PERSISTENT I
+	27      (0000005c) sput                 v2, Lcom/phonegap/FileUtils;->RESOURCE I
+	28      (00000060) sput                 v3, Lcom/phonegap/FileUtils;->APPLICATION I
+	29      (00000064) return-void          
+

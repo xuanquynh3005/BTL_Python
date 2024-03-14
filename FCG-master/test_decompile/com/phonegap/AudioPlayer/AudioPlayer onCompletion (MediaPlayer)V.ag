@@ -1,0 +1,13 @@
+# Lcom/phonegap/AudioPlayer;->onCompletion(Landroid/media/MediaPlayer;)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v1
+# - v2:android.media.MediaPlayer
+#
+# - return:void
+
+onCompletion-BB@0x0 : 
+	0       (00000000) sget                 v0, Lcom/phonegap/AudioPlayer;->MEDIA_STOPPED I
+	1       (00000004) invoke-direct        v1, v0, Lcom/phonegap/AudioPlayer;->setState(I)V
+	2       (0000000a) return-void          
+

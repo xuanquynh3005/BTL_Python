@@ -1,0 +1,19 @@
+# Lcom/phonegap/FileTransfer;-><clinit>()V [access_flags=static constructor]
+#
+# Parameters:
+# local registers: v0...v0
+#
+# - return:void
+
+<clinit>-BB@0x0 : 
+	0       (00000000) const/4              v0, 1
+	1       (00000002) sput                 v0, Lcom/phonegap/FileTransfer;->FILE_NOT_FOUND_ERR I
+	2       (00000006) const/4              v0, 2
+	3       (00000008) sput                 v0, Lcom/phonegap/FileTransfer;->INVALID_URL_ERR I
+	4       (0000000c) const/4              v0, 3
+	5       (0000000e) sput                 v0, Lcom/phonegap/FileTransfer;->CONNECTION_ERR I
+	6       (00000012) new-instance         v0, Lcom/phonegap/FileTransfer$1;
+	7       (00000016) invoke-direct        v0, Lcom/phonegap/FileTransfer$1;-><init>()V
+	8       (0000001c) sput-object          v0, Lcom/phonegap/FileTransfer;->DO_NOT_VERIFY Ljavax/net/ssl/HostnameVerifier;
+	9       (00000020) return-void          
+

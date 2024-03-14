@@ -1,0 +1,84 @@
+# Lcom/phonegap/NetworkListener;->onStatusChanged(Ljava/lang/String; I Landroid/os/Bundle;)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v3
+# - v4:java.lang.String
+# - v5:int
+# - v6:android.os.Bundle
+#
+# - return:void
+
+onStatusChanged-BB@0x0 : [ onStatusChanged-BB@0x40 onStatusChanged-BB@0x7e ]
+	0       (00000000) sget-object          v0, Ljava/lang/System;->out Ljava/io/PrintStream;
+	1       (00000004) new-instance         v1, Ljava/lang/StringBuilder;
+	2       (00000008) invoke-direct        v1, Ljava/lang/StringBuilder;-><init>()V
+	3       (0000000e) const-string         v2, "NetworkListener: The status of the provider "
+	4       (00000012) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	5       (00000018) move-result-object   v1
+	6       (0000001a) invoke-virtual       v1, v4, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	7       (00000020) move-result-object   v1
+	8       (00000022) const-string         v2, " has changed"
+	9       (00000026) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	10      (0000002c) move-result-object   v1
+	11      (0000002e) invoke-virtual       v1, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	12      (00000034) move-result-object   v1
+	13      (00000036) invoke-virtual       v0, v1, Ljava/io/PrintStream;->println(Ljava/lang/String;)V
+	14      (0000003c) if-nez               v5, +021h
+
+onStatusChanged-BB@0x40 : [ onStatusChanged-BB@0x7c ]
+	15      (00000040) sget-object          v0, Ljava/lang/System;->out Ljava/io/PrintStream;
+	16      (00000044) new-instance         v1, Ljava/lang/StringBuilder;
+	17      (00000048) invoke-direct        v1, Ljava/lang/StringBuilder;-><init>()V
+	18      (0000004e) const-string         v2, "NetworkListener: "
+	19      (00000052) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	20      (00000058) move-result-object   v1
+	21      (0000005a) invoke-virtual       v1, v4, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	22      (00000060) move-result-object   v1
+	23      (00000062) const-string         v2, " is OUT OF SERVICE"
+	24      (00000066) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	25      (0000006c) move-result-object   v1
+	26      (0000006e) invoke-virtual       v1, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	27      (00000074) move-result-object   v1
+	28      (00000076) invoke-virtual       v0, v1, Ljava/io/PrintStream;->println(Ljava/lang/String;)V
+
+onStatusChanged-BB@0x7c : 
+	29      (0000007c) return-void          
+
+onStatusChanged-BB@0x7e : [ onStatusChanged-BB@0x84 onStatusChanged-BB@0xc2 ]
+	30      (0000007e) const/4              v0, 1
+	31      (00000080) if-ne                v5, v0, +021h
+
+onStatusChanged-BB@0x84 : [ onStatusChanged-BB@0x7c ]
+	32      (00000084) sget-object          v0, Ljava/lang/System;->out Ljava/io/PrintStream;
+	33      (00000088) new-instance         v1, Ljava/lang/StringBuilder;
+	34      (0000008c) invoke-direct        v1, Ljava/lang/StringBuilder;-><init>()V
+	35      (00000092) const-string         v2, "NetworkListener: "
+	36      (00000096) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	37      (0000009c) move-result-object   v1
+	38      (0000009e) invoke-virtual       v1, v4, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	39      (000000a4) move-result-object   v1
+	40      (000000a6) const-string         v2, " is TEMPORARILY_UNAVAILABLE"
+	41      (000000aa) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	42      (000000b0) move-result-object   v1
+	43      (000000b2) invoke-virtual       v1, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	44      (000000b8) move-result-object   v1
+	45      (000000ba) invoke-virtual       v0, v1, Ljava/io/PrintStream;->println(Ljava/lang/String;)V
+	46      (000000c0) goto                 -22h
+
+onStatusChanged-BB@0xc2 : [ onStatusChanged-BB@0x7c ]
+	47      (000000c2) sget-object          v0, Ljava/lang/System;->out Ljava/io/PrintStream;
+	48      (000000c6) new-instance         v1, Ljava/lang/StringBuilder;
+	49      (000000ca) invoke-direct        v1, Ljava/lang/StringBuilder;-><init>()V
+	50      (000000d0) const-string         v2, "NetworkListener: "
+	51      (000000d4) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	52      (000000da) move-result-object   v1
+	53      (000000dc) invoke-virtual       v1, v4, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	54      (000000e2) move-result-object   v1
+	55      (000000e4) const-string         v2, " is Available"
+	56      (000000e8) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	57      (000000ee) move-result-object   v1
+	58      (000000f0) invoke-virtual       v1, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	59      (000000f6) move-result-object   v1
+	60      (000000f8) invoke-virtual       v0, v1, Ljava/io/PrintStream;->println(Ljava/lang/String;)V
+	61      (000000fe) goto                 -41h
+

@@ -1,0 +1,29 @@
+# Lcom/phonegap/FileUtils;->getEntry(Ljava/io/File;)Lorg/json/JSONObject; [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v3
+# - v4:java.io.File
+#
+# - return:org.json.JSONObject
+
+getEntry-BB@0x0 : 
+	0       (00000000) new-instance         v0, Lorg/json/JSONObject;
+	1       (00000004) invoke-direct        v0, Lorg/json/JSONObject;-><init>()V
+	2       (0000000a) const-string         v1, "isFile"
+	3       (0000000e) invoke-virtual       v4, Ljava/io/File;->isFile()Z
+	4       (00000014) move-result          v2
+	5       (00000016) invoke-virtual       v0, v1, v2, Lorg/json/JSONObject;->put(Ljava/lang/String; Z)Lorg/json/JSONObject;
+	6       (0000001c) const-string         v1, "isDirectory"
+	7       (00000020) invoke-virtual       v4, Ljava/io/File;->isDirectory()Z
+	8       (00000026) move-result          v2
+	9       (00000028) invoke-virtual       v0, v1, v2, Lorg/json/JSONObject;->put(Ljava/lang/String; Z)Lorg/json/JSONObject;
+	10      (0000002e) const-string         v1, "name"
+	11      (00000032) invoke-virtual       v4, Ljava/io/File;->getName()Ljava/lang/String;
+	12      (00000038) move-result-object   v2
+	13      (0000003a) invoke-virtual       v0, v1, v2, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	14      (00000040) const-string         v1, "fullPath"
+	15      (00000044) invoke-virtual       v4, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
+	16      (0000004a) move-result-object   v2
+	17      (0000004c) invoke-virtual       v0, v1, v2, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	18      (00000052) return-object        v0
+

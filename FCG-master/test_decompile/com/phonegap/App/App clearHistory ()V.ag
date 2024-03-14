@@ -1,0 +1,13 @@
+# Lcom/phonegap/App;->clearHistory()V [access_flags=public]
+#
+# Parameters:
+# local registers: v0...v0
+#
+# - return:void
+
+clearHistory-BB@0x0 : 
+	0       (00000000) iget-object          v0, v0, Lcom/phonegap/App;->ctx Lcom/phonegap/api/PhonegapActivity;
+	1       (00000004) check-cast           v0, Lcom/phonegap/DroidGap;
+	2       (00000008) invoke-virtual       v0, Lcom/phonegap/DroidGap;->clearHistory()V
+	3       (0000000e) return-void          
+

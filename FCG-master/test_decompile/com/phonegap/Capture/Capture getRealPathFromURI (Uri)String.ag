@@ -1,0 +1,29 @@
+# Lcom/phonegap/Capture;->getRealPathFromURI(Landroid/net/Uri;)Ljava/lang/String; [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v8
+# - v9:android.net.Uri
+#
+# - return:java.lang.String
+
+getRealPathFromURI-BB@0x0 : 
+	0       (00000000) const/4              v3, 0
+	1       (00000002) const/4              v0, 1
+	2       (00000004) new-array            v2, v0, [Ljava/lang/String;
+	3       (00000008) const/4              v0, 0
+	4       (0000000a) const-string         v1, "_data"
+	5       (0000000e) aput-object          v1, v2, v0
+	6       (00000012) iget-object          v0, v8, Lcom/phonegap/Capture;->ctx Lcom/phonegap/api/PhonegapActivity;
+	7       (00000016) move-object          v1, v9
+	8       (00000018) move-object          v4, v3
+	9       (0000001a) move-object          v5, v3
+	10      (0000001c) invoke-virtual/range v0 ... v5, Lcom/phonegap/api/PhonegapActivity;->managedQuery(Landroid/net/Uri; [Ljava/lang/String; Ljava/lang/String; [Ljava/lang/String; Ljava/lang/String;)Landroid/database/Cursor;
+	11      (00000022) move-result-object   v7
+	12      (00000024) const-string         v0, "_data"
+	13      (00000028) invoke-interface     v7, v0, Landroid/database/Cursor;->getColumnIndexOrThrow(Ljava/lang/String;)I
+	14      (0000002e) move-result          v6
+	15      (00000030) invoke-interface     v7, Landroid/database/Cursor;->moveToFirst()Z
+	16      (00000036) invoke-interface     v7, v6, Landroid/database/Cursor;->getString(I)Ljava/lang/String;
+	17      (0000003c) move-result-object   v0
+	18      (0000003e) return-object        v0
+

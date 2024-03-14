@@ -1,0 +1,115 @@
+# Lcom/phonegap/CallbackServer;->encode(Ljava/lang/String; Ljava/lang/String;)Ljava/lang/String; [access_flags=public static]
+#
+# Parameters:
+# - local registers: v0...v6
+# - v7:java.lang.String
+# - v8:java.lang.String
+#
+# - return:java.lang.String
+
+encode-BB@0x0 : [ encode-BB@0x8 encode-BB@0xc ]
+	0       (00000000) const/16             v6, 32
+	1       (00000004) if-eqz               v7, +004h
+
+encode-BB@0x8 : [ encode-BB@0xc encode-BB@0x18 ]
+	2       (00000008) if-nez               v8, +008h
+
+encode-BB@0xc : 
+	3       (0000000c) new-instance         v4, Ljava/lang/NullPointerException;
+	4       (00000010) invoke-direct        v4, Ljava/lang/NullPointerException;-><init>()V
+	5       (00000016) throw                v4
+
+encode-BB@0x18 : [ encode-BB@0x3c ]
+	6       (00000018) const-string         v4, ""
+	7       (0000001c) invoke-virtual       v4, v8, Ljava/lang/String;->getBytes(Ljava/lang/String;)[B
+	8       (00000022) new-instance         v0, Ljava/lang/StringBuilder;
+	9       (00000026) invoke-virtual       v7, Ljava/lang/String;->length()I
+	10      (0000002c) move-result          v4
+	11      (0000002e) add-int/lit8         v4, v4, 16
+	12      (00000032) invoke-direct        v0, v4, Ljava/lang/StringBuilder;-><init>(I)V
+	13      (00000038) const/4              v3, -1
+	14      (0000003a) const/4              v2, 0
+
+encode-BB@0x3c : [ encode-BB@0x48 encode-BB@0xc6 ]
+	15      (0000003c) invoke-virtual       v7, Ljava/lang/String;->length()I
+	16      (00000042) move-result          v4
+	17      (00000044) if-ge                v2, v4, +041h
+
+encode-BB@0x48 : [ encode-BB@0x58 encode-BB@0x60 ]
+	18      (00000048) invoke-virtual       v7, v2, Ljava/lang/String;->charAt(I)C
+	19      (0000004e) move-result          v1
+	20      (00000050) const/16             v4, 97
+	21      (00000054) if-lt                v1, v4, +006h
+
+encode-BB@0x58 : [ encode-BB@0x60 encode-BB@0x92 ]
+	22      (00000058) const/16             v4, 122
+	23      (0000005c) if-le                v1, v4, +01bh
+
+encode-BB@0x60 : [ encode-BB@0x68 encode-BB@0x70 ]
+	24      (00000060) const/16             v4, 65
+	25      (00000064) if-lt                v1, v4, +006h
+
+encode-BB@0x68 : [ encode-BB@0x70 encode-BB@0x92 ]
+	26      (00000068) const/16             v4, 90
+	27      (0000006c) if-le                v1, v4, +013h
+
+encode-BB@0x70 : [ encode-BB@0x78 encode-BB@0x80 ]
+	28      (00000070) const/16             v4, 48
+	29      (00000074) if-lt                v1, v4, +006h
+
+encode-BB@0x78 : [ encode-BB@0x80 encode-BB@0x92 ]
+	30      (00000078) const/16             v4, 57
+	31      (0000007c) if-le                v1, v4, +00bh
+
+encode-BB@0x80 : [ encode-BB@0x92 encode-BB@0xbe ]
+	32      (00000080) const-string         v4, " .-*_'(),<>=?@[]{}:~"\/;!"
+	33      (00000084) invoke-virtual       v4, v1, Ljava/lang/String;->indexOf(I)I
+	34      (0000008a) move-result          v4
+	35      (0000008c) const/4              v5, -1
+	36      (0000008e) if-le                v4, v5, +018h
+
+encode-BB@0x92 : [ encode-BB@0x96 encode-BB@0xa6 ]
+	37      (00000092) if-ltz               v3, +00ah
+
+encode-BB@0x96 : [ encode-BB@0xa6 ]
+	38      (00000096) invoke-virtual       v7, v3, v2, Ljava/lang/String;->substring(I I)Ljava/lang/String;
+	39      (0000009c) move-result-object   v4
+	40      (0000009e) invoke-static        v4, v0, v8, Lcom/phonegap/CallbackServer;->convert(Ljava/lang/String; Ljava/lang/StringBuilder; Ljava/lang/String;)V
+	41      (000000a4) const/4              v3, -1
+
+encode-BB@0xa6 : [ encode-BB@0xaa encode-BB@0xb6 ]
+	42      (000000a6) if-eq                v1, v6, +008h
+
+encode-BB@0xaa : [ encode-BB@0xb0 ]
+	43      (000000aa) invoke-virtual       v0, v1, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
+
+encode-BB@0xb0 : [ encode-BB@0x3c ]
+	44      (000000b0) add-int/lit8         v2, v2, 1
+	45      (000000b4) goto                 -3ch
+
+encode-BB@0xb6 : [ encode-BB@0xb0 ]
+	46      (000000b6) invoke-virtual       v0, v6, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
+	47      (000000bc) goto                 -6h
+
+encode-BB@0xbe : [ encode-BB@0xc2 encode-BB@0xb0 ]
+	48      (000000be) if-gez               v3, -007h
+
+encode-BB@0xc2 : [ encode-BB@0xb0 ]
+	49      (000000c2) move                 v3, v2
+	50      (000000c4) goto                 -ah
+
+encode-BB@0xc6 : [ encode-BB@0xca encode-BB@0xe0 ]
+	51      (000000c6) if-ltz               v3, +00dh
+
+encode-BB@0xca : [ encode-BB@0xe0 ]
+	52      (000000ca) invoke-virtual       v7, Ljava/lang/String;->length()I
+	53      (000000d0) move-result          v4
+	54      (000000d2) invoke-virtual       v7, v3, v4, Ljava/lang/String;->substring(I I)Ljava/lang/String;
+	55      (000000d8) move-result-object   v4
+	56      (000000da) invoke-static        v4, v0, v8, Lcom/phonegap/CallbackServer;->convert(Ljava/lang/String; Ljava/lang/StringBuilder; Ljava/lang/String;)V
+
+encode-BB@0xe0 : 
+	57      (000000e0) invoke-virtual       v0, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	58      (000000e6) move-result-object   v4
+	59      (000000e8) return-object        v4
+

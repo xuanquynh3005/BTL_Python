@@ -1,0 +1,249 @@
+# Lcom/phonegap/AudioPlayer;->startPlaying(Ljava/lang/String;)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v9
+# - v10:java.lang.String
+#
+# - return:void
+
+startPlaying-BB@0x0 : [ startPlaying-BB@0x8 startPlaying-BB@0x88 ]
+	0       (00000000) iget-object          v0, v9, Lcom/phonegap/AudioPlayer;->recorder Landroid/media/MediaRecorder;
+	1       (00000004) if-eqz               v0, +042h
+
+startPlaying-BB@0x8 : [ startPlaying-BB@0x86 ]
+	2       (00000008) sget-object          v0, Ljava/lang/System;->out Ljava/io/PrintStream;
+	3       (0000000c) const-string         v1, "AudioPlayer Error: Can't play in record mode."
+	4       (00000010) invoke-virtual       v0, v1, Ljava/io/PrintStream;->println(Ljava/lang/String;)V
+	5       (00000016) iget-object          v0, v9, Lcom/phonegap/AudioPlayer;->handler Lcom/phonegap/AudioHandler;
+	6       (0000001a) new-instance         v1, Ljava/lang/StringBuilder;
+	7       (0000001e) invoke-direct        v1, Ljava/lang/StringBuilder;-><init>()V
+	8       (00000024) const-string         v2, "PhoneGap.Media.onStatus('"
+	9       (00000028) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	10      (0000002e) move-result-object   v1
+	11      (00000030) iget-object          v2, v9, Lcom/phonegap/AudioPlayer;->id Ljava/lang/String;
+	12      (00000034) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	13      (0000003a) move-result-object   v1
+	14      (0000003c) const-string         v2, "', "
+	15      (00000040) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	16      (00000046) move-result-object   v1
+	17      (00000048) sget                 v2, Lcom/phonegap/AudioPlayer;->MEDIA_ERROR I
+	18      (0000004c) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+	19      (00000052) move-result-object   v1
+	20      (00000054) const-string         v2, ", "
+	21      (00000058) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	22      (0000005e) move-result-object   v1
+	23      (00000060) sget                 v2, Lcom/phonegap/AudioPlayer;->MEDIA_ERROR_RECORD_MODE_SET I
+	24      (00000064) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+	25      (0000006a) move-result-object   v1
+	26      (0000006c) const-string         v2, ");"
+	27      (00000070) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	28      (00000076) move-result-object   v1
+	29      (00000078) invoke-virtual       v1, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	30      (0000007e) move-result-object   v1
+	31      (00000080) invoke-virtual       v0, v1, Lcom/phonegap/AudioHandler;->sendJavascript(Ljava/lang/String;)V
+
+startPlaying-BB@0x86 : 
+	32      (00000086) return-void          
+
+startPlaying-BB@0x88 : [ startPlaying-BB@0x90 startPlaying-BB@0x9c ]
+	33      (00000088) iget-object          v0, v9, Lcom/phonegap/AudioPlayer;->mPlayer Landroid/media/MediaPlayer;
+	34      (0000008c) if-eqz               v0, +008h
+
+startPlaying-BB@0x90 : [ startPlaying-BB@0x9c startPlaying-BB@0x23e ]
+	35      (00000090) iget                 v0, v9, Lcom/phonegap/AudioPlayer;->state I
+	36      (00000094) sget                 v1, Lcom/phonegap/AudioPlayer;->MEDIA_STOPPED I
+	37      (00000098) if-ne                v0, v1, +0d3h
+
+startPlaying-BB@0x9c : [ startPlaying-BB@0xa4 startPlaying-BB@0x170 ]
+	38      (0000009c) iget-object          v0, v9, Lcom/phonegap/AudioPlayer;->mPlayer Landroid/media/MediaPlayer;
+	39      (000000a0) if-eqz               v0, +068h
+	9c:f1
+	(Ljava/lang/Exception; -> f4 startPlaying-BB@0xf4)
+
+startPlaying-BB@0xa4 : [ startPlaying-BB@0xae ]
+	40      (000000a4) iget-object          v0, v9, Lcom/phonegap/AudioPlayer;->mPlayer Landroid/media/MediaPlayer;
+	41      (000000a8) invoke-virtual       v0, Landroid/media/MediaPlayer;->reset()V
+	9c:f1
+	(Ljava/lang/Exception; -> f4 startPlaying-BB@0xf4)
+
+startPlaying-BB@0xae : [ startPlaying-BB@0xbe startPlaying-BB@0x180 ]
+	42      (000000ae) iput-object          v10, v9, Lcom/phonegap/AudioPlayer;->audioFile Ljava/lang/String;
+	43      (000000b2) invoke-virtual       v9, v10, Lcom/phonegap/AudioPlayer;->isStreaming(Ljava/lang/String;)Z
+	44      (000000b8) move-result          v0
+	45      (000000ba) if-eqz               v0, +063h
+	9c:f1
+	(Ljava/lang/Exception; -> f4 startPlaying-BB@0xf4)
+
+startPlaying-BB@0xbe : [ startPlaying-BB@0x86 ]
+	46      (000000be) iget-object          v0, v9, Lcom/phonegap/AudioPlayer;->mPlayer Landroid/media/MediaPlayer;
+	47      (000000c2) invoke-virtual       v0, v10, Landroid/media/MediaPlayer;->setDataSource(Ljava/lang/String;)V
+	48      (000000c8) iget-object          v0, v9, Lcom/phonegap/AudioPlayer;->mPlayer Landroid/media/MediaPlayer;
+	49      (000000cc) const/4              v1, 3
+	50      (000000ce) invoke-virtual       v0, v1, Landroid/media/MediaPlayer;->setAudioStreamType(I)V
+	51      (000000d4) sget                 v0, Lcom/phonegap/AudioPlayer;->MEDIA_STARTING I
+	52      (000000d8) invoke-direct        v9, v0, Lcom/phonegap/AudioPlayer;->setState(I)V
+	53      (000000de) iget-object          v0, v9, Lcom/phonegap/AudioPlayer;->mPlayer Landroid/media/MediaPlayer;
+	54      (000000e2) invoke-virtual       v0, v9, Landroid/media/MediaPlayer;->setOnPreparedListener(Landroid/media/MediaPlayer$OnPreparedListener;)V
+	55      (000000e8) iget-object          v0, v9, Lcom/phonegap/AudioPlayer;->mPlayer Landroid/media/MediaPlayer;
+	56      (000000ec) invoke-virtual       v0, Landroid/media/MediaPlayer;->prepareAsync()V
+	57      (000000f2) goto                 -36h
+
+startPlaying-BB@0xf4 : [ startPlaying-BB@0x86 ]
+	58      (000000f4) move-exception       v0
+	59      (000000f6) move-object          v6, v0
+	60      (000000f8) invoke-virtual       v6, Ljava/lang/Exception;->printStackTrace()V
+	61      (000000fe) iget-object          v0, v9, Lcom/phonegap/AudioPlayer;->handler Lcom/phonegap/AudioHandler;
+	62      (00000102) new-instance         v1, Ljava/lang/StringBuilder;
+	63      (00000106) invoke-direct        v1, Ljava/lang/StringBuilder;-><init>()V
+	64      (0000010c) const-string         v2, "PhoneGap.Media.onStatus('"
+	65      (00000110) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	66      (00000116) move-result-object   v1
+	67      (00000118) iget-object          v2, v9, Lcom/phonegap/AudioPlayer;->id Ljava/lang/String;
+	68      (0000011c) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	69      (00000122) move-result-object   v1
+	70      (00000124) const-string         v2, "', "
+	71      (00000128) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	72      (0000012e) move-result-object   v1
+	73      (00000130) sget                 v2, Lcom/phonegap/AudioPlayer;->MEDIA_ERROR I
+	74      (00000134) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+	75      (0000013a) move-result-object   v1
+	76      (0000013c) const-string         v2, ", "
+	77      (00000140) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	78      (00000146) move-result-object   v1
+	79      (00000148) sget                 v2, Lcom/phonegap/AudioPlayer;->MEDIA_ERROR_STARTING_PLAYBACK I
+	80      (0000014c) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+	81      (00000152) move-result-object   v1
+	82      (00000154) const-string         v2, ");"
+	83      (00000158) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	84      (0000015e) move-result-object   v1
+	85      (00000160) invoke-virtual       v1, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	86      (00000166) move-result-object   v1
+	87      (00000168) invoke-virtual       v0, v1, Lcom/phonegap/AudioHandler;->sendJavascript(Ljava/lang/String;)V
+	88      (0000016e) goto                 -74h
+
+startPlaying-BB@0x170 : [ startPlaying-BB@0xae ]
+	89      (00000170) new-instance         v0, Landroid/media/MediaPlayer;
+	90      (00000174) invoke-direct        v0, Landroid/media/MediaPlayer;-><init>()V
+	91      (0000017a) iput-object          v0, v9, Lcom/phonegap/AudioPlayer;->mPlayer Landroid/media/MediaPlayer;
+	92      (0000017e) goto                 -68h
+	170:23b
+	(Ljava/lang/Exception; -> f4 startPlaying-BB@0xf4)
+
+startPlaying-BB@0x180 : [ startPlaying-BB@0x190 startPlaying-BB@0x20c ]
+	93      (00000180) const-string         v0, "/android_asset/"
+	94      (00000184) invoke-virtual       v10, v0, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+	95      (0000018a) move-result          v0
+	96      (0000018c) if-eqz               v0, +040h
+	170:23b
+	(Ljava/lang/Exception; -> f4 startPlaying-BB@0xf4)
+
+startPlaying-BB@0x190 : [ startPlaying-BB@0x1de ]
+	97      (00000190) const/16             v0, 15
+	98      (00000194) invoke-virtual       v10, v0, Ljava/lang/String;->substring(I)Ljava/lang/String;
+	99      (0000019a) move-result-object   v7
+	100     (0000019c) iget-object          v0, v9, Lcom/phonegap/AudioPlayer;->handler Lcom/phonegap/AudioHandler;
+	101     (000001a0) iget-object          v0, v0, Lcom/phonegap/AudioHandler;->ctx Lcom/phonegap/api/PhonegapActivity;
+	102     (000001a4) invoke-virtual       v0, Lcom/phonegap/api/PhonegapActivity;->getBaseContext()Landroid/content/Context;
+	103     (000001aa) move-result-object   v0
+	104     (000001ac) invoke-virtual       v0, Landroid/content/Context;->getAssets()Landroid/content/res/AssetManager;
+	105     (000001b2) move-result-object   v0
+	106     (000001b4) invoke-virtual       v0, v7, Landroid/content/res/AssetManager;->openFd(Ljava/lang/String;)Landroid/content/res/AssetFileDescriptor;
+	107     (000001ba) move-result-object   v8
+	108     (000001bc) iget-object          v0, v9, Lcom/phonegap/AudioPlayer;->mPlayer Landroid/media/MediaPlayer;
+	109     (000001c0) invoke-virtual       v8, Landroid/content/res/AssetFileDescriptor;->getFileDescriptor()Ljava/io/FileDescriptor;
+	110     (000001c6) move-result-object   v1
+	111     (000001c8) invoke-virtual       v8, Landroid/content/res/AssetFileDescriptor;->getStartOffset()J
+	112     (000001ce) move-result-wide     v2
+	113     (000001d0) invoke-virtual       v8, Landroid/content/res/AssetFileDescriptor;->getLength()J
+	114     (000001d6) move-result-wide     v4
+	115     (000001d8) invoke-virtual/range v0 ... v5, Landroid/media/MediaPlayer;->setDataSource(Ljava/io/FileDescriptor; J J)V
+	170:23b
+	(Ljava/lang/Exception; -> f4 startPlaying-BB@0xf4)
+
+startPlaying-BB@0x1de : [ startPlaying-BB@0x86 ]
+	116     (000001de) sget                 v0, Lcom/phonegap/AudioPlayer;->MEDIA_STARTING I
+	117     (000001e2) invoke-direct        v9, v0, Lcom/phonegap/AudioPlayer;->setState(I)V
+	118     (000001e8) iget-object          v0, v9, Lcom/phonegap/AudioPlayer;->mPlayer Landroid/media/MediaPlayer;
+	119     (000001ec) invoke-virtual       v0, v9, Landroid/media/MediaPlayer;->setOnPreparedListener(Landroid/media/MediaPlayer$OnPreparedListener;)V
+	120     (000001f2) iget-object          v0, v9, Lcom/phonegap/AudioPlayer;->mPlayer Landroid/media/MediaPlayer;
+	121     (000001f6) invoke-virtual       v0, Landroid/media/MediaPlayer;->prepare()V
+	122     (000001fc) invoke-direct        v9, Lcom/phonegap/AudioPlayer;->getDurationInSeconds()F
+	123     (00000202) move-result          v0
+	124     (00000204) iput                 v0, v9, Lcom/phonegap/AudioPlayer;->duration F
+	125     (00000208) goto/16              -0c1h
+	170:23b
+	(Ljava/lang/Exception; -> f4 startPlaying-BB@0xf4)
+
+startPlaying-BB@0x20c : [ startPlaying-BB@0x1de ]
+	126     (0000020c) iget-object          v0, v9, Lcom/phonegap/AudioPlayer;->mPlayer Landroid/media/MediaPlayer;
+	127     (00000210) new-instance         v1, Ljava/lang/StringBuilder;
+	128     (00000214) invoke-direct        v1, Ljava/lang/StringBuilder;-><init>()V
+	129     (0000021a) const-string         v2, "/sdcard/"
+	130     (0000021e) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	131     (00000224) move-result-object   v1
+	132     (00000226) invoke-virtual       v1, v10, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	133     (0000022c) move-result-object   v1
+	134     (0000022e) invoke-virtual       v1, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	135     (00000234) move-result-object   v1
+	136     (00000236) invoke-virtual       v0, v1, Landroid/media/MediaPlayer;->setDataSource(Ljava/lang/String;)V
+	137     (0000023c) goto                 -2fh
+
+startPlaying-BB@0x23e : [ startPlaying-BB@0x24a startPlaying-BB@0x256 ]
+	138     (0000023e) iget                 v0, v9, Lcom/phonegap/AudioPlayer;->state I
+	139     (00000242) sget                 v1, Lcom/phonegap/AudioPlayer;->MEDIA_PAUSED I
+	140     (00000246) if-eq                v0, v1, +008h
+
+startPlaying-BB@0x24a : [ startPlaying-BB@0x256 startPlaying-BB@0x26e ]
+	141     (0000024a) iget                 v0, v9, Lcom/phonegap/AudioPlayer;->state I
+	142     (0000024e) sget                 v1, Lcom/phonegap/AudioPlayer;->MEDIA_STARTING I
+	143     (00000252) if-ne                v0, v1, +00eh
+
+startPlaying-BB@0x256 : [ startPlaying-BB@0x86 ]
+	144     (00000256) iget-object          v0, v9, Lcom/phonegap/AudioPlayer;->mPlayer Landroid/media/MediaPlayer;
+	145     (0000025a) invoke-virtual       v0, Landroid/media/MediaPlayer;->start()V
+	146     (00000260) sget                 v0, Lcom/phonegap/AudioPlayer;->MEDIA_RUNNING I
+	147     (00000264) invoke-direct        v9, v0, Lcom/phonegap/AudioPlayer;->setState(I)V
+	148     (0000026a) goto/16              -0f2h
+
+startPlaying-BB@0x26e : [ startPlaying-BB@0x86 ]
+	149     (0000026e) sget-object          v0, Ljava/lang/System;->out Ljava/io/PrintStream;
+	150     (00000272) new-instance         v1, Ljava/lang/StringBuilder;
+	151     (00000276) invoke-direct        v1, Ljava/lang/StringBuilder;-><init>()V
+	152     (0000027c) const-string         v2, "AudioPlayer Error: startPlaying() called during invalid state: "
+	153     (00000280) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	154     (00000286) move-result-object   v1
+	155     (00000288) iget                 v2, v9, Lcom/phonegap/AudioPlayer;->state I
+	156     (0000028c) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+	157     (00000292) move-result-object   v1
+	158     (00000294) invoke-virtual       v1, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	159     (0000029a) move-result-object   v1
+	160     (0000029c) invoke-virtual       v0, v1, Ljava/io/PrintStream;->println(Ljava/lang/String;)V
+	161     (000002a2) iget-object          v0, v9, Lcom/phonegap/AudioPlayer;->handler Lcom/phonegap/AudioHandler;
+	162     (000002a6) new-instance         v1, Ljava/lang/StringBuilder;
+	163     (000002aa) invoke-direct        v1, Ljava/lang/StringBuilder;-><init>()V
+	164     (000002b0) const-string         v2, "PhoneGap.Media.onStatus('"
+	165     (000002b4) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	166     (000002ba) move-result-object   v1
+	167     (000002bc) iget-object          v2, v9, Lcom/phonegap/AudioPlayer;->id Ljava/lang/String;
+	168     (000002c0) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	169     (000002c6) move-result-object   v1
+	170     (000002c8) const-string         v2, "', "
+	171     (000002cc) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	172     (000002d2) move-result-object   v1
+	173     (000002d4) sget                 v2, Lcom/phonegap/AudioPlayer;->MEDIA_ERROR I
+	174     (000002d8) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+	175     (000002de) move-result-object   v1
+	176     (000002e0) const-string         v2, ", "
+	177     (000002e4) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	178     (000002ea) move-result-object   v1
+	179     (000002ec) sget                 v2, Lcom/phonegap/AudioPlayer;->MEDIA_ERROR_RESUME_STATE I
+	180     (000002f0) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+	181     (000002f6) move-result-object   v1
+	182     (000002f8) const-string         v2, ");"
+	183     (000002fc) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	184     (00000302) move-result-object   v1
+	185     (00000304) invoke-virtual       v1, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	186     (0000030a) move-result-object   v1
+	187     (0000030c) invoke-virtual       v0, v1, Lcom/phonegap/AudioHandler;->sendJavascript(Ljava/lang/String;)V
+	188     (00000312) goto/16              -146h
+

@@ -1,0 +1,44 @@
+# Lcom/phonegap/DroidGap;->getUrlFile(Ljava/lang/String;)Ljava/lang/String; [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v4
+# - v5:java.lang.String
+#
+# - return:java.lang.String
+
+getUrlFile-BB@0x0 : [ getUrlFile-BB@0x1c getUrlFile-BB@0x24 ]
+	0       (00000000) const-string         v3, "#"
+	1       (00000004) invoke-virtual       v5, v3, Ljava/lang/String;->indexOf(Ljava/lang/String;)I
+	2       (0000000a) move-result          v0
+	3       (0000000c) const-string         v3, "?"
+	4       (00000010) invoke-virtual       v5, v3, Ljava/lang/String;->indexOf(Ljava/lang/String;)I
+	5       (00000016) move-result          v1
+	6       (00000018) if-gez               v0, +006h
+
+getUrlFile-BB@0x1c : [ getUrlFile-BB@0x24 ]
+	7       (0000001c) invoke-virtual       v5, Ljava/lang/String;->length()I
+	8       (00000022) move-result          v0
+
+getUrlFile-BB@0x24 : [ getUrlFile-BB@0x28 getUrlFile-BB@0x30 ]
+	9       (00000024) if-gez               v1, +006h
+
+getUrlFile-BB@0x28 : [ getUrlFile-BB@0x30 ]
+	10      (00000028) invoke-virtual       v5, Ljava/lang/String;->length()I
+	11      (0000002e) move-result          v1
+
+getUrlFile-BB@0x30 : [ getUrlFile-BB@0x34 getUrlFile-BB@0x42 ]
+	12      (00000030) if-ge                v0, v1, +009h
+
+getUrlFile-BB@0x34 : [ getUrlFile-BB@0x36 ]
+	13      (00000034) move                 v2, v0
+
+getUrlFile-BB@0x36 : 
+	14      (00000036) const/4              v3, 0
+	15      (00000038) invoke-virtual       v5, v3, v2, Ljava/lang/String;->substring(I I)Ljava/lang/String;
+	16      (0000003e) move-result-object   v3
+	17      (00000040) return-object        v3
+
+getUrlFile-BB@0x42 : [ getUrlFile-BB@0x36 ]
+	18      (00000042) move                 v2, v1
+	19      (00000044) goto                 -7h
+

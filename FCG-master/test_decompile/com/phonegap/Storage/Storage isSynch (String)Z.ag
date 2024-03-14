@@ -1,0 +1,12 @@
+# Lcom/phonegap/Storage;->isSynch(Ljava/lang/String;)Z [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v1
+# - v2:java.lang.String
+#
+# - return:boolean
+
+isSynch-BB@0x0 : 
+	0       (00000000) const/4              v0, 1
+	1       (00000002) return               v0
+

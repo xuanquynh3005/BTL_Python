@@ -1,0 +1,26 @@
+# Lcom/phonegap/AudioPlayer;->moveFile(Ljava/lang/String;)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v4
+# - v5:java.lang.String
+#
+# - return:void
+
+moveFile-BB@0x0 : 
+	0       (00000000) new-instance         v0, Ljava/io/File;
+	1       (00000004) iget-object          v1, v4, Lcom/phonegap/AudioPlayer;->tempFile Ljava/lang/String;
+	2       (00000008) invoke-direct        v0, v1, Ljava/io/File;-><init>(Ljava/lang/String;)V
+	3       (0000000e) new-instance         v1, Ljava/io/File;
+	4       (00000012) new-instance         v2, Ljava/lang/StringBuilder;
+	5       (00000016) invoke-direct        v2, Ljava/lang/StringBuilder;-><init>()V
+	6       (0000001c) const-string         v3, "/sdcard/"
+	7       (00000020) invoke-virtual       v2, v3, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	8       (00000026) move-result-object   v2
+	9       (00000028) invoke-virtual       v2, v5, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	10      (0000002e) move-result-object   v2
+	11      (00000030) invoke-virtual       v2, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	12      (00000036) move-result-object   v2
+	13      (00000038) invoke-direct        v1, v2, Ljava/io/File;-><init>(Ljava/lang/String;)V
+	14      (0000003e) invoke-virtual       v0, v1, Ljava/io/File;->renameTo(Ljava/io/File;)Z
+	15      (00000044) return-void          
+

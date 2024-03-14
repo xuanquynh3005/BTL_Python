@@ -1,0 +1,32 @@
+# Lcom/phonegap/FileUtils;->truncateFile(Ljava/lang/String; J)J [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v5
+# - v6:java.lang.String
+# - v7:long
+#
+# - return:long
+
+truncateFile-BB@0x0 : [ truncateFile-BB@0x1e truncateFile-BB@0x30 ]
+	0       (00000000) new-instance         v1, Ljava/io/RandomAccessFile;
+	1       (00000004) const-string         v2, "rw"
+	2       (00000008) invoke-direct        v1, v5, v2, Ljava/io/RandomAccessFile;-><init>(Ljava/lang/String; Ljava/lang/String;)V
+	3       (0000000e) invoke-virtual       v1, Ljava/io/RandomAccessFile;->length()J
+	4       (00000014) move-result-wide     v2
+	5       (00000016) cmp-long             v2, v2, v6
+	6       (0000001a) if-ltz               v2, +00bh
+
+truncateFile-BB@0x1e : [ truncateFile-BB@0x2e ]
+	7       (0000001e) invoke-virtual       v1, Ljava/io/RandomAccessFile;->getChannel()Ljava/nio/channels/FileChannel;
+	8       (00000024) move-result-object   v0
+	9       (00000026) invoke-virtual       v0, v6, v7, Ljava/nio/channels/FileChannel;->truncate(J)Ljava/nio/channels/FileChannel;
+	10      (0000002c) move-wide            v2, v6
+
+truncateFile-BB@0x2e : 
+	11      (0000002e) return-wide          v2
+
+truncateFile-BB@0x30 : [ truncateFile-BB@0x2e ]
+	12      (00000030) invoke-virtual       v1, Ljava/io/RandomAccessFile;->length()J
+	13      (00000036) move-result-wide     v2
+	14      (00000038) goto                 -5h
+

@@ -1,0 +1,20 @@
+# Lcom/phonegap/CallbackServer;-><init>()V [access_flags=public constructor]
+#
+# Parameters:
+# local registers: v0...v2
+#
+# - return:void
+
+<init>-BB@0x0 : 
+	0       (00000000) const/4              v1, 1
+	1       (00000002) const/4              v0, 0
+	2       (00000004) invoke-direct        v2, Ljava/lang/Object;-><init>()V
+	3       (0000000a) iput-boolean         v1, v2, Lcom/phonegap/CallbackServer;->usePolling Z
+	4       (0000000e) iput-boolean         v0, v2, Lcom/phonegap/CallbackServer;->active Z
+	5       (00000012) iput-boolean         v1, v2, Lcom/phonegap/CallbackServer;->empty Z
+	6       (00000016) iput                 v0, v2, Lcom/phonegap/CallbackServer;->port I
+	7       (0000001a) new-instance         v0, Ljava/util/LinkedList;
+	8       (0000001e) invoke-direct        v0, Ljava/util/LinkedList;-><init>()V
+	9       (00000024) iput-object          v0, v2, Lcom/phonegap/CallbackServer;->javascript Ljava/util/LinkedList;
+	10      (00000028) return-void          
+

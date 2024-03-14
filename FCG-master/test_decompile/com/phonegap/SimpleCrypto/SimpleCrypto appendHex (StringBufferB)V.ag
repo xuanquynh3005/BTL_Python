@@ -1,0 +1,24 @@
+# Lcom/phonegap/SimpleCrypto;->appendHex(Ljava/lang/StringBuffer; B)V [access_flags=private static]
+#
+# Parameters:
+# - local registers: v0...v2
+# - v3:java.lang.StringBuffer
+# - v4:byte
+#
+# - return:void
+
+appendHex-BB@0x0 : 
+	0       (00000000) const-string         v0, "01234567890ABCDEF"
+	1       (00000004) shr-int/lit8         v1, v4, 4
+	2       (00000008) and-int/lit8         v1, v1, 15
+	3       (0000000c) invoke-virtual       v0, v1, Ljava/lang/String;->charAt(I)C
+	4       (00000012) move-result          v0
+	5       (00000014) invoke-virtual       v3, v0, Ljava/lang/StringBuffer;->append(C)Ljava/lang/StringBuffer;
+	6       (0000001a) move-result-object   v0
+	7       (0000001c) const-string         v1, "01234567890ABCDEF"
+	8       (00000020) and-int/lit8         v2, v4, 15
+	9       (00000024) invoke-virtual       v1, v2, Ljava/lang/String;->charAt(I)C
+	10      (0000002a) move-result          v1
+	11      (0000002c) invoke-virtual       v0, v1, Ljava/lang/StringBuffer;->append(C)Ljava/lang/StringBuffer;
+	12      (00000032) return-void          
+

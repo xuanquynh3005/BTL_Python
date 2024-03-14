@@ -1,0 +1,44 @@
+# Lcom/phonegap/AudioPlayer;->setState(I)V [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v3
+# - v4:int
+#
+# - return:void
+
+setState-BB@0x0 : [ setState-BB@0x8 setState-BB@0x74 ]
+	0       (00000000) iget                 v0, v3, Lcom/phonegap/AudioPlayer;->state I
+	1       (00000004) if-eq                v0, v4, +038h
+
+setState-BB@0x8 : [ setState-BB@0x74 ]
+	2       (00000008) iget-object          v0, v3, Lcom/phonegap/AudioPlayer;->handler Lcom/phonegap/AudioHandler;
+	3       (0000000c) new-instance         v1, Ljava/lang/StringBuilder;
+	4       (00000010) invoke-direct        v1, Ljava/lang/StringBuilder;-><init>()V
+	5       (00000016) const-string         v2, "PhoneGap.Media.onStatus('"
+	6       (0000001a) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	7       (00000020) move-result-object   v1
+	8       (00000022) iget-object          v2, v3, Lcom/phonegap/AudioPlayer;->id Ljava/lang/String;
+	9       (00000026) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	10      (0000002c) move-result-object   v1
+	11      (0000002e) const-string         v2, "', "
+	12      (00000032) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	13      (00000038) move-result-object   v1
+	14      (0000003a) sget                 v2, Lcom/phonegap/AudioPlayer;->MEDIA_STATE I
+	15      (0000003e) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+	16      (00000044) move-result-object   v1
+	17      (00000046) const-string         v2, ", "
+	18      (0000004a) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	19      (00000050) move-result-object   v1
+	20      (00000052) invoke-virtual       v1, v4, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+	21      (00000058) move-result-object   v1
+	22      (0000005a) const-string         v2, ");"
+	23      (0000005e) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	24      (00000064) move-result-object   v1
+	25      (00000066) invoke-virtual       v1, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	26      (0000006c) move-result-object   v1
+	27      (0000006e) invoke-virtual       v0, v1, Lcom/phonegap/AudioHandler;->sendJavascript(Ljava/lang/String;)V
+
+setState-BB@0x74 : 
+	28      (00000074) iput                 v4, v3, Lcom/phonegap/AudioPlayer;->state I
+	29      (00000078) return-void          
+

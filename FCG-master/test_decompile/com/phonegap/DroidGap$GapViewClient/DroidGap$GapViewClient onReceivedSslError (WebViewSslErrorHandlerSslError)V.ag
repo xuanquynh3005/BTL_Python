@@ -1,0 +1,48 @@
+# Lcom/phonegap/DroidGap$GapViewClient;->onReceivedSslError(Landroid/webkit/WebView; Landroid/webkit/SslErrorHandler; Landroid/net/http/SslError;)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v5
+# - v6:android.webkit.WebView
+# - v7:android.webkit.SslErrorHandler
+# - v8:android.net.http.SslError
+#
+# - return:void
+
+onReceivedSslError-BB@0x0 : [ onReceivedSslError-BB@0x1c ]
+	0       (00000000) iget-object          v4, v5, Lcom/phonegap/DroidGap$GapViewClient;->ctx Lcom/phonegap/DroidGap;
+	1       (00000004) invoke-virtual       v4, Lcom/phonegap/DroidGap;->getPackageName()Ljava/lang/String;
+	2       (0000000a) move-result-object   v2
+	3       (0000000c) iget-object          v4, v5, Lcom/phonegap/DroidGap$GapViewClient;->ctx Lcom/phonegap/DroidGap;
+	4       (00000010) invoke-virtual       v4, Lcom/phonegap/DroidGap;->getPackageManager()Landroid/content/pm/PackageManager;
+	5       (00000016) move-result-object   v3
+	6       (00000018) const/16             v4, 128
+
+onReceivedSslError-BB@0x1c : [ onReceivedSslError-BB@0x30 onReceivedSslError-BB@0x38 ]
+	7       (0000001c) invoke-virtual       v3, v2, v4, Landroid/content/pm/PackageManager;->getApplicationInfo(Ljava/lang/String; I)Landroid/content/pm/ApplicationInfo;
+	8       (00000022) move-result-object   v0
+	9       (00000024) iget                 v4, v0, Landroid/content/pm/ApplicationInfo;->flags I
+	10      (00000028) and-int/lit8         v4, v4, 2
+	11      (0000002c) if-eqz               v4, +006h
+	1c:3d
+	(Landroid/content/pm/PackageManager$NameNotFoundException; -> 40 onReceivedSslError-BB@0x40)
+
+onReceivedSslError-BB@0x30 : [ onReceivedSslError-BB@0x36 ]
+	12      (00000030) invoke-virtual       v7, Landroid/webkit/SslErrorHandler;->proceed()V
+	1c:3d
+	(Landroid/content/pm/PackageManager$NameNotFoundException; -> 40 onReceivedSslError-BB@0x40)
+
+onReceivedSslError-BB@0x36 : 
+	13      (00000036) return-void          
+	1c:3d
+	(Landroid/content/pm/PackageManager$NameNotFoundException; -> 40 onReceivedSslError-BB@0x40)
+
+onReceivedSslError-BB@0x38 : [ onReceivedSslError-BB@0x36 ]
+	14      (00000038) invoke-super         v5, v6, v7, v8, Landroid/webkit/WebViewClient;->onReceivedSslError(Landroid/webkit/WebView; Landroid/webkit/SslErrorHandler; Landroid/net/http/SslError;)V
+	15      (0000003e) goto                 -4h
+
+onReceivedSslError-BB@0x40 : [ onReceivedSslError-BB@0x36 ]
+	16      (00000040) move-exception       v4
+	17      (00000042) move-object          v1, v4
+	18      (00000044) invoke-super         v5, v6, v7, v8, Landroid/webkit/WebViewClient;->onReceivedSslError(Landroid/webkit/WebView; Landroid/webkit/SslErrorHandler; Landroid/net/http/SslError;)V
+	19      (0000004a) goto                 -ah
+

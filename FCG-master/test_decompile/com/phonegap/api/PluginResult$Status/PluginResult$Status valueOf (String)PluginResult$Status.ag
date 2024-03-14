@@ -1,0 +1,15 @@
+# Lcom/phonegap/api/PluginResult$Status;->valueOf(Ljava/lang/String;)Lcom/phonegap/api/PluginResult$Status; [access_flags=public static]
+#
+# Parameters:
+# - local registers: v0...v0
+# - v1:java.lang.String
+#
+# - return:com.phonegap.api.PluginResult$Status
+
+valueOf-BB@0x0 : 
+	0       (00000000) const-class          v0, Lcom/phonegap/api/PluginResult$Status;
+	1       (00000004) invoke-static        v0, v1, Ljava/lang/Enum;->valueOf(Ljava/lang/Class; Ljava/lang/String;)Ljava/lang/Enum;
+	2       (0000000a) move-result-object   v1
+	3       (0000000c) check-cast           v1, Lcom/phonegap/api/PluginResult$Status;
+	4       (00000010) return-object        v1
+

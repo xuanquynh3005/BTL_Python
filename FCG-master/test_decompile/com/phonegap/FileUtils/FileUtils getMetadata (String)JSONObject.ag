@@ -1,0 +1,30 @@
+# Lcom/phonegap/FileUtils;->getMetadata(Ljava/lang/String;)Lorg/json/JSONObject; [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v5
+# - v6:java.lang.String
+#
+# - return:org.json.JSONObject
+
+getMetadata-BB@0x0 : [ getMetadata-BB@0x16 getMetadata-BB@0x26 ]
+	0       (00000000) new-instance         v0, Ljava/io/File;
+	1       (00000004) invoke-direct        v0, v6, Ljava/io/File;-><init>(Ljava/lang/String;)V
+	2       (0000000a) invoke-virtual       v0, Ljava/io/File;->exists()Z
+	3       (00000010) move-result          v2
+	4       (00000012) if-nez               v2, +00ah
+
+getMetadata-BB@0x16 : 
+	5       (00000016) new-instance         v2, Ljava/io/FileNotFoundException;
+	6       (0000001a) const-string         v3, "Failed to find file in getMetadata"
+	7       (0000001e) invoke-direct        v2, v3, Ljava/io/FileNotFoundException;-><init>(Ljava/lang/String;)V
+	8       (00000024) throw                v2
+
+getMetadata-BB@0x26 : 
+	9       (00000026) new-instance         v1, Lorg/json/JSONObject;
+	10      (0000002a) invoke-direct        v1, Lorg/json/JSONObject;-><init>()V
+	11      (00000030) const-string         v2, "modificationTime"
+	12      (00000034) invoke-virtual       v0, Ljava/io/File;->lastModified()J
+	13      (0000003a) move-result-wide     v3
+	14      (0000003c) invoke-virtual       v1, v2, v3, v4, Lorg/json/JSONObject;->put(Ljava/lang/String; J)Lorg/json/JSONObject;
+	15      (00000042) return-object        v1
+

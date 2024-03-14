@@ -1,0 +1,39 @@
+# Lcom/phonegap/NetworkManager;->onDestroy()V [access_flags=public]
+#
+# Parameters:
+# local registers: v0...v4
+#
+# - return:void
+
+onDestroy-BB@0x0 : [ onDestroy-BB@0x8 onDestroy-BB@0x16 ]
+	0       (00000000) iget-object          v1, v4, Lcom/phonegap/NetworkManager;->receiver Landroid/content/BroadcastReceiver;
+	1       (00000004) if-eqz               v1, +009h
+
+onDestroy-BB@0x8 : [ onDestroy-BB@0x16 ]
+	2       (00000008) iget-object          v1, v4, Lcom/phonegap/NetworkManager;->ctx Lcom/phonegap/api/PhonegapActivity;
+	3       (0000000c) iget-object          v2, v4, Lcom/phonegap/NetworkManager;->receiver Landroid/content/BroadcastReceiver;
+	4       (00000010) invoke-virtual       v1, v2, Lcom/phonegap/api/PhonegapActivity;->unregisterReceiver(Landroid/content/BroadcastReceiver;)V
+	8:15
+	(Ljava/lang/Exception; -> 18 onDestroy-BB@0x18)
+
+onDestroy-BB@0x16 : 
+	5       (00000016) return-void          
+
+onDestroy-BB@0x18 : [ onDestroy-BB@0x16 ]
+	6       (00000018) move-exception       v1
+	7       (0000001a) move-object          v0, v1
+	8       (0000001c) const-string         v1, "NetworkManager"
+	9       (00000020) new-instance         v2, Ljava/lang/StringBuilder;
+	10      (00000024) invoke-direct        v2, Ljava/lang/StringBuilder;-><init>()V
+	11      (0000002a) const-string         v3, "Error unregistering network receiver: "
+	12      (0000002e) invoke-virtual       v2, v3, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	13      (00000034) move-result-object   v2
+	14      (00000036) invoke-virtual       v0, Ljava/lang/Exception;->getMessage()Ljava/lang/String;
+	15      (0000003c) move-result-object   v3
+	16      (0000003e) invoke-virtual       v2, v3, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	17      (00000044) move-result-object   v2
+	18      (00000046) invoke-virtual       v2, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	19      (0000004c) move-result-object   v2
+	20      (0000004e) invoke-static        v1, v2, v0, Landroid/util/Log;->e(Ljava/lang/String; Ljava/lang/String; Ljava/lang/Throwable;)I
+	21      (00000054) goto                 -1fh
+

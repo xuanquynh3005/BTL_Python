@@ -1,0 +1,71 @@
+# Lcom/phonegap/ContactAccessor;->getInstance(Landroid/webkit/WebView; Landroid/app/Activity;)Lcom/phonegap/ContactAccessor; [access_flags=public static]
+#
+# Parameters:
+# - local registers: v0...v6
+# - v7:android.webkit.WebView
+# - v8:android.app.Activity
+#
+# - return:com.phonegap.ContactAccessor
+
+getInstance-BB@0x0 : [ getInstance-BB@0x8 getInstance-BB@0x88 ]
+	0       (00000000) sget-object          v4, Lcom/phonegap/ContactAccessor;->sInstance Lcom/phonegap/ContactAccessor;
+	1       (00000004) if-nez               v4, +042h
+
+getInstance-BB@0x8 : [ getInstance-BB@0x1c getInstance-BB@0x8e ]
+	2       (00000008) sget-object          v4, Landroid/os/Build$VERSION;->RELEASE Ljava/lang/String;
+	3       (0000000c) const-string         v5, "1."
+	4       (00000010) invoke-virtual       v4, v5, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+	5       (00000016) move-result          v4
+	6       (00000018) if-eqz               v4, +03bh
+
+getInstance-BB@0x1c : [ getInstance-BB@0x20 ]
+	7       (0000001c) const-string         v1, "com.phonegap.ContactAccessorSdk3_4"
+
+getInstance-BB@0x20 : [ getInstance-BB@0x88 ]
+	8       (00000020) invoke-static        v1, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
+	9       (00000026) move-result-object   v4
+	10      (00000028) const-class          v5, Lcom/phonegap/ContactAccessor;
+	11      (0000002c) invoke-virtual       v4, v5, Ljava/lang/Class;->asSubclass(Ljava/lang/Class;)Ljava/lang/Class;
+	12      (00000032) move-result-object   v2
+	13      (00000034) const/4              v4, 2
+	14      (00000036) new-array            v4, v4, [Ljava/lang/Class;
+	15      (0000003a) const/4              v5, 0
+	16      (0000003c) const-string         v6, "android.webkit.WebView"
+	17      (00000040) invoke-static        v6, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
+	18      (00000046) move-result-object   v6
+	19      (00000048) aput-object          v6, v4, v5
+	20      (0000004c) const/4              v5, 1
+	21      (0000004e) const-string         v6, "android.app.Activity"
+	22      (00000052) invoke-static        v6, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
+	23      (00000058) move-result-object   v6
+	24      (0000005a) aput-object          v6, v4, v5
+	25      (0000005e) invoke-virtual       v2, v4, Ljava/lang/Class;->getConstructor([Ljava/lang/Class;)Ljava/lang/reflect/Constructor;
+	26      (00000064) move-result-object   v0
+	27      (00000066) const/4              v4, 2
+	28      (00000068) new-array            v4, v4, [Ljava/lang/Object;
+	29      (0000006c) const/4              v5, 0
+	30      (0000006e) aput-object          v7, v4, v5
+	31      (00000072) const/4              v5, 1
+	32      (00000074) aput-object          v8, v4, v5
+	33      (00000078) invoke-virtual       v0, v4, Ljava/lang/reflect/Constructor;->newInstance([Ljava/lang/Object;)Ljava/lang/Object;
+	34      (0000007e) move-result-object   v7
+	35      (00000080) check-cast           v7, Lcom/phonegap/ContactAccessor;
+	36      (00000084) sput-object          v7, Lcom/phonegap/ContactAccessor;->sInstance Lcom/phonegap/ContactAccessor;
+	20:87
+	(Ljava/lang/Exception; -> 94 getInstance-BB@0x94)
+
+getInstance-BB@0x88 : 
+	37      (00000088) sget-object          v4, Lcom/phonegap/ContactAccessor;->sInstance Lcom/phonegap/ContactAccessor;
+	38      (0000008c) return-object        v4
+
+getInstance-BB@0x8e : [ getInstance-BB@0x20 ]
+	39      (0000008e) const-string         v1, "com.phonegap.ContactAccessorSdk5"
+	40      (00000092) goto                 -39h
+
+getInstance-BB@0x94 : 
+	41      (00000094) move-exception       v4
+	42      (00000096) move-object          v3, v4
+	43      (00000098) new-instance         v4, Ljava/lang/IllegalStateException;
+	44      (0000009c) invoke-direct        v4, v3, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/Throwable;)V
+	45      (000000a2) throw                v4
+

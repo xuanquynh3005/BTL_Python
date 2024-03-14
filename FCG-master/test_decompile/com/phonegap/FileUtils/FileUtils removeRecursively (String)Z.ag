@@ -1,0 +1,26 @@
+# Lcom/phonegap/FileUtils;->removeRecursively(Ljava/lang/String;)Z [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v2
+# - v3:java.lang.String
+#
+# - return:boolean
+
+removeRecursively-BB@0x0 : [ removeRecursively-BB@0x16 removeRecursively-BB@0x1a ]
+	0       (00000000) new-instance         v0, Ljava/io/File;
+	1       (00000004) invoke-direct        v0, v3, Ljava/io/File;-><init>(Ljava/lang/String;)V
+	2       (0000000a) invoke-direct        v2, v3, Lcom/phonegap/FileUtils;->atRootDirectory(Ljava/lang/String;)Z
+	3       (00000010) move-result          v1
+	4       (00000012) if-eqz               v1, +004h
+
+removeRecursively-BB@0x16 : [ removeRecursively-BB@0x18 ]
+	5       (00000016) const/4              v1, 0
+
+removeRecursively-BB@0x18 : 
+	6       (00000018) return               v1
+
+removeRecursively-BB@0x1a : [ removeRecursively-BB@0x18 ]
+	7       (0000001a) invoke-direct        v2, v0, Lcom/phonegap/FileUtils;->removeDirRecursively(Ljava/io/File;)Z
+	8       (00000020) move-result          v1
+	9       (00000022) goto                 -5h
+

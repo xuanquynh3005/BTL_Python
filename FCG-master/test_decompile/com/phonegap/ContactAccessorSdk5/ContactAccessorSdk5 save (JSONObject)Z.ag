@@ -1,0 +1,142 @@
+# Lcom/phonegap/ContactAccessorSdk5;->save(Lorg/json/JSONObject;)Z [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v11
+# - v12:org.json.JSONObject
+#
+# - return:boolean
+
+save-BB@0x0 : [ save-BB@0x20 save-BB@0x2c ]
+	0       (00000000) const/4              v9, 1
+	1       (00000002) const/4              v10, 0
+	2       (00000004) iget-object          v8, v11, Lcom/phonegap/ContactAccessorSdk5;->mApp Landroid/app/Activity;
+	3       (00000008) invoke-static        v8, Landroid/accounts/AccountManager;->get(Landroid/content/Context;)Landroid/accounts/AccountManager;
+	4       (0000000e) move-result-object   v7
+	5       (00000010) invoke-virtual       v7, Landroid/accounts/AccountManager;->getAccounts()[Landroid/accounts/Account;
+	6       (00000016) move-result-object   v2
+	7       (00000018) const/4              v1, 0
+	8       (0000001a) array-length         v8, v2
+	9       (0000001c) if-ne                v8, v9, +008h
+
+save-BB@0x20 : [ save-BB@0x24 ]
+	10      (00000020) aget-object          v1, v2, v10
+
+save-BB@0x24 : [ save-BB@0x28 save-BB@0xe2 ]
+	11      (00000024) if-nez               v1, +05fh
+
+save-BB@0x28 : [ save-BB@0x2a ]
+	12      (00000028) move                 v8, v10
+
+save-BB@0x2a : 
+	13      (0000002a) return               v8
+
+save-BB@0x2c : [ save-BB@0x32 save-BB@0x24 ]
+	14      (0000002c) array-length         v8, v2
+	15      (0000002e) if-le                v8, v9, -005h
+
+save-BB@0x32 : [ save-BB@0x38 ]
+	16      (00000032) move-object          v3, v2
+	17      (00000034) array-length         v6, v3
+	18      (00000036) const/4              v4, 0
+
+save-BB@0x38 : [ save-BB@0x3c save-BB@0x6a ]
+	19      (00000038) if-ge                v4, v6, +019h
+
+save-BB@0x3c : [ save-BB@0x54 save-BB@0xd0 ]
+	20      (0000003c) aget-object          v0, v3, v4
+	21      (00000040) iget-object          v8, v0, Landroid/accounts/Account;->type Ljava/lang/String;
+	22      (00000044) const-string         v9, "eas"
+	23      (00000048) invoke-virtual       v8, v9, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+	24      (0000004e) move-result          v8
+	25      (00000050) if-eqz               v8, +040h
+
+save-BB@0x54 : [ save-BB@0x68 save-BB@0xd0 ]
+	26      (00000054) iget-object          v8, v0, Landroid/accounts/Account;->name Ljava/lang/String;
+	27      (00000058) const-string         v9, ".+@.+\.+.+"
+	28      (0000005c) invoke-virtual       v8, v9, Ljava/lang/String;->matches(Ljava/lang/String;)Z
+	29      (00000062) move-result          v8
+	30      (00000064) if-eqz               v8, +036h
+
+save-BB@0x68 : [ save-BB@0x6a ]
+	31      (00000068) move-object          v1, v0
+
+save-BB@0x6a : [ save-BB@0x6e save-BB@0xa6 ]
+	32      (0000006a) if-nez               v1, +01eh
+
+save-BB@0x6e : [ save-BB@0x74 ]
+	33      (0000006e) move-object          v3, v2
+	34      (00000070) array-length         v6, v3
+	35      (00000072) const/4              v4, 0
+
+save-BB@0x74 : [ save-BB@0x78 save-BB@0xa6 ]
+	36      (00000074) if-ge                v4, v6, +019h
+
+save-BB@0x78 : [ save-BB@0x90 save-BB@0xd6 ]
+	37      (00000078) aget-object          v0, v3, v4
+	38      (0000007c) iget-object          v8, v0, Landroid/accounts/Account;->type Ljava/lang/String;
+	39      (00000080) const-string         v9, "com.google"
+	40      (00000084) invoke-virtual       v8, v9, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+	41      (0000008a) move-result          v8
+	42      (0000008c) if-eqz               v8, +025h
+
+save-BB@0x90 : [ save-BB@0xa4 save-BB@0xd6 ]
+	43      (00000090) iget-object          v8, v0, Landroid/accounts/Account;->name Ljava/lang/String;
+	44      (00000094) const-string         v9, ".+@.+\.+.+"
+	45      (00000098) invoke-virtual       v8, v9, Ljava/lang/String;->matches(Ljava/lang/String;)Z
+	46      (0000009e) move-result          v8
+	47      (000000a0) if-eqz               v8, +01bh
+
+save-BB@0xa4 : [ save-BB@0xa6 ]
+	48      (000000a4) move-object          v1, v0
+
+save-BB@0xa6 : [ save-BB@0xaa save-BB@0x24 ]
+	49      (000000a6) if-nez               v1, -041h
+
+save-BB@0xaa : [ save-BB@0xb0 ]
+	50      (000000aa) move-object          v3, v2
+	51      (000000ac) array-length         v6, v3
+	52      (000000ae) const/4              v4, 0
+
+save-BB@0xb0 : [ save-BB@0xb4 save-BB@0x24 ]
+	53      (000000b0) if-ge                v4, v6, -046h
+
+save-BB@0xb4 : [ save-BB@0xcc save-BB@0xdc ]
+	54      (000000b4) aget-object          v0, v3, v4
+	55      (000000b8) iget-object          v8, v0, Landroid/accounts/Account;->name Ljava/lang/String;
+	56      (000000bc) const-string         v9, ".+@.+\.+.+"
+	57      (000000c0) invoke-virtual       v8, v9, Ljava/lang/String;->matches(Ljava/lang/String;)Z
+	58      (000000c6) move-result          v8
+	59      (000000c8) if-eqz               v8, +00ah
+
+save-BB@0xcc : [ save-BB@0x24 ]
+	60      (000000cc) move-object          v1, v0
+	61      (000000ce) goto                 -55h
+
+save-BB@0xd0 : [ save-BB@0x38 ]
+	62      (000000d0) add-int/lit8         v4, v4, 1
+	63      (000000d4) goto                 -4eh
+
+save-BB@0xd6 : [ save-BB@0x74 ]
+	64      (000000d6) add-int/lit8         v4, v4, 1
+	65      (000000da) goto                 -33h
+
+save-BB@0xdc : [ save-BB@0xb0 ]
+	66      (000000dc) add-int/lit8         v4, v4, 1
+	67      (000000e0) goto                 -18h
+
+save-BB@0xe2 : [ save-BB@0xf2 save-BB@0xfc ]
+	68      (000000e2) const-string         v8, "id"
+	69      (000000e6) invoke-virtual       v11, v12, v8, Lcom/phonegap/ContactAccessorSdk5;->getJsonString(Lorg/json/JSONObject; Ljava/lang/String;)Ljava/lang/String;
+	70      (000000ec) move-result-object   v5
+	71      (000000ee) if-nez               v5, +007h
+
+save-BB@0xf2 : [ save-BB@0x2a ]
+	72      (000000f2) invoke-direct        v11, v12, v1, Lcom/phonegap/ContactAccessorSdk5;->createNewContact(Lorg/json/JSONObject; Landroid/accounts/Account;)Z
+	73      (000000f8) move-result          v8
+	74      (000000fa) goto                 -68h
+
+save-BB@0xfc : [ save-BB@0x2a ]
+	75      (000000fc) invoke-direct        v11, v5, v12, v1, Lcom/phonegap/ContactAccessorSdk5;->modifyContact(Ljava/lang/String; Lorg/json/JSONObject; Landroid/accounts/Account;)Z
+	76      (00000102) move-result          v8
+	77      (00000104) goto                 -6dh
+

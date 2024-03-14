@@ -1,0 +1,24 @@
+# Lcom/phonegap/Device;->isSynch(Ljava/lang/String;)Z [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v1
+# - v2:java.lang.String
+#
+# - return:boolean
+
+isSynch-BB@0x0 : [ isSynch-BB@0x10 isSynch-BB@0x14 ]
+	0       (00000000) const-string         v0, "getDeviceInfo"
+	1       (00000004) invoke-virtual       v2, v0, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	2       (0000000a) move-result          v0
+	3       (0000000c) if-eqz               v0, +004h
+
+isSynch-BB@0x10 : [ isSynch-BB@0x12 ]
+	4       (00000010) const/4              v0, 1
+
+isSynch-BB@0x12 : 
+	5       (00000012) return               v0
+
+isSynch-BB@0x14 : [ isSynch-BB@0x12 ]
+	6       (00000014) const/4              v0, 0
+	7       (00000016) goto                 -2h
+

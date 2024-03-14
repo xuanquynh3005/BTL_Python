@@ -1,0 +1,16 @@
+# Lcom/phonegap/CameraLauncher;->failPicture(Ljava/lang/String;)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v2
+# - v3:java.lang.String
+#
+# - return:void
+
+failPicture-BB@0x0 : 
+	0       (00000000) new-instance         v0, Lcom/phonegap/api/PluginResult;
+	1       (00000004) sget-object          v1, Lcom/phonegap/api/PluginResult$Status;->ERROR Lcom/phonegap/api/PluginResult$Status;
+	2       (00000008) invoke-direct        v0, v1, v3, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; Ljava/lang/String;)V
+	3       (0000000e) iget-object          v1, v2, Lcom/phonegap/CameraLauncher;->callbackId Ljava/lang/String;
+	4       (00000012) invoke-virtual       v2, v0, v1, Lcom/phonegap/CameraLauncher;->error(Lcom/phonegap/api/PluginResult; Ljava/lang/String;)V
+	5       (00000018) return-void          
+

@@ -1,0 +1,41 @@
+# Lcom/phonegap/CallbackServer;->convert(Ljava/lang/String; Ljava/lang/StringBuilder; Ljava/lang/String;)V [access_flags=private static]
+#
+# Parameters:
+# - local registers: v0...v3
+# - v4:java.lang.String
+# - v5:java.lang.StringBuilder
+# - v6:java.lang.String
+#
+# - return:void
+
+convert-BB@0x0 : [ convert-BB@0xa ]
+	0       (00000000) invoke-virtual       v4, v6, Ljava/lang/String;->getBytes(Ljava/lang/String;)[B
+	1       (00000006) move-result-object   v0
+	2       (00000008) const/4              v1, 0
+
+convert-BB@0xa : [ convert-BB@0x10 convert-BB@0x58 ]
+	3       (0000000a) array-length         v2, v0
+	4       (0000000c) if-ge                v1, v2, +026h
+
+convert-BB@0x10 : [ convert-BB@0xa ]
+	5       (00000010) const/16             v2, 37
+	6       (00000014) invoke-virtual       v5, v2, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
+	7       (0000001a) const-string         v2, "0123456789ABCDEF"
+	8       (0000001e) aget-byte            v3, v0, v1
+	9       (00000022) and-int/lit16        v3, v3, 240
+	10      (00000026) shr-int/lit8         v3, v3, 4
+	11      (0000002a) invoke-virtual       v2, v3, Ljava/lang/String;->charAt(I)C
+	12      (00000030) move-result          v2
+	13      (00000032) invoke-virtual       v5, v2, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
+	14      (00000038) const-string         v2, "0123456789ABCDEF"
+	15      (0000003c) aget-byte            v3, v0, v1
+	16      (00000040) and-int/lit8         v3, v3, 15
+	17      (00000044) invoke-virtual       v2, v3, Ljava/lang/String;->charAt(I)C
+	18      (0000004a) move-result          v2
+	19      (0000004c) invoke-virtual       v5, v2, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
+	20      (00000052) add-int/lit8         v1, v1, 1
+	21      (00000056) goto                 -26h
+
+convert-BB@0x58 : 
+	22      (00000058) return-void          
+

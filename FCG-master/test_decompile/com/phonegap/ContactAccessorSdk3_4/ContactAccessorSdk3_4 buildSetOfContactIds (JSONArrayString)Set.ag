@@ -1,0 +1,307 @@
+# Lcom/phonegap/ContactAccessorSdk3_4;->buildSetOfContactIds(Lorg/json/JSONArray; Ljava/lang/String;)Ljava/util/Set; [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v10
+# - v11:org.json.JSONArray
+# - v12:java.lang.String
+#
+# - return:java.util.Set
+
+buildSetOfContactIds-BB@0x0 : [ buildSetOfContactIds-BB@0xc ]
+	0       (00000000) new-instance         v2, Ljava/util/HashSet;
+	1       (00000004) invoke-direct        v2, Ljava/util/HashSet;-><init>()V
+	2       (0000000a) const/4              v8, 0
+
+buildSetOfContactIds-BB@0xc : [ buildSetOfContactIds-BB@0x18 buildSetOfContactIds-BB@0x106 ]
+	3       (0000000c) invoke-virtual       v11, Lorg/json/JSONArray;->length()I
+	4       (00000012) move-result          v0
+	5       (00000014) if-ge                v8, v0, +079h
+	c:ed
+	(Lorg/json/JSONException; -> f0 buildSetOfContactIds-BB@0xf0)
+
+buildSetOfContactIds-BB@0x18 : [ buildSetOfContactIds-BB@0x30 buildSetOfContactIds-BB@0x8a ]
+	6       (00000018) invoke-virtual       v11, v8, Lorg/json/JSONArray;->getString(I)Ljava/lang/String;
+	7       (0000001e) move-result-object   v9
+	8       (00000020) const-string         v0, "displayName"
+	9       (00000024) invoke-virtual       v9, v0, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+	10      (0000002a) move-result          v0
+	11      (0000002c) if-eqz               v0, +02fh
+	c:ed
+	(Lorg/json/JSONException; -> f0 buildSetOfContactIds-BB@0xf0)
+
+buildSetOfContactIds-BB@0x30 : [ buildSetOfContactIds-BB@0x84 ]
+	12      (00000030) sget-object          v3, Landroid/provider/Contacts$People;->CONTENT_URI Landroid/net/Uri;
+	13      (00000034) const-string         v4, "_id"
+	14      (00000038) new-instance         v1, Ljava/lang/StringBuilder;
+	15      (0000003c) invoke-direct        v1, Ljava/lang/StringBuilder;-><init>()V
+	16      (00000042) sget-object          v0, Lcom/phonegap/ContactAccessorSdk3_4;->dbMap Ljava/util/Map;
+	17      (00000046) invoke-interface     v0, v9, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
+	18      (0000004c) move-result-object   v0
+	19      (0000004e) check-cast           v0, Ljava/lang/String;
+	20      (00000052) invoke-virtual       v1, v0, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	21      (00000058) move-result-object   v0
+	22      (0000005a) const-string         v1, " LIKE ?"
+	23      (0000005e) invoke-virtual       v0, v1, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	24      (00000064) move-result-object   v0
+	25      (00000066) invoke-virtual       v0, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	26      (0000006c) move-result-object   v5
+	27      (0000006e) const/4              v0, 1
+	28      (00000070) new-array            v6, v0, [Ljava/lang/String;
+	29      (00000074) const/4              v0, 0
+	30      (00000076) aput-object          v12, v6, v0
+	31      (0000007a) move-object          v0, v10
+	32      (0000007c) move-object          v1, v12
+	33      (0000007e) invoke-direct/range  v0 ... v6, Lcom/phonegap/ContactAccessorSdk3_4;->doQuery(Ljava/lang/String; Ljava/util/Set; Landroid/net/Uri; Ljava/lang/String; Ljava/lang/String; [Ljava/lang/String;)V
+	c:ed
+	(Lorg/json/JSONException; -> f0 buildSetOfContactIds-BB@0xf0)
+
+buildSetOfContactIds-BB@0x84 : [ buildSetOfContactIds-BB@0xc ]
+	34      (00000084) add-int/lit8         v8, v8, 1
+	35      (00000088) goto                 -3eh
+	c:ed
+	(Lorg/json/JSONException; -> f0 buildSetOfContactIds-BB@0xf0)
+
+buildSetOfContactIds-BB@0x8a : [ buildSetOfContactIds-BB@0x9a buildSetOfContactIds-BB@0x108 ]
+	36      (0000008a) const-string         v0, "phoneNumbers"
+	37      (0000008e) invoke-virtual       v9, v0, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+	38      (00000094) move-result          v0
+	39      (00000096) if-eqz               v0, +039h
+	c:ed
+	(Lorg/json/JSONException; -> f0 buildSetOfContactIds-BB@0xf0)
+
+buildSetOfContactIds-BB@0x9a : [ buildSetOfContactIds-BB@0x84 ]
+	40      (0000009a) sget-object          v3, Landroid/provider/Contacts$Phones;->CONTENT_URI Landroid/net/Uri;
+	41      (0000009e) const-string         v4, "person"
+	42      (000000a2) new-instance         v1, Ljava/lang/StringBuilder;
+	43      (000000a6) invoke-direct        v1, Ljava/lang/StringBuilder;-><init>()V
+	44      (000000ac) sget-object          v0, Lcom/phonegap/ContactAccessorSdk3_4;->dbMap Ljava/util/Map;
+	45      (000000b0) invoke-interface     v0, v9, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
+	46      (000000b6) move-result-object   v0
+	47      (000000b8) check-cast           v0, Ljava/lang/String;
+	48      (000000bc) invoke-virtual       v1, v0, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	49      (000000c2) move-result-object   v0
+	50      (000000c4) const-string         v1, " LIKE ?"
+	51      (000000c8) invoke-virtual       v0, v1, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	52      (000000ce) move-result-object   v0
+	53      (000000d0) invoke-virtual       v0, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	54      (000000d6) move-result-object   v5
+	55      (000000d8) const/4              v0, 1
+	56      (000000da) new-array            v6, v0, [Ljava/lang/String;
+	57      (000000de) const/4              v0, 0
+	58      (000000e0) aput-object          v12, v6, v0
+	59      (000000e4) move-object          v0, v10
+	60      (000000e6) move-object          v1, v12
+	61      (000000e8) invoke-direct/range  v0 ... v6, Lcom/phonegap/ContactAccessorSdk3_4;->doQuery(Ljava/lang/String; Ljava/util/Set; Landroid/net/Uri; Ljava/lang/String; Ljava/lang/String; [Ljava/lang/String;)V
+	62      (000000ee) goto                 -35h
+
+buildSetOfContactIds-BB@0xf0 : [ buildSetOfContactIds-BB@0x106 ]
+	63      (000000f0) move-exception       v0
+	64      (000000f2) move-object          v7, v0
+	65      (000000f4) const-string         v0, "ContactsAccessor"
+	66      (000000f8) invoke-virtual       v7, Lorg/json/JSONException;->getMessage()Ljava/lang/String;
+	67      (000000fe) move-result-object   v1
+	68      (00000100) invoke-static        v0, v1, v7, Landroid/util/Log;->e(Ljava/lang/String; Ljava/lang/String; Ljava/lang/Throwable;)I
+
+buildSetOfContactIds-BB@0x106 : 
+	69      (00000106) return-object        v2
+
+buildSetOfContactIds-BB@0x108 : [ buildSetOfContactIds-BB@0x118 buildSetOfContactIds-BB@0x192 ]
+	70      (00000108) const-string         v0, "emails"
+	71      (0000010c) invoke-virtual       v9, v0, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+	72      (00000112) move-result          v0
+	73      (00000114) if-eqz               v0, +03fh
+	108:371
+	(Lorg/json/JSONException; -> f0 buildSetOfContactIds-BB@0xf0)
+
+buildSetOfContactIds-BB@0x118 : [ buildSetOfContactIds-BB@0x84 ]
+	74      (00000118) sget-object          v3, Landroid/provider/Contacts$ContactMethods;->CONTENT_EMAIL_URI Landroid/net/Uri;
+	75      (0000011c) const-string         v4, "person"
+	76      (00000120) new-instance         v1, Ljava/lang/StringBuilder;
+	77      (00000124) invoke-direct        v1, Ljava/lang/StringBuilder;-><init>()V
+	78      (0000012a) sget-object          v0, Lcom/phonegap/ContactAccessorSdk3_4;->dbMap Ljava/util/Map;
+	79      (0000012e) invoke-interface     v0, v9, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
+	80      (00000134) move-result-object   v0
+	81      (00000136) check-cast           v0, Ljava/lang/String;
+	82      (0000013a) invoke-virtual       v1, v0, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	83      (00000140) move-result-object   v0
+	84      (00000142) const-string         v1, " LIKE ? AND "
+	85      (00000146) invoke-virtual       v0, v1, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	86      (0000014c) move-result-object   v0
+	87      (0000014e) const-string         v1, "kind"
+	88      (00000152) invoke-virtual       v0, v1, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	89      (00000158) move-result-object   v0
+	90      (0000015a) const-string         v1, " = ?"
+	91      (0000015e) invoke-virtual       v0, v1, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	92      (00000164) move-result-object   v0
+	93      (00000166) invoke-virtual       v0, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	94      (0000016c) move-result-object   v5
+	95      (0000016e) const/4              v0, 2
+	96      (00000170) new-array            v6, v0, [Ljava/lang/String;
+	97      (00000174) const/4              v0, 0
+	98      (00000176) aput-object          v12, v6, v0
+	99      (0000017a) const/4              v0, 1
+	100     (0000017c) const-string         v1, "vnd.android.cursor.item/email"
+	101     (00000180) aput-object          v1, v6, v0
+	102     (00000184) move-object          v0, v10
+	103     (00000186) move-object          v1, v12
+	104     (00000188) invoke-direct/range  v0 ... v6, Lcom/phonegap/ContactAccessorSdk3_4;->doQuery(Ljava/lang/String; Ljava/util/Set; Landroid/net/Uri; Ljava/lang/String; Ljava/lang/String; [Ljava/lang/String;)V
+	105     (0000018e) goto/16              -085h
+	108:371
+	(Lorg/json/JSONException; -> f0 buildSetOfContactIds-BB@0xf0)
+
+buildSetOfContactIds-BB@0x192 : [ buildSetOfContactIds-BB@0x1a2 buildSetOfContactIds-BB@0x21c ]
+	106     (00000192) const-string         v0, "addresses"
+	107     (00000196) invoke-virtual       v9, v0, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+	108     (0000019c) move-result          v0
+	109     (0000019e) if-eqz               v0, +03fh
+	108:371
+	(Lorg/json/JSONException; -> f0 buildSetOfContactIds-BB@0xf0)
+
+buildSetOfContactIds-BB@0x1a2 : [ buildSetOfContactIds-BB@0x84 ]
+	110     (000001a2) sget-object          v3, Landroid/provider/Contacts$ContactMethods;->CONTENT_URI Landroid/net/Uri;
+	111     (000001a6) const-string         v4, "person"
+	112     (000001aa) new-instance         v1, Ljava/lang/StringBuilder;
+	113     (000001ae) invoke-direct        v1, Ljava/lang/StringBuilder;-><init>()V
+	114     (000001b4) sget-object          v0, Lcom/phonegap/ContactAccessorSdk3_4;->dbMap Ljava/util/Map;
+	115     (000001b8) invoke-interface     v0, v9, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
+	116     (000001be) move-result-object   v0
+	117     (000001c0) check-cast           v0, Ljava/lang/String;
+	118     (000001c4) invoke-virtual       v1, v0, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	119     (000001ca) move-result-object   v0
+	120     (000001cc) const-string         v1, " LIKE ? AND "
+	121     (000001d0) invoke-virtual       v0, v1, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	122     (000001d6) move-result-object   v0
+	123     (000001d8) const-string         v1, "kind"
+	124     (000001dc) invoke-virtual       v0, v1, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	125     (000001e2) move-result-object   v0
+	126     (000001e4) const-string         v1, " = ?"
+	127     (000001e8) invoke-virtual       v0, v1, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	128     (000001ee) move-result-object   v0
+	129     (000001f0) invoke-virtual       v0, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	130     (000001f6) move-result-object   v5
+	131     (000001f8) const/4              v0, 2
+	132     (000001fa) new-array            v6, v0, [Ljava/lang/String;
+	133     (000001fe) const/4              v0, 0
+	134     (00000200) aput-object          v12, v6, v0
+	135     (00000204) const/4              v0, 1
+	136     (00000206) const-string         v1, "vnd.android.cursor.item/postal-address"
+	137     (0000020a) aput-object          v1, v6, v0
+	138     (0000020e) move-object          v0, v10
+	139     (00000210) move-object          v1, v12
+	140     (00000212) invoke-direct/range  v0 ... v6, Lcom/phonegap/ContactAccessorSdk3_4;->doQuery(Ljava/lang/String; Ljava/util/Set; Landroid/net/Uri; Ljava/lang/String; Ljava/lang/String; [Ljava/lang/String;)V
+	141     (00000218) goto/16              -0cah
+	108:371
+	(Lorg/json/JSONException; -> f0 buildSetOfContactIds-BB@0xf0)
+
+buildSetOfContactIds-BB@0x21c : [ buildSetOfContactIds-BB@0x22c buildSetOfContactIds-BB@0x2a6 ]
+	142     (0000021c) const-string         v0, "ims"
+	143     (00000220) invoke-virtual       v9, v0, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+	144     (00000226) move-result          v0
+	145     (00000228) if-eqz               v0, +03fh
+	108:371
+	(Lorg/json/JSONException; -> f0 buildSetOfContactIds-BB@0xf0)
+
+buildSetOfContactIds-BB@0x22c : [ buildSetOfContactIds-BB@0x84 ]
+	146     (0000022c) sget-object          v3, Landroid/provider/Contacts$ContactMethods;->CONTENT_URI Landroid/net/Uri;
+	147     (00000230) const-string         v4, "person"
+	148     (00000234) new-instance         v1, Ljava/lang/StringBuilder;
+	149     (00000238) invoke-direct        v1, Ljava/lang/StringBuilder;-><init>()V
+	150     (0000023e) sget-object          v0, Lcom/phonegap/ContactAccessorSdk3_4;->dbMap Ljava/util/Map;
+	151     (00000242) invoke-interface     v0, v9, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
+	152     (00000248) move-result-object   v0
+	153     (0000024a) check-cast           v0, Ljava/lang/String;
+	154     (0000024e) invoke-virtual       v1, v0, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	155     (00000254) move-result-object   v0
+	156     (00000256) const-string         v1, " LIKE ? AND "
+	157     (0000025a) invoke-virtual       v0, v1, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	158     (00000260) move-result-object   v0
+	159     (00000262) const-string         v1, "kind"
+	160     (00000266) invoke-virtual       v0, v1, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	161     (0000026c) move-result-object   v0
+	162     (0000026e) const-string         v1, " = ?"
+	163     (00000272) invoke-virtual       v0, v1, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	164     (00000278) move-result-object   v0
+	165     (0000027a) invoke-virtual       v0, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	166     (00000280) move-result-object   v5
+	167     (00000282) const/4              v0, 2
+	168     (00000284) new-array            v6, v0, [Ljava/lang/String;
+	169     (00000288) const/4              v0, 0
+	170     (0000028a) aput-object          v12, v6, v0
+	171     (0000028e) const/4              v0, 1
+	172     (00000290) const-string         v1, "vnd.android.cursor.item/jabber-im"
+	173     (00000294) aput-object          v1, v6, v0
+	174     (00000298) move-object          v0, v10
+	175     (0000029a) move-object          v1, v12
+	176     (0000029c) invoke-direct/range  v0 ... v6, Lcom/phonegap/ContactAccessorSdk3_4;->doQuery(Ljava/lang/String; Ljava/util/Set; Landroid/net/Uri; Ljava/lang/String; Ljava/lang/String; [Ljava/lang/String;)V
+	177     (000002a2) goto/16              -10fh
+	108:371
+	(Lorg/json/JSONException; -> f0 buildSetOfContactIds-BB@0xf0)
+
+buildSetOfContactIds-BB@0x2a6 : [ buildSetOfContactIds-BB@0x2b6 buildSetOfContactIds-BB@0x30e ]
+	178     (000002a6) const-string         v0, "organizations"
+	179     (000002aa) invoke-virtual       v9, v0, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+	180     (000002b0) move-result          v0
+	181     (000002b2) if-eqz               v0, +02eh
+	108:371
+	(Lorg/json/JSONException; -> f0 buildSetOfContactIds-BB@0xf0)
+
+buildSetOfContactIds-BB@0x2b6 : [ buildSetOfContactIds-BB@0x84 ]
+	182     (000002b6) sget-object          v3, Landroid/provider/Contacts$Organizations;->CONTENT_URI Landroid/net/Uri;
+	183     (000002ba) const-string         v4, "person"
+	184     (000002be) new-instance         v1, Ljava/lang/StringBuilder;
+	185     (000002c2) invoke-direct        v1, Ljava/lang/StringBuilder;-><init>()V
+	186     (000002c8) sget-object          v0, Lcom/phonegap/ContactAccessorSdk3_4;->dbMap Ljava/util/Map;
+	187     (000002cc) invoke-interface     v0, v9, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
+	188     (000002d2) move-result-object   v0
+	189     (000002d4) check-cast           v0, Ljava/lang/String;
+	190     (000002d8) invoke-virtual       v1, v0, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	191     (000002de) move-result-object   v0
+	192     (000002e0) const-string         v1, " LIKE ?"
+	193     (000002e4) invoke-virtual       v0, v1, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	194     (000002ea) move-result-object   v0
+	195     (000002ec) invoke-virtual       v0, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	196     (000002f2) move-result-object   v5
+	197     (000002f4) const/4              v0, 1
+	198     (000002f6) new-array            v6, v0, [Ljava/lang/String;
+	199     (000002fa) const/4              v0, 0
+	200     (000002fc) aput-object          v12, v6, v0
+	201     (00000300) move-object          v0, v10
+	202     (00000302) move-object          v1, v12
+	203     (00000304) invoke-direct/range  v0 ... v6, Lcom/phonegap/ContactAccessorSdk3_4;->doQuery(Ljava/lang/String; Ljava/util/Set; Landroid/net/Uri; Ljava/lang/String; Ljava/lang/String; [Ljava/lang/String;)V
+	204     (0000030a) goto/16              -143h
+	108:371
+	(Lorg/json/JSONException; -> f0 buildSetOfContactIds-BB@0xf0)
+
+buildSetOfContactIds-BB@0x30e : [ buildSetOfContactIds-BB@0x31e buildSetOfContactIds-BB@0x84 ]
+	205     (0000030e) const-string         v0, "note"
+	206     (00000312) invoke-virtual       v9, v0, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+	207     (00000318) move-result          v0
+	208     (0000031a) if-eqz               v0, -14bh
+	108:371
+	(Lorg/json/JSONException; -> f0 buildSetOfContactIds-BB@0xf0)
+
+buildSetOfContactIds-BB@0x31e : [ buildSetOfContactIds-BB@0x84 ]
+	209     (0000031e) sget-object          v3, Landroid/provider/Contacts$People;->CONTENT_URI Landroid/net/Uri;
+	210     (00000322) const-string         v4, "_id"
+	211     (00000326) new-instance         v1, Ljava/lang/StringBuilder;
+	212     (0000032a) invoke-direct        v1, Ljava/lang/StringBuilder;-><init>()V
+	213     (00000330) sget-object          v0, Lcom/phonegap/ContactAccessorSdk3_4;->dbMap Ljava/util/Map;
+	214     (00000334) invoke-interface     v0, v9, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
+	215     (0000033a) move-result-object   v0
+	216     (0000033c) check-cast           v0, Ljava/lang/String;
+	217     (00000340) invoke-virtual       v1, v0, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	218     (00000346) move-result-object   v0
+	219     (00000348) const-string         v1, " LIKE ?"
+	220     (0000034c) invoke-virtual       v0, v1, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	221     (00000352) move-result-object   v0
+	222     (00000354) invoke-virtual       v0, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	223     (0000035a) move-result-object   v5
+	224     (0000035c) const/4              v0, 1
+	225     (0000035e) new-array            v6, v0, [Ljava/lang/String;
+	226     (00000362) const/4              v0, 0
+	227     (00000364) aput-object          v12, v6, v0
+	228     (00000368) move-object          v0, v10
+	229     (0000036a) move-object          v1, v12
+	230     (0000036c) invoke-direct/range  v0 ... v6, Lcom/phonegap/ContactAccessorSdk3_4;->doQuery(Ljava/lang/String; Ljava/util/Set; Landroid/net/Uri; Ljava/lang/String; Ljava/lang/String; [Ljava/lang/String;)V
+	231     (00000372) goto/16              -177h
+

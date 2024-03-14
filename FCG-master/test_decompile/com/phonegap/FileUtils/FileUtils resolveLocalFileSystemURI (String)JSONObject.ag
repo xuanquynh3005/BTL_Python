@@ -1,0 +1,59 @@
+# Lcom/phonegap/FileUtils;->resolveLocalFileSystemURI(Ljava/lang/String;)Lorg/json/JSONObject; [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v5
+# - v6:java.lang.String
+#
+# - return:org.json.JSONObject
+
+resolveLocalFileSystemURI-BB@0x0 : [ resolveLocalFileSystemURI-BB@0x28 resolveLocalFileSystemURI-BB@0x5c ]
+	0       (00000000) const-string         v3, "UTF-8"
+	1       (00000004) invoke-static        v6, v3, Ljava/net/URLDecoder;->decode(Ljava/lang/String; Ljava/lang/String;)Ljava/lang/String;
+	2       (0000000a) move-result-object   v0
+	3       (0000000c) new-instance         v2, Ljava/net/URL;
+	4       (00000010) invoke-direct        v2, v0, Ljava/net/URL;-><init>(Ljava/lang/String;)V
+	5       (00000016) const/4              v1, 0
+	6       (00000018) const-string         v3, "file://"
+	7       (0000001c) invoke-virtual       v0, v3, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+	8       (00000022) move-result          v3
+	9       (00000024) if-eqz               v3, +01ch
+
+resolveLocalFileSystemURI-BB@0x28 : [ resolveLocalFileSystemURI-BB@0x44 ]
+	10      (00000028) new-instance         v1, Ljava/io/File;
+	11      (0000002c) const/4              v3, 7
+	12      (0000002e) invoke-virtual       v0, Ljava/lang/String;->length()I
+	13      (00000034) move-result          v4
+	14      (00000036) invoke-virtual       v0, v3, v4, Ljava/lang/String;->substring(I I)Ljava/lang/String;
+	15      (0000003c) move-result-object   v3
+	16      (0000003e) invoke-direct        v1, v3, Ljava/io/File;-><init>(Ljava/lang/String;)V
+
+resolveLocalFileSystemURI-BB@0x44 : [ resolveLocalFileSystemURI-BB@0x50 resolveLocalFileSystemURI-BB@0x68 ]
+	17      (00000044) invoke-virtual       v1, Ljava/io/File;->exists()Z
+	18      (0000004a) move-result          v3
+	19      (0000004c) if-nez               v3, +00eh
+
+resolveLocalFileSystemURI-BB@0x50 : 
+	20      (00000050) new-instance         v3, Ljava/io/FileNotFoundException;
+	21      (00000054) invoke-direct        v3, Ljava/io/FileNotFoundException;-><init>()V
+	22      (0000005a) throw                v3
+
+resolveLocalFileSystemURI-BB@0x5c : [ resolveLocalFileSystemURI-BB@0x44 ]
+	23      (0000005c) new-instance         v1, Ljava/io/File;
+	24      (00000060) invoke-direct        v1, v0, Ljava/io/File;-><init>(Ljava/lang/String;)V
+	25      (00000066) goto                 -11h
+
+resolveLocalFileSystemURI-BB@0x68 : [ resolveLocalFileSystemURI-BB@0x74 resolveLocalFileSystemURI-BB@0x80 ]
+	26      (00000068) invoke-virtual       v1, Ljava/io/File;->canRead()Z
+	27      (0000006e) move-result          v3
+	28      (00000070) if-nez               v3, +008h
+
+resolveLocalFileSystemURI-BB@0x74 : 
+	29      (00000074) new-instance         v3, Ljava/io/IOException;
+	30      (00000078) invoke-direct        v3, Ljava/io/IOException;-><init>()V
+	31      (0000007e) throw                v3
+
+resolveLocalFileSystemURI-BB@0x80 : 
+	32      (00000080) invoke-direct        v5, v1, Lcom/phonegap/FileUtils;->getEntry(Ljava/io/File;)Lorg/json/JSONObject;
+	33      (00000086) move-result-object   v3
+	34      (00000088) return-object        v3
+

@@ -1,0 +1,44 @@
+# Lcom/phonegap/FileUtils;->copyFile(Ljava/io/File; Ljava/io/File;)Lorg/json/JSONObject; [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v6
+# - v7:java.io.File
+# - v8:java.io.File
+#
+# - return:org.json.JSONObject
+
+copyFile-BB@0x0 : [ copyFile-BB@0xc copyFile-BB@0x28 ]
+	0       (00000000) invoke-virtual       v8, Ljava/io/File;->exists()Z
+	1       (00000006) move-result          v1
+	2       (00000008) if-eqz               v1, +010h
+
+copyFile-BB@0xc : [ copyFile-BB@0x18 copyFile-BB@0x28 ]
+	3       (0000000c) invoke-virtual       v8, Ljava/io/File;->isDirectory()Z
+	4       (00000012) move-result          v1
+	5       (00000014) if-eqz               v1, +00ah
+
+copyFile-BB@0x18 : 
+	6       (00000018) new-instance         v1, Lcom/phonegap/file/InvalidModificationException;
+	7       (0000001c) const-string         v2, "Can't rename a file to a directory"
+	8       (00000020) invoke-direct        v1, v2, Lcom/phonegap/file/InvalidModificationException;-><init>(Ljava/lang/String;)V
+	9       (00000026) throw                v1
+
+copyFile-BB@0x28 : 
+	10      (00000028) new-instance         v1, Ljava/io/FileInputStream;
+	11      (0000002c) invoke-direct        v1, v7, Ljava/io/FileInputStream;-><init>(Ljava/io/File;)V
+	12      (00000032) invoke-virtual       v1, Ljava/io/FileInputStream;->getChannel()Ljava/nio/channels/FileChannel;
+	13      (00000038) move-result-object   v0
+	14      (0000003a) new-instance         v1, Ljava/io/FileOutputStream;
+	15      (0000003e) invoke-direct        v1, v8, Ljava/io/FileOutputStream;-><init>(Ljava/io/File;)V
+	16      (00000044) invoke-virtual       v1, Ljava/io/FileOutputStream;->getChannel()Ljava/nio/channels/FileChannel;
+	17      (0000004a) move-result-object   v5
+	18      (0000004c) const-wide/16        v1, 0
+	19      (00000050) invoke-virtual       v0, Ljava/nio/channels/FileChannel;->size()J
+	20      (00000056) move-result-wide     v3
+	21      (00000058) invoke-virtual/range v0 ... v5, Ljava/nio/channels/FileChannel;->transferTo(J J Ljava/nio/channels/WritableByteChannel;)J
+	22      (0000005e) invoke-virtual       v0, Ljava/nio/channels/FileChannel;->close()V
+	23      (00000064) invoke-virtual       v5, Ljava/nio/channels/FileChannel;->close()V
+	24      (0000006a) invoke-direct        v6, v8, Lcom/phonegap/FileUtils;->getEntry(Ljava/io/File;)Lorg/json/JSONObject;
+	25      (00000070) move-result-object   v1
+	26      (00000072) return-object        v1
+

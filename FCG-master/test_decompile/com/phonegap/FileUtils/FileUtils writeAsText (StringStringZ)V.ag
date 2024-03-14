@@ -1,0 +1,29 @@
+# Lcom/phonegap/FileUtils;->writeAsText(Ljava/lang/String; Ljava/lang/String; Z)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v7
+# - v8:java.lang.String
+# - v9:java.lang.String
+# - v10:boolean
+#
+# - return:void
+
+writeAsText-BB@0x0 : 
+	0       (00000000) const/4              v6, 0
+	1       (00000002) move-object          v0, v8
+	2       (00000004) invoke-virtual       v9, Ljava/lang/String;->getBytes()[B
+	3       (0000000a) move-result-object   v4
+	4       (0000000c) new-instance         v2, Ljava/io/ByteArrayInputStream;
+	5       (00000010) invoke-direct        v2, v4, Ljava/io/ByteArrayInputStream;-><init>([B)V
+	6       (00000016) new-instance         v3, Ljava/io/FileOutputStream;
+	7       (0000001a) invoke-direct        v3, v0, v10, Ljava/io/FileOutputStream;-><init>(Ljava/lang/String; Z)V
+	8       (00000020) array-length         v5, v4
+	9       (00000022) new-array            v1, v5, [B
+	10      (00000026) array-length         v5, v1
+	11      (00000028) invoke-virtual       v2, v1, v6, v5, Ljava/io/ByteArrayInputStream;->read([B I I)I
+	12      (0000002e) array-length         v5, v4
+	13      (00000030) invoke-virtual       v3, v1, v6, v5, Ljava/io/FileOutputStream;->write([B I I)V
+	14      (00000036) invoke-virtual       v3, Ljava/io/FileOutputStream;->flush()V
+	15      (0000003c) invoke-virtual       v3, Ljava/io/FileOutputStream;->close()V
+	16      (00000042) return-void          
+

@@ -1,0 +1,773 @@
+# Lcom/phonegap/ContactAccessorSdk5;->search(Lorg/json/JSONArray; Lorg/json/JSONObject;)Lorg/json/JSONArray; [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v42
+# - v43:org.json.JSONArray
+# - v44:org.json.JSONObject
+#
+# - return:org.json.JSONArray
+
+search-BB@0x0 : [ search-BB@0x1a search-BB@0x132 ]
+	0       (00000000) invoke-static        Ljava/lang/System;->currentTimeMillis()J
+	1       (00000006) move-result-wide     v36
+	2       (00000008) const-string         v33, ""
+	3       (0000000c) const                v23, 2147483647
+	4       (00000012) const/16             v25, 1
+	5       (00000016) if-eqz               v44, +08eh
+
+search-BB@0x1a : [ search-BB@0x38 search-BB@0xf8 ]
+	6       (0000001a) const-string         v3, "filter"
+	7       (0000001e) move-object/from16   v0, v44
+	8       (00000022) move-object          v1, v3
+	9       (00000024) invoke-virtual       v0, v1, Lorg/json/JSONObject;->optString(Ljava/lang/String;)Ljava/lang/String;
+	10      (0000002a) move-result-object   v33
+	11      (0000002c) invoke-virtual/range v33, Ljava/lang/String;->length()I
+	12      (00000032) move-result          v3
+	13      (00000034) if-nez               v3, +062h
+
+search-BB@0x38 : [ search-BB@0x3c ]
+	14      (00000038) const-string         v33, "%"
+
+search-BB@0x3c : [ search-BB@0x52 search-BB@0x56 ]
+	15      (0000003c) const-string         v3, "multiple"
+	16      (00000040) move-object/from16   v0, v44
+	17      (00000044) move-object          v1, v3
+	18      (00000046) invoke-virtual       v0, v1, Lorg/json/JSONObject;->getBoolean(Ljava/lang/String;)Z
+	19      (0000004c) move-result          v25
+	20      (0000004e) if-nez               v25, +004h
+	3c:4b
+	(Lorg/json/JSONException; -> 7ce search-BB@0x7ce)
+
+search-BB@0x52 : [ search-BB@0x56 ]
+	21      (00000052) const/16             v23, 1
+
+search-BB@0x56 : [ search-BB@0xbe ]
+	22      (00000056) invoke-virtual/range v42 ... v43, Lcom/phonegap/ContactAccessorSdk5;->buildPopulationSet(Lorg/json/JSONArray;)Ljava/util/HashMap;
+	23      (0000005c) move-result-object   v31
+	24      (0000005e) move-object/from16   v0, v42
+	25      (00000062) move-object/from16   v1, v43
+	26      (00000066) move-object/from16   v2, v33
+	27      (0000006a) invoke-direct        v0, v1, v2, Lcom/phonegap/ContactAccessorSdk5;->buildWhereClause(Lorg/json/JSONArray; Ljava/lang/String;)Lcom/phonegap/ContactAccessor$WhereOptions;
+	28      (00000070) move-result-object   v39
+	29      (00000072) move-object/from16   v0, v42
+	30      (00000076) iget-object          v0, v0, Lcom/phonegap/ContactAccessorSdk5;->mApp Landroid/app/Activity;
+	31      (0000007a) move-object          v3, v0
+	32      (0000007c) invoke-virtual       v3, Landroid/app/Activity;->getContentResolver()Landroid/content/ContentResolver;
+	33      (00000082) move-result-object   v3
+	34      (00000084) sget-object          v4, Landroid/provider/ContactsContract$Data;->CONTENT_URI Landroid/net/Uri;
+	35      (00000088) const/4              v5, 1
+	36      (0000008a) new-array            v5, v5, [Ljava/lang/String;
+	37      (0000008e) const/4              v6, 0
+	38      (00000090) const-string         v7, "contact_id"
+	39      (00000094) aput-object          v7, v5, v6
+	40      (00000098) invoke-virtual/range v39, Lcom/phonegap/ContactAccessor$WhereOptions;->getWhere()Ljava/lang/String;
+	41      (0000009e) move-result-object   v6
+	42      (000000a0) invoke-virtual/range v39, Lcom/phonegap/ContactAccessor$WhereOptions;->getWhereArgs()[Ljava/lang/String;
+	43      (000000a6) move-result-object   v7
+	44      (000000a8) const-string         v8, "contact_id ASC"
+	45      (000000ac) invoke-virtual/range v3 ... v8, Landroid/content/ContentResolver;->query(Landroid/net/Uri; [Ljava/lang/String; Ljava/lang/String; [Ljava/lang/String; Ljava/lang/String;)Landroid/database/Cursor;
+	46      (000000b2) move-result-object   v20
+	47      (000000b4) new-instance         v16, Ljava/util/HashSet;
+	48      (000000b8) invoke-direct/range  v16, Ljava/util/HashSet;-><init>()V
+
+search-BB@0xbe : [ search-BB@0xca search-BB@0x138 ]
+	49      (000000be) invoke-interface/range v20, Landroid/database/Cursor;->moveToNext()Z
+	50      (000000c4) move-result          v3
+	51      (000000c6) if-eqz               v3, +039h
+
+search-BB@0xca : [ search-BB@0xbe ]
+	52      (000000ca) const-string         v3, "contact_id"
+	53      (000000ce) move-object/from16   v0, v20
+	54      (000000d2) move-object          v1, v3
+	55      (000000d4) invoke-interface     v0, v1, Landroid/database/Cursor;->getColumnIndex(Ljava/lang/String;)I
+	56      (000000da) move-result          v3
+	57      (000000dc) move-object/from16   v0, v20
+	58      (000000e0) move                 v1, v3
+	59      (000000e2) invoke-interface     v0, v1, Landroid/database/Cursor;->getString(I)Ljava/lang/String;
+	60      (000000e8) move-result-object   v3
+	61      (000000ea) move-object/from16   v0, v16
+	62      (000000ee) move-object          v1, v3
+	63      (000000f0) invoke-interface     v0, v1, Ljava/util/Set;->add(Ljava/lang/Object;)Z
+	64      (000000f6) goto                 -1ch
+
+search-BB@0xf8 : [ search-BB@0x3c ]
+	65      (000000f8) new-instance         v3, Ljava/lang/StringBuilder;
+	66      (000000fc) invoke-direct        v3, Ljava/lang/StringBuilder;-><init>()V
+	67      (00000102) const-string         v4, "%"
+	68      (00000106) invoke-virtual       v3, v4, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	69      (0000010c) move-result-object   v3
+	70      (0000010e) move-object          v0, v3
+	71      (00000110) move-object/from16   v1, v33
+	72      (00000114) invoke-virtual       v0, v1, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	73      (0000011a) move-result-object   v3
+	74      (0000011c) const-string         v4, "%"
+	75      (00000120) invoke-virtual       v3, v4, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	76      (00000126) move-result-object   v3
+	77      (00000128) invoke-virtual       v3, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	78      (0000012e) move-result-object   v33
+	79      (00000130) goto                 -7ah
+
+search-BB@0x132 : [ search-BB@0x56 ]
+	80      (00000132) const-string         v33, "%"
+	81      (00000136) goto                 -70h
+
+search-BB@0x138 : [ search-BB@0x200 search-BB@0x6e6 ]
+	82      (00000138) invoke-interface/range v20, Landroid/database/Cursor;->close()V
+	83      (0000013e) move-object/from16   v0, v42
+	84      (00000142) move-object/from16   v1, v16
+	85      (00000146) move-object/from16   v2, v33
+	86      (0000014a) invoke-direct        v0, v1, v2, Lcom/phonegap/ContactAccessorSdk5;->buildIdClause(Ljava/util/Set; Ljava/lang/String;)Lcom/phonegap/ContactAccessor$WhereOptions;
+	87      (00000150) move-result-object   v21
+	88      (00000152) move-object/from16   v0, v42
+	89      (00000156) iget-object          v0, v0, Lcom/phonegap/ContactAccessorSdk5;->mApp Landroid/app/Activity;
+	90      (0000015a) move-object          v3, v0
+	91      (0000015c) invoke-virtual       v3, Landroid/app/Activity;->getContentResolver()Landroid/content/ContentResolver;
+	92      (00000162) move-result-object   v3
+	93      (00000164) sget-object          v4, Landroid/provider/ContactsContract$Data;->CONTENT_URI Landroid/net/Uri;
+	94      (00000168) const/4              v5, 0
+	95      (0000016a) invoke-virtual/range v21, Lcom/phonegap/ContactAccessor$WhereOptions;->getWhere()Ljava/lang/String;
+	96      (00000170) move-result-object   v6
+	97      (00000172) invoke-virtual/range v21, Lcom/phonegap/ContactAccessor$WhereOptions;->getWhereArgs()[Ljava/lang/String;
+	98      (00000178) move-result-object   v7
+	99      (0000017a) const-string         v8, "contact_id ASC"
+	100     (0000017e) invoke-virtual/range v3 ... v8, Landroid/content/ContentResolver;->query(Landroid/net/Uri; [Ljava/lang/String; Ljava/lang/String; [Ljava/lang/String; Ljava/lang/String;)Landroid/database/Cursor;
+	101     (00000184) move-result-object   v13
+	102     (00000186) const-string         v15, ""
+	103     (0000018a) const-string         v32, ""
+	104     (0000018e) const-string         v27, ""
+	105     (00000192) const/16             v26, 1
+	106     (00000196) const-string         v24, ""
+	107     (0000019a) new-instance         v17, Lorg/json/JSONArray;
+	108     (0000019e) invoke-direct/range  v17, Lorg/json/JSONArray;-><init>()V
+	109     (000001a4) new-instance         v4, Lorg/json/JSONObject;
+	110     (000001a8) invoke-direct        v4, Lorg/json/JSONObject;-><init>()V
+	111     (000001ae) new-instance         v5, Lorg/json/JSONArray;
+	112     (000001b2) invoke-direct        v5, Lorg/json/JSONArray;-><init>()V
+	113     (000001b8) new-instance         v6, Lorg/json/JSONArray;
+	114     (000001bc) invoke-direct        v6, Lorg/json/JSONArray;-><init>()V
+	115     (000001c2) new-instance         v7, Lorg/json/JSONArray;
+	116     (000001c6) invoke-direct        v7, Lorg/json/JSONArray;-><init>()V
+	117     (000001cc) new-instance         v8, Lorg/json/JSONArray;
+	118     (000001d0) invoke-direct        v8, Lorg/json/JSONArray;-><init>()V
+	119     (000001d6) new-instance         v9, Lorg/json/JSONArray;
+	120     (000001da) invoke-direct        v9, Lorg/json/JSONArray;-><init>()V
+	121     (000001e0) new-instance         v10, Lorg/json/JSONArray;
+	122     (000001e4) invoke-direct        v10, Lorg/json/JSONArray;-><init>()V
+	123     (000001ea) new-instance         v11, Lorg/json/JSONArray;
+	124     (000001ee) invoke-direct        v11, Lorg/json/JSONArray;-><init>()V
+	125     (000001f4) invoke-interface     v13, Landroid/database/Cursor;->getCount()I
+	126     (000001fa) move-result          v3
+	127     (000001fc) if-lez               v3, +275h
+
+search-BB@0x200 : [ search-BB@0x20c search-BB@0x6bc ]
+	128     (00000200) invoke-interface     v13, Landroid/database/Cursor;->moveToNext()Z
+	129     (00000206) move-result          v3
+	130     (00000208) if-eqz               v3, +25ah
+
+search-BB@0x20c : [ search-BB@0x21e search-BB@0x6bc ]
+	131     (0000020c) invoke-virtual/range v17, Lorg/json/JSONArray;->length()I
+	132     (00000212) move-result          v3
+	133     (00000214) const/4              v12, 1
+	134     (00000216) sub-int              v12, v23, v12
+	135     (0000021a) if-gt                v3, v12, +251h
+
+search-BB@0x21e : [ search-BB@0x252 search-BB@0x256 ]
+	136     (0000021e) const-string         v3, "contact_id"
+	137     (00000222) invoke-interface     v13, v3, Landroid/database/Cursor;->getColumnIndex(Ljava/lang/String;)I
+	138     (00000228) move-result          v3
+	139     (0000022a) invoke-interface     v13, v3, Landroid/database/Cursor;->getString(I)Ljava/lang/String;
+	140     (00000230) move-result-object   v15
+	141     (00000232) const-string         v3, "raw_contact_id"
+	142     (00000236) invoke-interface     v13, v3, Landroid/database/Cursor;->getColumnIndex(Ljava/lang/String;)I
+	143     (0000023c) move-result          v3
+	144     (0000023e) invoke-interface     v13, v3, Landroid/database/Cursor;->getString(I)Ljava/lang/String;
+	145     (00000244) move-result-object   v32
+	146     (00000246) invoke-interface     v13, Landroid/database/Cursor;->getPosition()I
+	147     (0000024c) move-result          v3
+	148     (0000024e) if-nez               v3, +004h
+	21e:289
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x252 : [ search-BB@0x256 ]
+	149     (00000252) move-object/from16   v27, v15
+	21e:289
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x256 : [ search-BB@0x268 search-BB@0x2f0 ]
+	150     (00000256) move-object/from16   v0, v27
+	151     (0000025a) move-object          v1, v15
+	152     (0000025c) invoke-virtual       v0, v1, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	153     (00000262) move-result          v3
+	154     (00000264) if-nez               v3, +046h
+	21e:289
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x268 : [ search-BB@0x28a ]
+	155     (00000268) move-object/from16   v3, v42
+	156     (0000026c) invoke-direct/range  v3 ... v11, Lcom/phonegap/ContactAccessorSdk5;->populateContact(Lorg/json/JSONObject; Lorg/json/JSONArray; Lorg/json/JSONArray; Lorg/json/JSONArray; Lorg/json/JSONArray; Lorg/json/JSONArray; Lorg/json/JSONArray; Lorg/json/JSONArray;)Lorg/json/JSONObject;
+	157     (00000272) move-result-object   v3
+	158     (00000274) move-object/from16   v0, v17
+	159     (00000278) move-object          v1, v3
+	160     (0000027a) invoke-virtual       v0, v1, Lorg/json/JSONArray;->put(Ljava/lang/Object;)Lorg/json/JSONArray;
+	161     (00000280) new-instance         v14, Lorg/json/JSONObject;
+	162     (00000284) invoke-direct        v14, Lorg/json/JSONObject;-><init>()V
+	21e:289
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x28a : [ search-BB@0x294 ]
+	163     (0000028a) new-instance         v28, Lorg/json/JSONArray;
+	164     (0000028e) invoke-direct/range  v28, Lorg/json/JSONArray;-><init>()V
+	28a:293
+	(Lorg/json/JSONException; -> 730 search-BB@0x730)
+
+search-BB@0x294 : [ search-BB@0x29e ]
+	165     (00000294) new-instance         v12, Lorg/json/JSONArray;
+	166     (00000298) invoke-direct        v12, Lorg/json/JSONArray;-><init>()V
+	294:29d
+	(Lorg/json/JSONException; -> 73c search-BB@0x73c)
+
+search-BB@0x29e : [ search-BB@0x2a8 ]
+	167     (0000029e) new-instance         v29, Lorg/json/JSONArray;
+	168     (000002a2) invoke-direct/range  v29, Lorg/json/JSONArray;-><init>()V
+	29e:2a7
+	(Lorg/json/JSONException; -> 74c search-BB@0x74c)
+
+search-BB@0x2a8 : [ search-BB@0x2b2 ]
+	169     (000002a8) new-instance         v19, Lorg/json/JSONArray;
+	170     (000002ac) invoke-direct/range  v19, Lorg/json/JSONArray;-><init>()V
+	2a8:2b1
+	(Lorg/json/JSONException; -> 75e search-BB@0x75e)
+
+search-BB@0x2b2 : [ search-BB@0x2bc ]
+	171     (000002b2) new-instance         v22, Lorg/json/JSONArray;
+	172     (000002b6) invoke-direct/range  v22, Lorg/json/JSONArray;-><init>()V
+	2b2:2bb
+	(Lorg/json/JSONException; -> 774 search-BB@0x774)
+
+search-BB@0x2bc : [ search-BB@0x2c6 ]
+	173     (000002bc) new-instance         v38, Lorg/json/JSONArray;
+	174     (000002c0) invoke-direct/range  v38, Lorg/json/JSONArray;-><init>()V
+	2bc:2c5
+	(Lorg/json/JSONException; -> 78e search-BB@0x78e)
+
+search-BB@0x2c6 : [ search-BB@0x2f0 ]
+	175     (000002c6) new-instance         v30, Lorg/json/JSONArray;
+	176     (000002ca) invoke-direct/range  v30, Lorg/json/JSONArray;-><init>()V
+	177     (000002d0) const/16             v26, 1
+	178     (000002d4) move-object/from16   v11, v30
+	179     (000002d8) move-object/from16   v10, v38
+	180     (000002dc) move-object/from16   v9, v22
+	181     (000002e0) move-object/from16   v8, v19
+	182     (000002e4) move-object/from16   v7, v29
+	183     (000002e8) move-object          v6, v12
+	184     (000002ea) move-object/from16   v5, v28
+	185     (000002ee) move-object          v4, v14
+	2c6:2cf
+	(Lorg/json/JSONException; -> 7ac search-BB@0x7ac)
+
+search-BB@0x2f0 : [ search-BB@0x2f4 search-BB@0x332 ]
+	186     (000002f0) if-eqz               v26, +021h
+
+search-BB@0x2f4 : [ search-BB@0x2f8 ]
+	187     (000002f4) const/16             v26, 0
+
+search-BB@0x2f8 : [ search-BB@0x332 ]
+	188     (000002f8) const-string         v3, "id"
+	189     (000002fc) invoke-virtual       v4, v3, v15, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	190     (00000302) const-string         v3, "rawId"
+	191     (00000306) move-object          v0, v4
+	192     (00000308) move-object          v1, v3
+	193     (0000030a) move-object/from16   v2, v32
+	194     (0000030e) invoke-virtual       v0, v1, v2, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	195     (00000314) const-string         v3, "displayName"
+	196     (00000318) const-string         v12, "data1"
+	197     (0000031c) invoke-interface     v13, v12, Landroid/database/Cursor;->getColumnIndex(Ljava/lang/String;)I
+	198     (00000322) move-result          v12
+	199     (00000324) invoke-interface     v13, v12, Landroid/database/Cursor;->getString(I)Ljava/lang/String;
+	200     (0000032a) move-result-object   v12
+	201     (0000032c) invoke-virtual       v4, v3, v12, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	2f8:3d9
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x332 : [ search-BB@0x35c search-BB@0x396 ]
+	202     (00000332) const-string         v3, "mimetype"
+	203     (00000336) invoke-interface     v13, v3, Landroid/database/Cursor;->getColumnIndex(Ljava/lang/String;)I
+	204     (0000033c) move-result          v3
+	205     (0000033e) invoke-interface     v13, v3, Landroid/database/Cursor;->getString(I)Ljava/lang/String;
+	206     (00000344) move-result-object   v24
+	207     (00000346) const-string         v3, "vnd.android.cursor.item/name"
+	208     (0000034a) move-object/from16   v0, v24
+	209     (0000034e) move-object          v1, v3
+	210     (00000350) invoke-virtual       v0, v1, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	211     (00000356) move-result          v3
+	212     (00000358) if-eqz               v3, +01fh
+	2f8:3d9
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x35c : [ search-BB@0x376 search-BB@0x396 ]
+	213     (0000035c) const-string         v3, "name"
+	214     (00000360) move-object/from16   v0, v42
+	215     (00000364) move-object          v1, v3
+	216     (00000366) move-object/from16   v2, v31
+	217     (0000036a) invoke-virtual       v0, v1, v2, Lcom/phonegap/ContactAccessorSdk5;->isRequired(Ljava/lang/String; Ljava/util/HashMap;)Z
+	218     (00000370) move-result          v3
+	219     (00000372) if-eqz               v3, +012h
+	2f8:3d9
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x376 : [ search-BB@0x38e ]
+	220     (00000376) const-string         v3, "name"
+	221     (0000037a) move-object/from16   v0, v42
+	222     (0000037e) move-object          v1, v13
+	223     (00000380) invoke-direct        v0, v1, Lcom/phonegap/ContactAccessorSdk5;->nameQuery(Landroid/database/Cursor;)Lorg/json/JSONObject;
+	224     (00000386) move-result-object   v12
+	225     (00000388) invoke-virtual       v4, v3, v12, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	2f8:3d9
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x38e : [ search-BB@0x200 ]
+	226     (0000038e) move-object/from16   v27, v15
+	227     (00000392) goto/16              -0c9h
+	2f8:3d9
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x396 : [ search-BB@0x3ac search-BB@0x3fe ]
+	228     (00000396) const-string         v3, "vnd.android.cursor.item/phone_v2"
+	229     (0000039a) move-object/from16   v0, v24
+	230     (0000039e) move-object          v1, v3
+	231     (000003a0) invoke-virtual       v0, v1, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	232     (000003a6) move-result          v3
+	233     (000003a8) if-eqz               v3, +02bh
+	2f8:3d9
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x3ac : [ search-BB@0x3c6 search-BB@0x3fe ]
+	234     (000003ac) const-string         v3, "phoneNumbers"
+	235     (000003b0) move-object/from16   v0, v42
+	236     (000003b4) move-object          v1, v3
+	237     (000003b6) move-object/from16   v2, v31
+	238     (000003ba) invoke-virtual       v0, v1, v2, Lcom/phonegap/ContactAccessorSdk5;->isRequired(Ljava/lang/String; Ljava/util/HashMap;)Z
+	239     (000003c0) move-result          v3
+	240     (000003c2) if-eqz               v3, +01eh
+	2f8:3d9
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x3c6 : [ search-BB@0x38e ]
+	241     (000003c6) move-object/from16   v0, v42
+	242     (000003ca) move-object          v1, v13
+	243     (000003cc) invoke-direct        v0, v1, Lcom/phonegap/ContactAccessorSdk5;->phoneQuery(Landroid/database/Cursor;)Lorg/json/JSONObject;
+	244     (000003d2) move-result-object   v3
+	245     (000003d4) invoke-virtual       v7, v3, Lorg/json/JSONArray;->put(Ljava/lang/Object;)Lorg/json/JSONArray;
+	246     (000003da) goto                 -26h
+
+search-BB@0x3dc : [ search-BB@0x3e2 ]
+	247     (000003dc) move-exception       v3
+	248     (000003de) move-object/from16   v18, v3
+
+search-BB@0x3e2 : [ search-BB@0x38e ]
+	249     (000003e2) const-string         v3, "ContactsAccessor"
+	250     (000003e6) invoke-virtual/range v18, Lorg/json/JSONException;->getMessage()Ljava/lang/String;
+	251     (000003ec) move-result-object   v12
+	252     (000003ee) move-object          v0, v3
+	253     (000003f0) move-object          v1, v12
+	254     (000003f2) move-object/from16   v2, v18
+	255     (000003f6) invoke-static        v0, v1, v2, Landroid/util/Log;->e(Ljava/lang/String; Ljava/lang/String; Ljava/lang/Throwable;)I
+	256     (000003fc) goto                 -37h
+
+search-BB@0x3fe : [ search-BB@0x414 search-BB@0x444 ]
+	257     (000003fe) const-string         v3, "vnd.android.cursor.item/email_v2"
+	258     (00000402) move-object/from16   v0, v24
+	259     (00000406) move-object          v1, v3
+	260     (00000408) invoke-virtual       v0, v1, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	261     (0000040e) move-result          v3
+	262     (00000410) if-eqz               v3, +01ah
+	3fe:6b7
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x414 : [ search-BB@0x42e search-BB@0x444 ]
+	263     (00000414) const-string         v3, "emails"
+	264     (00000418) move-object/from16   v0, v42
+	265     (0000041c) move-object          v1, v3
+	266     (0000041e) move-object/from16   v2, v31
+	267     (00000422) invoke-virtual       v0, v1, v2, Lcom/phonegap/ContactAccessorSdk5;->isRequired(Ljava/lang/String; Ljava/util/HashMap;)Z
+	268     (00000428) move-result          v3
+	269     (0000042a) if-eqz               v3, +00dh
+	3fe:6b7
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x42e : [ search-BB@0x38e ]
+	270     (0000042e) move-object/from16   v0, v42
+	271     (00000432) move-object          v1, v13
+	272     (00000434) invoke-direct        v0, v1, Lcom/phonegap/ContactAccessorSdk5;->emailQuery(Landroid/database/Cursor;)Lorg/json/JSONObject;
+	273     (0000043a) move-result-object   v3
+	274     (0000043c) invoke-virtual       v8, v3, Lorg/json/JSONArray;->put(Ljava/lang/Object;)Lorg/json/JSONArray;
+	275     (00000442) goto                 -5ah
+	3fe:6b7
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x444 : [ search-BB@0x45a search-BB@0x48a ]
+	276     (00000444) const-string         v3, "vnd.android.cursor.item/postal-address_v2"
+	277     (00000448) move-object/from16   v0, v24
+	278     (0000044c) move-object          v1, v3
+	279     (0000044e) invoke-virtual       v0, v1, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	280     (00000454) move-result          v3
+	281     (00000456) if-eqz               v3, +01ah
+	3fe:6b7
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x45a : [ search-BB@0x474 search-BB@0x48a ]
+	282     (0000045a) const-string         v3, "addresses"
+	283     (0000045e) move-object/from16   v0, v42
+	284     (00000462) move-object          v1, v3
+	285     (00000464) move-object/from16   v2, v31
+	286     (00000468) invoke-virtual       v0, v1, v2, Lcom/phonegap/ContactAccessorSdk5;->isRequired(Ljava/lang/String; Ljava/util/HashMap;)Z
+	287     (0000046e) move-result          v3
+	288     (00000470) if-eqz               v3, +00dh
+	3fe:6b7
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x474 : [ search-BB@0x38e ]
+	289     (00000474) move-object/from16   v0, v42
+	290     (00000478) move-object          v1, v13
+	291     (0000047a) invoke-direct        v0, v1, Lcom/phonegap/ContactAccessorSdk5;->addressQuery(Landroid/database/Cursor;)Lorg/json/JSONObject;
+	292     (00000480) move-result-object   v3
+	293     (00000482) invoke-virtual       v6, v3, Lorg/json/JSONArray;->put(Ljava/lang/Object;)Lorg/json/JSONArray;
+	294     (00000488) goto                 -7dh
+	3fe:6b7
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x48a : [ search-BB@0x4a0 search-BB@0x4d2 ]
+	295     (0000048a) const-string         v3, "vnd.android.cursor.item/organization"
+	296     (0000048e) move-object/from16   v0, v24
+	297     (00000492) move-object          v1, v3
+	298     (00000494) invoke-virtual       v0, v1, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	299     (0000049a) move-result          v3
+	300     (0000049c) if-eqz               v3, +01bh
+	3fe:6b7
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x4a0 : [ search-BB@0x4ba search-BB@0x4d2 ]
+	301     (000004a0) const-string         v3, "organizations"
+	302     (000004a4) move-object/from16   v0, v42
+	303     (000004a8) move-object          v1, v3
+	304     (000004aa) move-object/from16   v2, v31
+	305     (000004ae) invoke-virtual       v0, v1, v2, Lcom/phonegap/ContactAccessorSdk5;->isRequired(Ljava/lang/String; Ljava/util/HashMap;)Z
+	306     (000004b4) move-result          v3
+	307     (000004b6) if-eqz               v3, +00eh
+	3fe:6b7
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x4ba : [ search-BB@0x38e ]
+	308     (000004ba) move-object/from16   v0, v42
+	309     (000004be) move-object          v1, v13
+	310     (000004c0) invoke-direct        v0, v1, Lcom/phonegap/ContactAccessorSdk5;->organizationQuery(Landroid/database/Cursor;)Lorg/json/JSONObject;
+	311     (000004c6) move-result-object   v3
+	312     (000004c8) invoke-virtual       v5, v3, Lorg/json/JSONArray;->put(Ljava/lang/Object;)Lorg/json/JSONArray;
+	313     (000004ce) goto/16              -0a0h
+	3fe:6b7
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x4d2 : [ search-BB@0x4e8 search-BB@0x51a ]
+	314     (000004d2) const-string         v3, "vnd.android.cursor.item/im"
+	315     (000004d6) move-object/from16   v0, v24
+	316     (000004da) move-object          v1, v3
+	317     (000004dc) invoke-virtual       v0, v1, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	318     (000004e2) move-result          v3
+	319     (000004e4) if-eqz               v3, +01bh
+	3fe:6b7
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x4e8 : [ search-BB@0x502 search-BB@0x51a ]
+	320     (000004e8) const-string         v3, "ims"
+	321     (000004ec) move-object/from16   v0, v42
+	322     (000004f0) move-object          v1, v3
+	323     (000004f2) move-object/from16   v2, v31
+	324     (000004f6) invoke-virtual       v0, v1, v2, Lcom/phonegap/ContactAccessorSdk5;->isRequired(Ljava/lang/String; Ljava/util/HashMap;)Z
+	325     (000004fc) move-result          v3
+	326     (000004fe) if-eqz               v3, +00eh
+	3fe:6b7
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x502 : [ search-BB@0x38e ]
+	327     (00000502) move-object/from16   v0, v42
+	328     (00000506) move-object          v1, v13
+	329     (00000508) invoke-direct        v0, v1, Lcom/phonegap/ContactAccessorSdk5;->imQuery(Landroid/database/Cursor;)Lorg/json/JSONObject;
+	330     (0000050e) move-result-object   v3
+	331     (00000510) invoke-virtual       v9, v3, Lorg/json/JSONArray;->put(Ljava/lang/Object;)Lorg/json/JSONArray;
+	332     (00000516) goto/16              -0c4h
+	3fe:6b7
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x51a : [ search-BB@0x530 search-BB@0x56c ]
+	333     (0000051a) const-string         v3, "vnd.android.cursor.item/note"
+	334     (0000051e) move-object/from16   v0, v24
+	335     (00000522) move-object          v1, v3
+	336     (00000524) invoke-virtual       v0, v1, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	337     (0000052a) move-result          v3
+	338     (0000052c) if-eqz               v3, +020h
+	3fe:6b7
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x530 : [ search-BB@0x54a search-BB@0x56c ]
+	339     (00000530) const-string         v3, "note"
+	340     (00000534) move-object/from16   v0, v42
+	341     (00000538) move-object          v1, v3
+	342     (0000053a) move-object/from16   v2, v31
+	343     (0000053e) invoke-virtual       v0, v1, v2, Lcom/phonegap/ContactAccessorSdk5;->isRequired(Ljava/lang/String; Ljava/util/HashMap;)Z
+	344     (00000544) move-result          v3
+	345     (00000546) if-eqz               v3, +013h
+	3fe:6b7
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x54a : [ search-BB@0x38e ]
+	346     (0000054a) const-string         v3, "note"
+	347     (0000054e) const-string         v12, "data1"
+	348     (00000552) invoke-interface     v13, v12, Landroid/database/Cursor;->getColumnIndex(Ljava/lang/String;)I
+	349     (00000558) move-result          v12
+	350     (0000055a) invoke-interface     v13, v12, Landroid/database/Cursor;->getString(I)Ljava/lang/String;
+	351     (00000560) move-result-object   v12
+	352     (00000562) invoke-virtual       v4, v3, v12, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	353     (00000568) goto/16              -0edh
+	3fe:6b7
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x56c : [ search-BB@0x582 search-BB@0x5be ]
+	354     (0000056c) const-string         v3, "vnd.android.cursor.item/nickname"
+	355     (00000570) move-object/from16   v0, v24
+	356     (00000574) move-object          v1, v3
+	357     (00000576) invoke-virtual       v0, v1, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	358     (0000057c) move-result          v3
+	359     (0000057e) if-eqz               v3, +020h
+	3fe:6b7
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x582 : [ search-BB@0x59c search-BB@0x5be ]
+	360     (00000582) const-string         v3, "nickname"
+	361     (00000586) move-object/from16   v0, v42
+	362     (0000058a) move-object          v1, v3
+	363     (0000058c) move-object/from16   v2, v31
+	364     (00000590) invoke-virtual       v0, v1, v2, Lcom/phonegap/ContactAccessorSdk5;->isRequired(Ljava/lang/String; Ljava/util/HashMap;)Z
+	365     (00000596) move-result          v3
+	366     (00000598) if-eqz               v3, +013h
+	3fe:6b7
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x59c : [ search-BB@0x38e ]
+	367     (0000059c) const-string         v3, "nickname"
+	368     (000005a0) const-string         v12, "data1"
+	369     (000005a4) invoke-interface     v13, v12, Landroid/database/Cursor;->getColumnIndex(Ljava/lang/String;)I
+	370     (000005aa) move-result          v12
+	371     (000005ac) invoke-interface     v13, v12, Landroid/database/Cursor;->getString(I)Ljava/lang/String;
+	372     (000005b2) move-result-object   v12
+	373     (000005b4) invoke-virtual       v4, v3, v12, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	374     (000005ba) goto/16              -116h
+	3fe:6b7
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x5be : [ search-BB@0x5d4 search-BB@0x606 ]
+	375     (000005be) const-string         v3, "vnd.android.cursor.item/website"
+	376     (000005c2) move-object/from16   v0, v24
+	377     (000005c6) move-object          v1, v3
+	378     (000005c8) invoke-virtual       v0, v1, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	379     (000005ce) move-result          v3
+	380     (000005d0) if-eqz               v3, +01bh
+	3fe:6b7
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x5d4 : [ search-BB@0x5ee search-BB@0x606 ]
+	381     (000005d4) const-string         v3, "urls"
+	382     (000005d8) move-object/from16   v0, v42
+	383     (000005dc) move-object          v1, v3
+	384     (000005de) move-object/from16   v2, v31
+	385     (000005e2) invoke-virtual       v0, v1, v2, Lcom/phonegap/ContactAccessorSdk5;->isRequired(Ljava/lang/String; Ljava/util/HashMap;)Z
+	386     (000005e8) move-result          v3
+	387     (000005ea) if-eqz               v3, +00eh
+	3fe:6b7
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x5ee : [ search-BB@0x38e ]
+	388     (000005ee) move-object/from16   v0, v42
+	389     (000005f2) move-object          v1, v13
+	390     (000005f4) invoke-direct        v0, v1, Lcom/phonegap/ContactAccessorSdk5;->websiteQuery(Landroid/database/Cursor;)Lorg/json/JSONObject;
+	391     (000005fa) move-result-object   v3
+	392     (000005fc) invoke-virtual       v10, v3, Lorg/json/JSONArray;->put(Ljava/lang/Object;)Lorg/json/JSONArray;
+	393     (00000602) goto/16              -13ah
+	3fe:6b7
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x606 : [ search-BB@0x61c search-BB@0x672 ]
+	394     (00000606) const-string         v3, "vnd.android.cursor.item/contact_event"
+	395     (0000060a) move-object/from16   v0, v24
+	396     (0000060e) move-object          v1, v3
+	397     (00000610) invoke-virtual       v0, v1, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	398     (00000616) move-result          v3
+	399     (00000618) if-eqz               v3, +02dh
+	3fe:6b7
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x61c : [ search-BB@0x636 search-BB@0x38e ]
+	400     (0000061c) const/4              v3, 3
+	401     (0000061e) const-string         v12, "data2"
+	402     (00000622) invoke-interface     v13, v12, Landroid/database/Cursor;->getColumnIndex(Ljava/lang/String;)I
+	403     (00000628) move-result          v12
+	404     (0000062a) invoke-interface     v13, v12, Landroid/database/Cursor;->getInt(I)I
+	405     (00000630) move-result          v12
+	406     (00000632) if-ne                v3, v12, -152h
+	3fe:6b7
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x636 : [ search-BB@0x650 search-BB@0x38e ]
+	407     (00000636) const-string         v3, "birthday"
+	408     (0000063a) move-object/from16   v0, v42
+	409     (0000063e) move-object          v1, v3
+	410     (00000640) move-object/from16   v2, v31
+	411     (00000644) invoke-virtual       v0, v1, v2, Lcom/phonegap/ContactAccessorSdk5;->isRequired(Ljava/lang/String; Ljava/util/HashMap;)Z
+	412     (0000064a) move-result          v3
+	413     (0000064c) if-eqz               v3, -15fh
+	3fe:6b7
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x650 : [ search-BB@0x38e ]
+	414     (00000650) const-string         v3, "birthday"
+	415     (00000654) const-string         v12, "data1"
+	416     (00000658) invoke-interface     v13, v12, Landroid/database/Cursor;->getColumnIndex(Ljava/lang/String;)I
+	417     (0000065e) move-result          v12
+	418     (00000660) invoke-interface     v13, v12, Landroid/database/Cursor;->getString(I)Ljava/lang/String;
+	419     (00000666) move-result-object   v12
+	420     (00000668) invoke-virtual       v4, v3, v12, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	421     (0000066e) goto/16              -170h
+	3fe:6b7
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x672 : [ search-BB@0x688 search-BB@0x38e ]
+	422     (00000672) const-string         v3, "vnd.android.cursor.item/photo"
+	423     (00000676) move-object/from16   v0, v24
+	424     (0000067a) move-object          v1, v3
+	425     (0000067c) invoke-virtual       v0, v1, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	426     (00000682) move-result          v3
+	427     (00000684) if-eqz               v3, -17bh
+	3fe:6b7
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x688 : [ search-BB@0x6a2 search-BB@0x38e ]
+	428     (00000688) const-string         v3, "photos"
+	429     (0000068c) move-object/from16   v0, v42
+	430     (00000690) move-object          v1, v3
+	431     (00000692) move-object/from16   v2, v31
+	432     (00000696) invoke-virtual       v0, v1, v2, Lcom/phonegap/ContactAccessorSdk5;->isRequired(Ljava/lang/String; Ljava/util/HashMap;)Z
+	433     (0000069c) move-result          v3
+	434     (0000069e) if-eqz               v3, -188h
+	3fe:6b7
+	(Lorg/json/JSONException; -> 3dc search-BB@0x3dc)
+
+search-BB@0x6a2 : [ search-BB@0x38e ]
+	435     (000006a2) move-object/from16   v0, v42
+	436     (000006a6) move-object          v1, v13
+	437     (000006a8) move-object          v2, v15
+	438     (000006aa) invoke-direct        v0, v1, v2, Lcom/phonegap/ContactAccessorSdk5;->photoQuery(Landroid/database/Cursor; Ljava/lang/String;)Lorg/json/JSONObject;
+	439     (000006b0) move-result-object   v3
+	440     (000006b2) invoke-virtual       v11, v3, Lorg/json/JSONArray;->put(Ljava/lang/Object;)Lorg/json/JSONArray;
+	441     (000006b8) goto/16              -195h
+
+search-BB@0x6bc : [ search-BB@0x6ce search-BB@0x6e6 ]
+	442     (000006bc) invoke-virtual/range v17, Lorg/json/JSONArray;->length()I
+	443     (000006c2) move-result          v3
+	444     (000006c4) move                 v0, v3
+	445     (000006c6) move/from16          v1, v23
+	446     (000006ca) if-ge                v0, v1, +00eh
+
+search-BB@0x6ce : [ search-BB@0x6e6 ]
+	447     (000006ce) move-object/from16   v3, v42
+	448     (000006d2) invoke-direct/range  v3 ... v11, Lcom/phonegap/ContactAccessorSdk5;->populateContact(Lorg/json/JSONObject; Lorg/json/JSONArray; Lorg/json/JSONArray; Lorg/json/JSONArray; Lorg/json/JSONArray; Lorg/json/JSONArray; Lorg/json/JSONArray; Lorg/json/JSONArray;)Lorg/json/JSONObject;
+	449     (000006d8) move-result-object   v3
+	450     (000006da) move-object/from16   v0, v17
+	451     (000006de) move-object          v1, v3
+	452     (000006e0) invoke-virtual       v0, v1, Lorg/json/JSONArray;->put(Ljava/lang/Object;)Lorg/json/JSONArray;
+
+search-BB@0x6e6 : 
+	453     (000006e6) invoke-interface     v13, Landroid/database/Cursor;->close()V
+	454     (000006ec) invoke-static        Ljava/lang/System;->currentTimeMillis()J
+	455     (000006f2) move-result-wide     v34
+	456     (000006f4) const-string         v3, "ContactsAccessor"
+	457     (000006f8) new-instance         v4, Ljava/lang/StringBuilder;
+	458     (000006fc) invoke-direct        v4, Ljava/lang/StringBuilder;-><init>()V
+	459     (00000702) const-string         v5, "Total time = "
+	460     (00000706) invoke-virtual       v4, v5, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	461     (0000070c) move-result-object   v4
+	462     (0000070e) sub-long             v40, v34, v36
+	463     (00000712) move-object          v0, v4
+	464     (00000714) move-wide/from16     v1, v40
+	465     (00000718) invoke-virtual       v0, v1, v2, Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;
+	466     (0000071e) move-result-object   v4
+	467     (00000720) invoke-virtual       v4, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	468     (00000726) move-result-object   v4
+	469     (00000728) invoke-static        v3, v4, Landroid/util/Log;->d(Ljava/lang/String; Ljava/lang/String;)I
+	470     (0000072e) return-object        v17
+
+search-BB@0x730 : [ search-BB@0x3e2 ]
+	471     (00000730) move-exception       v3
+	472     (00000732) move-object/from16   v18, v3
+	473     (00000736) move-object          v4, v14
+	474     (00000738) goto/16              -1abh
+
+search-BB@0x73c : [ search-BB@0x3e2 ]
+	475     (0000073c) move-exception       v3
+	476     (0000073e) move-object/from16   v18, v3
+	477     (00000742) move-object/from16   v5, v28
+	478     (00000746) move-object          v4, v14
+	479     (00000748) goto/16              -1b3h
+
+search-BB@0x74c : [ search-BB@0x3e2 ]
+	480     (0000074c) move-exception       v3
+	481     (0000074e) move-object/from16   v18, v3
+	482     (00000752) move-object          v6, v12
+	483     (00000754) move-object/from16   v5, v28
+	484     (00000758) move-object          v4, v14
+	485     (0000075a) goto/16              -1bch
+
+search-BB@0x75e : [ search-BB@0x3e2 ]
+	486     (0000075e) move-exception       v3
+	487     (00000760) move-object/from16   v18, v3
+	488     (00000764) move-object/from16   v7, v29
+	489     (00000768) move-object          v6, v12
+	490     (0000076a) move-object/from16   v5, v28
+	491     (0000076e) move-object          v4, v14
+	492     (00000770) goto/16              -1c7h
+
+search-BB@0x774 : [ search-BB@0x3e2 ]
+	493     (00000774) move-exception       v3
+	494     (00000776) move-object/from16   v18, v3
+	495     (0000077a) move-object/from16   v8, v19
+	496     (0000077e) move-object/from16   v7, v29
+	497     (00000782) move-object          v6, v12
+	498     (00000784) move-object/from16   v5, v28
+	499     (00000788) move-object          v4, v14
+	500     (0000078a) goto/16              -1d4h
+
+search-BB@0x78e : [ search-BB@0x3e2 ]
+	501     (0000078e) move-exception       v3
+	502     (00000790) move-object/from16   v18, v3
+	503     (00000794) move-object/from16   v9, v22
+	504     (00000798) move-object/from16   v8, v19
+	505     (0000079c) move-object/from16   v7, v29
+	506     (000007a0) move-object          v6, v12
+	507     (000007a2) move-object/from16   v5, v28
+	508     (000007a6) move-object          v4, v14
+	509     (000007a8) goto/16              -1e3h
+
+search-BB@0x7ac : [ search-BB@0x3e2 ]
+	510     (000007ac) move-exception       v3
+	511     (000007ae) move-object/from16   v18, v3
+	512     (000007b2) move-object/from16   v10, v38
+	513     (000007b6) move-object/from16   v9, v22
+	514     (000007ba) move-object/from16   v8, v19
+	515     (000007be) move-object/from16   v7, v29
+	516     (000007c2) move-object          v6, v12
+	517     (000007c4) move-object/from16   v5, v28
+	518     (000007c8) move-object          v4, v14
+	519     (000007ca) goto/16              -1f4h
+
+search-BB@0x7ce : [ search-BB@0x56 ]
+	520     (000007ce) move-exception       v3
+	521     (000007d0) goto/16              -3bdh
+

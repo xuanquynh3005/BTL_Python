@@ -1,0 +1,280 @@
+# Lcom/phonegap/ContactAccessorSdk5;->getPhoneType(Ljava/lang/String;)I [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v4
+# - v5:java.lang.String
+#
+# - return:int
+
+getPhoneType-BB@0x0 : [ getPhoneType-BB@0x1c getPhoneType-BB@0x20 ]
+	0       (00000000) const/4              v3, 4
+	1       (00000002) const/4              v0, 7
+	2       (00000004) const-string         v1, "home"
+	3       (00000008) invoke-virtual       v5, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	4       (0000000e) move-result-object   v2
+	5       (00000010) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	6       (00000016) move-result          v1
+	7       (00000018) if-eqz               v1, +004h
+
+getPhoneType-BB@0x1c : [ getPhoneType-BB@0x1e ]
+	8       (0000001c) const/4              v1, 1
+
+getPhoneType-BB@0x1e : 
+	9       (0000001e) return               v1
+
+getPhoneType-BB@0x20 : [ getPhoneType-BB@0x38 getPhoneType-BB@0x3c ]
+	10      (00000020) const-string         v1, "mobile"
+	11      (00000024) invoke-virtual       v5, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	12      (0000002a) move-result-object   v2
+	13      (0000002c) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	14      (00000032) move-result          v1
+	15      (00000034) if-eqz               v1, +004h
+
+getPhoneType-BB@0x38 : [ getPhoneType-BB@0x1e ]
+	16      (00000038) const/4              v1, 2
+	17      (0000003a) goto                 -eh
+
+getPhoneType-BB@0x3c : [ getPhoneType-BB@0x54 getPhoneType-BB@0x58 ]
+	18      (0000003c) const-string         v1, "work"
+	19      (00000040) invoke-virtual       v5, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	20      (00000046) move-result-object   v2
+	21      (00000048) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	22      (0000004e) move-result          v1
+	23      (00000050) if-eqz               v1, +004h
+
+getPhoneType-BB@0x54 : [ getPhoneType-BB@0x1e ]
+	24      (00000054) const/4              v1, 3
+	25      (00000056) goto                 -1ch
+
+getPhoneType-BB@0x58 : [ getPhoneType-BB@0x70 getPhoneType-BB@0x74 ]
+	26      (00000058) const-string         v1, "work fax"
+	27      (0000005c) invoke-virtual       v5, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	28      (00000062) move-result-object   v2
+	29      (00000064) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	30      (0000006a) move-result          v1
+	31      (0000006c) if-eqz               v1, +004h
+
+getPhoneType-BB@0x70 : [ getPhoneType-BB@0x1e ]
+	32      (00000070) move                 v1, v3
+	33      (00000072) goto                 -2ah
+
+getPhoneType-BB@0x74 : [ getPhoneType-BB@0x8c getPhoneType-BB@0x90 ]
+	34      (00000074) const-string         v1, "home fax"
+	35      (00000078) invoke-virtual       v5, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	36      (0000007e) move-result-object   v2
+	37      (00000080) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	38      (00000086) move-result          v1
+	39      (00000088) if-eqz               v1, +004h
+
+getPhoneType-BB@0x8c : [ getPhoneType-BB@0x1e ]
+	40      (0000008c) const/4              v1, 5
+	41      (0000008e) goto                 -38h
+
+getPhoneType-BB@0x90 : [ getPhoneType-BB@0xa8 getPhoneType-BB@0xac ]
+	42      (00000090) const-string         v1, "fax"
+	43      (00000094) invoke-virtual       v5, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	44      (0000009a) move-result-object   v2
+	45      (0000009c) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	46      (000000a2) move-result          v1
+	47      (000000a4) if-eqz               v1, +004h
+
+getPhoneType-BB@0xa8 : [ getPhoneType-BB@0x1e ]
+	48      (000000a8) move                 v1, v3
+	49      (000000aa) goto                 -46h
+
+getPhoneType-BB@0xac : [ getPhoneType-BB@0xc4 getPhoneType-BB@0xc8 ]
+	50      (000000ac) const-string         v1, "pager"
+	51      (000000b0) invoke-virtual       v5, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	52      (000000b6) move-result-object   v2
+	53      (000000b8) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	54      (000000be) move-result          v1
+	55      (000000c0) if-eqz               v1, +004h
+
+getPhoneType-BB@0xc4 : [ getPhoneType-BB@0x1e ]
+	56      (000000c4) const/4              v1, 6
+	57      (000000c6) goto                 -54h
+
+getPhoneType-BB@0xc8 : [ getPhoneType-BB@0xe0 getPhoneType-BB@0xe4 ]
+	58      (000000c8) const-string         v1, "other"
+	59      (000000cc) invoke-virtual       v5, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	60      (000000d2) move-result-object   v2
+	61      (000000d4) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	62      (000000da) move-result          v1
+	63      (000000dc) if-eqz               v1, +004h
+
+getPhoneType-BB@0xe0 : [ getPhoneType-BB@0x1e ]
+	64      (000000e0) const/4              v1, 7
+	65      (000000e2) goto                 -62h
+
+getPhoneType-BB@0xe4 : [ getPhoneType-BB@0xfc getPhoneType-BB@0x102 ]
+	66      (000000e4) const-string         v1, "car"
+	67      (000000e8) invoke-virtual       v5, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	68      (000000ee) move-result-object   v2
+	69      (000000f0) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	70      (000000f6) move-result          v1
+	71      (000000f8) if-eqz               v1, +005h
+
+getPhoneType-BB@0xfc : [ getPhoneType-BB@0x1e ]
+	72      (000000fc) const/16             v1, 9
+	73      (00000100) goto                 -71h
+
+getPhoneType-BB@0x102 : [ getPhoneType-BB@0x11a getPhoneType-BB@0x120 ]
+	74      (00000102) const-string         v1, "company main"
+	75      (00000106) invoke-virtual       v5, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	76      (0000010c) move-result-object   v2
+	77      (0000010e) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	78      (00000114) move-result          v1
+	79      (00000116) if-eqz               v1, +005h
+
+getPhoneType-BB@0x11a : [ getPhoneType-BB@0x1e ]
+	80      (0000011a) const/16             v1, 10
+	81      (0000011e) goto                 -80h
+
+getPhoneType-BB@0x120 : [ getPhoneType-BB@0x138 getPhoneType-BB@0x140 ]
+	82      (00000120) const-string         v1, "isdn"
+	83      (00000124) invoke-virtual       v5, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	84      (0000012a) move-result-object   v2
+	85      (0000012c) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	86      (00000132) move-result          v1
+	87      (00000134) if-eqz               v1, +006h
+
+getPhoneType-BB@0x138 : [ getPhoneType-BB@0x1e ]
+	88      (00000138) const/16             v1, 11
+	89      (0000013c) goto/16              -08fh
+
+getPhoneType-BB@0x140 : [ getPhoneType-BB@0x158 getPhoneType-BB@0x160 ]
+	90      (00000140) const-string         v1, "main"
+	91      (00000144) invoke-virtual       v5, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	92      (0000014a) move-result-object   v2
+	93      (0000014c) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	94      (00000152) move-result          v1
+	95      (00000154) if-eqz               v1, +006h
+
+getPhoneType-BB@0x158 : [ getPhoneType-BB@0x1e ]
+	96      (00000158) const/16             v1, 12
+	97      (0000015c) goto/16              -09fh
+
+getPhoneType-BB@0x160 : [ getPhoneType-BB@0x178 getPhoneType-BB@0x180 ]
+	98      (00000160) const-string         v1, "other fax"
+	99      (00000164) invoke-virtual       v5, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	100     (0000016a) move-result-object   v2
+	101     (0000016c) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	102     (00000172) move-result          v1
+	103     (00000174) if-eqz               v1, +006h
+
+getPhoneType-BB@0x178 : [ getPhoneType-BB@0x1e ]
+	104     (00000178) const/16             v1, 13
+	105     (0000017c) goto/16              -0afh
+
+getPhoneType-BB@0x180 : [ getPhoneType-BB@0x198 getPhoneType-BB@0x1a0 ]
+	106     (00000180) const-string         v1, "radio"
+	107     (00000184) invoke-virtual       v5, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	108     (0000018a) move-result-object   v2
+	109     (0000018c) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	110     (00000192) move-result          v1
+	111     (00000194) if-eqz               v1, +006h
+
+getPhoneType-BB@0x198 : [ getPhoneType-BB@0x1e ]
+	112     (00000198) const/16             v1, 14
+	113     (0000019c) goto/16              -0bfh
+
+getPhoneType-BB@0x1a0 : [ getPhoneType-BB@0x1b8 getPhoneType-BB@0x1c0 ]
+	114     (000001a0) const-string         v1, "telex"
+	115     (000001a4) invoke-virtual       v5, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	116     (000001aa) move-result-object   v2
+	117     (000001ac) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	118     (000001b2) move-result          v1
+	119     (000001b4) if-eqz               v1, +006h
+
+getPhoneType-BB@0x1b8 : [ getPhoneType-BB@0x1e ]
+	120     (000001b8) const/16             v1, 15
+	121     (000001bc) goto/16              -0cfh
+
+getPhoneType-BB@0x1c0 : [ getPhoneType-BB@0x1d8 getPhoneType-BB@0x1e0 ]
+	122     (000001c0) const-string         v1, "work mobile"
+	123     (000001c4) invoke-virtual       v5, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	124     (000001ca) move-result-object   v2
+	125     (000001cc) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	126     (000001d2) move-result          v1
+	127     (000001d4) if-eqz               v1, +006h
+
+getPhoneType-BB@0x1d8 : [ getPhoneType-BB@0x1e ]
+	128     (000001d8) const/16             v1, 17
+	129     (000001dc) goto/16              -0dfh
+
+getPhoneType-BB@0x1e0 : [ getPhoneType-BB@0x1f8 getPhoneType-BB@0x200 ]
+	130     (000001e0) const-string         v1, "work pager"
+	131     (000001e4) invoke-virtual       v5, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	132     (000001ea) move-result-object   v2
+	133     (000001ec) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	134     (000001f2) move-result          v1
+	135     (000001f4) if-eqz               v1, +006h
+
+getPhoneType-BB@0x1f8 : [ getPhoneType-BB@0x1e ]
+	136     (000001f8) const/16             v1, 18
+	137     (000001fc) goto/16              -0efh
+
+getPhoneType-BB@0x200 : [ getPhoneType-BB@0x218 getPhoneType-BB@0x220 ]
+	138     (00000200) const-string         v1, "assistant"
+	139     (00000204) invoke-virtual       v5, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	140     (0000020a) move-result-object   v2
+	141     (0000020c) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	142     (00000212) move-result          v1
+	143     (00000214) if-eqz               v1, +006h
+
+getPhoneType-BB@0x218 : [ getPhoneType-BB@0x1e ]
+	144     (00000218) const/16             v1, 19
+	145     (0000021c) goto/16              -0ffh
+
+getPhoneType-BB@0x220 : [ getPhoneType-BB@0x238 getPhoneType-BB@0x240 ]
+	146     (00000220) const-string         v1, "mms"
+	147     (00000224) invoke-virtual       v5, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	148     (0000022a) move-result-object   v2
+	149     (0000022c) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	150     (00000232) move-result          v1
+	151     (00000234) if-eqz               v1, +006h
+
+getPhoneType-BB@0x238 : [ getPhoneType-BB@0x1e ]
+	152     (00000238) const/16             v1, 20
+	153     (0000023c) goto/16              -10fh
+
+getPhoneType-BB@0x240 : [ getPhoneType-BB@0x258 getPhoneType-BB@0x260 ]
+	154     (00000240) const-string         v1, "callback"
+	155     (00000244) invoke-virtual       v5, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	156     (0000024a) move-result-object   v2
+	157     (0000024c) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	158     (00000252) move-result          v1
+	159     (00000254) if-eqz               v1, +006h
+
+getPhoneType-BB@0x258 : [ getPhoneType-BB@0x1e ]
+	160     (00000258) const/16             v1, 8
+	161     (0000025c) goto/16              -11fh
+
+getPhoneType-BB@0x260 : [ getPhoneType-BB@0x278 getPhoneType-BB@0x280 ]
+	162     (00000260) const-string         v1, "tty ttd"
+	163     (00000264) invoke-virtual       v5, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	164     (0000026a) move-result-object   v2
+	165     (0000026c) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	166     (00000272) move-result          v1
+	167     (00000274) if-eqz               v1, +006h
+
+getPhoneType-BB@0x278 : [ getPhoneType-BB@0x1e ]
+	168     (00000278) const/16             v1, 16
+	169     (0000027c) goto/16              -12fh
+
+getPhoneType-BB@0x280 : [ getPhoneType-BB@0x298 getPhoneType-BB@0x29e ]
+	170     (00000280) const-string         v1, "custom"
+	171     (00000284) invoke-virtual       v5, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	172     (0000028a) move-result-object   v2
+	173     (0000028c) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	174     (00000292) move-result          v1
+	175     (00000294) if-eqz               v1, +005h
+
+getPhoneType-BB@0x298 : [ getPhoneType-BB@0x1e ]
+	176     (00000298) const/4              v1, 0
+	177     (0000029a) goto/16              -13eh
+
+getPhoneType-BB@0x29e : [ getPhoneType-BB@0x1e ]
+	178     (0000029e) move                 v1, v0
+	179     (000002a0) goto/16              -141h
+

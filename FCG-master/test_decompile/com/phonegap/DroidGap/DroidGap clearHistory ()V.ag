@@ -1,0 +1,20 @@
+# Lcom/phonegap/DroidGap;->clearHistory()V [access_flags=public]
+#
+# Parameters:
+# local registers: v0...v1
+#
+# - return:void
+
+clearHistory-BB@0x0 : [ clearHistory-BB@0xe clearHistory-BB@0x18 ]
+	0       (00000000) const/4              v0, 1
+	1       (00000002) iput-boolean         v0, v1, Lcom/phonegap/DroidGap;->clearHistory Z
+	2       (00000006) iget-object          v0, v1, Lcom/phonegap/DroidGap;->appView Landroid/webkit/WebView;
+	3       (0000000a) if-eqz               v0, +007h
+
+clearHistory-BB@0xe : [ clearHistory-BB@0x18 ]
+	4       (0000000e) iget-object          v0, v1, Lcom/phonegap/DroidGap;->appView Landroid/webkit/WebView;
+	5       (00000012) invoke-virtual       v0, Landroid/webkit/WebView;->clearHistory()V
+
+clearHistory-BB@0x18 : 
+	6       (00000018) return-void          
+

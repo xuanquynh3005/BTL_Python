@@ -1,0 +1,11 @@
+# Lcom/phonegap/GpsListener;->hasLocation()Z [access_flags=public]
+#
+# Parameters:
+# local registers: v0...v1
+#
+# - return:boolean
+
+hasLocation-BB@0x0 : 
+	0       (00000000) iget-boolean         v0, v1, Lcom/phonegap/GpsListener;->hasData Z
+	1       (00000004) return               v0
+

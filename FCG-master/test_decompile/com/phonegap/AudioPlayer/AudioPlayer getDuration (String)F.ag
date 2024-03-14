@@ -1,0 +1,33 @@
+# Lcom/phonegap/AudioPlayer;->getDuration(Ljava/lang/String;)F [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v1
+# - v2:java.lang.String
+#
+# - return:float
+
+getDuration-BB@0x0 : [ getDuration-BB@0x8 getDuration-BB@0xe ]
+	0       (00000000) iget-object          v0, v1, Lcom/phonegap/AudioPlayer;->recorder Landroid/media/MediaRecorder;
+	1       (00000004) if-eqz               v0, +005h
+
+getDuration-BB@0x8 : [ getDuration-BB@0xc ]
+	2       (00000008) const/high16         v0, -1073741824
+
+getDuration-BB@0xc : 
+	3       (0000000c) return               v0
+
+getDuration-BB@0xe : [ getDuration-BB@0x16 getDuration-BB@0x1c ]
+	4       (0000000e) iget-object          v0, v1, Lcom/phonegap/AudioPlayer;->mPlayer Landroid/media/MediaPlayer;
+	5       (00000012) if-eqz               v0, +005h
+
+getDuration-BB@0x16 : [ getDuration-BB@0xc ]
+	6       (00000016) iget                 v0, v1, Lcom/phonegap/AudioPlayer;->duration F
+	7       (0000001a) goto                 -7h
+
+getDuration-BB@0x1c : [ getDuration-BB@0xc ]
+	8       (0000001c) const/4              v0, 1
+	9       (0000001e) iput-boolean         v0, v1, Lcom/phonegap/AudioPlayer;->prepareOnly Z
+	10      (00000022) invoke-virtual       v1, v2, Lcom/phonegap/AudioPlayer;->startPlaying(Ljava/lang/String;)V
+	11      (00000028) iget                 v0, v1, Lcom/phonegap/AudioPlayer;->duration F
+	12      (0000002c) goto                 -10h
+

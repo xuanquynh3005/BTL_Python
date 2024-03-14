@@ -1,0 +1,12 @@
+# Lcom/phonegap/DroidGap;->access$300(Lcom/phonegap/DroidGap;)Ljava/lang/String; [access_flags=static synthetic]
+#
+# Parameters:
+# - local registers: v0...v0
+# - v1:com.phonegap.DroidGap
+#
+# - return:java.lang.String
+
+access$300-BB@0x0 : 
+	0       (00000000) iget-object          v0, v1, Lcom/phonegap/DroidGap;->urlFile Ljava/lang/String;
+	1       (00000004) return-object        v0
+

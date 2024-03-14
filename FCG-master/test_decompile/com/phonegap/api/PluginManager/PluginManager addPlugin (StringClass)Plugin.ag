@@ -1,0 +1,58 @@
+# Lcom/phonegap/api/PluginManager;->addPlugin(Ljava/lang/String; Ljava/lang/Class;)Lcom/phonegap/api/Plugin; [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v5
+# - v6:java.lang.String
+# - v7:java.lang.Class
+#
+# - return:com.phonegap.api.Plugin
+
+addPlugin-BB@0x0 : [ addPlugin-BB@0x10 addPlugin-BB@0x1a ]
+	0       (00000000) iget-object          v2, v5, Lcom/phonegap/api/PluginManager;->plugins Ljava/util/HashMap;
+	1       (00000004) invoke-virtual       v2, v6, Ljava/util/HashMap;->containsKey(Ljava/lang/Object;)Z
+	2       (0000000a) move-result          v2
+	3       (0000000c) if-eqz               v2, +007h
+
+addPlugin-BB@0x10 : [ addPlugin-BB@0x18 ]
+	4       (00000010) invoke-direct        v5, v6, Lcom/phonegap/api/PluginManager;->getPlugin(Ljava/lang/String;)Lcom/phonegap/api/Plugin;
+	5       (00000016) move-result-object   v2
+
+addPlugin-BB@0x18 : 
+	6       (00000018) return-object        v2
+
+addPlugin-BB@0x1a : [ addPlugin-BB@0x18 ]
+	7       (0000001a) invoke-virtual       v7, Ljava/lang/Class;->newInstance()Ljava/lang/Object;
+	8       (00000020) move-result-object   v1
+	9       (00000022) check-cast           v1, Lcom/phonegap/api/Plugin;
+	10      (00000026) iget-object          v2, v5, Lcom/phonegap/api/PluginManager;->plugins Ljava/util/HashMap;
+	11      (0000002a) invoke-virtual       v2, v6, v1, Ljava/util/HashMap;->put(Ljava/lang/Object; Ljava/lang/Object;)Ljava/lang/Object;
+	12      (00000030) iget-object          v2, v5, Lcom/phonegap/api/PluginManager;->ctx Lcom/phonegap/api/PhonegapActivity;
+	13      (00000034) invoke-virtual       v1, v2, Lcom/phonegap/api/Plugin;->setContext(Lcom/phonegap/api/PhonegapActivity;)V
+	14      (0000003a) iget-object          v2, v5, Lcom/phonegap/api/PluginManager;->app Landroid/webkit/WebView;
+	15      (0000003e) invoke-virtual       v1, v2, Lcom/phonegap/api/Plugin;->setView(Landroid/webkit/WebView;)V
+	16      (00000044) move-object          v2, v1
+	17      (00000046) goto                 -17h
+	1a:43
+	(Ljava/lang/Exception; -> 48 addPlugin-BB@0x48)
+
+addPlugin-BB@0x48 : [ addPlugin-BB@0x18 ]
+	18      (00000048) move-exception       v2
+	19      (0000004a) move-object          v0, v2
+	20      (0000004c) invoke-virtual       v0, Ljava/lang/Exception;->printStackTrace()V
+	21      (00000052) sget-object          v2, Ljava/lang/System;->out Ljava/io/PrintStream;
+	22      (00000056) new-instance         v3, Ljava/lang/StringBuilder;
+	23      (0000005a) invoke-direct        v3, Ljava/lang/StringBuilder;-><init>()V
+	24      (00000060) const-string         v4, "Error adding plugin "
+	25      (00000064) invoke-virtual       v3, v4, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	26      (0000006a) move-result-object   v3
+	27      (0000006c) invoke-virtual       v3, v6, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	28      (00000072) move-result-object   v3
+	29      (00000074) const-string         v4, "."
+	30      (00000078) invoke-virtual       v3, v4, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	31      (0000007e) move-result-object   v3
+	32      (00000080) invoke-virtual       v3, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	33      (00000086) move-result-object   v3
+	34      (00000088) invoke-virtual       v2, v3, Ljava/io/PrintStream;->println(Ljava/lang/String;)V
+	35      (0000008e) const/4              v2, 0
+	36      (00000090) goto                 -3ch
+

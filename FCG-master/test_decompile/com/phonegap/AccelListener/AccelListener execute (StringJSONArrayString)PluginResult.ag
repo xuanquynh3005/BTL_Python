@@ -1,0 +1,250 @@
+# Lcom/phonegap/AccelListener;->execute(Ljava/lang/String; Lorg/json/JSONArray; Ljava/lang/String;)Lcom/phonegap/api/PluginResult; [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v11
+# - v12:java.lang.String
+# - v13:org.json.JSONArray
+# - v14:java.lang.String
+#
+# - return:com.phonegap.api.PluginResult
+
+execute-BB@0x0 : [ execute-BB@0x8 ]
+	0       (00000000) sget-object          v5, Lcom/phonegap/api/PluginResult$Status;->OK Lcom/phonegap/api/PluginResult$Status;
+	1       (00000004) const-string         v4, ""
+
+execute-BB@0x8 : [ execute-BB@0x18 execute-BB@0x2c ]
+	2       (00000008) const-string         v8, "getStatus"
+	3       (0000000c) invoke-virtual       v12, v8, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	4       (00000012) move-result          v8
+	5       (00000014) if-eqz               v8, +00ch
+	8:4d
+	(Lorg/json/JSONException; -> 50 execute-BB@0x50)
+
+execute-BB@0x18 : [ execute-BB@0x2a ]
+	6       (00000018) invoke-virtual       v11, Lcom/phonegap/AccelListener;->getStatus()I
+	7       (0000001e) move-result          v2
+	8       (00000020) new-instance         v8, Lcom/phonegap/api/PluginResult;
+	9       (00000024) invoke-direct        v8, v5, v2, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; I)V
+	8:4d
+	(Lorg/json/JSONException; -> 50 execute-BB@0x50)
+
+execute-BB@0x2a : 
+	10      (0000002a) return-object        v8
+	8:4d
+	(Lorg/json/JSONException; -> 50 execute-BB@0x50)
+
+execute-BB@0x2c : [ execute-BB@0x3c execute-BB@0x64 ]
+	11      (0000002c) const-string         v8, "start"
+	12      (00000030) invoke-virtual       v12, v8, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	13      (00000036) move-result          v8
+	14      (00000038) if-eqz               v8, +016h
+	8:4d
+	(Lorg/json/JSONException; -> 50 execute-BB@0x50)
+
+execute-BB@0x3c : [ execute-BB@0x2a ]
+	15      (0000003c) invoke-virtual       v11, Lcom/phonegap/AccelListener;->start()I
+	16      (00000042) move-result          v2
+	17      (00000044) new-instance         v8, Lcom/phonegap/api/PluginResult;
+	18      (00000048) invoke-direct        v8, v5, v2, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; I)V
+	19      (0000004e) goto                 -12h
+
+execute-BB@0x50 : [ execute-BB@0x2a ]
+	20      (00000050) move-exception       v8
+	21      (00000052) move-object          v0, v8
+	22      (00000054) new-instance         v8, Lcom/phonegap/api/PluginResult;
+	23      (00000058) sget-object          v9, Lcom/phonegap/api/PluginResult$Status;->JSON_EXCEPTION Lcom/phonegap/api/PluginResult$Status;
+	24      (0000005c) invoke-direct        v8, v9, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status;)V
+	25      (00000062) goto                 -1ch
+
+execute-BB@0x64 : [ execute-BB@0x74 execute-BB@0x88 ]
+	26      (00000064) const-string         v8, "stop"
+	27      (00000068) invoke-virtual       v12, v8, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	28      (0000006e) move-result          v8
+	29      (00000070) if-eqz               v8, +00ch
+	64:d3
+	(Lorg/json/JSONException; -> 50 execute-BB@0x50)
+
+execute-BB@0x74 : [ execute-BB@0x2a ]
+	30      (00000074) invoke-virtual       v11, Lcom/phonegap/AccelListener;->stop()V
+	31      (0000007a) new-instance         v8, Lcom/phonegap/api/PluginResult;
+	32      (0000007e) const/4              v9, 0
+	33      (00000080) invoke-direct        v8, v5, v9, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; I)V
+	34      (00000086) goto                 -2eh
+	64:d3
+	(Lorg/json/JSONException; -> 50 execute-BB@0x50)
+
+execute-BB@0x88 : [ execute-BB@0x98 execute-BB@0x182 ]
+	35      (00000088) const-string         v8, "getAcceleration"
+	36      (0000008c) invoke-virtual       v12, v8, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	37      (00000092) move-result          v8
+	38      (00000094) if-eqz               v8, +077h
+	64:d3
+	(Lorg/json/JSONException; -> 50 execute-BB@0x50)
+
+execute-BB@0x98 : [ execute-BB@0xa4 execute-BB@0x120 ]
+	39      (00000098) iget                 v8, v11, Lcom/phonegap/AccelListener;->status I
+	40      (0000009c) sget                 v9, Lcom/phonegap/AccelListener;->RUNNING I
+	41      (000000a0) if-eq                v8, v9, +040h
+	64:d3
+	(Lorg/json/JSONException; -> 50 execute-BB@0x50)
+
+execute-BB@0xa4 : [ execute-BB@0xb4 execute-BB@0xc8 ]
+	42      (000000a4) invoke-virtual       v11, Lcom/phonegap/AccelListener;->start()I
+	43      (000000aa) move-result          v3
+	44      (000000ac) sget                 v8, Lcom/phonegap/AccelListener;->ERROR_FAILED_TO_START I
+	45      (000000b0) if-ne                v3, v8, +00ch
+	64:d3
+	(Lorg/json/JSONException; -> 50 execute-BB@0x50)
+
+execute-BB@0xb4 : [ execute-BB@0x2a ]
+	46      (000000b4) new-instance         v8, Lcom/phonegap/api/PluginResult;
+	47      (000000b8) sget-object          v9, Lcom/phonegap/api/PluginResult$Status;->IO_EXCEPTION Lcom/phonegap/api/PluginResult$Status;
+	48      (000000bc) sget                 v10, Lcom/phonegap/AccelListener;->ERROR_FAILED_TO_START I
+	49      (000000c0) invoke-direct        v8, v9, v10, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; I)V
+	50      (000000c6) goto                 -4eh
+	64:d3
+	(Lorg/json/JSONException; -> 50 execute-BB@0x50)
+
+execute-BB@0xc8 : [ execute-BB@0xcc ]
+	51      (000000c8) const-wide/16        v6, 2000
+	64:d3
+	(Lorg/json/JSONException; -> 50 execute-BB@0x50)
+
+execute-BB@0xcc : [ execute-BB@0xd8 execute-BB@0x100 ]
+	52      (000000cc) iget                 v8, v11, Lcom/phonegap/AccelListener;->status I
+	53      (000000d0) sget                 v9, Lcom/phonegap/AccelListener;->STARTING I
+	54      (000000d4) if-ne                v8, v9, +016h
+
+execute-BB@0xd8 : [ execute-BB@0xe4 execute-BB@0x100 ]
+	55      (000000d8) const-wide/16        v8, 0
+	56      (000000dc) cmp-long             v8, v6, v8
+	57      (000000e0) if-lez               v8, +010h
+
+execute-BB@0xe4 : [ execute-BB@0xee ]
+	58      (000000e4) const-wide/16        v8, 100
+	59      (000000e8) sub-long/2addr       v6, v8
+	60      (000000ea) const-wide/16        v8, 100
+
+execute-BB@0xee : [ execute-BB@0xcc ]
+	61      (000000ee) invoke-static        v8, v9, Ljava/lang/Thread;->sleep(J)V
+	62      (000000f4) goto                 -14h
+	ee:f3
+	(Ljava/lang/InterruptedException; -> f6 execute-BB@0xf6)
+	(Lorg/json/JSONException; -> 50 execute-BB@0x50)
+
+execute-BB@0xf6 : [ execute-BB@0xf8 ]
+	63      (000000f6) move-exception       v0
+
+execute-BB@0xf8 : [ execute-BB@0xcc ]
+	64      (000000f8) invoke-virtual       v0, Ljava/lang/InterruptedException;->printStackTrace()V
+	65      (000000fe) goto                 -19h
+	f8:18b
+	(Lorg/json/JSONException; -> 50 execute-BB@0x50)
+
+execute-BB@0x100 : [ execute-BB@0x10c execute-BB@0x120 ]
+	66      (00000100) const-wide/16        v8, 0
+	67      (00000104) cmp-long             v8, v6, v8
+	68      (00000108) if-nez               v8, +00ch
+	f8:18b
+	(Lorg/json/JSONException; -> 50 execute-BB@0x50)
+
+execute-BB@0x10c : [ execute-BB@0x2a ]
+	69      (0000010c) new-instance         v8, Lcom/phonegap/api/PluginResult;
+	70      (00000110) sget-object          v9, Lcom/phonegap/api/PluginResult$Status;->IO_EXCEPTION Lcom/phonegap/api/PluginResult$Status;
+	71      (00000114) sget                 v10, Lcom/phonegap/AccelListener;->ERROR_FAILED_TO_START I
+	72      (00000118) invoke-direct        v8, v9, v10, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; I)V
+	73      (0000011e) goto                 -7ah
+	f8:18b
+	(Lorg/json/JSONException; -> 50 execute-BB@0x50)
+
+execute-BB@0x120 : [ execute-BB@0x2a ]
+	74      (00000120) invoke-static        Ljava/lang/System;->currentTimeMillis()J
+	75      (00000126) move-result-wide     v8
+	76      (00000128) iput-wide            v8, v11, Lcom/phonegap/AccelListener;->lastAccessTime J
+	77      (0000012c) new-instance         v3, Lorg/json/JSONObject;
+	78      (00000130) invoke-direct        v3, Lorg/json/JSONObject;-><init>()V
+	79      (00000136) const-string         v8, "x"
+	80      (0000013a) iget                 v9, v11, Lcom/phonegap/AccelListener;->x F
+	81      (0000013e) float-to-double      v9, v9
+	82      (00000140) invoke-virtual       v3, v8, v9, v10, Lorg/json/JSONObject;->put(Ljava/lang/String; D)Lorg/json/JSONObject;
+	83      (00000146) const-string         v8, "y"
+	84      (0000014a) iget                 v9, v11, Lcom/phonegap/AccelListener;->y F
+	85      (0000014e) float-to-double      v9, v9
+	86      (00000150) invoke-virtual       v3, v8, v9, v10, Lorg/json/JSONObject;->put(Ljava/lang/String; D)Lorg/json/JSONObject;
+	87      (00000156) const-string         v8, "z"
+	88      (0000015a) iget                 v9, v11, Lcom/phonegap/AccelListener;->z F
+	89      (0000015e) float-to-double      v9, v9
+	90      (00000160) invoke-virtual       v3, v8, v9, v10, Lorg/json/JSONObject;->put(Ljava/lang/String; D)Lorg/json/JSONObject;
+	91      (00000166) const-string         v8, "timestamp"
+	92      (0000016a) iget-wide            v9, v11, Lcom/phonegap/AccelListener;->timestamp J
+	93      (0000016e) invoke-virtual       v3, v8, v9, v10, Lorg/json/JSONObject;->put(Ljava/lang/String; J)Lorg/json/JSONObject;
+	94      (00000174) new-instance         v8, Lcom/phonegap/api/PluginResult;
+	95      (00000178) invoke-direct        v8, v5, v3, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; Lorg/json/JSONObject;)V
+	96      (0000017e) goto/16              -0aah
+	f8:18b
+	(Lorg/json/JSONException; -> 50 execute-BB@0x50)
+
+execute-BB@0x182 : [ execute-BB@0x192 execute-BB@0x1e6 ]
+	97      (00000182) const-string         v8, "setTimeout"
+	98      (00000186) invoke-virtual       v12, v8, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	99      (0000018c) move-result          v8
+	100     (0000018e) if-eqz               v8, +02ch
+
+execute-BB@0x192 : [ execute-BB@0x194 ]
+	101     (00000192) const/4              v8, 0
+
+execute-BB@0x194 : [ execute-BB@0x2a ]
+	102     (00000194) invoke-virtual       v13, v8, Lorg/json/JSONArray;->getString(I)Ljava/lang/String;
+	103     (0000019a) move-result-object   v8
+	104     (0000019c) invoke-static        v8, Ljava/lang/Float;->parseFloat(Ljava/lang/String;)F
+	105     (000001a2) move-result          v6
+	106     (000001a4) invoke-virtual       v11, v6, Lcom/phonegap/AccelListener;->setTimeout(F)V
+	107     (000001aa) new-instance         v8, Lcom/phonegap/api/PluginResult;
+	108     (000001ae) const/4              v9, 0
+	109     (000001b0) invoke-direct        v8, v5, v9, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; I)V
+	110     (000001b6) goto/16              -0c6h
+	194:1b5
+	(Ljava/lang/NumberFormatException; -> 1ba execute-BB@0x1ba)
+	(Lorg/json/JSONException; -> 1d6 execute-BB@0x1d6)
+
+execute-BB@0x1ba : [ execute-BB@0x1be ]
+	111     (000001ba) move-exception       v8
+	112     (000001bc) move-object          v0, v8
+
+execute-BB@0x1be : [ execute-BB@0x1c8 ]
+	113     (000001be) sget-object          v5, Lcom/phonegap/api/PluginResult$Status;->INVALID_ACTION Lcom/phonegap/api/PluginResult$Status;
+	114     (000001c2) invoke-virtual       v0, Ljava/lang/NumberFormatException;->printStackTrace()V
+	1be:207
+	(Lorg/json/JSONException; -> 50 execute-BB@0x50)
+
+execute-BB@0x1c8 : [ execute-BB@0x2a ]
+	115     (000001c8) new-instance         v8, Lcom/phonegap/api/PluginResult;
+	116     (000001cc) invoke-direct        v8, v5, v4, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; Ljava/lang/String;)V
+	117     (000001d2) goto/16              -0d4h
+	1be:207
+	(Lorg/json/JSONException; -> 50 execute-BB@0x50)
+
+execute-BB@0x1d6 : [ execute-BB@0x1c8 ]
+	118     (000001d6) move-exception       v8
+	119     (000001d8) move-object          v0, v8
+	120     (000001da) sget-object          v5, Lcom/phonegap/api/PluginResult$Status;->JSON_EXCEPTION Lcom/phonegap/api/PluginResult$Status;
+	121     (000001de) invoke-virtual       v0, Lorg/json/JSONException;->printStackTrace()V
+	122     (000001e4) goto                 -eh
+	1be:207
+	(Lorg/json/JSONException; -> 50 execute-BB@0x50)
+
+execute-BB@0x1e6 : [ execute-BB@0x1f6 execute-BB@0x1c8 ]
+	123     (000001e6) const-string         v8, "getTimeout"
+	124     (000001ea) invoke-virtual       v12, v8, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	125     (000001f0) move-result          v8
+	126     (000001f2) if-eqz               v8, -015h
+	1be:207
+	(Lorg/json/JSONException; -> 50 execute-BB@0x50)
+
+execute-BB@0x1f6 : [ execute-BB@0x2a ]
+	127     (000001f6) invoke-virtual       v11, Lcom/phonegap/AccelListener;->getTimeout()F
+	128     (000001fc) move-result          v1
+	129     (000001fe) new-instance         v8, Lcom/phonegap/api/PluginResult;
+	130     (00000202) invoke-direct        v8, v5, v1, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; F)V
+	131     (00000208) goto/16              -0efh
+

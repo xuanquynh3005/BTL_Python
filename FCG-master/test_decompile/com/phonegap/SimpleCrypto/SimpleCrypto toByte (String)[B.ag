@@ -1,0 +1,36 @@
+# Lcom/phonegap/SimpleCrypto;->toByte(Ljava/lang/String;)[B [access_flags=public static]
+#
+# Parameters:
+# - local registers: v0...v4
+# - v5:java.lang.String
+#
+# - return:byte[]
+
+toByte-BB@0x0 : [ toByte-BB@0x12 ]
+	0       (00000000) invoke-virtual       v5, Ljava/lang/String;->length()I
+	1       (00000006) move-result          v3
+	2       (00000008) div-int/lit8         v1, v3, 2
+	3       (0000000c) new-array            v2, v1, [B
+	4       (00000010) const/4              v0, 0
+
+toByte-BB@0x12 : [ toByte-BB@0x16 toByte-BB@0x48 ]
+	5       (00000012) if-ge                v0, v1, +01bh
+
+toByte-BB@0x16 : [ toByte-BB@0x12 ]
+	6       (00000016) mul-int/lit8         v3, v0, 2
+	7       (0000001a) mul-int/lit8         v4, v0, 2
+	8       (0000001e) add-int/lit8         v4, v4, 2
+	9       (00000022) invoke-virtual       v5, v3, v4, Ljava/lang/String;->substring(I I)Ljava/lang/String;
+	10      (00000028) move-result-object   v3
+	11      (0000002a) const/16             v4, 16
+	12      (0000002e) invoke-static        v3, v4, Ljava/lang/Integer;->valueOf(Ljava/lang/String; I)Ljava/lang/Integer;
+	13      (00000034) move-result-object   v3
+	14      (00000036) invoke-virtual       v3, Ljava/lang/Integer;->byteValue()B
+	15      (0000003c) move-result          v3
+	16      (0000003e) aput-byte            v3, v2, v0
+	17      (00000042) add-int/lit8         v0, v0, 1
+	18      (00000046) goto                 -1ah
+
+toByte-BB@0x48 : 
+	19      (00000048) return-object        v2
+

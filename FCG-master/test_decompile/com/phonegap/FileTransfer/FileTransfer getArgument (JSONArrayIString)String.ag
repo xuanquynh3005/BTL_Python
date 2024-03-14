@@ -1,0 +1,33 @@
+# Lcom/phonegap/FileTransfer;->getArgument(Lorg/json/JSONArray; I Ljava/lang/String;)Ljava/lang/String; [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v2
+# - v3:org.json.JSONArray
+# - v4:int
+# - v5:java.lang.String
+#
+# - return:java.lang.String
+
+getArgument-BB@0x0 : [ getArgument-BB@0xe getArgument-BB@0x2c ]
+	0       (00000000) move-object          v0, v5
+	1       (00000002) invoke-virtual       v3, Lorg/json/JSONArray;->length()I
+	2       (00000008) move-result          v1
+	3       (0000000a) if-lt                v1, v4, +011h
+
+getArgument-BB@0xe : [ getArgument-BB@0x1a getArgument-BB@0x2a ]
+	4       (0000000e) invoke-virtual       v3, v4, Lorg/json/JSONArray;->optString(I)Ljava/lang/String;
+	5       (00000014) move-result-object   v0
+	6       (00000016) if-eqz               v0, +00ah
+
+getArgument-BB@0x1a : [ getArgument-BB@0x2a getArgument-BB@0x2c ]
+	7       (0000001a) const-string         v1, "null"
+	8       (0000001e) invoke-virtual       v1, v0, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	9       (00000024) move-result          v1
+	10      (00000026) if-eqz               v1, +003h
+
+getArgument-BB@0x2a : [ getArgument-BB@0x2c ]
+	11      (0000002a) move-object          v0, v5
+
+getArgument-BB@0x2c : 
+	12      (0000002c) return-object        v0
+

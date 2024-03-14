@@ -1,0 +1,85 @@
+# Lcom/phonegap/Capture;->getFormatData(Ljava/lang/String; Ljava/lang/String;)Lorg/json/JSONObject; [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v4
+# - v5:java.lang.String
+# - v6:java.lang.String
+#
+# - return:org.json.JSONObject
+
+getFormatData-BB@0x0 : [ getFormatData-BB@0xa ]
+	0       (00000000) new-instance         v1, Lorg/json/JSONObject;
+	1       (00000004) invoke-direct        v1, Lorg/json/JSONObject;-><init>()V
+
+getFormatData-BB@0xa : [ getFormatData-BB@0x58 getFormatData-BB@0x62 ]
+	2       (0000000a) const-string         v2, "height"
+	3       (0000000e) const/4              v3, 0
+	4       (00000010) invoke-virtual       v1, v2, v3, Lorg/json/JSONObject;->put(Ljava/lang/String; I)Lorg/json/JSONObject;
+	5       (00000016) const-string         v2, "width"
+	6       (0000001a) const/4              v3, 0
+	7       (0000001c) invoke-virtual       v1, v2, v3, Lorg/json/JSONObject;->put(Ljava/lang/String; I)Lorg/json/JSONObject;
+	8       (00000022) const-string         v2, "bitrate"
+	9       (00000026) const/4              v3, 0
+	10      (00000028) invoke-virtual       v1, v2, v3, Lorg/json/JSONObject;->put(Ljava/lang/String; I)Lorg/json/JSONObject;
+	11      (0000002e) const-string         v2, "duration"
+	12      (00000032) const/4              v3, 0
+	13      (00000034) invoke-virtual       v1, v2, v3, Lorg/json/JSONObject;->put(Ljava/lang/String; I)Lorg/json/JSONObject;
+	14      (0000003a) const-string         v2, "codecs"
+	15      (0000003e) const-string         v3, ""
+	16      (00000042) invoke-virtual       v1, v2, v3, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	17      (00000048) const-string         v2, "image/jpeg"
+	18      (0000004c) invoke-virtual       v6, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	19      (00000052) move-result          v2
+	20      (00000054) if-eqz               v2, +007h
+	a:95
+	(Lorg/json/JSONException; -> 9a getFormatData-BB@0x9a)
+
+getFormatData-BB@0x58 : [ getFormatData-BB@0x60 ]
+	21      (00000058) invoke-direct        v4, v5, v1, Lcom/phonegap/Capture;->getImageData(Ljava/lang/String; Lorg/json/JSONObject;)Lorg/json/JSONObject;
+	22      (0000005e) move-result-object   v1
+	a:95
+	(Lorg/json/JSONException; -> 9a getFormatData-BB@0x9a)
+
+getFormatData-BB@0x60 : 
+	23      (00000060) return-object        v1
+	a:95
+	(Lorg/json/JSONException; -> 9a getFormatData-BB@0x9a)
+
+getFormatData-BB@0x62 : [ getFormatData-BB@0x72 getFormatData-BB@0x7e ]
+	24      (00000062) const-string         v2, "audio/3gpp"
+	25      (00000066) invoke-virtual       v5, v2, Ljava/lang/String;->endsWith(Ljava/lang/String;)Z
+	26      (0000006c) move-result          v2
+	27      (0000006e) if-eqz               v2, +008h
+	a:95
+	(Lorg/json/JSONException; -> 9a getFormatData-BB@0x9a)
+
+getFormatData-BB@0x72 : [ getFormatData-BB@0x60 ]
+	28      (00000072) const/4              v2, 0
+	29      (00000074) invoke-direct        v4, v5, v1, v2, Lcom/phonegap/Capture;->getAudioVideoData(Ljava/lang/String; Lorg/json/JSONObject; Z)Lorg/json/JSONObject;
+	30      (0000007a) move-result-object   v1
+	31      (0000007c) goto                 -eh
+	a:95
+	(Lorg/json/JSONException; -> 9a getFormatData-BB@0x9a)
+
+getFormatData-BB@0x7e : [ getFormatData-BB@0x8e getFormatData-BB@0x60 ]
+	32      (0000007e) const-string         v2, "video/3gpp"
+	33      (00000082) invoke-virtual       v6, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	34      (00000088) move-result          v2
+	35      (0000008a) if-eqz               v2, -015h
+	a:95
+	(Lorg/json/JSONException; -> 9a getFormatData-BB@0x9a)
+
+getFormatData-BB@0x8e : [ getFormatData-BB@0x60 ]
+	36      (0000008e) const/4              v2, 1
+	37      (00000090) invoke-direct        v4, v5, v1, v2, Lcom/phonegap/Capture;->getAudioVideoData(Ljava/lang/String; Lorg/json/JSONObject; Z)Lorg/json/JSONObject;
+	38      (00000096) move-result-object   v1
+	39      (00000098) goto                 -1ch
+
+getFormatData-BB@0x9a : [ getFormatData-BB@0x60 ]
+	40      (0000009a) move-exception       v2
+	41      (0000009c) move-object          v0, v2
+	42      (0000009e) const-string         v2, "Capture"
+	43      (000000a2) const-string         v3, "Error: setting media file data object"
+	44      (000000a6) invoke-static        v2, v3, Landroid/util/Log;->d(Ljava/lang/String; Ljava/lang/String;)I
+	45      (000000ac) goto                 -26h
+

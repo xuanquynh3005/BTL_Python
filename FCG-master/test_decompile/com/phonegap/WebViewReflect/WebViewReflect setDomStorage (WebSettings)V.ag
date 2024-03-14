@@ -1,0 +1,48 @@
+# Lcom/phonegap/WebViewReflect;->setDomStorage(Landroid/webkit/WebSettings;)V [access_flags=public static]
+#
+# Parameters:
+# - local registers: v0...v4
+# - v5:android.webkit.WebSettings
+#
+# - return:void
+
+setDomStorage-BB@0x0 : [ setDomStorage-BB@0x8 setDomStorage-BB@0x28 ]
+	0       (00000000) sget-object          v1, Lcom/phonegap/WebViewReflect;->mWebSettings_setDomStorageEnabled Ljava/lang/reflect/Method;
+	1       (00000004) if-eqz               v1, +012h
+
+setDomStorage-BB@0x8 : [ setDomStorage-BB@0x28 ]
+	2       (00000008) sget-object          v1, Lcom/phonegap/WebViewReflect;->mWebSettings_setDomStorageEnabled Ljava/lang/reflect/Method;
+	3       (0000000c) const/4              v2, 1
+	4       (0000000e) new-array            v2, v2, [Ljava/lang/Object;
+	5       (00000012) const/4              v3, 0
+	6       (00000014) const/4              v4, 1
+	7       (00000016) invoke-static        v4, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+	8       (0000001c) move-result-object   v4
+	9       (0000001e) aput-object          v4, v2, v3
+	10      (00000022) invoke-virtual       v1, v5, v2, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object; [Ljava/lang/Object;)Ljava/lang/Object;
+	8:27
+	(Ljava/lang/IllegalArgumentException; -> 2a setDomStorage-BB@0x2a)
+	(Ljava/lang/IllegalAccessException; -> 36 setDomStorage-BB@0x36)
+	(Ljava/lang/reflect/InvocationTargetException; -> 42 setDomStorage-BB@0x42)
+
+setDomStorage-BB@0x28 : 
+	11      (00000028) return-void          
+
+setDomStorage-BB@0x2a : [ setDomStorage-BB@0x28 ]
+	12      (0000002a) move-exception       v1
+	13      (0000002c) move-object          v0, v1
+	14      (0000002e) invoke-virtual       v0, Ljava/lang/IllegalArgumentException;->printStackTrace()V
+	15      (00000034) goto                 -6h
+
+setDomStorage-BB@0x36 : [ setDomStorage-BB@0x28 ]
+	16      (00000036) move-exception       v1
+	17      (00000038) move-object          v0, v1
+	18      (0000003a) invoke-virtual       v0, Ljava/lang/IllegalAccessException;->printStackTrace()V
+	19      (00000040) goto                 -ch
+
+setDomStorage-BB@0x42 : [ setDomStorage-BB@0x28 ]
+	20      (00000042) move-exception       v1
+	21      (00000044) move-object          v0, v1
+	22      (00000046) invoke-virtual       v0, Ljava/lang/reflect/InvocationTargetException;->printStackTrace()V
+	23      (0000004c) goto                 -12h
+

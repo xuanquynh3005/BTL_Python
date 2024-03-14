@@ -1,0 +1,85 @@
+# Lcom/phonegap/Notification;->isSynch(Ljava/lang/String;)Z [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v2
+# - v3:java.lang.String
+#
+# - return:boolean
+
+isSynch-BB@0x0 : [ isSynch-BB@0x12 isSynch-BB@0x16 ]
+	0       (00000000) const/4              v1, 1
+	1       (00000002) const-string         v0, "alert"
+	2       (00000006) invoke-virtual       v3, v0, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	3       (0000000c) move-result          v0
+	4       (0000000e) if-eqz               v0, +004h
+
+isSynch-BB@0x12 : [ isSynch-BB@0x14 ]
+	5       (00000012) move                 v0, v1
+
+isSynch-BB@0x14 : 
+	6       (00000014) return               v0
+
+isSynch-BB@0x16 : [ isSynch-BB@0x26 isSynch-BB@0x2a ]
+	7       (00000016) const-string         v0, "confirm"
+	8       (0000001a) invoke-virtual       v3, v0, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	9       (00000020) move-result          v0
+	10      (00000022) if-eqz               v0, +004h
+
+isSynch-BB@0x26 : [ isSynch-BB@0x14 ]
+	11      (00000026) move                 v0, v1
+	12      (00000028) goto                 -ah
+
+isSynch-BB@0x2a : [ isSynch-BB@0x3a isSynch-BB@0x3e ]
+	13      (0000002a) const-string         v0, "activityStart"
+	14      (0000002e) invoke-virtual       v3, v0, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	15      (00000034) move-result          v0
+	16      (00000036) if-eqz               v0, +004h
+
+isSynch-BB@0x3a : [ isSynch-BB@0x14 ]
+	17      (0000003a) move                 v0, v1
+	18      (0000003c) goto                 -14h
+
+isSynch-BB@0x3e : [ isSynch-BB@0x4e isSynch-BB@0x52 ]
+	19      (0000003e) const-string         v0, "activityStop"
+	20      (00000042) invoke-virtual       v3, v0, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	21      (00000048) move-result          v0
+	22      (0000004a) if-eqz               v0, +004h
+
+isSynch-BB@0x4e : [ isSynch-BB@0x14 ]
+	23      (0000004e) move                 v0, v1
+	24      (00000050) goto                 -1eh
+
+isSynch-BB@0x52 : [ isSynch-BB@0x62 isSynch-BB@0x66 ]
+	25      (00000052) const-string         v0, "progressStart"
+	26      (00000056) invoke-virtual       v3, v0, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	27      (0000005c) move-result          v0
+	28      (0000005e) if-eqz               v0, +004h
+
+isSynch-BB@0x62 : [ isSynch-BB@0x14 ]
+	29      (00000062) move                 v0, v1
+	30      (00000064) goto                 -28h
+
+isSynch-BB@0x66 : [ isSynch-BB@0x76 isSynch-BB@0x7a ]
+	31      (00000066) const-string         v0, "progressValue"
+	32      (0000006a) invoke-virtual       v3, v0, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	33      (00000070) move-result          v0
+	34      (00000072) if-eqz               v0, +004h
+
+isSynch-BB@0x76 : [ isSynch-BB@0x14 ]
+	35      (00000076) move                 v0, v1
+	36      (00000078) goto                 -32h
+
+isSynch-BB@0x7a : [ isSynch-BB@0x8a isSynch-BB@0x8e ]
+	37      (0000007a) const-string         v0, "progressStop"
+	38      (0000007e) invoke-virtual       v3, v0, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	39      (00000084) move-result          v0
+	40      (00000086) if-eqz               v0, +004h
+
+isSynch-BB@0x8a : [ isSynch-BB@0x14 ]
+	41      (0000008a) move                 v0, v1
+	42      (0000008c) goto                 -3ch
+
+isSynch-BB@0x8e : [ isSynch-BB@0x14 ]
+	43      (0000008e) const/4              v0, 0
+	44      (00000090) goto                 -3eh
+

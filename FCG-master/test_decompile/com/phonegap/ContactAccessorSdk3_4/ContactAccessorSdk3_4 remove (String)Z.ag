@@ -1,0 +1,32 @@
+# Lcom/phonegap/ContactAccessorSdk3_4;->remove(Ljava/lang/String;)Z [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v7
+# - v8:java.lang.String
+#
+# - return:boolean
+
+remove-BB@0x0 : [ remove-BB@0x2c remove-BB@0x30 ]
+	0       (00000000) const/4              v6, 1
+	1       (00000002) const/4              v5, 0
+	2       (00000004) iget-object          v1, v7, Lcom/phonegap/ContactAccessorSdk3_4;->mApp Landroid/app/Activity;
+	3       (00000008) invoke-virtual       v1, Landroid/app/Activity;->getContentResolver()Landroid/content/ContentResolver;
+	4       (0000000e) move-result-object   v1
+	5       (00000010) sget-object          v2, Landroid/provider/Contacts$People;->CONTENT_URI Landroid/net/Uri;
+	6       (00000014) const-string         v3, "people._id = ?"
+	7       (00000018) new-array            v4, v6, [Ljava/lang/String;
+	8       (0000001c) aput-object          v8, v4, v5
+	9       (00000020) invoke-virtual       v1, v2, v3, v4, Landroid/content/ContentResolver;->delete(Landroid/net/Uri; Ljava/lang/String; [Ljava/lang/String;)I
+	10      (00000026) move-result          v0
+	11      (00000028) if-lez               v0, +004h
+
+remove-BB@0x2c : [ remove-BB@0x2e ]
+	12      (0000002c) move                 v1, v6
+
+remove-BB@0x2e : 
+	13      (0000002e) return               v1
+
+remove-BB@0x30 : [ remove-BB@0x2e ]
+	14      (00000030) move                 v1, v5
+	15      (00000032) goto                 -2h
+

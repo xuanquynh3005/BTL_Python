@@ -1,0 +1,34 @@
+# Lcom/phonegap/NetworkManager;->setContext(Lcom/phonegap/api/PhonegapActivity;)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v2
+# - v3:com.phonegap.api.PhonegapActivity
+#
+# - return:void
+
+setContext-BB@0x0 : [ setContext-BB@0x3c setContext-BB@0x54 ]
+	0       (00000000) invoke-super         v2, v3, Lcom/phonegap/api/Plugin;->setContext(Lcom/phonegap/api/PhonegapActivity;)V
+	1       (00000006) const-string         v1, "connectivity"
+	2       (0000000a) invoke-virtual       v3, v1, Lcom/phonegap/api/PhonegapActivity;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+	3       (00000010) move-result-object   v1
+	4       (00000012) check-cast           v1, Landroid/net/ConnectivityManager;
+	5       (00000016) iput-object          v1, v2, Lcom/phonegap/NetworkManager;->sockMan Landroid/net/ConnectivityManager;
+	6       (0000001a) const/4              v1, 0
+	7       (0000001c) iput-object          v1, v2, Lcom/phonegap/NetworkManager;->connectionCallbackId Ljava/lang/String;
+	8       (00000020) new-instance         v0, Landroid/content/IntentFilter;
+	9       (00000024) invoke-direct        v0, Landroid/content/IntentFilter;-><init>()V
+	10      (0000002a) const-string         v1, "android.net.conn.CONNECTIVITY_CHANGE"
+	11      (0000002e) invoke-virtual       v0, v1, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+	12      (00000034) iget-object          v1, v2, Lcom/phonegap/NetworkManager;->receiver Landroid/content/BroadcastReceiver;
+	13      (00000038) if-nez               v1, +00eh
+
+setContext-BB@0x3c : [ setContext-BB@0x54 ]
+	14      (0000003c) new-instance         v1, Lcom/phonegap/NetworkManager$1;
+	15      (00000040) invoke-direct        v1, v2, Lcom/phonegap/NetworkManager$1;-><init>(Lcom/phonegap/NetworkManager;)V
+	16      (00000046) iput-object          v1, v2, Lcom/phonegap/NetworkManager;->receiver Landroid/content/BroadcastReceiver;
+	17      (0000004a) iget-object          v1, v2, Lcom/phonegap/NetworkManager;->receiver Landroid/content/BroadcastReceiver;
+	18      (0000004e) invoke-virtual       v3, v1, v0, Lcom/phonegap/api/PhonegapActivity;->registerReceiver(Landroid/content/BroadcastReceiver; Landroid/content/IntentFilter;)Landroid/content/Intent;
+
+setContext-BB@0x54 : 
+	19      (00000054) return-void          
+

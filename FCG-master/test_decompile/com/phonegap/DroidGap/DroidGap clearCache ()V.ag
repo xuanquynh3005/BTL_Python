@@ -1,0 +1,20 @@
+# Lcom/phonegap/DroidGap;->clearCache()V [access_flags=public]
+#
+# Parameters:
+# local registers: v0...v2
+#
+# - return:void
+
+clearCache-BB@0x0 : [ clearCache-BB@0x8 clearCache-BB@0xe ]
+	0       (00000000) iget-object          v0, v2, Lcom/phonegap/DroidGap;->appView Landroid/webkit/WebView;
+	1       (00000004) if-nez               v0, +005h
+
+clearCache-BB@0x8 : [ clearCache-BB@0xe ]
+	2       (00000008) invoke-virtual       v2, Lcom/phonegap/DroidGap;->init()V
+
+clearCache-BB@0xe : 
+	3       (0000000e) iget-object          v0, v2, Lcom/phonegap/DroidGap;->appView Landroid/webkit/WebView;
+	4       (00000012) const/4              v1, 1
+	5       (00000014) invoke-virtual       v0, v1, Landroid/webkit/WebView;->clearCache(Z)V
+	6       (0000001a) return-void          
+

@@ -1,0 +1,34 @@
+# Lcom/phonegap/HttpHandler;->getHttpEntity(Ljava/lang/String;)Lorg/apache/http/HttpEntity; [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v6
+# - v7:java.lang.String
+#
+# - return:org.apache.http.HttpEntity
+
+getHttpEntity-BB@0x0 : [ getHttpEntity-BB@0x2 ]
+	0       (00000000) const/4              v1, 0
+
+getHttpEntity-BB@0x2 : [ getHttpEntity-BB@0x28 ]
+	1       (00000002) new-instance         v2, Lorg/apache/http/impl/client/DefaultHttpClient;
+	2       (00000006) invoke-direct        v2, Lorg/apache/http/impl/client/DefaultHttpClient;-><init>()V
+	3       (0000000c) new-instance         v3, Lorg/apache/http/client/methods/HttpGet;
+	4       (00000010) invoke-direct        v3, v7, Lorg/apache/http/client/methods/HttpGet;-><init>(Ljava/lang/String;)V
+	5       (00000016) invoke-virtual       v2, v3, Lorg/apache/http/impl/client/DefaultHttpClient;->execute(Lorg/apache/http/client/methods/HttpUriRequest;)Lorg/apache/http/HttpResponse;
+	6       (0000001c) move-result-object   v4
+	7       (0000001e) invoke-interface     v4, Lorg/apache/http/HttpResponse;->getEntity()Lorg/apache/http/HttpEntity;
+	8       (00000024) move-result-object   v1
+	9       (00000026) move-object          v5, v1
+	2:23
+	(Ljava/lang/Exception; -> 2a getHttpEntity-BB@0x2a)
+
+getHttpEntity-BB@0x28 : 
+	10      (00000028) return-object        v5
+
+getHttpEntity-BB@0x2a : [ getHttpEntity-BB@0x28 ]
+	11      (0000002a) move-exception       v5
+	12      (0000002c) move-object          v0, v5
+	13      (0000002e) invoke-virtual       v0, Ljava/lang/Exception;->printStackTrace()V
+	14      (00000034) const/4              v5, 0
+	15      (00000036) goto                 -7h
+

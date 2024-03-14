@@ -1,0 +1,120 @@
+# Lcom/phonegap/FileUtils;->getFile(Ljava/lang/String; Ljava/lang/String; Lorg/json/JSONObject; Z)Lorg/json/JSONObject; [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v5
+# - v6:java.lang.String
+# - v7:java.lang.String
+# - v8:org.json.JSONObject
+# - v9:boolean
+#
+# - return:org.json.JSONObject
+
+getFile-BB@0x0 : [ getFile-BB@0x8 getFile-BB@0x24 ]
+	0       (00000000) const/4              v0, 0
+	1       (00000002) const/4              v1, 0
+	2       (00000004) if-eqz               v8, +010h
+
+getFile-BB@0x8 : [ getFile-BB@0x18 getFile-BB@0x24 ]
+	3       (00000008) const-string         v3, "create"
+	4       (0000000c) invoke-virtual       v8, v3, Lorg/json/JSONObject;->optBoolean(Ljava/lang/String;)Z
+	5       (00000012) move-result          v0
+	6       (00000014) if-eqz               v0, +008h
+
+getFile-BB@0x18 : [ getFile-BB@0x24 ]
+	7       (00000018) const-string         v3, "exclusive"
+	8       (0000001c) invoke-virtual       v8, v3, Lorg/json/JSONObject;->optBoolean(Ljava/lang/String;)Z
+	9       (00000022) move-result          v1
+
+getFile-BB@0x24 : [ getFile-BB@0x34 getFile-BB@0x44 ]
+	10      (00000024) const-string         v3, ":"
+	11      (00000028) invoke-virtual       v7, v3, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+	12      (0000002e) move-result          v3
+	13      (00000030) if-eqz               v3, +00ah
+
+getFile-BB@0x34 : 
+	14      (00000034) new-instance         v3, Lcom/phonegap/file/EncodingException;
+	15      (00000038) const-string         v4, "This file has a : in it's name"
+	16      (0000003c) invoke-direct        v3, v4, Lcom/phonegap/file/EncodingException;-><init>(Ljava/lang/String;)V
+	17      (00000042) throw                v3
+
+getFile-BB@0x44 : [ getFile-BB@0x50 getFile-BB@0x9e ]
+	18      (00000044) invoke-direct        v5, v6, v7, Lcom/phonegap/FileUtils;->createFileObject(Ljava/lang/String; Ljava/lang/String;)Ljava/io/File;
+	19      (0000004a) move-result-object   v2
+	20      (0000004c) if-eqz               v0, +029h
+
+getFile-BB@0x50 : [ getFile-BB@0x54 getFile-BB@0x70 ]
+	21      (00000050) if-eqz               v1, +010h
+
+getFile-BB@0x54 : [ getFile-BB@0x60 getFile-BB@0x70 ]
+	22      (00000054) invoke-virtual       v2, Ljava/io/File;->exists()Z
+	23      (0000005a) move-result          v3
+	24      (0000005c) if-eqz               v3, +00ah
+
+getFile-BB@0x60 : 
+	25      (00000060) new-instance         v3, Lcom/phonegap/file/FileExistsException;
+	26      (00000064) const-string         v4, "create/exclusive fails"
+	27      (00000068) invoke-direct        v3, v4, Lcom/phonegap/file/FileExistsException;-><init>(Ljava/lang/String;)V
+	28      (0000006e) throw                v3
+
+getFile-BB@0x70 : [ getFile-BB@0x74 getFile-BB@0x96 ]
+	29      (00000070) if-eqz               v9, +013h
+
+getFile-BB@0x74 : [ getFile-BB@0x7a ]
+	30      (00000074) invoke-virtual       v2, Ljava/io/File;->mkdir()Z
+
+getFile-BB@0x7a : [ getFile-BB@0x86 getFile-BB@0xf6 ]
+	31      (0000007a) invoke-virtual       v2, Ljava/io/File;->exists()Z
+	32      (00000080) move-result          v3
+	33      (00000082) if-nez               v3, +03ah
+
+getFile-BB@0x86 : 
+	34      (00000086) new-instance         v3, Lcom/phonegap/file/FileExistsException;
+	35      (0000008a) const-string         v4, "create fails"
+	36      (0000008e) invoke-direct        v3, v4, Lcom/phonegap/file/FileExistsException;-><init>(Ljava/lang/String;)V
+	37      (00000094) throw                v3
+
+getFile-BB@0x96 : [ getFile-BB@0x7a ]
+	38      (00000096) invoke-virtual       v2, Ljava/io/File;->createNewFile()Z
+	39      (0000009c) goto                 -11h
+
+getFile-BB@0x9e : [ getFile-BB@0xaa getFile-BB@0xba ]
+	40      (0000009e) invoke-virtual       v2, Ljava/io/File;->exists()Z
+	41      (000000a4) move-result          v3
+	42      (000000a6) if-nez               v3, +00ah
+
+getFile-BB@0xaa : 
+	43      (000000aa) new-instance         v3, Ljava/io/FileNotFoundException;
+	44      (000000ae) const-string         v4, "path does not exist"
+	45      (000000b2) invoke-direct        v3, v4, Ljava/io/FileNotFoundException;-><init>(Ljava/lang/String;)V
+	46      (000000b8) throw                v3
+
+getFile-BB@0xba : [ getFile-BB@0xbe getFile-BB@0xda ]
+	47      (000000ba) if-eqz               v9, +010h
+
+getFile-BB@0xbe : [ getFile-BB@0xca getFile-BB@0xf6 ]
+	48      (000000be) invoke-virtual       v2, Ljava/io/File;->isFile()Z
+	49      (000000c4) move-result          v3
+	50      (000000c6) if-eqz               v3, +018h
+
+getFile-BB@0xca : 
+	51      (000000ca) new-instance         v3, Lcom/phonegap/file/TypeMismatchException;
+	52      (000000ce) const-string         v4, "path doesn't exist or is file"
+	53      (000000d2) invoke-direct        v3, v4, Lcom/phonegap/file/TypeMismatchException;-><init>(Ljava/lang/String;)V
+	54      (000000d8) throw                v3
+
+getFile-BB@0xda : [ getFile-BB@0xe6 getFile-BB@0xf6 ]
+	55      (000000da) invoke-virtual       v2, Ljava/io/File;->isDirectory()Z
+	56      (000000e0) move-result          v3
+	57      (000000e2) if-eqz               v3, +00ah
+
+getFile-BB@0xe6 : 
+	58      (000000e6) new-instance         v3, Lcom/phonegap/file/TypeMismatchException;
+	59      (000000ea) const-string         v4, "path doesn't exist or is directory"
+	60      (000000ee) invoke-direct        v3, v4, Lcom/phonegap/file/TypeMismatchException;-><init>(Ljava/lang/String;)V
+	61      (000000f4) throw                v3
+
+getFile-BB@0xf6 : 
+	62      (000000f6) invoke-direct        v5, v2, Lcom/phonegap/FileUtils;->getEntry(Ljava/io/File;)Lorg/json/JSONObject;
+	63      (000000fc) move-result-object   v3
+	64      (000000fe) return-object        v3
+

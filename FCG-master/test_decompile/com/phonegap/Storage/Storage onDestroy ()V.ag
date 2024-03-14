@@ -1,0 +1,20 @@
+# Lcom/phonegap/Storage;->onDestroy()V [access_flags=public]
+#
+# Parameters:
+# local registers: v0...v1
+#
+# - return:void
+
+onDestroy-BB@0x0 : [ onDestroy-BB@0x8 onDestroy-BB@0x18 ]
+	0       (00000000) iget-object          v0, v1, Lcom/phonegap/Storage;->myDb Landroid/database/sqlite/SQLiteDatabase;
+	1       (00000004) if-eqz               v0, +00ah
+
+onDestroy-BB@0x8 : [ onDestroy-BB@0x18 ]
+	2       (00000008) iget-object          v0, v1, Lcom/phonegap/Storage;->myDb Landroid/database/sqlite/SQLiteDatabase;
+	3       (0000000c) invoke-virtual       v0, Landroid/database/sqlite/SQLiteDatabase;->close()V
+	4       (00000012) const/4              v0, 0
+	5       (00000014) iput-object          v0, v1, Lcom/phonegap/Storage;->myDb Landroid/database/sqlite/SQLiteDatabase;
+
+onDestroy-BB@0x18 : 
+	6       (00000018) return-void          
+

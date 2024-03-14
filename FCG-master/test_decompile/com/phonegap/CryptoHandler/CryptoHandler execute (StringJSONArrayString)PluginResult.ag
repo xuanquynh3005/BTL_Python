@@ -1,0 +1,70 @@
+# Lcom/phonegap/CryptoHandler;->execute(Ljava/lang/String; Lorg/json/JSONArray; Ljava/lang/String;)Lcom/phonegap/api/PluginResult; [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v5
+# - v6:java.lang.String
+# - v7:org.json.JSONArray
+# - v8:java.lang.String
+#
+# - return:com.phonegap.api.PluginResult
+
+execute-BB@0x0 : [ execute-BB@0x8 ]
+	0       (00000000) sget-object          v2, Lcom/phonegap/api/PluginResult$Status;->OK Lcom/phonegap/api/PluginResult$Status;
+	1       (00000004) const-string         v1, ""
+
+execute-BB@0x8 : [ execute-BB@0x18 execute-BB@0x3e ]
+	2       (00000008) const-string         v3, "encrypt"
+	3       (0000000c) invoke-virtual       v6, v3, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	4       (00000012) move-result          v3
+	5       (00000014) if-eqz               v3, +015h
+	8:67
+	(Lorg/json/JSONException; -> 6a execute-BB@0x6a)
+
+execute-BB@0x18 : [ execute-BB@0x32 ]
+	6       (00000018) const/4              v3, 0
+	7       (0000001a) invoke-virtual       v7, v3, Lorg/json/JSONArray;->getString(I)Ljava/lang/String;
+	8       (00000020) move-result-object   v3
+	9       (00000022) const/4              v4, 1
+	10      (00000024) invoke-virtual       v7, v4, Lorg/json/JSONArray;->getString(I)Ljava/lang/String;
+	11      (0000002a) move-result-object   v4
+	12      (0000002c) invoke-virtual       v5, v3, v4, Lcom/phonegap/CryptoHandler;->encrypt(Ljava/lang/String; Ljava/lang/String;)V
+	8:67
+	(Lorg/json/JSONException; -> 6a execute-BB@0x6a)
+
+execute-BB@0x32 : [ execute-BB@0x3c ]
+	13      (00000032) new-instance         v3, Lcom/phonegap/api/PluginResult;
+	14      (00000036) invoke-direct        v3, v2, v1, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; Ljava/lang/String;)V
+	8:67
+	(Lorg/json/JSONException; -> 6a execute-BB@0x6a)
+
+execute-BB@0x3c : 
+	15      (0000003c) return-object        v3
+	8:67
+	(Lorg/json/JSONException; -> 6a execute-BB@0x6a)
+
+execute-BB@0x3e : [ execute-BB@0x4e execute-BB@0x32 ]
+	16      (0000003e) const-string         v3, "decrypt"
+	17      (00000042) invoke-virtual       v6, v3, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	18      (00000048) move-result          v3
+	19      (0000004a) if-eqz               v3, -00ch
+	8:67
+	(Lorg/json/JSONException; -> 6a execute-BB@0x6a)
+
+execute-BB@0x4e : [ execute-BB@0x32 ]
+	20      (0000004e) const/4              v3, 0
+	21      (00000050) invoke-virtual       v7, v3, Lorg/json/JSONArray;->getString(I)Ljava/lang/String;
+	22      (00000056) move-result-object   v3
+	23      (00000058) const/4              v4, 1
+	24      (0000005a) invoke-virtual       v7, v4, Lorg/json/JSONArray;->getString(I)Ljava/lang/String;
+	25      (00000060) move-result-object   v4
+	26      (00000062) invoke-virtual       v5, v3, v4, Lcom/phonegap/CryptoHandler;->decrypt(Ljava/lang/String; Ljava/lang/String;)V
+	27      (00000068) goto                 -1bh
+
+execute-BB@0x6a : [ execute-BB@0x3c ]
+	28      (0000006a) move-exception       v3
+	29      (0000006c) move-object          v0, v3
+	30      (0000006e) new-instance         v3, Lcom/phonegap/api/PluginResult;
+	31      (00000072) sget-object          v4, Lcom/phonegap/api/PluginResult$Status;->JSON_EXCEPTION Lcom/phonegap/api/PluginResult$Status;
+	32      (00000076) invoke-direct        v3, v4, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status;)V
+	33      (0000007c) goto                 -20h
+

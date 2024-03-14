@@ -1,0 +1,44 @@
+# Lcom/phonegap/Storage;->isDDL(Ljava/lang/String;)Z [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v2
+# - v3:java.lang.String
+#
+# - return:boolean
+
+isDDL-BB@0x0 : [ isDDL-BB@0x18 isDDL-BB@0x48 ]
+	0       (00000000) invoke-virtual       v3, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	1       (00000006) move-result-object   v0
+	2       (00000008) const-string         v1, "drop"
+	3       (0000000c) invoke-virtual       v0, v1, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+	4       (00000012) move-result          v1
+	5       (00000014) if-nez               v1, +01ah
+
+isDDL-BB@0x18 : [ isDDL-BB@0x28 isDDL-BB@0x48 ]
+	6       (00000018) const-string         v1, "create"
+	7       (0000001c) invoke-virtual       v0, v1, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+	8       (00000022) move-result          v1
+	9       (00000024) if-nez               v1, +012h
+
+isDDL-BB@0x28 : [ isDDL-BB@0x38 isDDL-BB@0x48 ]
+	10      (00000028) const-string         v1, "alter"
+	11      (0000002c) invoke-virtual       v0, v1, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+	12      (00000032) move-result          v1
+	13      (00000034) if-nez               v1, +00ah
+
+isDDL-BB@0x38 : [ isDDL-BB@0x48 isDDL-BB@0x4c ]
+	14      (00000038) const-string         v1, "truncate"
+	15      (0000003c) invoke-virtual       v0, v1, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+	16      (00000042) move-result          v1
+	17      (00000044) if-eqz               v1, +004h
+
+isDDL-BB@0x48 : [ isDDL-BB@0x4a ]
+	18      (00000048) const/4              v1, 1
+
+isDDL-BB@0x4a : 
+	19      (0000004a) return               v1
+
+isDDL-BB@0x4c : [ isDDL-BB@0x4a ]
+	20      (0000004c) const/4              v1, 0
+	21      (0000004e) goto                 -2h
+

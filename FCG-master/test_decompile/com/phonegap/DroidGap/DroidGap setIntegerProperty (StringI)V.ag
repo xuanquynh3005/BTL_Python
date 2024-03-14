@@ -1,0 +1,15 @@
+# Lcom/phonegap/DroidGap;->setIntegerProperty(Ljava/lang/String; I)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v1
+# - v2:java.lang.String
+# - v3:int
+#
+# - return:void
+
+setIntegerProperty-BB@0x0 : 
+	0       (00000000) invoke-virtual       v1, Lcom/phonegap/DroidGap;->getIntent()Landroid/content/Intent;
+	1       (00000006) move-result-object   v0
+	2       (00000008) invoke-virtual       v0, v2, v3, Landroid/content/Intent;->putExtra(Ljava/lang/String; I)Landroid/content/Intent;
+	3       (0000000e) return-void          
+

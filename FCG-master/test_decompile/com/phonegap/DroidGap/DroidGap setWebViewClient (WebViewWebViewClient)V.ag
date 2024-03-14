@@ -1,0 +1,14 @@
+# Lcom/phonegap/DroidGap;->setWebViewClient(Landroid/webkit/WebView; Landroid/webkit/WebViewClient;)V [access_flags=protected]
+#
+# Parameters:
+# - local registers: v0...v0
+# - v1:android.webkit.WebView
+# - v2:android.webkit.WebViewClient
+#
+# - return:void
+
+setWebViewClient-BB@0x0 : 
+	0       (00000000) iput-object          v2, v0, Lcom/phonegap/DroidGap;->webViewClient Landroid/webkit/WebViewClient;
+	1       (00000004) invoke-virtual       v1, v2, Landroid/webkit/WebView;->setWebViewClient(Landroid/webkit/WebViewClient;)V
+	2       (0000000a) return-void          
+

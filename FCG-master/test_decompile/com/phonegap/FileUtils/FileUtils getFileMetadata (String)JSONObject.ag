@@ -1,0 +1,57 @@
+# Lcom/phonegap/FileUtils;->getFileMetadata(Ljava/lang/String;)Lorg/json/JSONObject; [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v5
+# - v6:java.lang.String
+#
+# - return:org.json.JSONObject
+
+getFileMetadata-BB@0x0 : [ getFileMetadata-BB@0x16 getFileMetadata-BB@0x54 ]
+	0       (00000000) new-instance         v0, Ljava/io/File;
+	1       (00000004) invoke-direct        v0, v6, Ljava/io/File;-><init>(Ljava/lang/String;)V
+	2       (0000000a) invoke-virtual       v0, Ljava/io/File;->exists()Z
+	3       (00000010) move-result          v2
+	4       (00000012) if-nez               v2, +021h
+
+getFileMetadata-BB@0x16 : 
+	5       (00000016) new-instance         v2, Ljava/io/FileNotFoundException;
+	6       (0000001a) new-instance         v3, Ljava/lang/StringBuilder;
+	7       (0000001e) invoke-direct        v3, Ljava/lang/StringBuilder;-><init>()V
+	8       (00000024) const-string         v4, "File: "
+	9       (00000028) invoke-virtual       v3, v4, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	10      (0000002e) move-result-object   v3
+	11      (00000030) invoke-virtual       v3, v6, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	12      (00000036) move-result-object   v3
+	13      (00000038) const-string         v4, " does not exist."
+	14      (0000003c) invoke-virtual       v3, v4, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	15      (00000042) move-result-object   v3
+	16      (00000044) invoke-virtual       v3, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	17      (0000004a) move-result-object   v3
+	18      (0000004c) invoke-direct        v2, v3, Ljava/io/FileNotFoundException;-><init>(Ljava/lang/String;)V
+	19      (00000052) throw                v2
+
+getFileMetadata-BB@0x54 : 
+	20      (00000054) new-instance         v1, Lorg/json/JSONObject;
+	21      (00000058) invoke-direct        v1, Lorg/json/JSONObject;-><init>()V
+	22      (0000005e) const-string         v2, "size"
+	23      (00000062) invoke-virtual       v0, Ljava/io/File;->length()J
+	24      (00000068) move-result-wide     v3
+	25      (0000006a) invoke-virtual       v1, v2, v3, v4, Lorg/json/JSONObject;->put(Ljava/lang/String; J)Lorg/json/JSONObject;
+	26      (00000070) const-string         v2, "type"
+	27      (00000074) invoke-static        v6, Lcom/phonegap/FileUtils;->getMimeType(Ljava/lang/String;)Ljava/lang/String;
+	28      (0000007a) move-result-object   v3
+	29      (0000007c) invoke-virtual       v1, v2, v3, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	30      (00000082) const-string         v2, "name"
+	31      (00000086) invoke-virtual       v0, Ljava/io/File;->getName()Ljava/lang/String;
+	32      (0000008c) move-result-object   v3
+	33      (0000008e) invoke-virtual       v1, v2, v3, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	34      (00000094) const-string         v2, "fullPath"
+	35      (00000098) invoke-virtual       v0, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
+	36      (0000009e) move-result-object   v3
+	37      (000000a0) invoke-virtual       v1, v2, v3, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	38      (000000a6) const-string         v2, "lastModifiedDate"
+	39      (000000aa) invoke-virtual       v0, Ljava/io/File;->lastModified()J
+	40      (000000b0) move-result-wide     v3
+	41      (000000b2) invoke-virtual       v1, v2, v3, v4, Lorg/json/JSONObject;->put(Ljava/lang/String; J)Lorg/json/JSONObject;
+	42      (000000b8) return-object        v1
+

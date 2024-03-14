@@ -1,0 +1,11 @@
+# Lcom/phonegap/AccelListener;->getTimeout()F [access_flags=public]
+#
+# Parameters:
+# local registers: v0...v1
+#
+# - return:float
+
+getTimeout-BB@0x0 : 
+	0       (00000000) iget                 v0, v1, Lcom/phonegap/AccelListener;->TIMEOUT F
+	1       (00000004) return               v0
+

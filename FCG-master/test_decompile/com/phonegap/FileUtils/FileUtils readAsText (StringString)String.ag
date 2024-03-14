@@ -1,0 +1,38 @@
+# Lcom/phonegap/FileUtils;->readAsText(Ljava/lang/String; Ljava/lang/String;)Ljava/lang/String; [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v8
+# - v9:java.lang.String
+# - v10:java.lang.String
+#
+# - return:java.lang.String
+
+readAsText-BB@0x0 : [ readAsText-BB@0x2c ]
+	0       (00000000) const/16             v7, 1000
+	1       (00000004) const/4              v6, 0
+	2       (00000006) new-array            v2, v7, [B
+	3       (0000000a) new-instance         v0, Ljava/io/BufferedInputStream;
+	4       (0000000e) invoke-direct        v8, v9, Lcom/phonegap/FileUtils;->getPathFromUri(Ljava/lang/String;)Ljava/io/InputStream;
+	5       (00000014) move-result-object   v4
+	6       (00000016) const/16             v5, 1024
+	7       (0000001a) invoke-direct        v0, v4, v5, Ljava/io/BufferedInputStream;-><init>(Ljava/io/InputStream; I)V
+	8       (00000020) new-instance         v1, Ljava/io/ByteArrayOutputStream;
+	9       (00000024) invoke-direct        v1, Ljava/io/ByteArrayOutputStream;-><init>()V
+	10      (0000002a) const/4              v3, 0
+
+readAsText-BB@0x2c : [ readAsText-BB@0x38 readAsText-BB@0x40 ]
+	11      (0000002c) invoke-virtual       v0, v2, v6, v7, Ljava/io/BufferedInputStream;->read([B I I)I
+	12      (00000032) move-result          v3
+	13      (00000034) if-ltz               v3, +006h
+
+readAsText-BB@0x38 : [ readAsText-BB@0x2c ]
+	14      (00000038) invoke-virtual       v1, v2, v6, v3, Ljava/io/ByteArrayOutputStream;->write([B I I)V
+	15      (0000003e) goto                 -9h
+
+readAsText-BB@0x40 : 
+	16      (00000040) new-instance         v4, Ljava/lang/String;
+	17      (00000044) invoke-virtual       v1, Ljava/io/ByteArrayOutputStream;->toByteArray()[B
+	18      (0000004a) move-result-object   v5
+	19      (0000004c) invoke-direct        v4, v5, v10, Ljava/lang/String;-><init>([B Ljava/lang/String;)V
+	20      (00000052) return-object        v4
+

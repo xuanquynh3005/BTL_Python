@@ -1,0 +1,37 @@
+# Lcom/phonegap/DroidGap;->getBooleanProperty(Ljava/lang/String; Z)Z [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v3
+# - v4:java.lang.String
+# - v5:boolean
+#
+# - return:boolean
+
+getBooleanProperty-BB@0x0 : [ getBooleanProperty-BB@0x14 getBooleanProperty-BB@0x18 ]
+	0       (00000000) invoke-virtual       v3, Lcom/phonegap/DroidGap;->getIntent()Landroid/content/Intent;
+	1       (00000006) move-result-object   v2
+	2       (00000008) invoke-virtual       v2, Landroid/content/Intent;->getExtras()Landroid/os/Bundle;
+	3       (0000000e) move-result-object   v0
+	4       (00000010) if-nez               v0, +004h
+
+getBooleanProperty-BB@0x14 : [ getBooleanProperty-BB@0x16 ]
+	5       (00000014) move                 v2, v5
+
+getBooleanProperty-BB@0x16 : 
+	6       (00000016) return               v2
+
+getBooleanProperty-BB@0x18 : [ getBooleanProperty-BB@0x28 getBooleanProperty-BB@0x2c ]
+	7       (00000018) invoke-virtual       v0, v4, Landroid/os/Bundle;->get(Ljava/lang/String;)Ljava/lang/Object;
+	8       (0000001e) move-result-object   v1
+	9       (00000020) check-cast           v1, Ljava/lang/Boolean;
+	10      (00000024) if-nez               v1, +004h
+
+getBooleanProperty-BB@0x28 : [ getBooleanProperty-BB@0x16 ]
+	11      (00000028) move                 v2, v5
+	12      (0000002a) goto                 -ah
+
+getBooleanProperty-BB@0x2c : [ getBooleanProperty-BB@0x16 ]
+	13      (0000002c) invoke-virtual       v1, Ljava/lang/Boolean;->booleanValue()Z
+	14      (00000032) move-result          v2
+	15      (00000034) goto                 -fh
+

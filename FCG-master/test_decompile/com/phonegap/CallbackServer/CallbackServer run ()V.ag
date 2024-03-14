@@ -1,0 +1,220 @@
+# Lcom/phonegap/CallbackServer;->run()V [access_flags=public]
+#
+# Parameters:
+# local registers: v0...v12
+#
+# - return:void
+
+run-BB@0x0 : [ run-BB@0x4 ]
+	0       (00000000) const/4              v11, 0
+	1       (00000002) const/4              v9, 1
+
+run-BB@0x4 : [ run-BB@0x34 ]
+	2       (00000004) iput-boolean         v9, v12, Lcom/phonegap/CallbackServer;->active Z
+	3       (00000008) new-instance         v7, Ljava/net/ServerSocket;
+	4       (0000000c) const/4              v9, 0
+	5       (0000000e) invoke-direct        v7, v9, Ljava/net/ServerSocket;-><init>(I)V
+	6       (00000014) invoke-virtual       v7, Ljava/net/ServerSocket;->getLocalPort()I
+	7       (0000001a) move-result          v9
+	8       (0000001c) iput                 v9, v12, Lcom/phonegap/CallbackServer;->port I
+	9       (00000020) invoke-static        Ljava/util/UUID;->randomUUID()Ljava/util/UUID;
+	10      (00000026) move-result-object   v9
+	11      (00000028) invoke-virtual       v9, Ljava/util/UUID;->toString()Ljava/lang/String;
+	12      (0000002e) move-result-object   v9
+	13      (00000030) iput-object          v9, v12, Lcom/phonegap/CallbackServer;->token Ljava/lang/String;
+	4:d3
+	(Ljava/io/IOException; -> 116 run-BB@0x116)
+
+run-BB@0x34 : [ run-BB@0x3c run-BB@0x120 ]
+	14      (00000034) iget-boolean         v9, v12, Lcom/phonegap/CallbackServer;->active Z
+	15      (00000038) if-eqz               v9, +074h
+	4:d3
+	(Ljava/io/IOException; -> 116 run-BB@0x116)
+
+run-BB@0x3c : [ run-BB@0x8a run-BB@0x108 ]
+	16      (0000003c) invoke-virtual       v7, Ljava/net/ServerSocket;->accept()Ljava/net/Socket;
+	17      (00000042) move-result-object   v0
+	18      (00000044) new-instance         v8, Ljava/io/BufferedReader;
+	19      (00000048) new-instance         v9, Ljava/io/InputStreamReader;
+	20      (0000004c) invoke-virtual       v0, Ljava/net/Socket;->getInputStream()Ljava/io/InputStream;
+	21      (00000052) move-result-object   v10
+	22      (00000054) invoke-direct        v9, v10, Ljava/io/InputStreamReader;-><init>(Ljava/io/InputStream;)V
+	23      (0000005a) const/16             v10, 40
+	24      (0000005e) invoke-direct        v8, v9, v10, Ljava/io/BufferedReader;-><init>(Ljava/io/Reader; I)V
+	25      (00000064) new-instance         v3, Ljava/io/DataOutputStream;
+	26      (00000068) invoke-virtual       v0, Ljava/net/Socket;->getOutputStream()Ljava/io/OutputStream;
+	27      (0000006e) move-result-object   v9
+	28      (00000070) invoke-direct        v3, v9, Ljava/io/DataOutputStream;-><init>(Ljava/io/OutputStream;)V
+	29      (00000076) invoke-virtual       v8, Ljava/io/BufferedReader;->readLine()Ljava/lang/String;
+	30      (0000007c) move-result-object   v4
+	31      (0000007e) const-string         v6, ""
+	32      (00000082) iget-boolean         v9, v12, Lcom/phonegap/CallbackServer;->active Z
+	33      (00000086) if-eqz               v9, +041h
+	4:d3
+	(Ljava/io/IOException; -> 116 run-BB@0x116)
+
+run-BB@0x8a : [ run-BB@0x8e run-BB@0x108 ]
+	34      (0000008a) if-eqz               v4, +03fh
+	4:d3
+	(Ljava/io/IOException; -> 116 run-BB@0x116)
+
+run-BB@0x8e : [ run-BB@0x9e run-BB@0x178 ]
+	35      (0000008e) const-string         v9, "GET"
+	36      (00000092) invoke-virtual       v4, v9, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+	37      (00000098) move-result          v9
+	38      (0000009a) if-eqz               v9, +06fh
+	4:d3
+	(Ljava/io/IOException; -> 116 run-BB@0x116)
+
+run-BB@0x9e : [ run-BB@0xb2 run-BB@0x172 ]
+	39      (0000009e) const-string         v9, " "
+	40      (000000a2) invoke-virtual       v4, v9, Ljava/lang/String;->split(Ljava/lang/String;)[Ljava/lang/String;
+	41      (000000a8) move-result-object   v5
+	42      (000000aa) array-length         v9, v5
+	43      (000000ac) const/4              v10, 3
+	44      (000000ae) if-ne                v9, v10, +062h
+	4:d3
+	(Ljava/io/IOException; -> 116 run-BB@0x116)
+
+run-BB@0xb2 : [ run-BB@0xd2 run-BB@0x172 ]
+	45      (000000b2) const/4              v9, 1
+	46      (000000b4) aget-object          v9, v5, v9
+	47      (000000b8) const/4              v10, 1
+	48      (000000ba) invoke-virtual       v9, v10, Ljava/lang/String;->substring(I)Ljava/lang/String;
+	49      (000000c0) move-result-object   v9
+	50      (000000c2) iget-object          v10, v12, Lcom/phonegap/CallbackServer;->token Ljava/lang/String;
+	51      (000000c6) invoke-virtual       v9, v10, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	52      (000000cc) move-result          v9
+	53      (000000ce) if-eqz               v9, +052h
+	4:d3
+	(Ljava/io/IOException; -> 116 run-BB@0x116)
+
+run-BB@0xd2 : [ run-BB@0xd4 ]
+	54      (000000d2) monitor-enter        v12
+	4:d3
+	(Ljava/io/IOException; -> 116 run-BB@0x116)
+
+run-BB@0xd4 : [ run-BB@0xdc run-BB@0xe6 ]
+	55      (000000d4) iget-boolean         v9, v12, Lcom/phonegap/CallbackServer;->empty Z
+	56      (000000d8) if-eqz               v9, +007h
+	d4:d7
+	(Ljava/lang/Throwable; -> 126 run-BB@0x126)
+
+run-BB@0xdc : [ run-BB@0xe0 ]
+	57      (000000dc) const-wide/16        v9, 10000
+
+run-BB@0xe0 : [ run-BB@0xe6 ]
+	58      (000000e0) invoke-virtual       v12, v9, v10, Ljava/lang/Object;->wait(J)V
+	e0:e5
+	(Ljava/lang/Exception; -> 17e run-BB@0x17e)
+	(Ljava/lang/Throwable; -> 126 run-BB@0x126)
+
+run-BB@0xe6 : [ run-BB@0xe8 ]
+	59      (000000e6) monitor-exit         v12
+	e6:e7
+	(Ljava/lang/Throwable; -> 126 run-BB@0x126)
+
+run-BB@0xe8 : [ run-BB@0xf0 run-BB@0x16c ]
+	60      (000000e8) iget-boolean         v9, v12, Lcom/phonegap/CallbackServer;->active Z
+	61      (000000ec) if-eqz               v9, +040h
+	e8:113
+	(Ljava/io/IOException; -> 116 run-BB@0x116)
+
+run-BB@0xf0 : [ run-BB@0xf8 run-BB@0x12c ]
+	62      (000000f0) iget-boolean         v9, v12, Lcom/phonegap/CallbackServer;->empty Z
+	63      (000000f4) if-eqz               v9, +01ch
+	e8:113
+	(Ljava/io/IOException; -> 116 run-BB@0x116)
+
+run-BB@0xf8 : [ run-BB@0xfc ]
+	64      (000000f8) const-string         v6, "HTTP/1.1 404 NO DATA
+
+ "
+	e8:113
+	(Ljava/io/IOException; -> 116 run-BB@0x116)
+
+run-BB@0xfc : [ run-BB@0x108 ]
+	65      (000000fc) invoke-virtual       v3, v6, Ljava/io/DataOutputStream;->writeBytes(Ljava/lang/String;)V
+	66      (00000102) invoke-virtual       v3, Ljava/io/DataOutputStream;->flush()V
+	e8:113
+	(Ljava/io/IOException; -> 116 run-BB@0x116)
+
+run-BB@0x108 : [ run-BB@0x34 ]
+	67      (00000108) invoke-virtual       v3, Ljava/io/DataOutputStream;->close()V
+	68      (0000010e) invoke-virtual       v8, Ljava/io/BufferedReader;->close()V
+	69      (00000114) goto                 -70h
+
+run-BB@0x116 : [ run-BB@0x120 ]
+	70      (00000116) move-exception       v9
+	71      (00000118) move-object          v1, v9
+	72      (0000011a) invoke-virtual       v1, Ljava/io/IOException;->printStackTrace()V
+
+run-BB@0x120 : 
+	73      (00000120) iput-boolean         v11, v12, Lcom/phonegap/CallbackServer;->active Z
+	74      (00000124) return-void          
+
+run-BB@0x126 : [ run-BB@0x128 ]
+	75      (00000126) move-exception       v9
+
+run-BB@0x128 : [ run-BB@0x12a ]
+	76      (00000128) monitor-exit         v12
+	128:129
+	(Ljava/lang/Throwable; -> 126 run-BB@0x126)
+
+run-BB@0x12a : 
+	77      (0000012a) throw                v9
+	12a:17b
+	(Ljava/io/IOException; -> 116 run-BB@0x116)
+
+run-BB@0x12c : [ run-BB@0x13c run-BB@0xfc ]
+	78      (0000012c) const-string         v6, "HTTP/1.1 200 OK
+
+"
+	79      (00000130) invoke-virtual       v12, Lcom/phonegap/CallbackServer;->getJavascript()Ljava/lang/String;
+	80      (00000136) move-result-object   v2
+	81      (00000138) if-eqz               v2, -01eh
+	12a:17b
+	(Ljava/io/IOException; -> 116 run-BB@0x116)
+
+run-BB@0x13c : [ run-BB@0xfc ]
+	82      (0000013c) new-instance         v9, Ljava/lang/StringBuilder;
+	83      (00000140) invoke-direct        v9, Ljava/lang/StringBuilder;-><init>()V
+	84      (00000146) invoke-virtual       v9, v6, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	85      (0000014c) move-result-object   v9
+	86      (0000014e) const-string         v10, "UTF-8"
+	87      (00000152) invoke-static        v2, v10, Lcom/phonegap/CallbackServer;->encode(Ljava/lang/String; Ljava/lang/String;)Ljava/lang/String;
+	88      (00000158) move-result-object   v10
+	89      (0000015a) invoke-virtual       v9, v10, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	90      (00000160) move-result-object   v9
+	91      (00000162) invoke-virtual       v9, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	92      (00000168) move-result-object   v6
+	93      (0000016a) goto                 -37h
+	12a:17b
+	(Ljava/io/IOException; -> 116 run-BB@0x116)
+
+run-BB@0x16c : [ run-BB@0xfc ]
+	94      (0000016c) const-string         v6, "HTTP/1.1 503 Service Unavailable
+
+ "
+	95      (00000170) goto                 -3ah
+	12a:17b
+	(Ljava/io/IOException; -> 116 run-BB@0x116)
+
+run-BB@0x172 : [ run-BB@0xfc ]
+	96      (00000172) const-string         v6, "HTTP/1.1 403 Forbidden
+
+ "
+	97      (00000176) goto                 -3dh
+	12a:17b
+	(Ljava/io/IOException; -> 116 run-BB@0x116)
+
+run-BB@0x178 : [ run-BB@0xfc ]
+	98      (00000178) const-string         v6, "HTTP/1.1 400 Bad Request
+
+ "
+	99      (0000017c) goto                 -40h
+
+run-BB@0x17e : [ run-BB@0xd4 ]
+	100     (0000017e) move-exception       v9
+	101     (00000180) goto                 -56h
+

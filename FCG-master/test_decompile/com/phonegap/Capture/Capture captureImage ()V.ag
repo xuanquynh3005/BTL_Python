@@ -1,0 +1,28 @@
+# Lcom/phonegap/Capture;->captureImage()V [access_flags=private]
+#
+# Parameters:
+# local registers: v0...v4
+#
+# - return:void
+
+captureImage-BB@0x0 : 
+	0       (00000000) new-instance         v0, Landroid/content/Intent;
+	1       (00000004) const-string         v2, "android.media.action.IMAGE_CAPTURE"
+	2       (00000008) invoke-direct        v0, v2, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
+	3       (0000000e) new-instance         v1, Ljava/io/File;
+	4       (00000012) invoke-static        Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
+	5       (00000018) move-result-object   v2
+	6       (0000001a) const-string         v3, "Capture.jpg"
+	7       (0000001e) invoke-direct        v1, v2, v3, Ljava/io/File;-><init>(Ljava/io/File; Ljava/lang/String;)V
+	8       (00000024) const-string         v2, "output"
+	9       (00000028) invoke-static        v1, Landroid/net/Uri;->fromFile(Ljava/io/File;)Landroid/net/Uri;
+	10      (0000002e) move-result-object   v3
+	11      (00000030) invoke-virtual       v0, v2, v3, Landroid/content/Intent;->putExtra(Ljava/lang/String; Landroid/os/Parcelable;)Landroid/content/Intent;
+	12      (00000036) invoke-static        v1, Landroid/net/Uri;->fromFile(Ljava/io/File;)Landroid/net/Uri;
+	13      (0000003c) move-result-object   v2
+	14      (0000003e) iput-object          v2, v4, Lcom/phonegap/Capture;->imageUri Landroid/net/Uri;
+	15      (00000042) iget-object          v2, v4, Lcom/phonegap/Capture;->ctx Lcom/phonegap/api/PhonegapActivity;
+	16      (00000046) const/4              v3, 1
+	17      (00000048) invoke-virtual       v2, v4, v0, v3, Lcom/phonegap/api/PhonegapActivity;->startActivityForResult(Lcom/phonegap/api/Plugin; Landroid/content/Intent; I)V
+	18      (0000004e) return-void          
+

@@ -1,0 +1,69 @@
+# Lcom/phonegap/DroidGap$1$1;->run()V [access_flags=public]
+#
+# Parameters:
+# local registers: v0...v6
+#
+# - return:void
+
+run-BB@0x0 : [ run-BB@0x2 ]
+	0       (00000000) monitor-enter        v6
+	0:1
+	(Ljava/lang/InterruptedException; -> 76 run-BB@0x76)
+
+run-BB@0x2 : [ run-BB@0x18 ]
+	1       (00000002) iget-object          v1, v6, Lcom/phonegap/DroidGap$1$1;->this$1 Lcom/phonegap/DroidGap$1;
+	2       (00000006) iget-object          v1, v1, Lcom/phonegap/DroidGap$1;->val$me Lcom/phonegap/DroidGap;
+	3       (0000000a) iget                 v1, v1, Lcom/phonegap/DroidGap;->loadUrlTimeoutValue I
+	4       (0000000e) int-to-long          v1, v1
+	5       (00000010) invoke-virtual       v6, v1, v2, Ljava/lang/Object;->wait(J)V
+	6       (00000016) monitor-exit         v6
+	2:17
+	(Ljava/lang/Throwable; -> 70 run-BB@0x70)
+
+run-BB@0x18 : [ run-BB@0x30 run-BB@0x6e ]
+	7       (00000018) iget-object          v1, v6, Lcom/phonegap/DroidGap$1$1;->this$1 Lcom/phonegap/DroidGap$1;
+	8       (0000001c) iget-object          v1, v1, Lcom/phonegap/DroidGap$1;->val$me Lcom/phonegap/DroidGap;
+	9       (00000020) invoke-static        v1, Lcom/phonegap/DroidGap;->access$100(Lcom/phonegap/DroidGap;)I
+	10      (00000026) move-result          v1
+	11      (00000028) iget                 v2, v6, Lcom/phonegap/DroidGap$1$1;->val$currentLoadUrlTimeout I
+	12      (0000002c) if-ne                v1, v2, +021h
+
+run-BB@0x30 : [ run-BB@0x6e ]
+	13      (00000030) iget-object          v1, v6, Lcom/phonegap/DroidGap$1$1;->this$1 Lcom/phonegap/DroidGap$1;
+	14      (00000034) iget-object          v1, v1, Lcom/phonegap/DroidGap$1;->val$me Lcom/phonegap/DroidGap;
+	15      (00000038) iget-object          v1, v1, Lcom/phonegap/DroidGap;->appView Landroid/webkit/WebView;
+	16      (0000003c) invoke-virtual       v1, Landroid/webkit/WebView;->stopLoading()V
+	17      (00000042) iget-object          v1, v6, Lcom/phonegap/DroidGap$1$1;->this$1 Lcom/phonegap/DroidGap$1;
+	18      (00000046) iget-object          v1, v1, Lcom/phonegap/DroidGap$1;->val$me Lcom/phonegap/DroidGap;
+	19      (0000004a) iget-object          v1, v1, Lcom/phonegap/DroidGap;->webViewClient Landroid/webkit/WebViewClient;
+	20      (0000004e) iget-object          v2, v6, Lcom/phonegap/DroidGap$1$1;->this$1 Lcom/phonegap/DroidGap$1;
+	21      (00000052) iget-object          v2, v2, Lcom/phonegap/DroidGap$1;->val$me Lcom/phonegap/DroidGap;
+	22      (00000056) iget-object          v2, v2, Lcom/phonegap/DroidGap;->appView Landroid/webkit/WebView;
+	23      (0000005a) const/4              v3, -6
+	24      (0000005c) const-string         v4, "The connection to the server was unsuccessful."
+	25      (00000060) iget-object          v5, v6, Lcom/phonegap/DroidGap$1$1;->this$1 Lcom/phonegap/DroidGap$1;
+	26      (00000064) iget-object          v5, v5, Lcom/phonegap/DroidGap$1;->val$url Ljava/lang/String;
+	27      (00000068) invoke-virtual       v1, v2, v3, v4, v5, Landroid/webkit/WebViewClient;->onReceivedError(Landroid/webkit/WebView; I Ljava/lang/String; Ljava/lang/String;)V
+
+run-BB@0x6e : 
+	28      (0000006e) return-void          
+
+run-BB@0x70 : [ run-BB@0x72 ]
+	29      (00000070) move-exception       v1
+
+run-BB@0x72 : [ run-BB@0x74 ]
+	30      (00000072) monitor-exit         v6
+	72:73
+	(Ljava/lang/Throwable; -> 70 run-BB@0x70)
+
+run-BB@0x74 : 
+	31      (00000074) throw                v1
+	74:75
+	(Ljava/lang/InterruptedException; -> 76 run-BB@0x76)
+
+run-BB@0x76 : [ run-BB@0x18 ]
+	32      (00000076) move-exception       v1
+	33      (00000078) move-object          v0, v1
+	34      (0000007a) invoke-virtual       v0, Ljava/lang/InterruptedException;->printStackTrace()V
+	35      (00000080) goto                 -34h
+

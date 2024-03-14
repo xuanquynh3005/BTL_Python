@@ -1,0 +1,14 @@
+# Lcom/phonegap/CompassListener;->getHeading()F [access_flags=public]
+#
+# Parameters:
+# local registers: v0...v2
+#
+# - return:float
+
+getHeading-BB@0x0 : 
+	0       (00000000) invoke-static        Ljava/lang/System;->currentTimeMillis()J
+	1       (00000006) move-result-wide     v0
+	2       (00000008) iput-wide            v0, v2, Lcom/phonegap/CompassListener;->lastAccessTime J
+	3       (0000000c) iget                 v0, v2, Lcom/phonegap/CompassListener;->heading F
+	4       (00000010) return               v0
+

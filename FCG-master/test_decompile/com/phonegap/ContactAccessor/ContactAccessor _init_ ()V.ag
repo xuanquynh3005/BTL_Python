@@ -1,0 +1,13 @@
+# Lcom/phonegap/ContactAccessor;-><init>()V [access_flags=public constructor]
+#
+# Parameters:
+# local registers: v0...v1
+#
+# - return:void
+
+<init>-BB@0x0 : 
+	0       (00000000) invoke-direct        v1, Ljava/lang/Object;-><init>()V
+	1       (00000006) const-string         v0, "ContactsAccessor"
+	2       (0000000a) iput-object          v0, v1, Lcom/phonegap/ContactAccessor;->LOG_TAG Ljava/lang/String;
+	3       (0000000e) return-void          
+

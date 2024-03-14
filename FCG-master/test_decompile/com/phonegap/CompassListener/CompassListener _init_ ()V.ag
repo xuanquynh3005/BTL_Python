@@ -1,0 +1,17 @@
+# Lcom/phonegap/CompassListener;-><init>()V [access_flags=public constructor]
+#
+# Parameters:
+# local registers: v0...v2
+#
+# - return:void
+
+<init>-BB@0x0 : 
+	0       (00000000) invoke-direct        v2, Lcom/phonegap/api/Plugin;-><init>()V
+	1       (00000006) const-wide/16        v0, 30000
+	2       (0000000a) iput-wide            v0, v2, Lcom/phonegap/CompassListener;->TIMEOUT J
+	3       (0000000e) const-wide/16        v0, 0
+	4       (00000012) iput-wide            v0, v2, Lcom/phonegap/CompassListener;->timeStamp J
+	5       (00000016) sget                 v0, Lcom/phonegap/CompassListener;->STOPPED I
+	6       (0000001a) invoke-direct        v2, v0, Lcom/phonegap/CompassListener;->setStatus(I)V
+	7       (00000020) return-void          
+

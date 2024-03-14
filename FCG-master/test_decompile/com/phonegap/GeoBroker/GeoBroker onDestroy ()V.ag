@@ -1,0 +1,44 @@
+# Lcom/phonegap/GeoBroker;->onDestroy()V [access_flags=public]
+#
+# Parameters:
+# local registers: v0...v5
+#
+# - return:void
+
+onDestroy-BB@0x0 : [ onDestroy-BB@0x14 ]
+	0       (00000000) iget-object          v4, v5, Lcom/phonegap/GeoBroker;->geoListeners Ljava/util/HashMap;
+	1       (00000004) invoke-virtual       v4, Ljava/util/HashMap;->entrySet()Ljava/util/Set;
+	2       (0000000a) move-result-object   v3
+	3       (0000000c) invoke-interface     v3, Ljava/util/Set;->iterator()Ljava/util/Iterator;
+	4       (00000012) move-result-object   v1
+
+onDestroy-BB@0x14 : [ onDestroy-BB@0x20 onDestroy-BB@0x40 ]
+	5       (00000014) invoke-interface     v1, Ljava/util/Iterator;->hasNext()Z
+	6       (0000001a) move-result          v4
+	7       (0000001c) if-eqz               v4, +012h
+
+onDestroy-BB@0x20 : [ onDestroy-BB@0x14 ]
+	8       (00000020) invoke-interface     v1, Ljava/util/Iterator;->next()Ljava/lang/Object;
+	9       (00000026) move-result-object   v0
+	10      (00000028) check-cast           v0, Ljava/util/Map$Entry;
+	11      (0000002c) invoke-interface     v0, Ljava/util/Map$Entry;->getValue()Ljava/lang/Object;
+	12      (00000032) move-result-object   v2
+	13      (00000034) check-cast           v2, Lcom/phonegap/GeoListener;
+	14      (00000038) invoke-virtual       v2, Lcom/phonegap/GeoListener;->destroy()V
+	15      (0000003e) goto                 -15h
+
+onDestroy-BB@0x40 : [ onDestroy-BB@0x52 onDestroy-BB@0x5c ]
+	16      (00000040) iget-object          v4, v5, Lcom/phonegap/GeoBroker;->geoListeners Ljava/util/HashMap;
+	17      (00000044) invoke-virtual       v4, Ljava/util/HashMap;->clear()V
+	18      (0000004a) iget-object          v4, v5, Lcom/phonegap/GeoBroker;->global Lcom/phonegap/GeoListener;
+	19      (0000004e) if-eqz               v4, +007h
+
+onDestroy-BB@0x52 : [ onDestroy-BB@0x5c ]
+	20      (00000052) iget-object          v4, v5, Lcom/phonegap/GeoBroker;->global Lcom/phonegap/GeoListener;
+	21      (00000056) invoke-virtual       v4, Lcom/phonegap/GeoListener;->destroy()V
+
+onDestroy-BB@0x5c : 
+	22      (0000005c) const/4              v4, 0
+	23      (0000005e) iput-object          v4, v5, Lcom/phonegap/GeoBroker;->global Lcom/phonegap/GeoListener;
+	24      (00000062) return-void          
+

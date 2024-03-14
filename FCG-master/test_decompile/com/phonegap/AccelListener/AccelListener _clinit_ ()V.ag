@@ -1,0 +1,18 @@
+# Lcom/phonegap/AccelListener;-><clinit>()V [access_flags=static constructor]
+#
+# Parameters:
+# local registers: v0...v0
+#
+# - return:void
+
+<clinit>-BB@0x0 : 
+	0       (00000000) const/4              v0, 0
+	1       (00000002) sput                 v0, Lcom/phonegap/AccelListener;->STOPPED I
+	2       (00000006) const/4              v0, 1
+	3       (00000008) sput                 v0, Lcom/phonegap/AccelListener;->STARTING I
+	4       (0000000c) const/4              v0, 2
+	5       (0000000e) sput                 v0, Lcom/phonegap/AccelListener;->RUNNING I
+	6       (00000012) const/4              v0, 3
+	7       (00000014) sput                 v0, Lcom/phonegap/AccelListener;->ERROR_FAILED_TO_START I
+	8       (00000018) return-void          
+

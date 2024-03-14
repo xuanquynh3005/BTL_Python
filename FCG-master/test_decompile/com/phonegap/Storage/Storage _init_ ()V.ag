@@ -1,0 +1,15 @@
+# Lcom/phonegap/Storage;-><init>()V [access_flags=public constructor]
+#
+# Parameters:
+# local registers: v0...v1
+#
+# - return:void
+
+<init>-BB@0x0 : 
+	0       (00000000) const/4              v0, 0
+	1       (00000002) invoke-direct        v1, Lcom/phonegap/api/Plugin;-><init>()V
+	2       (00000008) iput-object          v0, v1, Lcom/phonegap/Storage;->myDb Landroid/database/sqlite/SQLiteDatabase;
+	3       (0000000c) iput-object          v0, v1, Lcom/phonegap/Storage;->path Ljava/lang/String;
+	4       (00000010) iput-object          v0, v1, Lcom/phonegap/Storage;->dbName Ljava/lang/String;
+	5       (00000014) return-void          
+

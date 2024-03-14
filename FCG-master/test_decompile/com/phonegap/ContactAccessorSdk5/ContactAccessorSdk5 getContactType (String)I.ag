@@ -1,0 +1,78 @@
+# Lcom/phonegap/ContactAccessorSdk5;->getContactType(Ljava/lang/String;)I [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v3
+# - v4:java.lang.String
+#
+# - return:int
+
+getContactType-BB@0x0 : [ getContactType-BB@0x6 getContactType-BB@0x92 ]
+	0       (00000000) const/4              v0, 3
+	1       (00000002) if-eqz               v4, +048h
+
+getContactType-BB@0x6 : [ getContactType-BB@0x1e getContactType-BB@0x22 ]
+	2       (00000006) const-string         v1, "home"
+	3       (0000000a) invoke-virtual       v4, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	4       (00000010) move-result-object   v2
+	5       (00000012) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	6       (00000018) move-result          v1
+	7       (0000001a) if-eqz               v1, +004h
+
+getContactType-BB@0x1e : [ getContactType-BB@0x20 ]
+	8       (0000001e) const/4              v1, 1
+
+getContactType-BB@0x20 : 
+	9       (00000020) return               v1
+
+getContactType-BB@0x22 : [ getContactType-BB@0x3a getContactType-BB@0x3e ]
+	10      (00000022) const-string         v1, "work"
+	11      (00000026) invoke-virtual       v4, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	12      (0000002c) move-result-object   v2
+	13      (0000002e) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	14      (00000034) move-result          v1
+	15      (00000036) if-eqz               v1, +004h
+
+getContactType-BB@0x3a : [ getContactType-BB@0x20 ]
+	16      (0000003a) const/4              v1, 2
+	17      (0000003c) goto                 -eh
+
+getContactType-BB@0x3e : [ getContactType-BB@0x56 getContactType-BB@0x5a ]
+	18      (0000003e) const-string         v1, "other"
+	19      (00000042) invoke-virtual       v4, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	20      (00000048) move-result-object   v2
+	21      (0000004a) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	22      (00000050) move-result          v1
+	23      (00000052) if-eqz               v1, +004h
+
+getContactType-BB@0x56 : [ getContactType-BB@0x20 ]
+	24      (00000056) const/4              v1, 3
+	25      (00000058) goto                 -1ch
+
+getContactType-BB@0x5a : [ getContactType-BB@0x72 getContactType-BB@0x76 ]
+	26      (0000005a) const-string         v1, "mobile"
+	27      (0000005e) invoke-virtual       v4, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	28      (00000064) move-result-object   v2
+	29      (00000066) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	30      (0000006c) move-result          v1
+	31      (0000006e) if-eqz               v1, +004h
+
+getContactType-BB@0x72 : [ getContactType-BB@0x20 ]
+	32      (00000072) const/4              v1, 4
+	33      (00000074) goto                 -2ah
+
+getContactType-BB@0x76 : [ getContactType-BB@0x8e getContactType-BB@0x92 ]
+	34      (00000076) const-string         v1, "custom"
+	35      (0000007a) invoke-virtual       v4, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+	36      (00000080) move-result-object   v2
+	37      (00000082) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	38      (00000088) move-result          v1
+	39      (0000008a) if-eqz               v1, +004h
+
+getContactType-BB@0x8e : [ getContactType-BB@0x20 ]
+	40      (0000008e) const/4              v1, 0
+	41      (00000090) goto                 -38h
+
+getContactType-BB@0x92 : [ getContactType-BB@0x20 ]
+	42      (00000092) move                 v1, v0
+	43      (00000094) goto                 -3ah
+

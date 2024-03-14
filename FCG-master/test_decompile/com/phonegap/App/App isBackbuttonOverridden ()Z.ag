@@ -1,0 +1,13 @@
+# Lcom/phonegap/App;->isBackbuttonOverridden()Z [access_flags=public]
+#
+# Parameters:
+# local registers: v0...v1
+#
+# - return:boolean
+
+isBackbuttonOverridden-BB@0x0 : 
+	0       (00000000) iget-object          v1, v1, Lcom/phonegap/App;->ctx Lcom/phonegap/api/PhonegapActivity;
+	1       (00000004) check-cast           v1, Lcom/phonegap/DroidGap;
+	2       (00000008) iget-boolean         v0, v1, Lcom/phonegap/DroidGap;->bound Z
+	3       (0000000c) return               v0
+

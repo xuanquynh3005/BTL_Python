@@ -1,0 +1,75 @@
+# Lcom/phonegap/DroidGap$GapViewClient;->onPageFinished(Landroid/webkit/WebView; Ljava/lang/String;)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v6
+# - v7:android.webkit.WebView
+# - v8:java.lang.String
+#
+# - return:void
+
+onPageFinished-BB@0x0 : [ onPageFinished-BB@0x22 onPageFinished-BB@0x34 ]
+	0       (00000000) const/4              v5, 0
+	1       (00000002) invoke-super         v6, v7, v8, Landroid/webkit/WebViewClient;->onPageFinished(Landroid/webkit/WebView; Ljava/lang/String;)V
+	2       (00000008) iget-object          v0, v6, Lcom/phonegap/DroidGap$GapViewClient;->ctx Lcom/phonegap/DroidGap;
+	3       (0000000c) invoke-static        v0, Lcom/phonegap/DroidGap;->access$108(Lcom/phonegap/DroidGap;)I
+	4       (00000012) const-string         v0, "about:blank"
+	5       (00000016) invoke-virtual       v8, v0, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	6       (0000001c) move-result          v0
+	7       (0000001e) if-nez               v0, +00bh
+
+onPageFinished-BB@0x22 : [ onPageFinished-BB@0x34 ]
+	8       (00000022) iget-object          v0, v6, Lcom/phonegap/DroidGap$GapViewClient;->this$0 Lcom/phonegap/DroidGap;
+	9       (00000026) iget-object          v0, v0, Lcom/phonegap/DroidGap;->appView Landroid/webkit/WebView;
+	10      (0000002a) const-string         v1, "javascript:try{ PhoneGap.onNativeReady.fire();}catch(e){_nativeReady = true;}"
+	11      (0000002e) invoke-virtual       v0, v1, Landroid/webkit/WebView;->loadUrl(Ljava/lang/String;)V
+
+onPageFinished-BB@0x34 : [ onPageFinished-BB@0x4e onPageFinished-BB@0x72 ]
+	12      (00000034) iget-object          v0, v6, Lcom/phonegap/DroidGap$GapViewClient;->this$0 Lcom/phonegap/DroidGap;
+	13      (00000038) iget-object          v0, v0, Lcom/phonegap/DroidGap;->appView Landroid/webkit/WebView;
+	14      (0000003c) invoke-virtual       v0, v5, Landroid/webkit/WebView;->setVisibility(I)V
+	15      (00000042) iget-object          v0, v6, Lcom/phonegap/DroidGap$GapViewClient;->ctx Lcom/phonegap/DroidGap;
+	16      (00000046) iget-boolean         v0, v0, Lcom/phonegap/DroidGap;->hideLoadingDialogOnPageLoad Z
+	17      (0000004a) if-eqz               v0, +014h
+
+onPageFinished-BB@0x4e : [ onPageFinished-BB@0x72 ]
+	18      (0000004e) iget-object          v0, v6, Lcom/phonegap/DroidGap$GapViewClient;->ctx Lcom/phonegap/DroidGap;
+	19      (00000052) iput-boolean         v5, v0, Lcom/phonegap/DroidGap;->hideLoadingDialogOnPageLoad Z
+	20      (00000056) iget-object          v0, v6, Lcom/phonegap/DroidGap$GapViewClient;->ctx Lcom/phonegap/DroidGap;
+	21      (0000005a) iget-object          v0, v0, Lcom/phonegap/DroidGap;->pluginManager Lcom/phonegap/api/PluginManager;
+	22      (0000005e) const-string         v1, "Notification"
+	23      (00000062) const-string         v2, "activityStop"
+	24      (00000066) const/4              v3, 0
+	25      (00000068) const-string         v4, "[]"
+	26      (0000006c) invoke-virtual/range v0 ... v5, Lcom/phonegap/api/PluginManager;->exec(Ljava/lang/String; Ljava/lang/String; Ljava/lang/String; Ljava/lang/String; Z)Ljava/lang/String;
+
+onPageFinished-BB@0x72 : [ onPageFinished-BB@0x7e onPageFinished-BB@0x94 ]
+	27      (00000072) iget-object          v0, v6, Lcom/phonegap/DroidGap$GapViewClient;->ctx Lcom/phonegap/DroidGap;
+	28      (00000076) iget-boolean         v0, v0, Lcom/phonegap/DroidGap;->clearHistory Z
+	29      (0000007a) if-eqz               v0, +00dh
+
+onPageFinished-BB@0x7e : [ onPageFinished-BB@0x94 ]
+	30      (0000007e) iget-object          v0, v6, Lcom/phonegap/DroidGap$GapViewClient;->ctx Lcom/phonegap/DroidGap;
+	31      (00000082) iput-boolean         v5, v0, Lcom/phonegap/DroidGap;->clearHistory Z
+	32      (00000086) iget-object          v0, v6, Lcom/phonegap/DroidGap$GapViewClient;->ctx Lcom/phonegap/DroidGap;
+	33      (0000008a) iget-object          v0, v0, Lcom/phonegap/DroidGap;->appView Landroid/webkit/WebView;
+	34      (0000008e) invoke-virtual       v0, Landroid/webkit/WebView;->clearHistory()V
+
+onPageFinished-BB@0x94 : [ onPageFinished-BB@0xa4 onPageFinished-BB@0xbe ]
+	35      (00000094) const-string         v0, "about:blank"
+	36      (00000098) invoke-virtual       v8, v0, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	37      (0000009e) move-result          v0
+	38      (000000a0) if-eqz               v0, +00fh
+
+onPageFinished-BB@0xa4 : [ onPageFinished-BB@0xb0 onPageFinished-BB@0xbe ]
+	39      (000000a4) iget-object          v0, v6, Lcom/phonegap/DroidGap$GapViewClient;->ctx Lcom/phonegap/DroidGap;
+	40      (000000a8) iget-object          v0, v0, Lcom/phonegap/DroidGap;->callbackServer Lcom/phonegap/CallbackServer;
+	41      (000000ac) if-eqz               v0, +009h
+
+onPageFinished-BB@0xb0 : [ onPageFinished-BB@0xbe ]
+	42      (000000b0) iget-object          v0, v6, Lcom/phonegap/DroidGap$GapViewClient;->ctx Lcom/phonegap/DroidGap;
+	43      (000000b4) iget-object          v0, v0, Lcom/phonegap/DroidGap;->callbackServer Lcom/phonegap/CallbackServer;
+	44      (000000b8) invoke-virtual       v0, Lcom/phonegap/CallbackServer;->destroy()V
+
+onPageFinished-BB@0xbe : 
+	45      (000000be) return-void          
+

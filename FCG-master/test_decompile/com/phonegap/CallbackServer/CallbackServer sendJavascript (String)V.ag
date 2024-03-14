@@ -1,0 +1,27 @@
+# Lcom/phonegap/CallbackServer;->sendJavascript(Ljava/lang/String;)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v1
+# - v2:java.lang.String
+#
+# - return:void
+
+sendJavascript-BB@0x0 : [ sendJavascript-BB@0xe ]
+	0       (00000000) iget-object          v0, v1, Lcom/phonegap/CallbackServer;->javascript Ljava/util/LinkedList;
+	1       (00000004) invoke-virtual       v0, v2, Ljava/util/LinkedList;->add(Ljava/lang/Object;)Z
+	2       (0000000a) monitor-enter        v1
+	3       (0000000c) const/4              v0, 0
+
+sendJavascript-BB@0xe : 
+	4       (0000000e) iput-boolean         v0, v1, Lcom/phonegap/CallbackServer;->empty Z
+	5       (00000012) invoke-virtual       v1, Ljava/lang/Object;->notify()V
+	6       (00000018) monitor-exit         v1
+	7       (0000001a) return-void          
+	e:1f
+	(Ljava/lang/Throwable; -> 1c sendJavascript-BB@0x1c)
+
+sendJavascript-BB@0x1c : 
+	8       (0000001c) move-exception       v0
+	9       (0000001e) monitor-exit         v1
+	10      (00000020) throw                v0
+

@@ -1,0 +1,21 @@
+# Lcom/phonegap/AudioHandler;->stopPlayingAudio(Ljava/lang/String;)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v2
+# - v3:java.lang.String
+#
+# - return:void
+
+stopPlayingAudio-BB@0x0 : [ stopPlayingAudio-BB@0x14 stopPlayingAudio-BB@0x1a ]
+	0       (00000000) iget-object          v1, v2, Lcom/phonegap/AudioHandler;->players Ljava/util/HashMap;
+	1       (00000004) invoke-virtual       v1, v3, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
+	2       (0000000a) move-result-object   v0
+	3       (0000000c) check-cast           v0, Lcom/phonegap/AudioPlayer;
+	4       (00000010) if-eqz               v0, +005h
+
+stopPlayingAudio-BB@0x14 : [ stopPlayingAudio-BB@0x1a ]
+	5       (00000014) invoke-virtual       v0, Lcom/phonegap/AudioPlayer;->stopPlaying()V
+
+stopPlayingAudio-BB@0x1a : 
+	6       (0000001a) return-void          
+

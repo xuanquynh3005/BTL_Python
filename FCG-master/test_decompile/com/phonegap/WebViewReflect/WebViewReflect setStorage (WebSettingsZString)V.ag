@@ -1,0 +1,55 @@
+# Lcom/phonegap/WebViewReflect;->setStorage(Landroid/webkit/WebSettings; Z Ljava/lang/String;)V [access_flags=public static]
+#
+# Parameters:
+# - local registers: v0...v4
+# - v5:android.webkit.WebSettings
+# - v6:boolean
+# - v7:java.lang.String
+#
+# - return:void
+
+setStorage-BB@0x0 : [ setStorage-BB@0x8 setStorage-BB@0x3c ]
+	0       (00000000) sget-object          v1, Lcom/phonegap/WebViewReflect;->mWebSettings_setDatabaseEnabled Ljava/lang/reflect/Method;
+	1       (00000004) if-eqz               v1, +01ch
+
+setStorage-BB@0x8 : [ setStorage-BB@0x3c ]
+	2       (00000008) sget-object          v1, Lcom/phonegap/WebViewReflect;->mWebSettings_setDatabaseEnabled Ljava/lang/reflect/Method;
+	3       (0000000c) const/4              v2, 1
+	4       (0000000e) new-array            v2, v2, [Ljava/lang/Object;
+	5       (00000012) const/4              v3, 0
+	6       (00000014) invoke-static        v6, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+	7       (0000001a) move-result-object   v4
+	8       (0000001c) aput-object          v4, v2, v3
+	9       (00000020) invoke-virtual       v1, v5, v2, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object; [Ljava/lang/Object;)Ljava/lang/Object;
+	10      (00000026) sget-object          v1, Lcom/phonegap/WebViewReflect;->mWebSettings_setDatabasePath Ljava/lang/reflect/Method;
+	11      (0000002a) const/4              v2, 1
+	12      (0000002c) new-array            v2, v2, [Ljava/lang/Object;
+	13      (00000030) const/4              v3, 0
+	14      (00000032) aput-object          v7, v2, v3
+	15      (00000036) invoke-virtual       v1, v5, v2, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object; [Ljava/lang/Object;)Ljava/lang/Object;
+	8:3b
+	(Ljava/lang/IllegalArgumentException; -> 3e setStorage-BB@0x3e)
+	(Ljava/lang/IllegalAccessException; -> 4a setStorage-BB@0x4a)
+	(Ljava/lang/reflect/InvocationTargetException; -> 56 setStorage-BB@0x56)
+
+setStorage-BB@0x3c : 
+	16      (0000003c) return-void          
+
+setStorage-BB@0x3e : [ setStorage-BB@0x3c ]
+	17      (0000003e) move-exception       v1
+	18      (00000040) move-object          v0, v1
+	19      (00000042) invoke-virtual       v0, Ljava/lang/IllegalArgumentException;->printStackTrace()V
+	20      (00000048) goto                 -6h
+
+setStorage-BB@0x4a : [ setStorage-BB@0x3c ]
+	21      (0000004a) move-exception       v1
+	22      (0000004c) move-object          v0, v1
+	23      (0000004e) invoke-virtual       v0, Ljava/lang/IllegalAccessException;->printStackTrace()V
+	24      (00000054) goto                 -ch
+
+setStorage-BB@0x56 : [ setStorage-BB@0x3c ]
+	25      (00000056) move-exception       v1
+	26      (00000058) move-object          v0, v1
+	27      (0000005a) invoke-virtual       v0, Ljava/lang/reflect/InvocationTargetException;->printStackTrace()V
+	28      (00000060) goto                 -12h
+

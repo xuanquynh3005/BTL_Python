@@ -1,0 +1,237 @@
+# Lcom/phonegap/CameraLauncher;->onActivityResult(I I Landroid/content/Intent;)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v12
+# - v13:int
+# - v14:int
+# - v15:android.content.Intent
+#
+# - return:void
+
+onActivityResult-BB@0x0 : [ onActivityResult-BB@0x18 onActivityResult-BB@0x17a ]
+	0       (00000000) const/4              v10, -1
+	1       (00000002) const/4              v11, 1
+	2       (00000004) div-int/lit8         v9, v13, 16
+	3       (00000008) sub-int              v6, v9, v11
+	4       (0000000c) rem-int/lit8         v9, v13, 16
+	5       (00000010) sub-int              v1, v9, v11
+	6       (00000014) if-ne                v6, v11, +0b3h
+
+onActivityResult-BB@0x18 : [ onActivityResult-BB@0x1c onActivityResult-BB@0x15a ]
+	7       (00000018) if-ne                v14, v10, +0a1h
+
+onActivityResult-BB@0x1c : [ onActivityResult-BB@0x34 ]
+	8       (0000001c) iget-object          v9, v12, Lcom/phonegap/CameraLauncher;->ctx Lcom/phonegap/api/PhonegapActivity;
+	9       (00000020) invoke-virtual       v9, Lcom/phonegap/api/PhonegapActivity;->getContentResolver()Landroid/content/ContentResolver;
+	10      (00000026) move-result-object   v9
+	11      (00000028) iget-object          v10, v12, Lcom/phonegap/CameraLauncher;->imageUri Landroid/net/Uri;
+	12      (0000002c) invoke-static        v9, v10, Landroid/provider/MediaStore$Images$Media;->getBitmap(Landroid/content/ContentResolver; Landroid/net/Uri;)Landroid/graphics/Bitmap;
+	13      (00000032) move-result-object   v0
+	1c:31
+	(Ljava/io/FileNotFoundException; -> 4e onActivityResult-BB@0x4e)
+	(Ljava/io/IOException; -> f8 onActivityResult-BB@0xf8)
+
+onActivityResult-BB@0x34 : [ onActivityResult-BB@0x38 onActivityResult-BB@0x78 ]
+	14      (00000034) if-nez               v1, +022h
+
+onActivityResult-BB@0x38 : [ onActivityResult-BB@0x3e ]
+	15      (00000038) invoke-virtual       v12, v0, Lcom/phonegap/CameraLauncher;->processPicture(Landroid/graphics/Bitmap;)V
+	38:93
+	(Ljava/io/IOException; -> f8 onActivityResult-BB@0xf8)
+
+onActivityResult-BB@0x3e : [ onActivityResult-BB@0x4c ]
+	16      (0000003e) invoke-virtual       v0, Landroid/graphics/Bitmap;->recycle()V
+	17      (00000044) const/4              v0, 0
+	18      (00000046) invoke-static        Ljava/lang/System;->gc()V
+	38:93
+	(Ljava/io/IOException; -> f8 onActivityResult-BB@0xf8)
+
+onActivityResult-BB@0x4c : 
+	19      (0000004c) return-void          
+	38:93
+	(Ljava/io/IOException; -> f8 onActivityResult-BB@0xf8)
+
+onActivityResult-BB@0x4e : [ onActivityResult-BB@0x34 ]
+	20      (0000004e) move-exception       v9
+	21      (00000050) move-object          v2, v9
+	22      (00000052) invoke-virtual       v15, Landroid/content/Intent;->getData()Landroid/net/Uri;
+	23      (00000058) move-result-object   v7
+	24      (0000005a) iget-object          v9, v12, Lcom/phonegap/CameraLauncher;->ctx Lcom/phonegap/api/PhonegapActivity;
+	25      (0000005e) invoke-virtual       v9, Lcom/phonegap/api/PhonegapActivity;->getContentResolver()Landroid/content/ContentResolver;
+	26      (00000064) move-result-object   v5
+	27      (00000066) invoke-virtual       v5, v7, Landroid/content/ContentResolver;->openInputStream(Landroid/net/Uri;)Ljava/io/InputStream;
+	28      (0000006c) move-result-object   v9
+	29      (0000006e) invoke-static        v9, Landroid/graphics/BitmapFactory;->decodeStream(Ljava/io/InputStream;)Landroid/graphics/Bitmap;
+	30      (00000074) move-result-object   v0
+	31      (00000076) goto                 -21h
+	38:93
+	(Ljava/io/IOException; -> f8 onActivityResult-BB@0xf8)
+
+onActivityResult-BB@0x78 : [ onActivityResult-BB@0x7c onActivityResult-BB@0x3e ]
+	32      (00000078) if-ne                v1, v11, -01dh
+	38:93
+	(Ljava/io/IOException; -> f8 onActivityResult-BB@0xf8)
+
+onActivityResult-BB@0x7c : [ onActivityResult-BB@0x96 ]
+	33      (0000007c) new-instance         v8, Landroid/content/ContentValues;
+	34      (00000080) invoke-direct        v8, Landroid/content/ContentValues;-><init>()V
+	35      (00000086) const-string         v9, "mime_type"
+	36      (0000008a) const-string         v10, "image/jpeg"
+	37      (0000008e) invoke-virtual       v8, v9, v10, Landroid/content/ContentValues;->put(Ljava/lang/String; Ljava/lang/String;)V
+	38      (00000094) const/4              v7, 0
+
+onActivityResult-BB@0x96 : [ onActivityResult-BB@0xae ]
+	39      (00000096) iget-object          v9, v12, Lcom/phonegap/CameraLauncher;->ctx Lcom/phonegap/api/PhonegapActivity;
+	40      (0000009a) invoke-virtual       v9, Lcom/phonegap/api/PhonegapActivity;->getContentResolver()Landroid/content/ContentResolver;
+	41      (000000a0) move-result-object   v9
+	42      (000000a2) sget-object          v10, Landroid/provider/MediaStore$Images$Media;->EXTERNAL_CONTENT_URI Landroid/net/Uri;
+	43      (000000a6) invoke-virtual       v9, v10, v8, Landroid/content/ContentResolver;->insert(Landroid/net/Uri; Landroid/content/ContentValues;)Landroid/net/Uri;
+	44      (000000ac) move-result-object   v7
+	96:ab
+	(Ljava/lang/UnsupportedOperationException; -> 10e onActivityResult-BB@0x10e)
+	(Ljava/io/IOException; -> f8 onActivityResult-BB@0xf8)
+
+onActivityResult-BB@0xae : [ onActivityResult-BB@0x3e ]
+	45      (000000ae) iget-object          v9, v12, Lcom/phonegap/CameraLauncher;->ctx Lcom/phonegap/api/PhonegapActivity;
+	46      (000000b2) invoke-virtual       v9, Lcom/phonegap/api/PhonegapActivity;->getContentResolver()Landroid/content/ContentResolver;
+	47      (000000b8) move-result-object   v9
+	48      (000000ba) invoke-virtual       v9, v7, Landroid/content/ContentResolver;->openOutputStream(Landroid/net/Uri;)Ljava/io/OutputStream;
+	49      (000000c0) move-result-object   v4
+	50      (000000c2) sget-object          v9, Landroid/graphics/Bitmap$CompressFormat;->JPEG Landroid/graphics/Bitmap$CompressFormat;
+	51      (000000c6) iget                 v10, v12, Lcom/phonegap/CameraLauncher;->mQuality I
+	52      (000000ca) invoke-virtual       v0, v9, v10, v4, Landroid/graphics/Bitmap;->compress(Landroid/graphics/Bitmap$CompressFormat; I Ljava/io/OutputStream;)Z
+	53      (000000d0) invoke-virtual       v4, Ljava/io/OutputStream;->close()V
+	54      (000000d6) new-instance         v9, Lcom/phonegap/api/PluginResult;
+	55      (000000da) sget-object          v10, Lcom/phonegap/api/PluginResult$Status;->OK Lcom/phonegap/api/PluginResult$Status;
+	56      (000000de) invoke-virtual       v7, Landroid/net/Uri;->toString()Ljava/lang/String;
+	57      (000000e4) move-result-object   v11
+	58      (000000e6) invoke-direct        v9, v10, v11, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; Ljava/lang/String;)V
+	59      (000000ec) iget-object          v10, v12, Lcom/phonegap/CameraLauncher;->callbackId Ljava/lang/String;
+	60      (000000f0) invoke-virtual       v12, v9, v10, Lcom/phonegap/CameraLauncher;->success(Lcom/phonegap/api/PluginResult; Ljava/lang/String;)V
+	61      (000000f6) goto                 -5ch
+	ae:f5
+	(Ljava/io/IOException; -> f8 onActivityResult-BB@0xf8)
+
+onActivityResult-BB@0xf8 : [ onActivityResult-BB@0x4c ]
+	62      (000000f8) move-exception       v9
+	63      (000000fa) move-object          v2, v9
+	64      (000000fc) invoke-virtual       v2, Ljava/io/IOException;->printStackTrace()V
+	65      (00000102) const-string         v9, "Error capturing image."
+	66      (00000106) invoke-virtual       v12, v9, Lcom/phonegap/CameraLauncher;->failPicture(Ljava/lang/String;)V
+	67      (0000010c) goto                 -60h
+
+onActivityResult-BB@0x10e : [ onActivityResult-BB@0x112 ]
+	68      (0000010e) move-exception       v9
+	69      (00000110) move-object          v2, v9
+
+onActivityResult-BB@0x112 : [ onActivityResult-BB@0x120 ]
+	70      (00000112) sget-object          v9, Ljava/lang/System;->out Ljava/io/PrintStream;
+	71      (00000116) const-string         v10, "Can't write to external media storage."
+	72      (0000011a) invoke-virtual       v9, v10, Ljava/io/PrintStream;->println(Ljava/lang/String;)V
+	112:11f
+	(Ljava/io/IOException; -> f8 onActivityResult-BB@0xf8)
+
+onActivityResult-BB@0x120 : [ onActivityResult-BB@0xae ]
+	73      (00000120) iget-object          v9, v12, Lcom/phonegap/CameraLauncher;->ctx Lcom/phonegap/api/PhonegapActivity;
+	74      (00000124) invoke-virtual       v9, Lcom/phonegap/api/PhonegapActivity;->getContentResolver()Landroid/content/ContentResolver;
+	75      (0000012a) move-result-object   v9
+	76      (0000012c) sget-object          v10, Landroid/provider/MediaStore$Images$Media;->INTERNAL_CONTENT_URI Landroid/net/Uri;
+	77      (00000130) invoke-virtual       v9, v10, v8, Landroid/content/ContentResolver;->insert(Landroid/net/Uri; Landroid/content/ContentValues;)Landroid/net/Uri;
+	78      (00000136) move-result-object   v7
+	79      (00000138) goto                 -45h
+	120:135
+	(Ljava/lang/UnsupportedOperationException; -> 13a onActivityResult-BB@0x13a)
+	(Ljava/io/IOException; -> f8 onActivityResult-BB@0xf8)
+
+onActivityResult-BB@0x13a : [ onActivityResult-BB@0x13e ]
+	80      (0000013a) move-exception       v9
+	81      (0000013c) move-object          v3, v9
+
+onActivityResult-BB@0x13e : [ onActivityResult-BB@0x4c ]
+	82      (0000013e) sget-object          v9, Ljava/lang/System;->out Ljava/io/PrintStream;
+	83      (00000142) const-string         v10, "Can't write to internal media storage."
+	84      (00000146) invoke-virtual       v9, v10, Ljava/io/PrintStream;->println(Ljava/lang/String;)V
+	85      (0000014c) const-string         v9, "Error capturing image - no media storage found."
+	86      (00000150) invoke-virtual       v12, v9, Lcom/phonegap/CameraLauncher;->failPicture(Ljava/lang/String;)V
+	87      (00000156) goto/16              -085h
+	13e:155
+	(Ljava/io/IOException; -> f8 onActivityResult-BB@0xf8)
+
+onActivityResult-BB@0x15a : [ onActivityResult-BB@0x15e onActivityResult-BB@0x16c ]
+	88      (0000015a) if-nez               v14, +009h
+
+onActivityResult-BB@0x15e : [ onActivityResult-BB@0x4c ]
+	89      (0000015e) const-string         v9, "Camera cancelled."
+	90      (00000162) invoke-virtual       v12, v9, Lcom/phonegap/CameraLauncher;->failPicture(Ljava/lang/String;)V
+	91      (00000168) goto/16              -08eh
+
+onActivityResult-BB@0x16c : [ onActivityResult-BB@0x4c ]
+	92      (0000016c) const-string         v9, "Did not complete!"
+	93      (00000170) invoke-virtual       v12, v9, Lcom/phonegap/CameraLauncher;->failPicture(Ljava/lang/String;)V
+	94      (00000176) goto/16              -095h
+
+onActivityResult-BB@0x17a : [ onActivityResult-BB@0x17e onActivityResult-BB@0x184 ]
+	95      (0000017a) if-eqz               v6, +005h
+
+onActivityResult-BB@0x17e : [ onActivityResult-BB@0x184 onActivityResult-BB@0x4c ]
+	96      (0000017e) const/4              v9, 2
+	97      (00000180) if-ne                v6, v9, -09ah
+
+onActivityResult-BB@0x184 : [ onActivityResult-BB@0x188 onActivityResult-BB@0x208 ]
+	98      (00000184) if-ne                v14, v10, +042h
+
+onActivityResult-BB@0x188 : [ onActivityResult-BB@0x1a0 onActivityResult-BB@0x1e0 ]
+	99      (00000188) invoke-virtual       v15, Landroid/content/Intent;->getData()Landroid/net/Uri;
+	100     (0000018e) move-result-object   v7
+	101     (00000190) iget-object          v9, v12, Lcom/phonegap/CameraLauncher;->ctx Lcom/phonegap/api/PhonegapActivity;
+	102     (00000194) invoke-virtual       v9, Lcom/phonegap/api/PhonegapActivity;->getContentResolver()Landroid/content/ContentResolver;
+	103     (0000019a) move-result-object   v5
+	104     (0000019c) if-nez               v1, +022h
+
+onActivityResult-BB@0x1a0 : [ onActivityResult-BB@0x4c ]
+	105     (000001a0) invoke-virtual       v5, v7, Landroid/content/ContentResolver;->openInputStream(Landroid/net/Uri;)Ljava/io/InputStream;
+	106     (000001a6) move-result-object   v9
+	107     (000001a8) invoke-static        v9, Landroid/graphics/BitmapFactory;->decodeStream(Ljava/io/InputStream;)Landroid/graphics/Bitmap;
+	108     (000001ae) move-result-object   v0
+	109     (000001b0) invoke-virtual       v12, v0, Lcom/phonegap/CameraLauncher;->processPicture(Landroid/graphics/Bitmap;)V
+	110     (000001b6) invoke-virtual       v0, Landroid/graphics/Bitmap;->recycle()V
+	111     (000001bc) const/4              v0, 0
+	112     (000001be) invoke-static        Ljava/lang/System;->gc()V
+	113     (000001c4) goto/16              -0bch
+	1a0:1c3
+	(Ljava/io/FileNotFoundException; -> 1c8 onActivityResult-BB@0x1c8)
+
+onActivityResult-BB@0x1c8 : [ onActivityResult-BB@0x4c ]
+	114     (000001c8) move-exception       v9
+	115     (000001ca) move-object          v2, v9
+	116     (000001cc) invoke-virtual       v2, Ljava/io/FileNotFoundException;->printStackTrace()V
+	117     (000001d2) const-string         v9, "Error retrieving image."
+	118     (000001d6) invoke-virtual       v12, v9, Lcom/phonegap/CameraLauncher;->failPicture(Ljava/lang/String;)V
+	119     (000001dc) goto/16              -0c8h
+
+onActivityResult-BB@0x1e0 : [ onActivityResult-BB@0x1e4 onActivityResult-BB@0x4c ]
+	120     (000001e0) if-ne                v1, v11, -0cah
+
+onActivityResult-BB@0x1e4 : [ onActivityResult-BB@0x4c ]
+	121     (000001e4) new-instance         v9, Lcom/phonegap/api/PluginResult;
+	122     (000001e8) sget-object          v10, Lcom/phonegap/api/PluginResult$Status;->OK Lcom/phonegap/api/PluginResult$Status;
+	123     (000001ec) invoke-virtual       v7, Landroid/net/Uri;->toString()Ljava/lang/String;
+	124     (000001f2) move-result-object   v11
+	125     (000001f4) invoke-direct        v9, v10, v11, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; Ljava/lang/String;)V
+	126     (000001fa) iget-object          v10, v12, Lcom/phonegap/CameraLauncher;->callbackId Ljava/lang/String;
+	127     (000001fe) invoke-virtual       v12, v9, v10, Lcom/phonegap/CameraLauncher;->success(Lcom/phonegap/api/PluginResult; Ljava/lang/String;)V
+	128     (00000204) goto/16              -0dch
+
+onActivityResult-BB@0x208 : [ onActivityResult-BB@0x20c onActivityResult-BB@0x21a ]
+	129     (00000208) if-nez               v14, +009h
+
+onActivityResult-BB@0x20c : [ onActivityResult-BB@0x4c ]
+	130     (0000020c) const-string         v9, "Selection cancelled."
+	131     (00000210) invoke-virtual       v12, v9, Lcom/phonegap/CameraLauncher;->failPicture(Ljava/lang/String;)V
+	132     (00000216) goto/16              -0e5h
+
+onActivityResult-BB@0x21a : [ onActivityResult-BB@0x4c ]
+	133     (0000021a) const-string         v9, "Selection did not complete!"
+	134     (0000021e) invoke-virtual       v12, v9, Lcom/phonegap/CameraLauncher;->failPicture(Ljava/lang/String;)V
+	135     (00000224) goto/16              -0ech
+

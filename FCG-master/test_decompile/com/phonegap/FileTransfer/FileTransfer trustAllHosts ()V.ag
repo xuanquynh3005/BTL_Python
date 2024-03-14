@@ -1,0 +1,44 @@
+# Lcom/phonegap/FileTransfer;->trustAllHosts()V [access_flags=private]
+#
+# Parameters:
+# local registers: v0...v5
+#
+# - return:void
+
+trustAllHosts-BB@0x0 : [ trustAllHosts-BB@0x16 ]
+	0       (00000000) const/4              v3, 1
+	1       (00000002) new-array            v2, v3, [Ljavax/net/ssl/TrustManager;
+	2       (00000006) const/4              v3, 0
+	3       (00000008) new-instance         v4, Lcom/phonegap/FileTransfer$2;
+	4       (0000000c) invoke-direct        v4, v5, Lcom/phonegap/FileTransfer$2;-><init>(Lcom/phonegap/FileTransfer;)V
+	5       (00000012) aput-object          v4, v2, v3
+
+trustAllHosts-BB@0x16 : [ trustAllHosts-BB@0x4e ]
+	6       (00000016) invoke-static        Ljavax/net/ssl/HttpsURLConnection;->getDefaultSSLSocketFactory()Ljavax/net/ssl/SSLSocketFactory;
+	7       (0000001c) move-result-object   v3
+	8       (0000001e) iput-object          v3, v5, Lcom/phonegap/FileTransfer;->defaultSSLSocketFactory Ljavax/net/ssl/SSLSocketFactory;
+	9       (00000022) const-string         v3, "TLS"
+	10      (00000026) invoke-static        v3, Ljavax/net/ssl/SSLContext;->getInstance(Ljava/lang/String;)Ljavax/net/ssl/SSLContext;
+	11      (0000002c) move-result-object   v1
+	12      (0000002e) const/4              v3, 0
+	13      (00000030) new-instance         v4, Ljava/security/SecureRandom;
+	14      (00000034) invoke-direct        v4, Ljava/security/SecureRandom;-><init>()V
+	15      (0000003a) invoke-virtual       v1, v3, v2, v4, Ljavax/net/ssl/SSLContext;->init([Ljavax/net/ssl/KeyManager; [Ljavax/net/ssl/TrustManager; Ljava/security/SecureRandom;)V
+	16      (00000040) invoke-virtual       v1, Ljavax/net/ssl/SSLContext;->getSocketFactory()Ljavax/net/ssl/SSLSocketFactory;
+	17      (00000046) move-result-object   v3
+	18      (00000048) invoke-static        v3, Ljavax/net/ssl/HttpsURLConnection;->setDefaultSSLSocketFactory(Ljavax/net/ssl/SSLSocketFactory;)V
+	16:4d
+	(Ljava/lang/Exception; -> 50 trustAllHosts-BB@0x50)
+
+trustAllHosts-BB@0x4e : 
+	19      (0000004e) return-void          
+
+trustAllHosts-BB@0x50 : [ trustAllHosts-BB@0x4e ]
+	20      (00000050) move-exception       v3
+	21      (00000052) move-object          v0, v3
+	22      (00000054) const-string         v3, "FileUploader"
+	23      (00000058) invoke-virtual       v0, Ljava/lang/Exception;->getMessage()Ljava/lang/String;
+	24      (0000005e) move-result-object   v4
+	25      (00000060) invoke-static        v3, v4, v0, Landroid/util/Log;->e(Ljava/lang/String; Ljava/lang/String; Ljava/lang/Throwable;)I
+	26      (00000066) goto                 -ch
+

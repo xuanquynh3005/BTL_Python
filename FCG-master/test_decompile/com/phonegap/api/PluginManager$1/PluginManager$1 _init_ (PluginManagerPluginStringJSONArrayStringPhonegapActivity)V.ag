@@ -1,0 +1,23 @@
+# Lcom/phonegap/api/PluginManager$1;-><init>(Lcom/phonegap/api/PluginManager; Lcom/phonegap/api/Plugin; Ljava/lang/String; Lorg/json/JSONArray; Ljava/lang/String; Lcom/phonegap/api/PhonegapActivity;)V [access_flags=constructor]
+#
+# Parameters:
+# - local registers: v0...v0
+# - v1:com.phonegap.api.PluginManager
+# - v2:com.phonegap.api.Plugin
+# - v3:java.lang.String
+# - v4:org.json.JSONArray
+# - v5:java.lang.String
+# - v6:com.phonegap.api.PhonegapActivity
+#
+# - return:void
+
+<init>-BB@0x0 : 
+	0       (00000000) iput-object          v1, v0, Lcom/phonegap/api/PluginManager$1;->this$0 Lcom/phonegap/api/PluginManager;
+	1       (00000004) iput-object          v2, v0, Lcom/phonegap/api/PluginManager$1;->val$plugin Lcom/phonegap/api/Plugin;
+	2       (00000008) iput-object          v3, v0, Lcom/phonegap/api/PluginManager$1;->val$action Ljava/lang/String;
+	3       (0000000c) iput-object          v4, v0, Lcom/phonegap/api/PluginManager$1;->val$args Lorg/json/JSONArray;
+	4       (00000010) iput-object          v5, v0, Lcom/phonegap/api/PluginManager$1;->val$callbackId Ljava/lang/String;
+	5       (00000014) iput-object          v6, v0, Lcom/phonegap/api/PluginManager$1;->val$ctx Lcom/phonegap/api/PhonegapActivity;
+	6       (00000018) invoke-direct        v0, Ljava/lang/Object;-><init>()V
+	7       (0000001e) return-void          
+

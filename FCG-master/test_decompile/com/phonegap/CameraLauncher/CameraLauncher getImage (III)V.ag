@@ -1,0 +1,33 @@
+# Lcom/phonegap/CameraLauncher;->getImage(I I I)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v4
+# - v5:int
+# - v6:int
+# - v7:int
+#
+# - return:void
+
+getImage-BB@0x0 : 
+	0       (00000000) iput                 v5, v4, Lcom/phonegap/CameraLauncher;->mQuality I
+	1       (00000004) new-instance         v0, Landroid/content/Intent;
+	2       (00000008) invoke-direct        v0, Landroid/content/Intent;-><init>()V
+	3       (0000000e) const-string         v1, "image/*"
+	4       (00000012) invoke-virtual       v0, v1, Landroid/content/Intent;->setType(Ljava/lang/String;)Landroid/content/Intent;
+	5       (00000018) const-string         v1, "android.intent.action.GET_CONTENT"
+	6       (0000001c) invoke-virtual       v0, v1, Landroid/content/Intent;->setAction(Ljava/lang/String;)Landroid/content/Intent;
+	7       (00000022) const-string         v1, "android.intent.category.OPENABLE"
+	8       (00000026) invoke-virtual       v0, v1, Landroid/content/Intent;->addCategory(Ljava/lang/String;)Landroid/content/Intent;
+	9       (0000002c) iget-object          v1, v4, Lcom/phonegap/CameraLauncher;->ctx Lcom/phonegap/api/PhonegapActivity;
+	10      (00000030) new-instance         v2, Ljava/lang/String;
+	11      (00000034) const-string         v3, "Get Picture"
+	12      (00000038) invoke-direct        v2, v3, Ljava/lang/String;-><init>(Ljava/lang/String;)V
+	13      (0000003e) invoke-static        v0, v2, Landroid/content/Intent;->createChooser(Landroid/content/Intent; Ljava/lang/CharSequence;)Landroid/content/Intent;
+	14      (00000044) move-result-object   v2
+	15      (00000046) add-int/lit8         v3, v6, 1
+	16      (0000004a) mul-int/lit8         v3, v3, 16
+	17      (0000004e) add-int/2addr        v3, v7
+	18      (00000050) add-int/lit8         v3, v3, 1
+	19      (00000054) invoke-virtual       v1, v4, v2, v3, Lcom/phonegap/api/PhonegapActivity;->startActivityForResult(Lcom/phonegap/api/Plugin; Landroid/content/Intent; I)V
+	20      (0000005a) return-void          
+

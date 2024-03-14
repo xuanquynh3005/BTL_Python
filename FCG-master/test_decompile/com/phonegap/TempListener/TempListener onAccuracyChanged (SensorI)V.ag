@@ -1,0 +1,12 @@
+# Lcom/phonegap/TempListener;->onAccuracyChanged(Landroid/hardware/Sensor; I)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v0
+# - v1:android.hardware.Sensor
+# - v2:int
+#
+# - return:void
+
+onAccuracyChanged-BB@0x0 : 
+	0       (00000000) return-void          
+

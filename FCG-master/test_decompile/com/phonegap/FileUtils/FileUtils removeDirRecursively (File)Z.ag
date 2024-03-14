@@ -1,0 +1,53 @@
+# Lcom/phonegap/FileUtils;->removeDirRecursively(Ljava/io/File;)Z [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v7
+# - v8:java.io.File
+#
+# - return:boolean
+
+removeDirRecursively-BB@0x0 : [ removeDirRecursively-BB@0xc removeDirRecursively-BB@0x2c ]
+	0       (00000000) invoke-virtual       v8, Ljava/io/File;->isDirectory()Z
+	1       (00000006) move-result          v4
+	2       (00000008) if-eqz               v4, +012h
+
+removeDirRecursively-BB@0xc : [ removeDirRecursively-BB@0x18 ]
+	3       (0000000c) invoke-virtual       v8, Ljava/io/File;->listFiles()[Ljava/io/File;
+	4       (00000012) move-result-object   v0
+	5       (00000014) array-length         v3, v0
+	6       (00000016) const/4              v2, 0
+
+removeDirRecursively-BB@0x18 : [ removeDirRecursively-BB@0x1c removeDirRecursively-BB@0x2c ]
+	7       (00000018) if-ge                v2, v3, +00ah
+
+removeDirRecursively-BB@0x1c : [ removeDirRecursively-BB@0x18 ]
+	8       (0000001c) aget-object          v1, v0, v2
+	9       (00000020) invoke-direct        v7, v1, Lcom/phonegap/FileUtils;->removeDirRecursively(Ljava/io/File;)Z
+	10      (00000026) add-int/lit8         v2, v2, 1
+	11      (0000002a) goto                 -9h
+
+removeDirRecursively-BB@0x2c : [ removeDirRecursively-BB@0x38 removeDirRecursively-BB@0x72 ]
+	12      (0000002c) invoke-virtual       v8, Ljava/io/File;->delete()Z
+	13      (00000032) move-result          v4
+	14      (00000034) if-nez               v4, +01fh
+
+removeDirRecursively-BB@0x38 : 
+	15      (00000038) new-instance         v4, Lcom/phonegap/file/FileExistsException;
+	16      (0000003c) new-instance         v5, Ljava/lang/StringBuilder;
+	17      (00000040) invoke-direct        v5, Ljava/lang/StringBuilder;-><init>()V
+	18      (00000046) const-string         v6, "could not delete: "
+	19      (0000004a) invoke-virtual       v5, v6, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	20      (00000050) move-result-object   v5
+	21      (00000052) invoke-virtual       v8, Ljava/io/File;->getName()Ljava/lang/String;
+	22      (00000058) move-result-object   v6
+	23      (0000005a) invoke-virtual       v5, v6, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	24      (00000060) move-result-object   v5
+	25      (00000062) invoke-virtual       v5, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	26      (00000068) move-result-object   v5
+	27      (0000006a) invoke-direct        v4, v5, Lcom/phonegap/file/FileExistsException;-><init>(Ljava/lang/String;)V
+	28      (00000070) throw                v4
+
+removeDirRecursively-BB@0x72 : 
+	29      (00000072) const/4              v4, 1
+	30      (00000074) return               v4
+

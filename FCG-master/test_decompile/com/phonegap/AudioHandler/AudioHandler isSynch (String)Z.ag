@@ -1,0 +1,35 @@
+# Lcom/phonegap/AudioHandler;->isSynch(Ljava/lang/String;)Z [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v2
+# - v3:java.lang.String
+#
+# - return:boolean
+
+isSynch-BB@0x0 : [ isSynch-BB@0x12 isSynch-BB@0x16 ]
+	0       (00000000) const/4              v1, 1
+	1       (00000002) const-string         v0, "getCurrentPositionAudio"
+	2       (00000006) invoke-virtual       v3, v0, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	3       (0000000c) move-result          v0
+	4       (0000000e) if-eqz               v0, +004h
+
+isSynch-BB@0x12 : [ isSynch-BB@0x14 ]
+	5       (00000012) move                 v0, v1
+
+isSynch-BB@0x14 : 
+	6       (00000014) return               v0
+
+isSynch-BB@0x16 : [ isSynch-BB@0x26 isSynch-BB@0x2a ]
+	7       (00000016) const-string         v0, "getDurationAudio"
+	8       (0000001a) invoke-virtual       v3, v0, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	9       (00000020) move-result          v0
+	10      (00000022) if-eqz               v0, +004h
+
+isSynch-BB@0x26 : [ isSynch-BB@0x14 ]
+	11      (00000026) move                 v0, v1
+	12      (00000028) goto                 -ah
+
+isSynch-BB@0x2a : [ isSynch-BB@0x14 ]
+	13      (0000002a) const/4              v0, 0
+	14      (0000002c) goto                 -ch
+

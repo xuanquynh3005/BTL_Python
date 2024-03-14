@@ -1,0 +1,17 @@
+# Lcom/phonegap/FileUploadResult;-><init>()V [access_flags=public constructor]
+#
+# Parameters:
+# local registers: v0...v2
+#
+# - return:void
+
+<init>-BB@0x0 : 
+	0       (00000000) invoke-direct        v2, Ljava/lang/Object;-><init>()V
+	1       (00000006) const-wide/16        v0, 0
+	2       (0000000a) iput-wide            v0, v2, Lcom/phonegap/FileUploadResult;->bytesSent J
+	3       (0000000e) const/4              v0, -1
+	4       (00000010) iput                 v0, v2, Lcom/phonegap/FileUploadResult;->responseCode I
+	5       (00000014) const/4              v0, 0
+	6       (00000016) iput-object          v0, v2, Lcom/phonegap/FileUploadResult;->response Ljava/lang/String;
+	7       (0000001a) return-void          
+

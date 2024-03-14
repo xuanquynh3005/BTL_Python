@@ -1,0 +1,211 @@
+# Lcom/phonegap/api/PluginManager;->exec(Ljava/lang/String; Ljava/lang/String; Ljava/lang/String; Ljava/lang/String; Z)Ljava/lang/String; [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v17
+# - v18:java.lang.String
+# - v19:java.lang.String
+# - v20:java.lang.String
+# - v21:java.lang.String
+# - v22:boolean
+#
+# - return:java.lang.String
+
+exec-BB@0x0 : [ exec-BB@0x6 ]
+	0       (00000000) const/4              v13, 0
+	1       (00000002) move/from16          v15, v22
+
+exec-BB@0x6 : [ exec-BB@0x38 exec-BB@0x46 ]
+	2       (00000006) new-instance         v8, Lorg/json/JSONArray;
+	3       (0000000a) move-object          v0, v8
+	4       (0000000c) move-object/from16   v1, v21
+	5       (00000010) invoke-direct        v0, v1, Lorg/json/JSONArray;-><init>(Ljava/lang/String;)V
+	6       (00000016) move-object/from16   v0, v17
+	7       (0000001a) iget-object          v0, v0, Lcom/phonegap/api/PluginManager;->services Ljava/util/HashMap;
+	8       (0000001e) move-object          v4, v0
+	9       (00000020) move-object          v0, v4
+	10      (00000022) move-object/from16   v1, v18
+	11      (00000026) invoke-virtual       v0, v1, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
+	12      (0000002c) move-result-object   v12
+	13      (0000002e) check-cast           v12, Ljava/lang/String;
+	14      (00000032) const/4              v11, 0
+	15      (00000034) if-eqz               v12, +009h
+	6:103
+	(Ljava/lang/ClassNotFoundException; -> 106 exec-BB@0x106)
+	(Lorg/json/JSONException; -> 15a exec-BB@0x15a)
+
+exec-BB@0x38 : [ exec-BB@0x46 ]
+	16      (00000038) move-object/from16   v0, v17
+	17      (0000003c) move-object          v1, v12
+	18      (0000003e) invoke-direct        v0, v1, Lcom/phonegap/api/PluginManager;->getClassByName(Ljava/lang/String;)Ljava/lang/Class;
+	19      (00000044) move-result-object   v11
+	6:103
+	(Ljava/lang/ClassNotFoundException; -> 106 exec-BB@0x106)
+	(Lorg/json/JSONException; -> 15a exec-BB@0x15a)
+
+exec-BB@0x46 : [ exec-BB@0x58 exec-BB@0x118 ]
+	20      (00000046) move-object/from16   v0, v17
+	21      (0000004a) move-object          v1, v11
+	22      (0000004c) invoke-direct        v0, v1, Lcom/phonegap/api/PluginManager;->isPhoneGapPlugin(Ljava/lang/Class;)Z
+	23      (00000052) move-result          v4
+	24      (00000054) if-eqz               v4, +062h
+	6:103
+	(Ljava/lang/ClassNotFoundException; -> 106 exec-BB@0x106)
+	(Lorg/json/JSONException; -> 15a exec-BB@0x15a)
+
+exec-BB@0x58 : [ exec-BB@0x76 exec-BB@0xc2 ]
+	25      (00000058) move-object/from16   v0, v17
+	26      (0000005c) move-object          v1, v12
+	27      (0000005e) move-object          v2, v11
+	28      (00000060) invoke-direct        v0, v1, v2, Lcom/phonegap/api/PluginManager;->addPlugin(Ljava/lang/String; Ljava/lang/Class;)Lcom/phonegap/api/Plugin;
+	29      (00000066) move-result-object   v6
+	30      (00000068) move-object/from16   v0, v17
+	31      (0000006c) iget-object          v0, v0, Lcom/phonegap/api/PluginManager;->ctx Lcom/phonegap/api/PhonegapActivity;
+	32      (00000070) move-object          v10, v0
+	33      (00000072) if-eqz               v22, +028h
+	6:103
+	(Ljava/lang/ClassNotFoundException; -> 106 exec-BB@0x106)
+	(Lorg/json/JSONException; -> 15a exec-BB@0x15a)
+
+exec-BB@0x76 : [ exec-BB@0x88 exec-BB@0xc2 ]
+	34      (00000076) move-object          v0, v6
+	35      (00000078) move-object/from16   v1, v19
+	36      (0000007c) invoke-virtual       v0, v1, Lcom/phonegap/api/Plugin;->isSynch(Ljava/lang/String;)Z
+	37      (00000082) move-result          v4
+	38      (00000084) if-nez               v4, +01fh
+	6:103
+	(Ljava/lang/ClassNotFoundException; -> 106 exec-BB@0x106)
+	(Lorg/json/JSONException; -> 15a exec-BB@0x15a)
+
+exec-BB@0x88 : [ exec-BB@0x8c ]
+	39      (00000088) const/4              v4, 1
+	40      (0000008a) move                 v15, v4
+	6:103
+	(Ljava/lang/ClassNotFoundException; -> 106 exec-BB@0x106)
+	(Lorg/json/JSONException; -> 15a exec-BB@0x15a)
+
+exec-BB@0x8c : [ exec-BB@0x90 exec-BB@0xc8 ]
+	41      (0000008c) if-eqz               v15, +01eh
+	6:103
+	(Ljava/lang/ClassNotFoundException; -> 106 exec-BB@0x106)
+	(Lorg/json/JSONException; -> 15a exec-BB@0x15a)
+
+exec-BB@0x90 : [ exec-BB@0xc0 ]
+	42      (00000090) new-instance         v16, Ljava/lang/Thread;
+	43      (00000094) new-instance         v4, Lcom/phonegap/api/PluginManager$1;
+	44      (00000098) move-object/from16   v5, v17
+	45      (0000009c) move-object/from16   v7, v19
+	46      (000000a0) move-object/from16   v9, v20
+	47      (000000a4) invoke-direct/range  v4 ... v10, Lcom/phonegap/api/PluginManager$1;-><init>(Lcom/phonegap/api/PluginManager; Lcom/phonegap/api/Plugin; Ljava/lang/String; Lorg/json/JSONArray; Ljava/lang/String; Lcom/phonegap/api/PhonegapActivity;)V
+	48      (000000aa) move-object/from16   v0, v16
+	49      (000000ae) move-object          v1, v4
+	50      (000000b0) invoke-direct        v0, v1, Ljava/lang/Thread;-><init>(Ljava/lang/Runnable;)V
+	51      (000000b6) invoke-virtual/range v16, Ljava/lang/Thread;->start()V
+	52      (000000bc) const-string         v4, ""
+	6:103
+	(Ljava/lang/ClassNotFoundException; -> 106 exec-BB@0x106)
+	(Lorg/json/JSONException; -> 15a exec-BB@0x15a)
+
+exec-BB@0xc0 : 
+	53      (000000c0) return-object        v4
+	6:103
+	(Ljava/lang/ClassNotFoundException; -> 106 exec-BB@0x106)
+	(Lorg/json/JSONException; -> 15a exec-BB@0x15a)
+
+exec-BB@0xc2 : [ exec-BB@0x8c ]
+	54      (000000c2) const/4              v4, 0
+	55      (000000c4) move                 v15, v4
+	56      (000000c6) goto                 -1dh
+	6:103
+	(Ljava/lang/ClassNotFoundException; -> 106 exec-BB@0x106)
+	(Lorg/json/JSONException; -> 15a exec-BB@0x15a)
+
+exec-BB@0xc8 : [ exec-BB@0xf4 exec-BB@0x118 ]
+	57      (000000c8) move-object          v0, v6
+	58      (000000ca) move-object/from16   v1, v19
+	59      (000000ce) move-object          v2, v8
+	60      (000000d0) move-object/from16   v3, v20
+	61      (000000d4) invoke-virtual       v0, v1, v2, v3, Lcom/phonegap/api/Plugin;->execute(Ljava/lang/String; Lorg/json/JSONArray; Ljava/lang/String;)Lcom/phonegap/api/PluginResult;
+	62      (000000da) move-result-object   v13
+	63      (000000dc) invoke-virtual       v13, Lcom/phonegap/api/PluginResult;->getStatus()I
+	64      (000000e2) move-result          v4
+	65      (000000e4) sget-object          v5, Lcom/phonegap/api/PluginResult$Status;->NO_RESULT Lcom/phonegap/api/PluginResult$Status;
+	66      (000000e8) invoke-virtual       v5, Lcom/phonegap/api/PluginResult$Status;->ordinal()I
+	67      (000000ee) move-result          v5
+	68      (000000f0) if-ne                v4, v5, +014h
+	6:103
+	(Ljava/lang/ClassNotFoundException; -> 106 exec-BB@0x106)
+	(Lorg/json/JSONException; -> 15a exec-BB@0x15a)
+
+exec-BB@0xf4 : [ exec-BB@0x100 exec-BB@0x118 ]
+	69      (000000f4) invoke-virtual       v13, Lcom/phonegap/api/PluginResult;->getKeepCallback()Z
+	70      (000000fa) move-result          v4
+	71      (000000fc) if-eqz               v4, +00eh
+	6:103
+	(Ljava/lang/ClassNotFoundException; -> 106 exec-BB@0x106)
+	(Lorg/json/JSONException; -> 15a exec-BB@0x15a)
+
+exec-BB@0x100 : [ exec-BB@0xc0 ]
+	72      (00000100) const-string         v4, ""
+	73      (00000104) goto                 -22h
+
+exec-BB@0x106 : [ exec-BB@0x118 ]
+	74      (00000106) move-exception       v4
+	75      (00000108) move-object          v14, v4
+	76      (0000010a) new-instance         v13, Lcom/phonegap/api/PluginResult;
+	77      (0000010e) sget-object          v4, Lcom/phonegap/api/PluginResult$Status;->CLASS_NOT_FOUND_EXCEPTION Lcom/phonegap/api/PluginResult$Status;
+	78      (00000112) invoke-direct        v13, v4, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status;)V
+
+exec-BB@0x118 : [ exec-BB@0x11c exec-BB@0x14c ]
+	79      (00000118) if-eqz               v15, +01ah
+
+exec-BB@0x11c : [ exec-BB@0x120 exec-BB@0x12e ]
+	80      (0000011c) if-nez               v13, +009h
+
+exec-BB@0x120 : [ exec-BB@0x12e ]
+	81      (00000120) new-instance         v13, Lcom/phonegap/api/PluginResult;
+	82      (00000124) sget-object          v4, Lcom/phonegap/api/PluginResult$Status;->CLASS_NOT_FOUND_EXCEPTION Lcom/phonegap/api/PluginResult$Status;
+	83      (00000128) invoke-direct        v13, v4, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status;)V
+
+exec-BB@0x12e : [ exec-BB@0x14c ]
+	84      (0000012e) move-object/from16   v0, v17
+	85      (00000132) iget-object          v0, v0, Lcom/phonegap/api/PluginManager;->ctx Lcom/phonegap/api/PhonegapActivity;
+	86      (00000136) move-object          v4, v0
+	87      (00000138) move-object          v0, v13
+	88      (0000013a) move-object/from16   v1, v20
+	89      (0000013e) invoke-virtual       v0, v1, Lcom/phonegap/api/PluginResult;->toErrorCallbackString(Ljava/lang/String;)Ljava/lang/String;
+	90      (00000144) move-result-object   v5
+	91      (00000146) invoke-virtual       v4, v5, Lcom/phonegap/api/PhonegapActivity;->sendJavascript(Ljava/lang/String;)V
+
+exec-BB@0x14c : [ exec-BB@0x150 exec-BB@0x1a6 ]
+	92      (0000014c) if-eqz               v13, +02dh
+
+exec-BB@0x150 : [ exec-BB@0xc0 ]
+	93      (00000150) invoke-virtual       v13, Lcom/phonegap/api/PluginResult;->getJSONString()Ljava/lang/String;
+	94      (00000156) move-result-object   v4
+	95      (00000158) goto                 -4ch
+
+exec-BB@0x15a : [ exec-BB@0x118 ]
+	96      (0000015a) move-exception       v4
+	97      (0000015c) move-object          v14, v4
+	98      (0000015e) sget-object          v4, Ljava/lang/System;->out Ljava/io/PrintStream;
+	99      (00000162) new-instance         v5, Ljava/lang/StringBuilder;
+	100     (00000166) invoke-direct        v5, Ljava/lang/StringBuilder;-><init>()V
+	101     (0000016c) const-string         v6, "ERROR: "
+	102     (00000170) invoke-virtual       v5, v6, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	103     (00000176) move-result-object   v5
+	104     (00000178) invoke-virtual       v14, Lorg/json/JSONException;->toString()Ljava/lang/String;
+	105     (0000017e) move-result-object   v6
+	106     (00000180) invoke-virtual       v5, v6, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	107     (00000186) move-result-object   v5
+	108     (00000188) invoke-virtual       v5, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	109     (0000018e) move-result-object   v5
+	110     (00000190) invoke-virtual       v4, v5, Ljava/io/PrintStream;->println(Ljava/lang/String;)V
+	111     (00000196) new-instance         v13, Lcom/phonegap/api/PluginResult;
+	112     (0000019a) sget-object          v4, Lcom/phonegap/api/PluginResult$Status;->JSON_EXCEPTION Lcom/phonegap/api/PluginResult$Status;
+	113     (0000019e) invoke-direct        v13, v4, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status;)V
+	114     (000001a4) goto                 -46h
+
+exec-BB@0x1a6 : [ exec-BB@0xc0 ]
+	115     (000001a6) const-string         v4, "{ status: 0, message: 'all good' }"
+	116     (000001aa) goto                 -75h
+

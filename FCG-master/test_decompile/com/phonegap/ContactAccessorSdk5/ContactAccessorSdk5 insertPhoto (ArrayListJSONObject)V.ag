@@ -1,0 +1,40 @@
+# Lcom/phonegap/ContactAccessorSdk5;->insertPhoto(Ljava/util/ArrayList; Lorg/json/JSONObject;)V [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v4
+# - v5:java.util.ArrayList
+# - v6:org.json.JSONObject
+#
+# - return:void
+
+insertPhoto-BB@0x0 : 
+	0       (00000000) const-string         v1, "value"
+	1       (00000004) invoke-virtual       v4, v6, v1, Lcom/phonegap/ContactAccessorSdk5;->getJsonString(Lorg/json/JSONObject; Ljava/lang/String;)Ljava/lang/String;
+	2       (0000000a) move-result-object   v1
+	3       (0000000c) invoke-direct        v4, v1, Lcom/phonegap/ContactAccessorSdk5;->getPhotoBytes(Ljava/lang/String;)[B
+	4       (00000012) move-result-object   v0
+	5       (00000014) sget-object          v1, Landroid/provider/ContactsContract$Data;->CONTENT_URI Landroid/net/Uri;
+	6       (00000018) invoke-static        v1, Landroid/content/ContentProviderOperation;->newInsert(Landroid/net/Uri;)Landroid/content/ContentProviderOperation$Builder;
+	7       (0000001e) move-result-object   v1
+	8       (00000020) const-string         v2, "raw_contact_id"
+	9       (00000024) const/4              v3, 0
+	10      (00000026) invoke-virtual       v1, v2, v3, Landroid/content/ContentProviderOperation$Builder;->withValueBackReference(Ljava/lang/String; I)Landroid/content/ContentProviderOperation$Builder;
+	11      (0000002c) move-result-object   v1
+	12      (0000002e) const-string         v2, "is_super_primary"
+	13      (00000032) const/4              v3, 1
+	14      (00000034) invoke-static        v3, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+	15      (0000003a) move-result-object   v3
+	16      (0000003c) invoke-virtual       v1, v2, v3, Landroid/content/ContentProviderOperation$Builder;->withValue(Ljava/lang/String; Ljava/lang/Object;)Landroid/content/ContentProviderOperation$Builder;
+	17      (00000042) move-result-object   v1
+	18      (00000044) const-string         v2, "mimetype"
+	19      (00000048) const-string         v3, "vnd.android.cursor.item/photo"
+	20      (0000004c) invoke-virtual       v1, v2, v3, Landroid/content/ContentProviderOperation$Builder;->withValue(Ljava/lang/String; Ljava/lang/Object;)Landroid/content/ContentProviderOperation$Builder;
+	21      (00000052) move-result-object   v1
+	22      (00000054) const-string         v2, "data15"
+	23      (00000058) invoke-virtual       v1, v2, v0, Landroid/content/ContentProviderOperation$Builder;->withValue(Ljava/lang/String; Ljava/lang/Object;)Landroid/content/ContentProviderOperation$Builder;
+	24      (0000005e) move-result-object   v1
+	25      (00000060) invoke-virtual       v1, Landroid/content/ContentProviderOperation$Builder;->build()Landroid/content/ContentProviderOperation;
+	26      (00000066) move-result-object   v1
+	27      (00000068) invoke-virtual       v5, v1, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+	28      (0000006e) return-void          
+

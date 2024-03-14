@@ -1,0 +1,61 @@
+# Lcom/phonegap/HttpHandler;->writeToDisk(Lorg/apache/http/HttpEntity; Ljava/lang/String;)V [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v9
+# - v10:org.apache.http.HttpEntity
+# - v11:java.lang.String
+#
+# - return:void
+
+writeToDisk-BB@0x0 : [ writeToDisk-BB@0x28 ]
+	0       (00000000) const/4              v3, 0
+	1       (00000002) new-instance         v7, Ljava/lang/StringBuilder;
+	2       (00000006) invoke-direct        v7, Ljava/lang/StringBuilder;-><init>()V
+	3       (0000000c) const-string         v8, "/sdcard/"
+	4       (00000010) invoke-virtual       v7, v8, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	5       (00000016) move-result-object   v7
+	6       (00000018) invoke-virtual       v7, v11, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	7       (0000001e) move-result-object   v7
+	8       (00000020) invoke-virtual       v7, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	9       (00000026) move-result-object   v0
+
+writeToDisk-BB@0x28 : [ writeToDisk-BB@0x42 ]
+	10      (00000028) invoke-interface     v10, Lorg/apache/http/HttpEntity;->getContent()Ljava/io/InputStream;
+	11      (0000002e) move-result-object   v4
+	12      (00000030) const/16             v7, 1024
+	13      (00000034) new-array            v1, v7, [B
+	14      (00000038) new-instance         v6, Ljava/io/FileOutputStream;
+	15      (0000003c) invoke-direct        v6, v0, Ljava/io/FileOutputStream;-><init>(Ljava/lang/String;)V
+	28:63
+	(Ljava/lang/Exception; -> 6a writeToDisk-BB@0x6a)
+
+writeToDisk-BB@0x42 : [ writeToDisk-BB@0x4e writeToDisk-BB@0x5c ]
+	16      (00000042) invoke-virtual       v4, v1, Ljava/io/InputStream;->read([B)I
+	17      (00000048) move-result          v5
+	18      (0000004a) if-gtz               v5, +009h
+	28:63
+	(Ljava/lang/Exception; -> 6a writeToDisk-BB@0x6a)
+
+writeToDisk-BB@0x4e : [ writeToDisk-BB@0x5a ]
+	19      (0000004e) invoke-virtual       v6, Ljava/io/FileOutputStream;->flush()V
+	20      (00000054) invoke-virtual       v6, Ljava/io/FileOutputStream;->close()V
+	28:63
+	(Ljava/lang/Exception; -> 6a writeToDisk-BB@0x6a)
+
+writeToDisk-BB@0x5a : 
+	21      (0000005a) return-void          
+	28:63
+	(Ljava/lang/Exception; -> 6a writeToDisk-BB@0x6a)
+
+writeToDisk-BB@0x5c : [ writeToDisk-BB@0x42 ]
+	22      (0000005c) const/4              v7, 0
+	23      (0000005e) invoke-virtual       v6, v1, v7, v5, Ljava/io/FileOutputStream;->write([B I I)V
+	24      (00000064) add-int/lit8         v3, v3, 1
+	25      (00000068) goto                 -13h
+
+writeToDisk-BB@0x6a : [ writeToDisk-BB@0x5a ]
+	26      (0000006a) move-exception       v7
+	27      (0000006c) move-object          v2, v7
+	28      (0000006e) invoke-virtual       v2, Ljava/lang/Exception;->printStackTrace()V
+	29      (00000074) goto                 -dh
+

@@ -1,0 +1,13 @@
+# Lcom/phonegap/api/Plugin;->onActivityResult(I I Landroid/content/Intent;)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v0
+# - v1:int
+# - v2:int
+# - v3:android.content.Intent
+#
+# - return:void
+
+onActivityResult-BB@0x0 : 
+	0       (00000000) return-void          
+

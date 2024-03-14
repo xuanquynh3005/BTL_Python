@@ -1,0 +1,50 @@
+# Lcom/phonegap/ContactAccessorSdk5;->getPathFromUri(Ljava/lang/String;)Ljava/io/InputStream; [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v3
+# - v4:java.lang.String
+#
+# - return:java.io.InputStream
+
+getPathFromUri-BB@0x0 : [ getPathFromUri-BB@0x10 getPathFromUri-BB@0x2e ]
+	0       (00000000) const-string         v2, "content:"
+	1       (00000004) invoke-virtual       v4, v2, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+	2       (0000000a) move-result          v2
+	3       (0000000c) if-eqz               v2, +011h
+
+getPathFromUri-BB@0x10 : [ getPathFromUri-BB@0x2c ]
+	4       (00000010) invoke-static        v4, Landroid/net/Uri;->parse(Ljava/lang/String;)Landroid/net/Uri;
+	5       (00000016) move-result-object   v0
+	6       (00000018) iget-object          v2, v3, Lcom/phonegap/ContactAccessorSdk5;->mApp Landroid/app/Activity;
+	7       (0000001c) invoke-virtual       v2, Landroid/app/Activity;->getContentResolver()Landroid/content/ContentResolver;
+	8       (00000022) move-result-object   v2
+	9       (00000024) invoke-virtual       v2, v0, Landroid/content/ContentResolver;->openInputStream(Landroid/net/Uri;)Ljava/io/InputStream;
+	10      (0000002a) move-result-object   v2
+
+getPathFromUri-BB@0x2c : 
+	11      (0000002c) return-object        v2
+
+getPathFromUri-BB@0x2e : [ getPathFromUri-BB@0x3e getPathFromUri-BB@0x4e ]
+	12      (0000002e) const-string         v2, "http:"
+	13      (00000032) invoke-virtual       v4, v2, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+	14      (00000038) move-result          v2
+	15      (0000003a) if-nez               v2, +00ah
+
+getPathFromUri-BB@0x3e : [ getPathFromUri-BB@0x4e getPathFromUri-BB@0x62 ]
+	16      (0000003e) const-string         v2, "file:"
+	17      (00000042) invoke-virtual       v4, v2, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+	18      (00000048) move-result          v2
+	19      (0000004a) if-eqz               v2, +00ch
+
+getPathFromUri-BB@0x4e : [ getPathFromUri-BB@0x2c ]
+	20      (0000004e) new-instance         v1, Ljava/net/URL;
+	21      (00000052) invoke-direct        v1, v4, Ljava/net/URL;-><init>(Ljava/lang/String;)V
+	22      (00000058) invoke-virtual       v1, Ljava/net/URL;->openStream()Ljava/io/InputStream;
+	23      (0000005e) move-result-object   v2
+	24      (00000060) goto                 -1ah
+
+getPathFromUri-BB@0x62 : [ getPathFromUri-BB@0x2c ]
+	25      (00000062) new-instance         v2, Ljava/io/FileInputStream;
+	26      (00000066) invoke-direct        v2, v4, Ljava/io/FileInputStream;-><init>(Ljava/lang/String;)V
+	27      (0000006c) goto                 -20h
+

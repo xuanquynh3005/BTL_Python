@@ -1,0 +1,33 @@
+# Lcom/phonegap/Notification;->activityStop()V [access_flags=public synchronized]
+#
+# Parameters:
+# local registers: v0...v1
+#
+# - return:void
+
+activityStop-BB@0x0 : [ activityStop-BB@0x2 ]
+	0       (00000000) monitor-enter        v1
+
+activityStop-BB@0x2 : [ activityStop-BB@0xa activityStop-BB@0x1a ]
+	1       (00000002) iget-object          v0, v1, Lcom/phonegap/Notification;->spinnerDialog Landroid/app/ProgressDialog;
+	2       (00000006) if-eqz               v0, +00ah
+	2:19
+	(Ljava/lang/Throwable; -> 1e activityStop-BB@0x1e)
+
+activityStop-BB@0xa : [ activityStop-BB@0x1a ]
+	3       (0000000a) iget-object          v0, v1, Lcom/phonegap/Notification;->spinnerDialog Landroid/app/ProgressDialog;
+	4       (0000000e) invoke-virtual       v0, Landroid/app/ProgressDialog;->dismiss()V
+	5       (00000014) const/4              v0, 0
+	6       (00000016) iput-object          v0, v1, Lcom/phonegap/Notification;->spinnerDialog Landroid/app/ProgressDialog;
+	2:19
+	(Ljava/lang/Throwable; -> 1e activityStop-BB@0x1e)
+
+activityStop-BB@0x1a : 
+	7       (0000001a) monitor-exit         v1
+	8       (0000001c) return-void          
+
+activityStop-BB@0x1e : 
+	9       (0000001e) move-exception       v0
+	10      (00000020) monitor-exit         v1
+	11      (00000022) throw                v0
+

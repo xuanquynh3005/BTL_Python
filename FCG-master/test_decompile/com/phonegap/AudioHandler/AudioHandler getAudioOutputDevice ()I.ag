@@ -1,0 +1,39 @@
+# Lcom/phonegap/AudioHandler;->getAudioOutputDevice()I [access_flags=public]
+#
+# Parameters:
+# local registers: v0...v6
+#
+# - return:int
+
+getAudioOutputDevice-BB@0x0 : [ getAudioOutputDevice-BB@0x26 getAudioOutputDevice-BB@0x2a ]
+	0       (00000000) const/4              v5, 2
+	1       (00000002) const/4              v4, 1
+	2       (00000004) const/4              v3, 0
+	3       (00000006) iget-object          v1, v6, Lcom/phonegap/AudioHandler;->ctx Lcom/phonegap/api/PhonegapActivity;
+	4       (0000000a) const-string         v2, "audio"
+	5       (0000000e) invoke-virtual       v1, v2, Lcom/phonegap/api/PhonegapActivity;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+	6       (00000014) move-result-object   v0
+	7       (00000016) check-cast           v0, Landroid/media/AudioManager;
+	8       (0000001a) invoke-virtual       v0, v3, Landroid/media/AudioManager;->getRouting(I)I
+	9       (00000020) move-result          v1
+	10      (00000022) if-ne                v1, v4, +004h
+
+getAudioOutputDevice-BB@0x26 : [ getAudioOutputDevice-BB@0x28 ]
+	11      (00000026) move                 v1, v4
+
+getAudioOutputDevice-BB@0x28 : 
+	12      (00000028) return               v1
+
+getAudioOutputDevice-BB@0x2a : [ getAudioOutputDevice-BB@0x36 getAudioOutputDevice-BB@0x3a ]
+	13      (0000002a) invoke-virtual       v0, v3, Landroid/media/AudioManager;->getRouting(I)I
+	14      (00000030) move-result          v1
+	15      (00000032) if-ne                v1, v5, +004h
+
+getAudioOutputDevice-BB@0x36 : [ getAudioOutputDevice-BB@0x28 ]
+	16      (00000036) move                 v1, v5
+	17      (00000038) goto                 -8h
+
+getAudioOutputDevice-BB@0x3a : [ getAudioOutputDevice-BB@0x28 ]
+	18      (0000003a) const/4              v1, -1
+	19      (0000003c) goto                 -ah
+

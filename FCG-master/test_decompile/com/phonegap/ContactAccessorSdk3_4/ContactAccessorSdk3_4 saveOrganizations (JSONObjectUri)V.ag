@@ -1,0 +1,109 @@
+# Lcom/phonegap/ContactAccessorSdk3_4;->saveOrganizations(Lorg/json/JSONObject; Landroid/net/Uri;)V [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v11
+# - v12:org.json.JSONObject
+# - v13:android.net.Uri
+#
+# - return:void
+
+saveOrganizations-BB@0x0 : [ saveOrganizations-BB@0x18 ]
+	0       (00000000) new-instance         v7, Landroid/content/ContentValues;
+	1       (00000004) invoke-direct        v7, Landroid/content/ContentValues;-><init>()V
+	2       (0000000a) const-string         v8, "organizations"
+	3       (0000000e) invoke-static        v13, v8, Landroid/net/Uri;->withAppendedPath(Landroid/net/Uri; Ljava/lang/String;)Landroid/net/Uri;
+	4       (00000014) move-result-object   v4
+	5       (00000016) const/4              v2, 0
+
+saveOrganizations-BB@0x18 : [ saveOrganizations-BB@0x28 saveOrganizations-BB@0xfa ]
+	6       (00000018) const-string         v8, "organizations"
+	7       (0000001c) invoke-virtual       v12, v8, Lorg/json/JSONObject;->getJSONArray(Ljava/lang/String;)Lorg/json/JSONArray;
+	8       (00000022) move-result-object   v5
+	9       (00000024) if-eqz               v5, +06bh
+	18:bb
+	(Lorg/json/JSONException; -> be saveOrganizations-BB@0xbe)
+
+saveOrganizations-BB@0x28 : [ saveOrganizations-BB@0x34 saveOrganizations-BB@0xfa ]
+	10      (00000028) invoke-virtual       v5, Lorg/json/JSONArray;->length()I
+	11      (0000002e) move-result          v8
+	12      (00000030) if-lez               v8, +065h
+	18:bb
+	(Lorg/json/JSONException; -> be saveOrganizations-BB@0xbe)
+
+saveOrganizations-BB@0x34 : [ saveOrganizations-BB@0x36 ]
+	13      (00000034) const/4              v1, 0
+	18:bb
+	(Lorg/json/JSONException; -> be saveOrganizations-BB@0xbe)
+
+saveOrganizations-BB@0x36 : [ saveOrganizations-BB@0x42 saveOrganizations-BB@0xfa ]
+	14      (00000036) invoke-virtual       v5, Lorg/json/JSONArray;->length()I
+	15      (0000003c) move-result          v8
+	16      (0000003e) if-ge                v1, v8, +05eh
+	18:bb
+	(Lorg/json/JSONException; -> be saveOrganizations-BB@0xbe)
+
+saveOrganizations-BB@0x42 : [ saveOrganizations-BB@0x86 saveOrganizations-BB@0x9e ]
+	17      (00000042) invoke-virtual       v5, v1, Lorg/json/JSONArray;->getJSONObject(I)Lorg/json/JSONObject;
+	18      (00000048) move-result-object   v3
+	19      (0000004a) const-string         v8, "id"
+	20      (0000004e) invoke-virtual       v11, v3, v8, Lcom/phonegap/ContactAccessorSdk3_4;->getJsonString(Lorg/json/JSONObject; Ljava/lang/String;)Ljava/lang/String;
+	21      (00000054) move-result-object   v2
+	22      (00000056) const-string         v8, "company"
+	23      (0000005a) const-string         v9, "name"
+	24      (0000005e) invoke-virtual       v11, v3, v9, Lcom/phonegap/ContactAccessorSdk3_4;->getJsonString(Lorg/json/JSONObject; Ljava/lang/String;)Ljava/lang/String;
+	25      (00000064) move-result-object   v9
+	26      (00000066) invoke-virtual       v7, v8, v9, Landroid/content/ContentValues;->put(Ljava/lang/String; Ljava/lang/String;)V
+	27      (0000006c) const-string         v8, "title"
+	28      (00000070) const-string         v9, "title"
+	29      (00000074) invoke-virtual       v11, v3, v9, Lcom/phonegap/ContactAccessorSdk3_4;->getJsonString(Lorg/json/JSONObject; Ljava/lang/String;)Ljava/lang/String;
+	30      (0000007a) move-result-object   v9
+	31      (0000007c) invoke-virtual       v7, v8, v9, Landroid/content/ContentValues;->put(Ljava/lang/String; Ljava/lang/String;)V
+	32      (00000082) if-nez               v2, +00eh
+	18:bb
+	(Lorg/json/JSONException; -> be saveOrganizations-BB@0xbe)
+
+saveOrganizations-BB@0x86 : [ saveOrganizations-BB@0x98 ]
+	33      (00000086) iget-object          v8, v11, Lcom/phonegap/ContactAccessorSdk3_4;->mApp Landroid/app/Activity;
+	34      (0000008a) invoke-virtual       v8, Landroid/app/Activity;->getContentResolver()Landroid/content/ContentResolver;
+	35      (00000090) move-result-object   v8
+	36      (00000092) invoke-virtual       v8, v4, v7, Landroid/content/ContentResolver;->insert(Landroid/net/Uri; Landroid/content/ContentValues;)Landroid/net/Uri;
+	18:bb
+	(Lorg/json/JSONException; -> be saveOrganizations-BB@0xbe)
+
+saveOrganizations-BB@0x98 : [ saveOrganizations-BB@0x36 ]
+	37      (00000098) add-int/lit8         v1, v1, 1
+	38      (0000009c) goto                 -33h
+	18:bb
+	(Lorg/json/JSONException; -> be saveOrganizations-BB@0xbe)
+
+saveOrganizations-BB@0x9e : [ saveOrganizations-BB@0x98 ]
+	39      (0000009e) invoke-static        v4, v2, Landroid/net/Uri;->withAppendedPath(Landroid/net/Uri; Ljava/lang/String;)Landroid/net/Uri;
+	40      (000000a4) move-result-object   v6
+	41      (000000a6) iget-object          v8, v11, Lcom/phonegap/ContactAccessorSdk3_4;->mApp Landroid/app/Activity;
+	42      (000000aa) invoke-virtual       v8, Landroid/app/Activity;->getContentResolver()Landroid/content/ContentResolver;
+	43      (000000b0) move-result-object   v8
+	44      (000000b2) const/4              v9, 0
+	45      (000000b4) const/4              v10, 0
+	46      (000000b6) invoke-virtual       v8, v6, v7, v9, v10, Landroid/content/ContentResolver;->update(Landroid/net/Uri; Landroid/content/ContentValues; Ljava/lang/String; [Ljava/lang/String;)I
+	47      (000000bc) goto                 -12h
+
+saveOrganizations-BB@0xbe : [ saveOrganizations-BB@0xfa ]
+	48      (000000be) move-exception       v8
+	49      (000000c0) move-object          v0, v8
+	50      (000000c2) const-string         v8, "ContactsAccessor"
+	51      (000000c6) new-instance         v9, Ljava/lang/StringBuilder;
+	52      (000000ca) invoke-direct        v9, Ljava/lang/StringBuilder;-><init>()V
+	53      (000000d0) const-string         v10, "Could not save organizations = "
+	54      (000000d4) invoke-virtual       v9, v10, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	55      (000000da) move-result-object   v9
+	56      (000000dc) invoke-virtual       v0, Lorg/json/JSONException;->getMessage()Ljava/lang/String;
+	57      (000000e2) move-result-object   v10
+	58      (000000e4) invoke-virtual       v9, v10, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	59      (000000ea) move-result-object   v9
+	60      (000000ec) invoke-virtual       v9, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	61      (000000f2) move-result-object   v9
+	62      (000000f4) invoke-static        v8, v9, Landroid/util/Log;->d(Ljava/lang/String; Ljava/lang/String;)I
+
+saveOrganizations-BB@0xfa : 
+	63      (000000fa) return-void          
+

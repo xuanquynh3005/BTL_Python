@@ -1,0 +1,31 @@
+# Lcom/phonegap/AudioHandler;->release(Ljava/lang/String;)Z [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v2
+# - v3:java.lang.String
+#
+# - return:boolean
+
+release-BB@0x0 : [ release-BB@0x10 release-BB@0x14 ]
+	0       (00000000) iget-object          v1, v2, Lcom/phonegap/AudioHandler;->players Ljava/util/HashMap;
+	1       (00000004) invoke-virtual       v1, v3, Ljava/util/HashMap;->containsKey(Ljava/lang/Object;)Z
+	2       (0000000a) move-result          v1
+	3       (0000000c) if-nez               v1, +004h
+
+release-BB@0x10 : [ release-BB@0x12 ]
+	4       (00000010) const/4              v1, 0
+
+release-BB@0x12 : 
+	5       (00000012) return               v1
+
+release-BB@0x14 : [ release-BB@0x12 ]
+	6       (00000014) iget-object          v1, v2, Lcom/phonegap/AudioHandler;->players Ljava/util/HashMap;
+	7       (00000018) invoke-virtual       v1, v3, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
+	8       (0000001e) move-result-object   v0
+	9       (00000020) check-cast           v0, Lcom/phonegap/AudioPlayer;
+	10      (00000024) iget-object          v1, v2, Lcom/phonegap/AudioHandler;->players Ljava/util/HashMap;
+	11      (00000028) invoke-virtual       v1, v3, Ljava/util/HashMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
+	12      (0000002e) invoke-virtual       v0, Lcom/phonegap/AudioPlayer;->destroy()V
+	13      (00000034) const/4              v1, 1
+	14      (00000036) goto                 -12h
+

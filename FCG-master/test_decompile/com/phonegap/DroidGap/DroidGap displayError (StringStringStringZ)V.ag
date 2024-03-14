@@ -1,0 +1,23 @@
+# Lcom/phonegap/DroidGap;->displayError(Ljava/lang/String; Ljava/lang/String; Ljava/lang/String; Z)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v7
+# - v8:java.lang.String
+# - v9:java.lang.String
+# - v10:java.lang.String
+# - v11:boolean
+#
+# - return:void
+
+displayError-BB@0x0 : 
+	0       (00000000) move-object          v2, v7
+	1       (00000002) new-instance         v0, Lcom/phonegap/DroidGap$5;
+	2       (00000006) move-object          v1, v7
+	3       (00000008) move-object          v3, v9
+	4       (0000000a) move-object          v4, v8
+	5       (0000000c) move-object          v5, v10
+	6       (0000000e) move                 v6, v11
+	7       (00000010) invoke-direct/range  v0 ... v6, Lcom/phonegap/DroidGap$5;-><init>(Lcom/phonegap/DroidGap; Lcom/phonegap/DroidGap; Ljava/lang/String; Ljava/lang/String; Ljava/lang/String; Z)V
+	8       (00000016) invoke-virtual       v2, v0, Lcom/phonegap/DroidGap;->runOnUiThread(Ljava/lang/Runnable;)V
+	9       (0000001c) return-void          
+

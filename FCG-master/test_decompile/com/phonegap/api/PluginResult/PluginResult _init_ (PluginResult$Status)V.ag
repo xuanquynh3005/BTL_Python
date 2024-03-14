@@ -1,0 +1,35 @@
+# Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status;)V [access_flags=public constructor]
+#
+# Parameters:
+# - local registers: v0...v3
+# - v4:com.phonegap.api.PluginResult$Status
+#
+# - return:void
+
+<init>-BB@0x0 : 
+	0       (00000000) invoke-direct        v3, Ljava/lang/Object;-><init>()V
+	1       (00000006) const/4              v0, 0
+	2       (00000008) iput-boolean         v0, v3, Lcom/phonegap/api/PluginResult;->keepCallback Z
+	3       (0000000c) const/4              v0, 0
+	4       (0000000e) iput-object          v0, v3, Lcom/phonegap/api/PluginResult;->cast Ljava/lang/String;
+	5       (00000012) invoke-virtual       v4, Lcom/phonegap/api/PluginResult$Status;->ordinal()I
+	6       (00000018) move-result          v0
+	7       (0000001a) iput                 v0, v3, Lcom/phonegap/api/PluginResult;->status I
+	8       (0000001e) new-instance         v0, Ljava/lang/StringBuilder;
+	9       (00000022) invoke-direct        v0, Ljava/lang/StringBuilder;-><init>()V
+	10      (00000028) const-string         v1, "'"
+	11      (0000002c) invoke-virtual       v0, v1, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	12      (00000032) move-result-object   v0
+	13      (00000034) sget-object          v1, Lcom/phonegap/api/PluginResult;->StatusMessages [Ljava/lang/String;
+	14      (00000038) iget                 v2, v3, Lcom/phonegap/api/PluginResult;->status I
+	15      (0000003c) aget-object          v1, v1, v2
+	16      (00000040) invoke-virtual       v0, v1, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	17      (00000046) move-result-object   v0
+	18      (00000048) const-string         v1, "'"
+	19      (0000004c) invoke-virtual       v0, v1, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	20      (00000052) move-result-object   v0
+	21      (00000054) invoke-virtual       v0, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	22      (0000005a) move-result-object   v0
+	23      (0000005c) iput-object          v0, v3, Lcom/phonegap/api/PluginResult;->message Ljava/lang/String;
+	24      (00000060) return-void          
+

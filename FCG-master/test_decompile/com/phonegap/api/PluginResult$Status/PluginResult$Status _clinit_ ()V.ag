@@ -1,0 +1,88 @@
+# Lcom/phonegap/api/PluginResult$Status;-><clinit>()V [access_flags=static constructor]
+#
+# Parameters:
+# local registers: v0...v7
+#
+# - return:void
+
+<clinit>-BB@0x0 : 
+	0       (00000000) const/4              v7, 4
+	1       (00000002) const/4              v6, 3
+	2       (00000004) const/4              v5, 2
+	3       (00000006) const/4              v4, 1
+	4       (00000008) const/4              v3, 0
+	5       (0000000a) new-instance         v0, Lcom/phonegap/api/PluginResult$Status;
+	6       (0000000e) const-string         v1, "NO_RESULT"
+	7       (00000012) invoke-direct        v0, v1, v3, Lcom/phonegap/api/PluginResult$Status;-><init>(Ljava/lang/String; I)V
+	8       (00000018) sput-object          v0, Lcom/phonegap/api/PluginResult$Status;->NO_RESULT Lcom/phonegap/api/PluginResult$Status;
+	9       (0000001c) new-instance         v0, Lcom/phonegap/api/PluginResult$Status;
+	10      (00000020) const-string         v1, "OK"
+	11      (00000024) invoke-direct        v0, v1, v4, Lcom/phonegap/api/PluginResult$Status;-><init>(Ljava/lang/String; I)V
+	12      (0000002a) sput-object          v0, Lcom/phonegap/api/PluginResult$Status;->OK Lcom/phonegap/api/PluginResult$Status;
+	13      (0000002e) new-instance         v0, Lcom/phonegap/api/PluginResult$Status;
+	14      (00000032) const-string         v1, "CLASS_NOT_FOUND_EXCEPTION"
+	15      (00000036) invoke-direct        v0, v1, v5, Lcom/phonegap/api/PluginResult$Status;-><init>(Ljava/lang/String; I)V
+	16      (0000003c) sput-object          v0, Lcom/phonegap/api/PluginResult$Status;->CLASS_NOT_FOUND_EXCEPTION Lcom/phonegap/api/PluginResult$Status;
+	17      (00000040) new-instance         v0, Lcom/phonegap/api/PluginResult$Status;
+	18      (00000044) const-string         v1, "ILLEGAL_ACCESS_EXCEPTION"
+	19      (00000048) invoke-direct        v0, v1, v6, Lcom/phonegap/api/PluginResult$Status;-><init>(Ljava/lang/String; I)V
+	20      (0000004e) sput-object          v0, Lcom/phonegap/api/PluginResult$Status;->ILLEGAL_ACCESS_EXCEPTION Lcom/phonegap/api/PluginResult$Status;
+	21      (00000052) new-instance         v0, Lcom/phonegap/api/PluginResult$Status;
+	22      (00000056) const-string         v1, "INSTANTIATION_EXCEPTION"
+	23      (0000005a) invoke-direct        v0, v1, v7, Lcom/phonegap/api/PluginResult$Status;-><init>(Ljava/lang/String; I)V
+	24      (00000060) sput-object          v0, Lcom/phonegap/api/PluginResult$Status;->INSTANTIATION_EXCEPTION Lcom/phonegap/api/PluginResult$Status;
+	25      (00000064) new-instance         v0, Lcom/phonegap/api/PluginResult$Status;
+	26      (00000068) const-string         v1, "MALFORMED_URL_EXCEPTION"
+	27      (0000006c) const/4              v2, 5
+	28      (0000006e) invoke-direct        v0, v1, v2, Lcom/phonegap/api/PluginResult$Status;-><init>(Ljava/lang/String; I)V
+	29      (00000074) sput-object          v0, Lcom/phonegap/api/PluginResult$Status;->MALFORMED_URL_EXCEPTION Lcom/phonegap/api/PluginResult$Status;
+	30      (00000078) new-instance         v0, Lcom/phonegap/api/PluginResult$Status;
+	31      (0000007c) const-string         v1, "IO_EXCEPTION"
+	32      (00000080) const/4              v2, 6
+	33      (00000082) invoke-direct        v0, v1, v2, Lcom/phonegap/api/PluginResult$Status;-><init>(Ljava/lang/String; I)V
+	34      (00000088) sput-object          v0, Lcom/phonegap/api/PluginResult$Status;->IO_EXCEPTION Lcom/phonegap/api/PluginResult$Status;
+	35      (0000008c) new-instance         v0, Lcom/phonegap/api/PluginResult$Status;
+	36      (00000090) const-string         v1, "INVALID_ACTION"
+	37      (00000094) const/4              v2, 7
+	38      (00000096) invoke-direct        v0, v1, v2, Lcom/phonegap/api/PluginResult$Status;-><init>(Ljava/lang/String; I)V
+	39      (0000009c) sput-object          v0, Lcom/phonegap/api/PluginResult$Status;->INVALID_ACTION Lcom/phonegap/api/PluginResult$Status;
+	40      (000000a0) new-instance         v0, Lcom/phonegap/api/PluginResult$Status;
+	41      (000000a4) const-string         v1, "JSON_EXCEPTION"
+	42      (000000a8) const/16             v2, 8
+	43      (000000ac) invoke-direct        v0, v1, v2, Lcom/phonegap/api/PluginResult$Status;-><init>(Ljava/lang/String; I)V
+	44      (000000b2) sput-object          v0, Lcom/phonegap/api/PluginResult$Status;->JSON_EXCEPTION Lcom/phonegap/api/PluginResult$Status;
+	45      (000000b6) new-instance         v0, Lcom/phonegap/api/PluginResult$Status;
+	46      (000000ba) const-string         v1, "ERROR"
+	47      (000000be) const/16             v2, 9
+	48      (000000c2) invoke-direct        v0, v1, v2, Lcom/phonegap/api/PluginResult$Status;-><init>(Ljava/lang/String; I)V
+	49      (000000c8) sput-object          v0, Lcom/phonegap/api/PluginResult$Status;->ERROR Lcom/phonegap/api/PluginResult$Status;
+	50      (000000cc) const/16             v0, 10
+	51      (000000d0) new-array            v0, v0, [Lcom/phonegap/api/PluginResult$Status;
+	52      (000000d4) sget-object          v1, Lcom/phonegap/api/PluginResult$Status;->NO_RESULT Lcom/phonegap/api/PluginResult$Status;
+	53      (000000d8) aput-object          v1, v0, v3
+	54      (000000dc) sget-object          v1, Lcom/phonegap/api/PluginResult$Status;->OK Lcom/phonegap/api/PluginResult$Status;
+	55      (000000e0) aput-object          v1, v0, v4
+	56      (000000e4) sget-object          v1, Lcom/phonegap/api/PluginResult$Status;->CLASS_NOT_FOUND_EXCEPTION Lcom/phonegap/api/PluginResult$Status;
+	57      (000000e8) aput-object          v1, v0, v5
+	58      (000000ec) sget-object          v1, Lcom/phonegap/api/PluginResult$Status;->ILLEGAL_ACCESS_EXCEPTION Lcom/phonegap/api/PluginResult$Status;
+	59      (000000f0) aput-object          v1, v0, v6
+	60      (000000f4) sget-object          v1, Lcom/phonegap/api/PluginResult$Status;->INSTANTIATION_EXCEPTION Lcom/phonegap/api/PluginResult$Status;
+	61      (000000f8) aput-object          v1, v0, v7
+	62      (000000fc) const/4              v1, 5
+	63      (000000fe) sget-object          v2, Lcom/phonegap/api/PluginResult$Status;->MALFORMED_URL_EXCEPTION Lcom/phonegap/api/PluginResult$Status;
+	64      (00000102) aput-object          v2, v0, v1
+	65      (00000106) const/4              v1, 6
+	66      (00000108) sget-object          v2, Lcom/phonegap/api/PluginResult$Status;->IO_EXCEPTION Lcom/phonegap/api/PluginResult$Status;
+	67      (0000010c) aput-object          v2, v0, v1
+	68      (00000110) const/4              v1, 7
+	69      (00000112) sget-object          v2, Lcom/phonegap/api/PluginResult$Status;->INVALID_ACTION Lcom/phonegap/api/PluginResult$Status;
+	70      (00000116) aput-object          v2, v0, v1
+	71      (0000011a) const/16             v1, 8
+	72      (0000011e) sget-object          v2, Lcom/phonegap/api/PluginResult$Status;->JSON_EXCEPTION Lcom/phonegap/api/PluginResult$Status;
+	73      (00000122) aput-object          v2, v0, v1
+	74      (00000126) const/16             v1, 9
+	75      (0000012a) sget-object          v2, Lcom/phonegap/api/PluginResult$Status;->ERROR Lcom/phonegap/api/PluginResult$Status;
+	76      (0000012e) aput-object          v2, v0, v1
+	77      (00000132) sput-object          v0, Lcom/phonegap/api/PluginResult$Status;->$VALUES [Lcom/phonegap/api/PluginResult$Status;
+	78      (00000136) return-void          
+

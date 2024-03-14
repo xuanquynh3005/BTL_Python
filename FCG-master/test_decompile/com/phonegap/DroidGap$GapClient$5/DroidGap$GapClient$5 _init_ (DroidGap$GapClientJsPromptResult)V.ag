@@ -1,0 +1,15 @@
+# Lcom/phonegap/DroidGap$GapClient$5;-><init>(Lcom/phonegap/DroidGap$GapClient; Landroid/webkit/JsPromptResult;)V [access_flags=constructor]
+#
+# Parameters:
+# - local registers: v0...v0
+# - v1:com.phonegap.DroidGap$GapClient
+# - v2:android.webkit.JsPromptResult
+#
+# - return:void
+
+<init>-BB@0x0 : 
+	0       (00000000) iput-object          v1, v0, Lcom/phonegap/DroidGap$GapClient$5;->this$1 Lcom/phonegap/DroidGap$GapClient;
+	1       (00000004) iput-object          v2, v0, Lcom/phonegap/DroidGap$GapClient$5;->val$res Landroid/webkit/JsPromptResult;
+	2       (00000008) invoke-direct        v0, Ljava/lang/Object;-><init>()V
+	3       (0000000e) return-void          
+

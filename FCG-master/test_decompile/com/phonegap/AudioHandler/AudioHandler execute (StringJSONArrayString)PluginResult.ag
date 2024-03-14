@@ -1,0 +1,203 @@
+# Lcom/phonegap/AudioHandler;->execute(Ljava/lang/String; Lorg/json/JSONArray; Ljava/lang/String;)Lcom/phonegap/api/PluginResult; [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v7
+# - v8:java.lang.String
+# - v9:org.json.JSONArray
+# - v10:java.lang.String
+#
+# - return:com.phonegap.api.PluginResult
+
+execute-BB@0x0 : [ execute-BB@0x8 ]
+	0       (00000000) sget-object          v4, Lcom/phonegap/api/PluginResult$Status;->OK Lcom/phonegap/api/PluginResult$Status;
+	1       (00000004) const-string         v3, ""
+
+execute-BB@0x8 : [ execute-BB@0x18 execute-BB@0x3e ]
+	2       (00000008) const-string         v5, "startRecordingAudio"
+	3       (0000000c) invoke-virtual       v8, v5, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	4       (00000012) move-result          v5
+	5       (00000014) if-eqz               v5, +015h
+	8:5d
+	(Lorg/json/JSONException; -> 60 execute-BB@0x60)
+
+execute-BB@0x18 : [ execute-BB@0x32 ]
+	6       (00000018) const/4              v5, 0
+	7       (0000001a) invoke-virtual       v9, v5, Lorg/json/JSONArray;->getString(I)Ljava/lang/String;
+	8       (00000020) move-result-object   v5
+	9       (00000022) const/4              v6, 1
+	10      (00000024) invoke-virtual       v9, v6, Lorg/json/JSONArray;->getString(I)Ljava/lang/String;
+	11      (0000002a) move-result-object   v6
+	12      (0000002c) invoke-virtual       v7, v5, v6, Lcom/phonegap/AudioHandler;->startRecordingAudio(Ljava/lang/String; Ljava/lang/String;)V
+	8:5d
+	(Lorg/json/JSONException; -> 60 execute-BB@0x60)
+
+execute-BB@0x32 : [ execute-BB@0x3c ]
+	13      (00000032) new-instance         v5, Lcom/phonegap/api/PluginResult;
+	14      (00000036) invoke-direct        v5, v4, v3, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; Ljava/lang/String;)V
+	8:5d
+	(Lorg/json/JSONException; -> 60 execute-BB@0x60)
+
+execute-BB@0x3c : 
+	15      (0000003c) return-object        v5
+	8:5d
+	(Lorg/json/JSONException; -> 60 execute-BB@0x60)
+
+execute-BB@0x3e : [ execute-BB@0x4e execute-BB@0x7a ]
+	16      (0000003e) const-string         v5, "stopRecordingAudio"
+	17      (00000042) invoke-virtual       v8, v5, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	18      (00000048) move-result          v5
+	19      (0000004a) if-eqz               v5, +018h
+	8:5d
+	(Lorg/json/JSONException; -> 60 execute-BB@0x60)
+
+execute-BB@0x4e : [ execute-BB@0x32 ]
+	20      (0000004e) const/4              v5, 0
+	21      (00000050) invoke-virtual       v9, v5, Lorg/json/JSONArray;->getString(I)Ljava/lang/String;
+	22      (00000056) move-result-object   v5
+	23      (00000058) invoke-virtual       v7, v5, Lcom/phonegap/AudioHandler;->stopRecordingAudio(Ljava/lang/String;)V
+	24      (0000005e) goto                 -16h
+
+execute-BB@0x60 : [ execute-BB@0x3c ]
+	25      (00000060) move-exception       v5
+	26      (00000062) move-object          v1, v5
+	27      (00000064) invoke-virtual       v1, Lorg/json/JSONException;->printStackTrace()V
+	28      (0000006a) new-instance         v5, Lcom/phonegap/api/PluginResult;
+	29      (0000006e) sget-object          v6, Lcom/phonegap/api/PluginResult$Status;->JSON_EXCEPTION Lcom/phonegap/api/PluginResult$Status;
+	30      (00000072) invoke-direct        v5, v6, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status;)V
+	31      (00000078) goto                 -1eh
+
+execute-BB@0x7a : [ execute-BB@0x8a execute-BB@0xa6 ]
+	32      (0000007a) const-string         v5, "startPlayingAudio"
+	33      (0000007e) invoke-virtual       v8, v5, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	34      (00000084) move-result          v5
+	35      (00000086) if-eqz               v5, +010h
+	7a:1ab
+	(Lorg/json/JSONException; -> 60 execute-BB@0x60)
+
+execute-BB@0x8a : [ execute-BB@0x32 ]
+	36      (0000008a) const/4              v5, 0
+	37      (0000008c) invoke-virtual       v9, v5, Lorg/json/JSONArray;->getString(I)Ljava/lang/String;
+	38      (00000092) move-result-object   v5
+	39      (00000094) const/4              v6, 1
+	40      (00000096) invoke-virtual       v9, v6, Lorg/json/JSONArray;->getString(I)Ljava/lang/String;
+	41      (0000009c) move-result-object   v6
+	42      (0000009e) invoke-virtual       v7, v5, v6, Lcom/phonegap/AudioHandler;->startPlayingAudio(Ljava/lang/String; Ljava/lang/String;)V
+	43      (000000a4) goto                 -39h
+	7a:1ab
+	(Lorg/json/JSONException; -> 60 execute-BB@0x60)
+
+execute-BB@0xa6 : [ execute-BB@0xb6 execute-BB@0xd2 ]
+	44      (000000a6) const-string         v5, "seekToAudio"
+	45      (000000aa) invoke-virtual       v8, v5, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	46      (000000b0) move-result          v5
+	47      (000000b2) if-eqz               v5, +010h
+	7a:1ab
+	(Lorg/json/JSONException; -> 60 execute-BB@0x60)
+
+execute-BB@0xb6 : [ execute-BB@0x32 ]
+	48      (000000b6) const/4              v5, 0
+	49      (000000b8) invoke-virtual       v9, v5, Lorg/json/JSONArray;->getString(I)Ljava/lang/String;
+	50      (000000be) move-result-object   v5
+	51      (000000c0) const/4              v6, 1
+	52      (000000c2) invoke-virtual       v9, v6, Lorg/json/JSONArray;->getInt(I)I
+	53      (000000c8) move-result          v6
+	54      (000000ca) invoke-virtual       v7, v5, v6, Lcom/phonegap/AudioHandler;->seekToAudio(Ljava/lang/String; I)V
+	55      (000000d0) goto                 -4fh
+	7a:1ab
+	(Lorg/json/JSONException; -> 60 execute-BB@0x60)
+
+execute-BB@0xd2 : [ execute-BB@0xe2 execute-BB@0xf4 ]
+	56      (000000d2) const-string         v5, "pausePlayingAudio"
+	57      (000000d6) invoke-virtual       v8, v5, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	58      (000000dc) move-result          v5
+	59      (000000de) if-eqz               v5, +00bh
+	7a:1ab
+	(Lorg/json/JSONException; -> 60 execute-BB@0x60)
+
+execute-BB@0xe2 : [ execute-BB@0x32 ]
+	60      (000000e2) const/4              v5, 0
+	61      (000000e4) invoke-virtual       v9, v5, Lorg/json/JSONArray;->getString(I)Ljava/lang/String;
+	62      (000000ea) move-result-object   v5
+	63      (000000ec) invoke-virtual       v7, v5, Lcom/phonegap/AudioHandler;->pausePlayingAudio(Ljava/lang/String;)V
+	64      (000000f2) goto                 -60h
+	7a:1ab
+	(Lorg/json/JSONException; -> 60 execute-BB@0x60)
+
+execute-BB@0xf4 : [ execute-BB@0x104 execute-BB@0x116 ]
+	65      (000000f4) const-string         v5, "stopPlayingAudio"
+	66      (000000f8) invoke-virtual       v8, v5, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	67      (000000fe) move-result          v5
+	68      (00000100) if-eqz               v5, +00bh
+	7a:1ab
+	(Lorg/json/JSONException; -> 60 execute-BB@0x60)
+
+execute-BB@0x104 : [ execute-BB@0x32 ]
+	69      (00000104) const/4              v5, 0
+	70      (00000106) invoke-virtual       v9, v5, Lorg/json/JSONArray;->getString(I)Ljava/lang/String;
+	71      (0000010c) move-result-object   v5
+	72      (0000010e) invoke-virtual       v7, v5, Lcom/phonegap/AudioHandler;->stopPlayingAudio(Ljava/lang/String;)V
+	73      (00000114) goto                 -71h
+	7a:1ab
+	(Lorg/json/JSONException; -> 60 execute-BB@0x60)
+
+execute-BB@0x116 : [ execute-BB@0x126 execute-BB@0x146 ]
+	74      (00000116) const-string         v5, "getCurrentPositionAudio"
+	75      (0000011a) invoke-virtual       v8, v5, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	76      (00000120) move-result          v5
+	77      (00000122) if-eqz               v5, +012h
+	7a:1ab
+	(Lorg/json/JSONException; -> 60 execute-BB@0x60)
+
+execute-BB@0x126 : [ execute-BB@0x3c ]
+	78      (00000126) const/4              v5, 0
+	79      (00000128) invoke-virtual       v9, v5, Lorg/json/JSONArray;->getString(I)Ljava/lang/String;
+	80      (0000012e) move-result-object   v5
+	81      (00000130) invoke-virtual       v7, v5, Lcom/phonegap/AudioHandler;->getCurrentPositionAudio(Ljava/lang/String;)F
+	82      (00000136) move-result          v2
+	83      (00000138) new-instance         v5, Lcom/phonegap/api/PluginResult;
+	84      (0000013c) invoke-direct        v5, v4, v2, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; F)V
+	85      (00000142) goto/16              -083h
+	7a:1ab
+	(Lorg/json/JSONException; -> 60 execute-BB@0x60)
+
+execute-BB@0x146 : [ execute-BB@0x156 execute-BB@0x180 ]
+	86      (00000146) const-string         v5, "getDurationAudio"
+	87      (0000014a) invoke-virtual       v8, v5, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	88      (00000150) move-result          v5
+	89      (00000152) if-eqz               v5, +017h
+	7a:1ab
+	(Lorg/json/JSONException; -> 60 execute-BB@0x60)
+
+execute-BB@0x156 : [ execute-BB@0x3c ]
+	90      (00000156) const/4              v5, 0
+	91      (00000158) invoke-virtual       v9, v5, Lorg/json/JSONArray;->getString(I)Ljava/lang/String;
+	92      (0000015e) move-result-object   v5
+	93      (00000160) const/4              v6, 1
+	94      (00000162) invoke-virtual       v9, v6, Lorg/json/JSONArray;->getString(I)Ljava/lang/String;
+	95      (00000168) move-result-object   v6
+	96      (0000016a) invoke-virtual       v7, v5, v6, Lcom/phonegap/AudioHandler;->getDurationAudio(Ljava/lang/String; Ljava/lang/String;)F
+	97      (00000170) move-result          v2
+	98      (00000172) new-instance         v5, Lcom/phonegap/api/PluginResult;
+	99      (00000176) invoke-direct        v5, v4, v2, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; F)V
+	100     (0000017c) goto/16              -0a0h
+	7a:1ab
+	(Lorg/json/JSONException; -> 60 execute-BB@0x60)
+
+execute-BB@0x180 : [ execute-BB@0x190 execute-BB@0x32 ]
+	101     (00000180) const-string         v5, "release"
+	102     (00000184) invoke-virtual       v8, v5, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	103     (0000018a) move-result          v5
+	104     (0000018c) if-eqz               v5, -0adh
+	7a:1ab
+	(Lorg/json/JSONException; -> 60 execute-BB@0x60)
+
+execute-BB@0x190 : [ execute-BB@0x3c ]
+	105     (00000190) const/4              v5, 0
+	106     (00000192) invoke-virtual       v9, v5, Lorg/json/JSONArray;->getString(I)Ljava/lang/String;
+	107     (00000198) move-result-object   v5
+	108     (0000019a) invoke-direct        v7, v5, Lcom/phonegap/AudioHandler;->release(Ljava/lang/String;)Z
+	109     (000001a0) move-result          v0
+	110     (000001a2) new-instance         v5, Lcom/phonegap/api/PluginResult;
+	111     (000001a6) invoke-direct        v5, v4, v0, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; Z)V
+	112     (000001ac) goto/16              -0b8h
+

@@ -1,0 +1,35 @@
+# Lcom/phonegap/FileUtils;->isCopyOnItself(Ljava/lang/String; Ljava/lang/String;)Z [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v3
+# - v4:java.lang.String
+# - v5:java.lang.String
+#
+# - return:boolean
+
+isCopyOnItself-BB@0x0 : [ isCopyOnItself-BB@0xe isCopyOnItself-BB@0x2e ]
+	0       (00000000) const/4              v2, 1
+	1       (00000002) invoke-virtual       v5, v4, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+	2       (00000008) move-result          v0
+	3       (0000000a) if-eqz               v0, +012h
+
+isCopyOnItself-BB@0xe : [ isCopyOnItself-BB@0x2a isCopyOnItself-BB@0x2e ]
+	4       (0000000e) sget-object          v0, Ljava/io/File;->separator Ljava/lang/String;
+	5       (00000012) invoke-virtual       v4, Ljava/lang/String;->length()I
+	6       (00000018) move-result          v1
+	7       (0000001a) sub-int/2addr        v1, v2
+	8       (0000001c) invoke-virtual       v5, v0, v1, Ljava/lang/String;->indexOf(Ljava/lang/String; I)I
+	9       (00000022) move-result          v0
+	10      (00000024) const/4              v1, -1
+	11      (00000026) if-eq                v0, v1, +004h
+
+isCopyOnItself-BB@0x2a : [ isCopyOnItself-BB@0x2c ]
+	12      (0000002a) move                 v0, v2
+
+isCopyOnItself-BB@0x2c : 
+	13      (0000002c) return               v0
+
+isCopyOnItself-BB@0x2e : [ isCopyOnItself-BB@0x2c ]
+	14      (0000002e) const/4              v0, 0
+	15      (00000030) goto                 -2h
+

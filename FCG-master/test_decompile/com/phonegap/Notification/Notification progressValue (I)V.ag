@@ -1,0 +1,32 @@
+# Lcom/phonegap/Notification;->progressValue(I)V [access_flags=public synchronized]
+#
+# Parameters:
+# - local registers: v0...v1
+# - v2:int
+#
+# - return:void
+
+progressValue-BB@0x0 : [ progressValue-BB@0x2 ]
+	0       (00000000) monitor-enter        v1
+
+progressValue-BB@0x2 : [ progressValue-BB@0xa progressValue-BB@0x14 ]
+	1       (00000002) iget-object          v0, v1, Lcom/phonegap/Notification;->progressDialog Landroid/app/ProgressDialog;
+	2       (00000006) if-eqz               v0, +007h
+	2:13
+	(Ljava/lang/Throwable; -> 18 progressValue-BB@0x18)
+
+progressValue-BB@0xa : [ progressValue-BB@0x14 ]
+	3       (0000000a) iget-object          v0, v1, Lcom/phonegap/Notification;->progressDialog Landroid/app/ProgressDialog;
+	4       (0000000e) invoke-virtual       v0, v2, Landroid/app/ProgressDialog;->setProgress(I)V
+	2:13
+	(Ljava/lang/Throwable; -> 18 progressValue-BB@0x18)
+
+progressValue-BB@0x14 : 
+	5       (00000014) monitor-exit         v1
+	6       (00000016) return-void          
+
+progressValue-BB@0x18 : 
+	7       (00000018) move-exception       v0
+	8       (0000001a) monitor-exit         v1
+	9       (0000001c) throw                v0
+

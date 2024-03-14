@@ -1,0 +1,23 @@
+# Lcom/phonegap/AudioHandler;->stopRecordingAudio(Ljava/lang/String;)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v2
+# - v3:java.lang.String
+#
+# - return:void
+
+stopRecordingAudio-BB@0x0 : [ stopRecordingAudio-BB@0x14 stopRecordingAudio-BB@0x24 ]
+	0       (00000000) iget-object          v1, v2, Lcom/phonegap/AudioHandler;->players Ljava/util/HashMap;
+	1       (00000004) invoke-virtual       v1, v3, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
+	2       (0000000a) move-result-object   v0
+	3       (0000000c) check-cast           v0, Lcom/phonegap/AudioPlayer;
+	4       (00000010) if-eqz               v0, +00ah
+
+stopRecordingAudio-BB@0x14 : [ stopRecordingAudio-BB@0x24 ]
+	5       (00000014) invoke-virtual       v0, Lcom/phonegap/AudioPlayer;->stopRecording()V
+	6       (0000001a) iget-object          v1, v2, Lcom/phonegap/AudioHandler;->players Ljava/util/HashMap;
+	7       (0000001e) invoke-virtual       v1, v3, Ljava/util/HashMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
+
+stopRecordingAudio-BB@0x24 : 
+	8       (00000024) return-void          
+

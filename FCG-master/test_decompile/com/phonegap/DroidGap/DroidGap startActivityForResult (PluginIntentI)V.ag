@@ -1,0 +1,24 @@
+# Lcom/phonegap/DroidGap;->startActivityForResult(Lcom/phonegap/api/Plugin; Landroid/content/Intent; I)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v1
+# - v2:com.phonegap.api.Plugin
+# - v3:android.content.Intent
+# - v4:int
+#
+# - return:void
+
+startActivityForResult-BB@0x0 : [ startActivityForResult-BB@0x10 startActivityForResult-BB@0x16 ]
+	0       (00000000) iput-object          v2, v1, Lcom/phonegap/DroidGap;->activityResultCallback Lcom/phonegap/api/Plugin;
+	1       (00000004) iget-boolean         v0, v1, Lcom/phonegap/DroidGap;->keepRunning Z
+	2       (00000008) iput-boolean         v0, v1, Lcom/phonegap/DroidGap;->activityResultKeepRunning Z
+	3       (0000000c) if-eqz               v2, +005h
+
+startActivityForResult-BB@0x10 : [ startActivityForResult-BB@0x16 ]
+	4       (00000010) const/4              v0, 0
+	5       (00000012) iput-boolean         v0, v1, Lcom/phonegap/DroidGap;->keepRunning Z
+
+startActivityForResult-BB@0x16 : 
+	6       (00000016) invoke-super         v1, v3, v4, Lcom/phonegap/api/PhonegapActivity;->startActivityForResult(Landroid/content/Intent; I)V
+	7       (0000001c) return-void          
+

@@ -1,0 +1,58 @@
+# Lcom/phonegap/ContactAccessor;->getJsonString(Lorg/json/JSONObject; Ljava/lang/String;)Ljava/lang/String; [access_flags=protected]
+#
+# Parameters:
+# - local registers: v0...v5
+# - v6:org.json.JSONObject
+# - v7:java.lang.String
+#
+# - return:java.lang.String
+
+getJsonString-BB@0x0 : [ getJsonString-BB@0x6 getJsonString-BB@0x50 ]
+	0       (00000000) const/4              v1, 0
+	1       (00000002) if-eqz               v6, +027h
+
+getJsonString-BB@0x6 : [ getJsonString-BB@0x1e getJsonString-BB@0x50 ]
+	2       (00000006) invoke-virtual       v6, v7, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+	3       (0000000c) move-result-object   v1
+	4       (0000000e) const-string         v2, "null"
+	5       (00000012) invoke-virtual       v1, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	6       (00000018) move-result          v2
+	7       (0000001a) if-eqz               v2, +01bh
+	6:4d
+	(Lorg/json/JSONException; -> 52 getJsonString-BB@0x52)
+
+getJsonString-BB@0x1e : [ getJsonString-BB@0x50 ]
+	8       (0000001e) const-string         v2, "ContactsAccessor"
+	9       (00000022) new-instance         v3, Ljava/lang/StringBuilder;
+	10      (00000026) invoke-direct        v3, Ljava/lang/StringBuilder;-><init>()V
+	11      (0000002c) invoke-virtual       v3, v7, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	12      (00000032) move-result-object   v3
+	13      (00000034) const-string         v4, " is string called 'null'"
+	14      (00000038) invoke-virtual       v3, v4, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	15      (0000003e) move-result-object   v3
+	16      (00000040) invoke-virtual       v3, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	17      (00000046) move-result-object   v3
+	18      (00000048) invoke-static        v2, v3, Landroid/util/Log;->d(Ljava/lang/String; Ljava/lang/String;)I
+	19      (0000004e) const/4              v1, 0
+
+getJsonString-BB@0x50 : 
+	20      (00000050) return-object        v1
+
+getJsonString-BB@0x52 : [ getJsonString-BB@0x50 ]
+	21      (00000052) move-exception       v2
+	22      (00000054) move-object          v0, v2
+	23      (00000056) const-string         v2, "ContactsAccessor"
+	24      (0000005a) new-instance         v3, Ljava/lang/StringBuilder;
+	25      (0000005e) invoke-direct        v3, Ljava/lang/StringBuilder;-><init>()V
+	26      (00000064) const-string         v4, "Could not get = "
+	27      (00000068) invoke-virtual       v3, v4, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	28      (0000006e) move-result-object   v3
+	29      (00000070) invoke-virtual       v0, Lorg/json/JSONException;->getMessage()Ljava/lang/String;
+	30      (00000076) move-result-object   v4
+	31      (00000078) invoke-virtual       v3, v4, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	32      (0000007e) move-result-object   v3
+	33      (00000080) invoke-virtual       v3, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	34      (00000086) move-result-object   v3
+	35      (00000088) invoke-static        v2, v3, Landroid/util/Log;->d(Ljava/lang/String; Ljava/lang/String;)I
+	36      (0000008e) goto                 -1fh
+

@@ -1,0 +1,52 @@
+# Lcom/phonegap/GeoListener;-><init>(Lcom/phonegap/GeoBroker; Ljava/lang/String; I)V [access_flags=constructor]
+#
+# Parameters:
+# - local registers: v0...v2
+# - v3:com.phonegap.GeoBroker
+# - v4:java.lang.String
+# - v5:int
+#
+# - return:void
+
+<init>-BB@0x0 : [ <init>-BB@0x48 <init>-BB@0x5a ]
+	0       (00000000) const/4              v0, 0
+	1       (00000002) invoke-direct        v2, Ljava/lang/Object;-><init>()V
+	2       (00000008) iput-object          v4, v2, Lcom/phonegap/GeoListener;->id Ljava/lang/String;
+	3       (0000000c) iput                 v5, v2, Lcom/phonegap/GeoListener;->interval I
+	4       (00000010) iput-object          v3, v2, Lcom/phonegap/GeoListener;->broker Lcom/phonegap/GeoBroker;
+	5       (00000014) iput-object          v0, v2, Lcom/phonegap/GeoListener;->mGps Lcom/phonegap/GpsListener;
+	6       (00000018) iput-object          v0, v2, Lcom/phonegap/GeoListener;->mNetwork Lcom/phonegap/NetworkListener;
+	7       (0000001c) iget-object          v0, v3, Lcom/phonegap/GeoBroker;->ctx Lcom/phonegap/api/PhonegapActivity;
+	8       (00000020) const-string         v1, "location"
+	9       (00000024) invoke-virtual       v0, v1, Lcom/phonegap/api/PhonegapActivity;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+	10      (0000002a) move-result-object   v0
+	11      (0000002c) check-cast           v0, Landroid/location/LocationManager;
+	12      (00000030) iput-object          v0, v2, Lcom/phonegap/GeoListener;->mLocMan Landroid/location/LocationManager;
+	13      (00000034) iget-object          v0, v2, Lcom/phonegap/GeoListener;->mLocMan Landroid/location/LocationManager;
+	14      (00000038) const-string         v1, "gps"
+	15      (0000003c) invoke-virtual       v0, v1, Landroid/location/LocationManager;->getProvider(Ljava/lang/String;)Landroid/location/LocationProvider;
+	16      (00000042) move-result-object   v0
+	17      (00000044) if-eqz               v0, +00bh
+
+<init>-BB@0x48 : [ <init>-BB@0x5a ]
+	18      (00000048) new-instance         v0, Lcom/phonegap/GpsListener;
+	19      (0000004c) iget-object          v1, v3, Lcom/phonegap/GeoBroker;->ctx Lcom/phonegap/api/PhonegapActivity;
+	20      (00000050) invoke-direct        v0, v1, v5, v2, Lcom/phonegap/GpsListener;-><init>(Lcom/phonegap/api/PhonegapActivity; I Lcom/phonegap/GeoListener;)V
+	21      (00000056) iput-object          v0, v2, Lcom/phonegap/GeoListener;->mGps Lcom/phonegap/GpsListener;
+
+<init>-BB@0x5a : [ <init>-BB@0x6e <init>-BB@0x80 ]
+	22      (0000005a) iget-object          v0, v2, Lcom/phonegap/GeoListener;->mLocMan Landroid/location/LocationManager;
+	23      (0000005e) const-string         v1, "network"
+	24      (00000062) invoke-virtual       v0, v1, Landroid/location/LocationManager;->getProvider(Ljava/lang/String;)Landroid/location/LocationProvider;
+	25      (00000068) move-result-object   v0
+	26      (0000006a) if-eqz               v0, +00bh
+
+<init>-BB@0x6e : [ <init>-BB@0x80 ]
+	27      (0000006e) new-instance         v0, Lcom/phonegap/NetworkListener;
+	28      (00000072) iget-object          v1, v3, Lcom/phonegap/GeoBroker;->ctx Lcom/phonegap/api/PhonegapActivity;
+	29      (00000076) invoke-direct        v0, v1, v5, v2, Lcom/phonegap/NetworkListener;-><init>(Lcom/phonegap/api/PhonegapActivity; I Lcom/phonegap/GeoListener;)V
+	30      (0000007c) iput-object          v0, v2, Lcom/phonegap/GeoListener;->mNetwork Lcom/phonegap/NetworkListener;
+
+<init>-BB@0x80 : 
+	31      (00000080) return-void          
+

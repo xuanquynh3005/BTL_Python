@@ -1,0 +1,25 @@
+# Lcom/phonegap/DroidGap;-><init>()V [access_flags=public constructor]
+#
+# Parameters:
+# local registers: v0...v2
+#
+# - return:void
+
+<init>-BB@0x0 : 
+	0       (00000000) const/4              v1, 0
+	1       (00000002) invoke-direct        v2, Lcom/phonegap/api/PhonegapActivity;-><init>()V
+	2       (00000008) iput-boolean         v1, v2, Lcom/phonegap/DroidGap;->bound Z
+	3       (0000000c) iput-boolean         v1, v2, Lcom/phonegap/DroidGap;->cancelLoadUrl Z
+	4       (00000010) iput-boolean         v1, v2, Lcom/phonegap/DroidGap;->clearHistory Z
+	5       (00000014) const/4              v0, 0
+	6       (00000016) iput-object          v0, v2, Lcom/phonegap/DroidGap;->activityResultCallback Lcom/phonegap/api/Plugin;
+	7       (0000001a) iput                 v1, v2, Lcom/phonegap/DroidGap;->loadUrlTimeout I
+	8       (0000001e) iput-boolean         v1, v2, Lcom/phonegap/DroidGap;->hideLoadingDialogOnPageLoad Z
+	9       (00000022) iput-boolean         v1, v2, Lcom/phonegap/DroidGap;->loadInWebView Z
+	10      (00000026) iput                 v1, v2, Lcom/phonegap/DroidGap;->splashscreen I
+	11      (0000002a) const/16             v0, 20000
+	12      (0000002e) iput                 v0, v2, Lcom/phonegap/DroidGap;->loadUrlTimeoutValue I
+	13      (00000032) const/4              v0, 1
+	14      (00000034) iput-boolean         v0, v2, Lcom/phonegap/DroidGap;->keepRunning Z
+	15      (00000038) return-void          
+

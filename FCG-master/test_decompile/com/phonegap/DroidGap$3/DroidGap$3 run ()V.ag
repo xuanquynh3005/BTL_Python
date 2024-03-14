@@ -1,0 +1,73 @@
+# Lcom/phonegap/DroidGap$3;->run()V [access_flags=public]
+#
+# Parameters:
+# local registers: v0...v4
+#
+# - return:void
+
+run-BB@0x0 : [ run-BB@0x2 ]
+	0       (00000000) monitor-enter        v4
+	0:1
+	(Ljava/lang/InterruptedException; -> 32 run-BB@0x32)
+
+run-BB@0x2 : [ run-BB@0x10 ]
+	1       (00000002) iget                 v1, v4, Lcom/phonegap/DroidGap$3;->val$time I
+	2       (00000006) int-to-long          v1, v1
+	3       (00000008) invoke-virtual       v4, v1, v2, Ljava/lang/Object;->wait(J)V
+	4       (0000000e) monitor-exit         v4
+	2:f
+	(Ljava/lang/Throwable; -> 2c run-BB@0x2c)
+
+run-BB@0x10 : [ run-BB@0x1c run-BB@0x3e ]
+	5       (00000010) iget-object          v1, v4, Lcom/phonegap/DroidGap$3;->val$me Lcom/phonegap/DroidGap;
+	6       (00000014) iget-boolean         v1, v1, Lcom/phonegap/DroidGap;->cancelLoadUrl Z
+	7       (00000018) if-nez               v1, +013h
+
+run-BB@0x1c : [ run-BB@0x2a ]
+	8       (0000001c) iget-object          v1, v4, Lcom/phonegap/DroidGap$3;->val$me Lcom/phonegap/DroidGap;
+	9       (00000020) iget-object          v2, v4, Lcom/phonegap/DroidGap$3;->val$url Ljava/lang/String;
+	10      (00000024) invoke-virtual       v1, v2, Lcom/phonegap/DroidGap;->loadUrl(Ljava/lang/String;)V
+
+run-BB@0x2a : 
+	11      (0000002a) return-void          
+
+run-BB@0x2c : [ run-BB@0x2e ]
+	12      (0000002c) move-exception       v1
+
+run-BB@0x2e : [ run-BB@0x30 ]
+	13      (0000002e) monitor-exit         v4
+	2e:2f
+	(Ljava/lang/Throwable; -> 2c run-BB@0x2c)
+
+run-BB@0x30 : 
+	14      (00000030) throw                v1
+	30:31
+	(Ljava/lang/InterruptedException; -> 32 run-BB@0x32)
+
+run-BB@0x32 : [ run-BB@0x10 ]
+	15      (00000032) move-exception       v1
+	16      (00000034) move-object          v0, v1
+	17      (00000036) invoke-virtual       v0, Ljava/lang/InterruptedException;->printStackTrace()V
+	18      (0000003c) goto                 -16h
+
+run-BB@0x3e : [ run-BB@0x2a ]
+	19      (0000003e) iget-object          v1, v4, Lcom/phonegap/DroidGap$3;->val$me Lcom/phonegap/DroidGap;
+	20      (00000042) const/4              v2, 0
+	21      (00000044) iput-boolean         v2, v1, Lcom/phonegap/DroidGap;->cancelLoadUrl Z
+	22      (00000048) sget-object          v1, Ljava/lang/System;->out Ljava/io/PrintStream;
+	23      (0000004c) new-instance         v2, Ljava/lang/StringBuilder;
+	24      (00000050) invoke-direct        v2, Ljava/lang/StringBuilder;-><init>()V
+	25      (00000056) const-string         v3, "Aborting loadUrl("
+	26      (0000005a) invoke-virtual       v2, v3, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	27      (00000060) move-result-object   v2
+	28      (00000062) iget-object          v3, v4, Lcom/phonegap/DroidGap$3;->val$url Ljava/lang/String;
+	29      (00000066) invoke-virtual       v2, v3, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	30      (0000006c) move-result-object   v2
+	31      (0000006e) const-string         v3, "): Another URL was loaded before timer expired."
+	32      (00000072) invoke-virtual       v2, v3, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	33      (00000078) move-result-object   v2
+	34      (0000007a) invoke-virtual       v2, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	35      (00000080) move-result-object   v2
+	36      (00000082) invoke-virtual       v1, v2, Ljava/io/PrintStream;->println(Ljava/lang/String;)V
+	37      (00000088) goto                 -2fh
+

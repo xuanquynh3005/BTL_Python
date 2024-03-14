@@ -1,0 +1,107 @@
+# Lcom/phonegap/Capture;->execute(Ljava/lang/String; Lorg/json/JSONArray; Ljava/lang/String;)Lcom/phonegap/api/PluginResult; [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v11
+# - v12:java.lang.String
+# - v13:org.json.JSONArray
+# - v14:java.lang.String
+#
+# - return:com.phonegap.api.PluginResult
+
+execute-BB@0x0 : [ execute-BB@0x32 execute-BB@0x52 ]
+	0       (00000000) const-wide/16        v9, 1
+	1       (00000004) const/4              v8, 1
+	2       (00000006) const/4              v5, 0
+	3       (00000008) const-wide/16        v6, 0
+	4       (0000000c) iput-object          v14, v11, Lcom/phonegap/Capture;->callbackId Ljava/lang/String;
+	5       (00000010) iput-wide            v9, v11, Lcom/phonegap/Capture;->limit J
+	6       (00000014) iput-wide            v6, v11, Lcom/phonegap/Capture;->duration D
+	7       (00000018) new-instance         v4, Lorg/json/JSONArray;
+	8       (0000001c) invoke-direct        v4, Lorg/json/JSONArray;-><init>()V
+	9       (00000022) iput-object          v4, v11, Lcom/phonegap/Capture;->results Lorg/json/JSONArray;
+	10      (00000026) invoke-virtual       v13, v5, Lorg/json/JSONArray;->optJSONObject(I)Lorg/json/JSONObject;
+	11      (0000002c) move-result-object   v2
+	12      (0000002e) if-eqz               v2, +012h
+
+execute-BB@0x32 : [ execute-BB@0x52 ]
+	13      (00000032) const-string         v4, "limit"
+	14      (00000036) invoke-virtual       v2, v4, v9, v10, Lorg/json/JSONObject;->optLong(Ljava/lang/String; J)J
+	15      (0000003c) move-result-wide     v4
+	16      (0000003e) iput-wide            v4, v11, Lcom/phonegap/Capture;->limit J
+	17      (00000042) const-string         v4, "duration"
+	18      (00000046) invoke-virtual       v2, v4, v6, v7, Lorg/json/JSONObject;->optDouble(Ljava/lang/String; D)D
+	19      (0000004c) move-result-wide     v4
+	20      (0000004e) iput-wide            v4, v11, Lcom/phonegap/Capture;->duration D
+
+execute-BB@0x52 : [ execute-BB@0x62 execute-BB@0xa2 ]
+	21      (00000052) const-string         v4, "getFormatData"
+	22      (00000056) invoke-virtual       v12, v4, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	23      (0000005c) move-result          v4
+	24      (0000005e) if-eqz               v4, +022h
+
+execute-BB@0x62 : [ execute-BB@0x64 ]
+	25      (00000062) const/4              v4, 0
+
+execute-BB@0x64 : [ execute-BB@0x8c ]
+	26      (00000064) invoke-virtual       v13, v4, Lorg/json/JSONArray;->getString(I)Ljava/lang/String;
+	27      (0000006a) move-result-object   v4
+	28      (0000006c) const/4              v5, 1
+	29      (0000006e) invoke-virtual       v13, v5, Lorg/json/JSONArray;->getString(I)Ljava/lang/String;
+	30      (00000074) move-result-object   v5
+	31      (00000076) invoke-direct        v11, v4, v5, Lcom/phonegap/Capture;->getFormatData(Ljava/lang/String; Ljava/lang/String;)Lorg/json/JSONObject;
+	32      (0000007c) move-result-object   v1
+	33      (0000007e) new-instance         v4, Lcom/phonegap/api/PluginResult;
+	34      (00000082) sget-object          v5, Lcom/phonegap/api/PluginResult$Status;->OK Lcom/phonegap/api/PluginResult$Status;
+	35      (00000086) invoke-direct        v4, v5, v1, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; Lorg/json/JSONObject;)V
+	64:8b
+	(Lorg/json/JSONException; -> 8e execute-BB@0x8e)
+
+execute-BB@0x8c : 
+	36      (0000008c) return-object        v4
+
+execute-BB@0x8e : [ execute-BB@0x8c ]
+	37      (0000008e) move-exception       v4
+	38      (00000090) move-object          v0, v4
+	39      (00000092) new-instance         v4, Lcom/phonegap/api/PluginResult;
+	40      (00000096) sget-object          v5, Lcom/phonegap/api/PluginResult$Status;->ERROR Lcom/phonegap/api/PluginResult$Status;
+	41      (0000009a) invoke-direct        v4, v5, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status;)V
+	42      (000000a0) goto                 -ah
+
+execute-BB@0xa2 : [ execute-BB@0xb2 execute-BB@0xd0 ]
+	43      (000000a2) const-string         v4, "captureAudio"
+	44      (000000a6) invoke-virtual       v12, v4, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	45      (000000ac) move-result          v4
+	46      (000000ae) if-eqz               v4, +011h
+
+execute-BB@0xb2 : [ execute-BB@0xb8 ]
+	47      (000000b2) invoke-direct        v11, Lcom/phonegap/Capture;->captureAudio()V
+
+execute-BB@0xb8 : [ execute-BB@0x8c ]
+	48      (000000b8) new-instance         v3, Lcom/phonegap/api/PluginResult;
+	49      (000000bc) sget-object          v4, Lcom/phonegap/api/PluginResult$Status;->NO_RESULT Lcom/phonegap/api/PluginResult$Status;
+	50      (000000c0) invoke-direct        v3, v4, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status;)V
+	51      (000000c6) invoke-virtual       v3, v8, Lcom/phonegap/api/PluginResult;->setKeepCallback(Z)V
+	52      (000000cc) move-object          v4, v3
+	53      (000000ce) goto                 -21h
+
+execute-BB@0xd0 : [ execute-BB@0xe0 execute-BB@0xe8 ]
+	54      (000000d0) const-string         v4, "captureImage"
+	55      (000000d4) invoke-virtual       v12, v4, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	56      (000000da) move-result          v4
+	57      (000000dc) if-eqz               v4, +006h
+
+execute-BB@0xe0 : [ execute-BB@0xb8 ]
+	58      (000000e0) invoke-direct        v11, Lcom/phonegap/Capture;->captureImage()V
+	59      (000000e6) goto                 -17h
+
+execute-BB@0xe8 : [ execute-BB@0xf8 execute-BB@0xb8 ]
+	60      (000000e8) const-string         v4, "captureVideo"
+	61      (000000ec) invoke-virtual       v12, v4, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	62      (000000f2) move-result          v4
+	63      (000000f4) if-eqz               v4, -01eh
+
+execute-BB@0xf8 : [ execute-BB@0xb8 ]
+	64      (000000f8) iget-wide            v4, v11, Lcom/phonegap/Capture;->duration D
+	65      (000000fc) invoke-direct        v11, v4, v5, Lcom/phonegap/Capture;->captureVideo(D)V
+	66      (00000102) goto                 -25h
+

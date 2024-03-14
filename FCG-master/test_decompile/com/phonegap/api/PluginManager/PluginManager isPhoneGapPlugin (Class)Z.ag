@@ -1,0 +1,38 @@
+# Lcom/phonegap/api/PluginManager;->isPhoneGapPlugin(Ljava/lang/Class;)Z [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v2
+# - v3:java.lang.Class
+#
+# - return:boolean
+
+isPhoneGapPlugin-BB@0x0 : [ isPhoneGapPlugin-BB@0x6 isPhoneGapPlugin-BB@0x2e ]
+	0       (00000000) const/4              v1, 0
+	1       (00000002) if-eqz               v3, +016h
+
+isPhoneGapPlugin-BB@0x6 : [ isPhoneGapPlugin-BB@0x16 isPhoneGapPlugin-BB@0x26 ]
+	2       (00000006) const-class          v0, Lcom/phonegap/api/Plugin;
+	3       (0000000a) invoke-virtual       v0, v3, Ljava/lang/Class;->isAssignableFrom(Ljava/lang/Class;)Z
+	4       (00000010) move-result          v0
+	5       (00000012) if-nez               v0, +00ah
+
+isPhoneGapPlugin-BB@0x16 : [ isPhoneGapPlugin-BB@0x26 isPhoneGapPlugin-BB@0x2a ]
+	6       (00000016) const-class          v0, Lcom/phonegap/api/IPlugin;
+	7       (0000001a) invoke-virtual       v0, v3, Ljava/lang/Class;->isAssignableFrom(Ljava/lang/Class;)Z
+	8       (00000020) move-result          v0
+	9       (00000022) if-eqz               v0, +004h
+
+isPhoneGapPlugin-BB@0x26 : [ isPhoneGapPlugin-BB@0x28 ]
+	10      (00000026) const/4              v0, 1
+
+isPhoneGapPlugin-BB@0x28 : 
+	11      (00000028) return               v0
+
+isPhoneGapPlugin-BB@0x2a : [ isPhoneGapPlugin-BB@0x28 ]
+	12      (0000002a) move                 v0, v1
+	13      (0000002c) goto                 -2h
+
+isPhoneGapPlugin-BB@0x2e : [ isPhoneGapPlugin-BB@0x28 ]
+	14      (0000002e) move                 v0, v1
+	15      (00000030) goto                 -4h
+

@@ -1,0 +1,12 @@
+# Lcom/phonegap/FileUploadResult;->setResponse(Ljava/lang/String;)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v0
+# - v1:java.lang.String
+#
+# - return:void
+
+setResponse-BB@0x0 : 
+	0       (00000000) iput-object          v1, v0, Lcom/phonegap/FileUploadResult;->response Ljava/lang/String;
+	1       (00000004) return-void          
+

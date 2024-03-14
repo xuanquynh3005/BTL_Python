@@ -1,0 +1,44 @@
+# Lcom/phonegap/HttpHandler;->get(Ljava/lang/String; Ljava/lang/String;)Ljava/lang/Boolean; [access_flags=protected]
+#
+# Parameters:
+# - local registers: v0...v3
+# - v4:java.lang.String
+# - v5:java.lang.String
+#
+# - return:java.lang.Boolean
+
+get-BB@0x0 : [ get-BB@0xa ]
+	0       (00000000) const/4              v2, 0
+	1       (00000002) invoke-direct        v3, v4, Lcom/phonegap/HttpHandler;->getHttpEntity(Ljava/lang/String;)Lorg/apache/http/HttpEntity;
+	2       (00000008) move-result-object   v1
+
+get-BB@0xa : [ get-BB@0x10 ]
+	3       (0000000a) invoke-direct        v3, v1, v5, Lcom/phonegap/HttpHandler;->writeToDisk(Lorg/apache/http/HttpEntity; Ljava/lang/String;)V
+	a:f
+	(Ljava/lang/Exception; -> 22 get-BB@0x22)
+
+get-BB@0x10 : [ get-BB@0x20 ]
+	4       (00000010) invoke-interface     v1, Lorg/apache/http/HttpEntity;->consumeContent()V
+	5       (00000016) const/4              v2, 1
+	6       (00000018) invoke-static        v2, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+	7       (0000001e) move-result-object   v2
+	10:15
+	(Ljava/lang/Exception; -> 34 get-BB@0x34)
+
+get-BB@0x20 : 
+	8       (00000020) return-object        v2
+
+get-BB@0x22 : [ get-BB@0x20 ]
+	9       (00000022) move-exception       v0
+	10      (00000024) invoke-virtual       v0, Ljava/lang/Exception;->printStackTrace()V
+	11      (0000002a) invoke-static        v2, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+	12      (00000030) move-result-object   v2
+	13      (00000032) goto                 -9h
+
+get-BB@0x34 : [ get-BB@0x20 ]
+	14      (00000034) move-exception       v0
+	15      (00000036) invoke-virtual       v0, Ljava/lang/Exception;->printStackTrace()V
+	16      (0000003c) invoke-static        v2, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+	17      (00000042) move-result-object   v2
+	18      (00000044) goto                 -12h
+

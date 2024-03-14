@@ -1,0 +1,69 @@
+# Lcom/phonegap/ContactAccessorSdk3_4;-><clinit>()V [access_flags=static constructor]
+#
+# Parameters:
+# local registers: v0...v2
+#
+# - return:void
+
+<clinit>-BB@0x0 : 
+	0       (00000000) new-instance         v0, Ljava/util/HashMap;
+	1       (00000004) invoke-direct        v0, Ljava/util/HashMap;-><init>()V
+	2       (0000000a) sput-object          v0, Lcom/phonegap/ContactAccessorSdk3_4;->dbMap Ljava/util/Map;
+	3       (0000000e) sget-object          v0, Lcom/phonegap/ContactAccessorSdk3_4;->dbMap Ljava/util/Map;
+	4       (00000012) const-string         v1, "id"
+	5       (00000016) const-string         v2, "_id"
+	6       (0000001a) invoke-interface     v0, v1, v2, Ljava/util/Map;->put(Ljava/lang/Object; Ljava/lang/Object;)Ljava/lang/Object;
+	7       (00000020) sget-object          v0, Lcom/phonegap/ContactAccessorSdk3_4;->dbMap Ljava/util/Map;
+	8       (00000024) const-string         v1, "displayName"
+	9       (00000028) const-string         v2, "display_name"
+	10      (0000002c) invoke-interface     v0, v1, v2, Ljava/util/Map;->put(Ljava/lang/Object; Ljava/lang/Object;)Ljava/lang/Object;
+	11      (00000032) sget-object          v0, Lcom/phonegap/ContactAccessorSdk3_4;->dbMap Ljava/util/Map;
+	12      (00000036) const-string         v1, "phoneNumbers"
+	13      (0000003a) const-string         v2, "number"
+	14      (0000003e) invoke-interface     v0, v1, v2, Ljava/util/Map;->put(Ljava/lang/Object; Ljava/lang/Object;)Ljava/lang/Object;
+	15      (00000044) sget-object          v0, Lcom/phonegap/ContactAccessorSdk3_4;->dbMap Ljava/util/Map;
+	16      (00000048) const-string         v1, "phoneNumbers.value"
+	17      (0000004c) const-string         v2, "number"
+	18      (00000050) invoke-interface     v0, v1, v2, Ljava/util/Map;->put(Ljava/lang/Object; Ljava/lang/Object;)Ljava/lang/Object;
+	19      (00000056) sget-object          v0, Lcom/phonegap/ContactAccessorSdk3_4;->dbMap Ljava/util/Map;
+	20      (0000005a) const-string         v1, "emails"
+	21      (0000005e) const-string         v2, "data"
+	22      (00000062) invoke-interface     v0, v1, v2, Ljava/util/Map;->put(Ljava/lang/Object; Ljava/lang/Object;)Ljava/lang/Object;
+	23      (00000068) sget-object          v0, Lcom/phonegap/ContactAccessorSdk3_4;->dbMap Ljava/util/Map;
+	24      (0000006c) const-string         v1, "emails.value"
+	25      (00000070) const-string         v2, "data"
+	26      (00000074) invoke-interface     v0, v1, v2, Ljava/util/Map;->put(Ljava/lang/Object; Ljava/lang/Object;)Ljava/lang/Object;
+	27      (0000007a) sget-object          v0, Lcom/phonegap/ContactAccessorSdk3_4;->dbMap Ljava/util/Map;
+	28      (0000007e) const-string         v1, "addresses"
+	29      (00000082) const-string         v2, "data"
+	30      (00000086) invoke-interface     v0, v1, v2, Ljava/util/Map;->put(Ljava/lang/Object; Ljava/lang/Object;)Ljava/lang/Object;
+	31      (0000008c) sget-object          v0, Lcom/phonegap/ContactAccessorSdk3_4;->dbMap Ljava/util/Map;
+	32      (00000090) const-string         v1, "addresses.formatted"
+	33      (00000094) const-string         v2, "data"
+	34      (00000098) invoke-interface     v0, v1, v2, Ljava/util/Map;->put(Ljava/lang/Object; Ljava/lang/Object;)Ljava/lang/Object;
+	35      (0000009e) sget-object          v0, Lcom/phonegap/ContactAccessorSdk3_4;->dbMap Ljava/util/Map;
+	36      (000000a2) const-string         v1, "ims"
+	37      (000000a6) const-string         v2, "data"
+	38      (000000aa) invoke-interface     v0, v1, v2, Ljava/util/Map;->put(Ljava/lang/Object; Ljava/lang/Object;)Ljava/lang/Object;
+	39      (000000b0) sget-object          v0, Lcom/phonegap/ContactAccessorSdk3_4;->dbMap Ljava/util/Map;
+	40      (000000b4) const-string         v1, "ims.value"
+	41      (000000b8) const-string         v2, "data"
+	42      (000000bc) invoke-interface     v0, v1, v2, Ljava/util/Map;->put(Ljava/lang/Object; Ljava/lang/Object;)Ljava/lang/Object;
+	43      (000000c2) sget-object          v0, Lcom/phonegap/ContactAccessorSdk3_4;->dbMap Ljava/util/Map;
+	44      (000000c6) const-string         v1, "organizations"
+	45      (000000ca) const-string         v2, "company"
+	46      (000000ce) invoke-interface     v0, v1, v2, Ljava/util/Map;->put(Ljava/lang/Object; Ljava/lang/Object;)Ljava/lang/Object;
+	47      (000000d4) sget-object          v0, Lcom/phonegap/ContactAccessorSdk3_4;->dbMap Ljava/util/Map;
+	48      (000000d8) const-string         v1, "organizations.name"
+	49      (000000dc) const-string         v2, "company"
+	50      (000000e0) invoke-interface     v0, v1, v2, Ljava/util/Map;->put(Ljava/lang/Object; Ljava/lang/Object;)Ljava/lang/Object;
+	51      (000000e6) sget-object          v0, Lcom/phonegap/ContactAccessorSdk3_4;->dbMap Ljava/util/Map;
+	52      (000000ea) const-string         v1, "organizations.title"
+	53      (000000ee) const-string         v2, "title"
+	54      (000000f2) invoke-interface     v0, v1, v2, Ljava/util/Map;->put(Ljava/lang/Object; Ljava/lang/Object;)Ljava/lang/Object;
+	55      (000000f8) sget-object          v0, Lcom/phonegap/ContactAccessorSdk3_4;->dbMap Ljava/util/Map;
+	56      (000000fc) const-string         v1, "note"
+	57      (00000100) const-string         v2, "notes"
+	58      (00000104) invoke-interface     v0, v1, v2, Ljava/util/Map;->put(Ljava/lang/Object; Ljava/lang/Object;)Ljava/lang/Object;
+	59      (0000010a) return-void          
+

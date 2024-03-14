@@ -1,0 +1,39 @@
+# Lcom/phonegap/SimpleCrypto;->toHex([B)Ljava/lang/String; [access_flags=public static]
+#
+# Parameters:
+# - local registers: v0...v2
+# - v3:byte[]
+#
+# - return:java.lang.String
+
+toHex-BB@0x0 : [ toHex-BB@0x4 toHex-BB@0xa ]
+	0       (00000000) if-nez               v3, +005h
+
+toHex-BB@0x4 : [ toHex-BB@0x8 ]
+	1       (00000004) const-string         v2, ""
+
+toHex-BB@0x8 : 
+	2       (00000008) return-object        v2
+
+toHex-BB@0xa : [ toHex-BB@0x1c ]
+	3       (0000000a) new-instance         v1, Ljava/lang/StringBuffer;
+	4       (0000000e) array-length         v2, v3
+	5       (00000010) mul-int/lit8         v2, v2, 2
+	6       (00000014) invoke-direct        v1, v2, Ljava/lang/StringBuffer;-><init>(I)V
+	7       (0000001a) const/4              v0, 0
+
+toHex-BB@0x1c : [ toHex-BB@0x22 toHex-BB@0x32 ]
+	8       (0000001c) array-length         v2, v3
+	9       (0000001e) if-ge                v0, v2, +00ah
+
+toHex-BB@0x22 : [ toHex-BB@0x1c ]
+	10      (00000022) aget-byte            v2, v3, v0
+	11      (00000026) invoke-static        v1, v2, Lcom/phonegap/SimpleCrypto;->appendHex(Ljava/lang/StringBuffer; B)V
+	12      (0000002c) add-int/lit8         v0, v0, 1
+	13      (00000030) goto                 -ah
+
+toHex-BB@0x32 : [ toHex-BB@0x8 ]
+	14      (00000032) invoke-virtual       v1, Ljava/lang/StringBuffer;->toString()Ljava/lang/String;
+	15      (00000038) move-result-object   v2
+	16      (0000003a) goto                 -19h
+

@@ -1,0 +1,25 @@
+# Lcom/phonegap/DirectoryManager;->testSaveLocationExists()Z [access_flags=protected static]
+#
+# Parameters:
+# local registers: v0...v2
+#
+# - return:boolean
+
+testSaveLocationExists-BB@0x0 : [ testSaveLocationExists-BB@0x18 testSaveLocationExists-BB@0x1c ]
+	0       (00000000) invoke-static        Landroid/os/Environment;->getExternalStorageState()Ljava/lang/String;
+	1       (00000006) move-result-object   v0
+	2       (00000008) const-string         v2, "mounted"
+	3       (0000000c) invoke-virtual       v0, v2, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+	4       (00000012) move-result          v2
+	5       (00000014) if-eqz               v2, +004h
+
+testSaveLocationExists-BB@0x18 : [ testSaveLocationExists-BB@0x1a ]
+	6       (00000018) const/4              v1, 1
+
+testSaveLocationExists-BB@0x1a : 
+	7       (0000001a) return               v1
+
+testSaveLocationExists-BB@0x1c : [ testSaveLocationExists-BB@0x1a ]
+	8       (0000001c) const/4              v1, 0
+	9       (0000001e) goto                 -2h
+

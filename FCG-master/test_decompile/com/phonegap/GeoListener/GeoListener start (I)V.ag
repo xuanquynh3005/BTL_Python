@@ -1,0 +1,40 @@
+# Lcom/phonegap/GeoListener;->start(I)V [access_flags=]
+#
+# Parameters:
+# - local registers: v0...v2
+# - v3:int
+#
+# - return:void
+
+start-BB@0x0 : [ start-BB@0x8 start-BB@0x12 ]
+	0       (00000000) iget-object          v0, v2, Lcom/phonegap/GeoListener;->mGps Lcom/phonegap/GpsListener;
+	1       (00000004) if-eqz               v0, +007h
+
+start-BB@0x8 : [ start-BB@0x12 ]
+	2       (00000008) iget-object          v0, v2, Lcom/phonegap/GeoListener;->mGps Lcom/phonegap/GpsListener;
+	3       (0000000c) invoke-virtual       v0, v3, Lcom/phonegap/GpsListener;->start(I)V
+
+start-BB@0x12 : [ start-BB@0x1a start-BB@0x24 ]
+	4       (00000012) iget-object          v0, v2, Lcom/phonegap/GeoListener;->mNetwork Lcom/phonegap/NetworkListener;
+	5       (00000016) if-eqz               v0, +007h
+
+start-BB@0x1a : [ start-BB@0x24 ]
+	6       (0000001a) iget-object          v0, v2, Lcom/phonegap/GeoListener;->mNetwork Lcom/phonegap/NetworkListener;
+	7       (0000001e) invoke-virtual       v0, v3, Lcom/phonegap/NetworkListener;->start(I)V
+
+start-BB@0x24 : [ start-BB@0x2c start-BB@0x42 ]
+	8       (00000024) iget-object          v0, v2, Lcom/phonegap/GeoListener;->mNetwork Lcom/phonegap/NetworkListener;
+	9       (00000028) if-nez               v0, +00dh
+
+start-BB@0x2c : [ start-BB@0x34 start-BB@0x42 ]
+	10      (0000002c) iget-object          v0, v2, Lcom/phonegap/GeoListener;->mGps Lcom/phonegap/GpsListener;
+	11      (00000030) if-nez               v0, +009h
+
+start-BB@0x34 : [ start-BB@0x42 ]
+	12      (00000034) sget                 v0, Lcom/phonegap/GeoListener;->POSITION_UNAVAILABLE I
+	13      (00000038) const-string         v1, "No location providers available."
+	14      (0000003c) invoke-virtual       v2, v0, v1, Lcom/phonegap/GeoListener;->fail(I Ljava/lang/String;)V
+
+start-BB@0x42 : 
+	15      (00000042) return-void          
+

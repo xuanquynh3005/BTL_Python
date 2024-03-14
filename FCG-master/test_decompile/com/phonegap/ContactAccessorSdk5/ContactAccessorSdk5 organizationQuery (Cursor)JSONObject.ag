@@ -1,0 +1,56 @@
+# Lcom/phonegap/ContactAccessorSdk5;->organizationQuery(Landroid/database/Cursor;)Lorg/json/JSONObject; [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v4
+# - v5:android.database.Cursor
+#
+# - return:org.json.JSONObject
+
+organizationQuery-BB@0x0 : [ organizationQuery-BB@0xa ]
+	0       (00000000) new-instance         v1, Lorg/json/JSONObject;
+	1       (00000004) invoke-direct        v1, Lorg/json/JSONObject;-><init>()V
+
+organizationQuery-BB@0xa : [ organizationQuery-BB@0x82 ]
+	2       (0000000a) const-string         v2, "id"
+	3       (0000000e) const-string         v3, "_id"
+	4       (00000012) invoke-interface     v5, v3, Landroid/database/Cursor;->getColumnIndex(Ljava/lang/String;)I
+	5       (00000018) move-result          v3
+	6       (0000001a) invoke-interface     v5, v3, Landroid/database/Cursor;->getString(I)Ljava/lang/String;
+	7       (00000020) move-result-object   v3
+	8       (00000022) invoke-virtual       v1, v2, v3, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	9       (00000028) const-string         v2, "department"
+	10      (0000002c) const-string         v3, "data5"
+	11      (00000030) invoke-interface     v5, v3, Landroid/database/Cursor;->getColumnIndex(Ljava/lang/String;)I
+	12      (00000036) move-result          v3
+	13      (00000038) invoke-interface     v5, v3, Landroid/database/Cursor;->getString(I)Ljava/lang/String;
+	14      (0000003e) move-result-object   v3
+	15      (00000040) invoke-virtual       v1, v2, v3, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	16      (00000046) const-string         v2, "name"
+	17      (0000004a) const-string         v3, "data1"
+	18      (0000004e) invoke-interface     v5, v3, Landroid/database/Cursor;->getColumnIndex(Ljava/lang/String;)I
+	19      (00000054) move-result          v3
+	20      (00000056) invoke-interface     v5, v3, Landroid/database/Cursor;->getString(I)Ljava/lang/String;
+	21      (0000005c) move-result-object   v3
+	22      (0000005e) invoke-virtual       v1, v2, v3, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	23      (00000064) const-string         v2, "title"
+	24      (00000068) const-string         v3, "data4"
+	25      (0000006c) invoke-interface     v5, v3, Landroid/database/Cursor;->getColumnIndex(Ljava/lang/String;)I
+	26      (00000072) move-result          v3
+	27      (00000074) invoke-interface     v5, v3, Landroid/database/Cursor;->getString(I)Ljava/lang/String;
+	28      (0000007a) move-result-object   v3
+	29      (0000007c) invoke-virtual       v1, v2, v3, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	a:81
+	(Lorg/json/JSONException; -> 84 organizationQuery-BB@0x84)
+
+organizationQuery-BB@0x82 : 
+	30      (00000082) return-object        v1
+
+organizationQuery-BB@0x84 : [ organizationQuery-BB@0x82 ]
+	31      (00000084) move-exception       v2
+	32      (00000086) move-object          v0, v2
+	33      (00000088) const-string         v2, "ContactsAccessor"
+	34      (0000008c) invoke-virtual       v0, Lorg/json/JSONException;->getMessage()Ljava/lang/String;
+	35      (00000092) move-result-object   v3
+	36      (00000094) invoke-static        v2, v3, v0, Landroid/util/Log;->e(Ljava/lang/String; Ljava/lang/String; Ljava/lang/Throwable;)I
+	37      (0000009a) goto                 -ch
+

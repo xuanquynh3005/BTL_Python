@@ -1,0 +1,31 @@
+# Lcom/phonegap/AudioPlayer;->destroy()V [access_flags=public]
+#
+# Parameters:
+# local registers: v0...v2
+#
+# - return:void
+
+destroy-BB@0x0 : [ destroy-BB@0xa destroy-BB@0x1e ]
+	0       (00000000) const/4              v1, 0
+	1       (00000002) iget-object          v0, v2, Lcom/phonegap/AudioPlayer;->mPlayer Landroid/media/MediaPlayer;
+	2       (00000006) if-eqz               v0, +00ch
+
+destroy-BB@0xa : [ destroy-BB@0x1e ]
+	3       (0000000a) invoke-virtual       v2, Lcom/phonegap/AudioPlayer;->stopPlaying()V
+	4       (00000010) iget-object          v0, v2, Lcom/phonegap/AudioPlayer;->mPlayer Landroid/media/MediaPlayer;
+	5       (00000014) invoke-virtual       v0, Landroid/media/MediaPlayer;->release()V
+	6       (0000001a) iput-object          v1, v2, Lcom/phonegap/AudioPlayer;->mPlayer Landroid/media/MediaPlayer;
+
+destroy-BB@0x1e : [ destroy-BB@0x26 destroy-BB@0x3a ]
+	7       (0000001e) iget-object          v0, v2, Lcom/phonegap/AudioPlayer;->recorder Landroid/media/MediaRecorder;
+	8       (00000022) if-eqz               v0, +00ch
+
+destroy-BB@0x26 : [ destroy-BB@0x3a ]
+	9       (00000026) invoke-virtual       v2, Lcom/phonegap/AudioPlayer;->stopRecording()V
+	10      (0000002c) iget-object          v0, v2, Lcom/phonegap/AudioPlayer;->recorder Landroid/media/MediaRecorder;
+	11      (00000030) invoke-virtual       v0, Landroid/media/MediaRecorder;->release()V
+	12      (00000036) iput-object          v1, v2, Lcom/phonegap/AudioPlayer;->recorder Landroid/media/MediaRecorder;
+
+destroy-BB@0x3a : 
+	13      (0000003a) return-void          
+

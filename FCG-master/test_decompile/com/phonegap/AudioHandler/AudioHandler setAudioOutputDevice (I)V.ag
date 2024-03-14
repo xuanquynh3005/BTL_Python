@@ -1,0 +1,39 @@
+# Lcom/phonegap/AudioHandler;->setAudioOutputDevice(I)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v7
+# - v8:int
+#
+# - return:void
+
+setAudioOutputDevice-BB@0x0 : [ setAudioOutputDevice-BB@0x20 setAudioOutputDevice-BB@0x28 ]
+	0       (00000000) const/4              v6, 2
+	1       (00000002) const/4              v5, 1
+	2       (00000004) const/4              v4, 0
+	3       (00000006) const/4              v3, -1
+	4       (00000008) iget-object          v1, v7, Lcom/phonegap/AudioHandler;->ctx Lcom/phonegap/api/PhonegapActivity;
+	5       (0000000c) const-string         v2, "audio"
+	6       (00000010) invoke-virtual       v1, v2, Lcom/phonegap/api/PhonegapActivity;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+	7       (00000016) move-result-object   v0
+	8       (00000018) check-cast           v0, Landroid/media/AudioManager;
+	9       (0000001c) if-ne                v8, v6, +006h
+
+setAudioOutputDevice-BB@0x20 : [ setAudioOutputDevice-BB@0x26 ]
+	10      (00000020) invoke-virtual       v0, v4, v6, v3, Landroid/media/AudioManager;->setRouting(I I I)V
+
+setAudioOutputDevice-BB@0x26 : 
+	11      (00000026) return-void          
+
+setAudioOutputDevice-BB@0x28 : [ setAudioOutputDevice-BB@0x2c setAudioOutputDevice-BB@0x34 ]
+	12      (00000028) if-ne                v8, v5, +006h
+
+setAudioOutputDevice-BB@0x2c : [ setAudioOutputDevice-BB@0x26 ]
+	13      (0000002c) invoke-virtual       v0, v4, v5, v3, Landroid/media/AudioManager;->setRouting(I I I)V
+	14      (00000032) goto                 -6h
+
+setAudioOutputDevice-BB@0x34 : [ setAudioOutputDevice-BB@0x26 ]
+	15      (00000034) sget-object          v1, Ljava/lang/System;->out Ljava/io/PrintStream;
+	16      (00000038) const-string         v2, "AudioHandler.setAudioOutputDevice() Error: Unknown output device."
+	17      (0000003c) invoke-virtual       v1, v2, Ljava/io/PrintStream;->println(Ljava/lang/String;)V
+	18      (00000042) goto                 -eh
+

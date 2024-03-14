@@ -1,0 +1,49 @@
+# Lcom/phonegap/ContactAccessorSdk3_4;->getPhoneType(I)Ljava/lang/String; [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v1
+# - v2:int
+#
+# - return:java.lang.String
+
+getPhoneType-BB@0x0 : [ D:getPhoneType-BB@0x6 0:getPhoneType-BB@0xc 1:getPhoneType-BB@0x1e 2:getPhoneType-BB@0x24 3:getPhoneType-BB@0x30 4:getPhoneType-BB@0x18 5:getPhoneType-BB@0x12 6:getPhoneType-BB@0x2a ]
+	0       (00000000) packed-switch        v2, +000001ch
+
+getPhoneType-BB@0x6 : [ getPhoneType-BB@0xa ]
+	1       (00000006) const-string         v0, "custom"
+
+getPhoneType-BB@0xa : 
+	2       (0000000a) return-object        v0
+
+getPhoneType-BB@0xc : [ getPhoneType-BB@0xa ]
+	3       (0000000c) const-string         v0, "custom"
+	4       (00000010) goto                 -3h
+
+getPhoneType-BB@0x12 : [ getPhoneType-BB@0xa ]
+	5       (00000012) const-string         v0, "home fax"
+	6       (00000016) goto                 -6h
+
+getPhoneType-BB@0x18 : [ getPhoneType-BB@0xa ]
+	7       (00000018) const-string         v0, "work fax"
+	8       (0000001c) goto                 -9h
+
+getPhoneType-BB@0x1e : [ getPhoneType-BB@0xa ]
+	9       (0000001e) const-string         v0, "home"
+	10      (00000022) goto                 -ch
+
+getPhoneType-BB@0x24 : [ getPhoneType-BB@0xa ]
+	11      (00000024) const-string         v0, "mobile"
+	12      (00000028) goto                 -fh
+
+getPhoneType-BB@0x2a : [ getPhoneType-BB@0xa ]
+	13      (0000002a) const-string         v0, "pager"
+	14      (0000002e) goto                 -12h
+
+getPhoneType-BB@0x30 : [ getPhoneType-BB@0xa ]
+	15      (00000030) const-string         v0, "work"
+	16      (00000034) goto                 -15h
+
+getPhoneType-BB@0x36 : 
+	17      (00000036) nop                  
+	18      (00000038) packed-switch-payload 0 1 2 3 4 5 6
+

@@ -1,0 +1,24 @@
+# Lcom/phonegap/AudioPlayer;->isStreaming(Ljava/lang/String;)Z [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v1
+# - v2:java.lang.String
+#
+# - return:boolean
+
+isStreaming-BB@0x0 : [ isStreaming-BB@0x10 isStreaming-BB@0x14 ]
+	0       (00000000) const-string         v0, "http://"
+	1       (00000004) invoke-virtual       v2, v0, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+	2       (0000000a) move-result          v0
+	3       (0000000c) if-eqz               v0, +004h
+
+isStreaming-BB@0x10 : [ isStreaming-BB@0x12 ]
+	4       (00000010) const/4              v0, 1
+
+isStreaming-BB@0x12 : 
+	5       (00000012) return               v0
+
+isStreaming-BB@0x14 : [ isStreaming-BB@0x12 ]
+	6       (00000014) const/4              v0, 0
+	7       (00000016) goto                 -2h
+

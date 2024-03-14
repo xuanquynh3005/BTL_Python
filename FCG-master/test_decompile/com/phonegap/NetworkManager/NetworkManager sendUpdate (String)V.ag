@@ -1,0 +1,18 @@
+# Lcom/phonegap/NetworkManager;->sendUpdate(Ljava/lang/String;)V [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v2
+# - v3:java.lang.String
+#
+# - return:void
+
+sendUpdate-BB@0x0 : 
+	0       (00000000) new-instance         v0, Lcom/phonegap/api/PluginResult;
+	1       (00000004) sget-object          v1, Lcom/phonegap/api/PluginResult$Status;->OK Lcom/phonegap/api/PluginResult$Status;
+	2       (00000008) invoke-direct        v0, v1, v3, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; Ljava/lang/String;)V
+	3       (0000000e) const/4              v1, 1
+	4       (00000010) invoke-virtual       v0, v1, Lcom/phonegap/api/PluginResult;->setKeepCallback(Z)V
+	5       (00000016) iget-object          v1, v2, Lcom/phonegap/NetworkManager;->connectionCallbackId Ljava/lang/String;
+	6       (0000001a) invoke-virtual       v2, v0, v1, Lcom/phonegap/NetworkManager;->success(Lcom/phonegap/api/PluginResult; Ljava/lang/String;)V
+	7       (00000020) return-void          
+

@@ -1,0 +1,38 @@
+# Lcom/phonegap/GeoListener;->fail(I Ljava/lang/String;)V [access_flags=]
+#
+# Parameters:
+# - local registers: v0...v3
+# - v4:int
+# - v5:java.lang.String
+#
+# - return:void
+
+fail-BB@0x0 : 
+	0       (00000000) iget-object          v0, v3, Lcom/phonegap/GeoListener;->broker Lcom/phonegap/GeoBroker;
+	1       (00000004) new-instance         v1, Ljava/lang/StringBuilder;
+	2       (00000008) invoke-direct        v1, Ljava/lang/StringBuilder;-><init>()V
+	3       (0000000e) const-string         v2, "navigator._geo.fail('"
+	4       (00000012) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	5       (00000018) move-result-object   v1
+	6       (0000001a) iget-object          v2, v3, Lcom/phonegap/GeoListener;->id Ljava/lang/String;
+	7       (0000001e) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	8       (00000024) move-result-object   v1
+	9       (00000026) const-string         v2, "', '"
+	10      (0000002a) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	11      (00000030) move-result-object   v1
+	12      (00000032) invoke-virtual       v1, v4, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+	13      (00000038) move-result-object   v1
+	14      (0000003a) const-string         v2, "', '"
+	15      (0000003e) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	16      (00000044) move-result-object   v1
+	17      (00000046) invoke-virtual       v1, v5, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	18      (0000004c) move-result-object   v1
+	19      (0000004e) const-string         v2, "');"
+	20      (00000052) invoke-virtual       v1, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	21      (00000058) move-result-object   v1
+	22      (0000005a) invoke-virtual       v1, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	23      (00000060) move-result-object   v1
+	24      (00000062) invoke-virtual       v0, v1, Lcom/phonegap/GeoBroker;->sendJavascript(Ljava/lang/String;)V
+	25      (00000068) invoke-virtual       v3, Lcom/phonegap/GeoListener;->stop()V
+	26      (0000006e) return-void          
+

@@ -1,0 +1,32 @@
+# Lcom/phonegap/CallbackServer;->stopServer()V [access_flags=public]
+#
+# Parameters:
+# local registers: v0...v1
+#
+# - return:void
+
+stopServer-BB@0x0 : [ stopServer-BB@0x8 stopServer-BB@0x18 ]
+	0       (00000000) iget-boolean         v0, v1, Lcom/phonegap/CallbackServer;->active Z
+	1       (00000004) if-eqz               v0, +00ah
+
+stopServer-BB@0x8 : [ stopServer-BB@0x10 ]
+	2       (00000008) const/4              v0, 0
+	3       (0000000a) iput-boolean         v0, v1, Lcom/phonegap/CallbackServer;->active Z
+	4       (0000000e) monitor-enter        v1
+
+stopServer-BB@0x10 : [ stopServer-BB@0x18 ]
+	5       (00000010) invoke-virtual       v1, Ljava/lang/Object;->notify()V
+	6       (00000016) monitor-exit         v1
+	10:1d
+	(Ljava/lang/Throwable; -> 1a stopServer-BB@0x1a)
+
+stopServer-BB@0x18 : 
+	7       (00000018) return-void          
+	10:1d
+	(Ljava/lang/Throwable; -> 1a stopServer-BB@0x1a)
+
+stopServer-BB@0x1a : 
+	8       (0000001a) move-exception       v0
+	9       (0000001c) monitor-exit         v1
+	10      (0000001e) throw                v0
+

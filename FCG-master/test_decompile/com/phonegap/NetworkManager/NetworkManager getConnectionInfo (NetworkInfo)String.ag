@@ -1,0 +1,28 @@
+# Lcom/phonegap/NetworkManager;->getConnectionInfo(Landroid/net/NetworkInfo;)Ljava/lang/String; [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v2
+# - v3:android.net.NetworkInfo
+#
+# - return:java.lang.String
+
+getConnectionInfo-BB@0x0 : [ getConnectionInfo-BB@0x8 getConnectionInfo-BB@0x18 ]
+	0       (00000000) const-string         v0, "none"
+	1       (00000004) if-eqz               v3, +00ah
+
+getConnectionInfo-BB@0x8 : [ getConnectionInfo-BB@0x14 getConnectionInfo-BB@0x1a ]
+	2       (00000008) invoke-virtual       v3, Landroid/net/NetworkInfo;->isConnected()Z
+	3       (0000000e) move-result          v1
+	4       (00000010) if-nez               v1, +005h
+
+getConnectionInfo-BB@0x14 : [ getConnectionInfo-BB@0x18 ]
+	5       (00000014) const-string         v0, "none"
+
+getConnectionInfo-BB@0x18 : 
+	6       (00000018) return-object        v0
+
+getConnectionInfo-BB@0x1a : [ getConnectionInfo-BB@0x18 ]
+	7       (0000001a) invoke-direct        v2, v3, Lcom/phonegap/NetworkManager;->getType(Landroid/net/NetworkInfo;)Ljava/lang/String;
+	8       (00000020) move-result-object   v0
+	9       (00000022) goto                 -5h
+

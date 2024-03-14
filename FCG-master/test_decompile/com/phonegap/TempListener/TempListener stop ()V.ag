@@ -1,0 +1,12 @@
+# Lcom/phonegap/TempListener;->stop()V [access_flags=public]
+#
+# Parameters:
+# local registers: v0...v1
+#
+# - return:void
+
+stop-BB@0x0 : 
+	0       (00000000) iget-object          v0, v1, Lcom/phonegap/TempListener;->sensorManager Landroid/hardware/SensorManager;
+	1       (00000004) invoke-virtual       v0, v1, Landroid/hardware/SensorManager;->unregisterListener(Landroid/hardware/SensorEventListener;)V
+	2       (0000000a) return-void          
+

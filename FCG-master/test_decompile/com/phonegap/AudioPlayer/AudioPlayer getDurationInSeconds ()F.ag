@@ -1,0 +1,16 @@
+# Lcom/phonegap/AudioPlayer;->getDurationInSeconds()F [access_flags=private]
+#
+# Parameters:
+# local registers: v0...v2
+#
+# - return:float
+
+getDurationInSeconds-BB@0x0 : 
+	0       (00000000) iget-object          v0, v2, Lcom/phonegap/AudioPlayer;->mPlayer Landroid/media/MediaPlayer;
+	1       (00000004) invoke-virtual       v0, Landroid/media/MediaPlayer;->getDuration()I
+	2       (0000000a) move-result          v0
+	3       (0000000c) int-to-float         v0, v0
+	4       (0000000e) const/high16         v1, 1148846080
+	5       (00000012) div-float/2addr      v0, v1
+	6       (00000014) return               v0
+

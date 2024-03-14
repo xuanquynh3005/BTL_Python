@@ -1,0 +1,244 @@
+# Lcom/phonegap/Capture;->onActivityResult(I I Landroid/content/Intent;)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v11
+# - v12:int
+# - v13:int
+# - v14:android.content.Intent
+#
+# - return:void
+
+onActivityResult-BB@0x0 : [ onActivityResult-BB@0x6 onActivityResult-BB@0x214 ]
+	0       (00000000) const/4              v7, -1
+	1       (00000002) if-ne                v13, v7, +109h
+
+onActivityResult-BB@0x6 : [ onActivityResult-BB@0xa onActivityResult-BB@0x68 ]
+	2       (00000006) if-nez               v12, +031h
+
+onActivityResult-BB@0xa : [ onActivityResult-BB@0x3e onActivityResult-BB@0x60 ]
+	3       (0000000a) invoke-virtual       v14, Landroid/content/Intent;->getData()Landroid/net/Uri;
+	4       (00000010) move-result-object   v1
+	5       (00000012) iget-object          v7, v11, Lcom/phonegap/Capture;->results Lorg/json/JSONArray;
+	6       (00000016) invoke-direct        v11, v1, Lcom/phonegap/Capture;->createMediaFile(Landroid/net/Uri;)Lorg/json/JSONObject;
+	7       (0000001c) move-result-object   v8
+	8       (0000001e) invoke-virtual       v7, v8, Lorg/json/JSONArray;->put(Ljava/lang/Object;)Lorg/json/JSONArray;
+	9       (00000024) iget-object          v7, v11, Lcom/phonegap/Capture;->results Lorg/json/JSONArray;
+	10      (00000028) invoke-virtual       v7, Lorg/json/JSONArray;->length()I
+	11      (0000002e) move-result          v7
+	12      (00000030) int-to-long          v7, v7
+	13      (00000032) iget-wide            v9, v11, Lcom/phonegap/Capture;->limit J
+	14      (00000036) cmp-long             v7, v7, v9
+	15      (0000003a) if-ltz               v7, +013h
+
+onActivityResult-BB@0x3e : [ onActivityResult-BB@0x5e ]
+	16      (0000003e) new-instance         v7, Lcom/phonegap/api/PluginResult;
+	17      (00000042) sget-object          v8, Lcom/phonegap/api/PluginResult$Status;->OK Lcom/phonegap/api/PluginResult$Status;
+	18      (00000046) iget-object          v9, v11, Lcom/phonegap/Capture;->results Lorg/json/JSONArray;
+	19      (0000004a) const-string         v10, "navigator.device.capture._castMediaFile"
+	20      (0000004e) invoke-direct        v7, v8, v9, v10, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; Lorg/json/JSONArray; Ljava/lang/String;)V
+	21      (00000054) iget-object          v8, v11, Lcom/phonegap/Capture;->callbackId Ljava/lang/String;
+	22      (00000058) invoke-virtual       v11, v7, v8, Lcom/phonegap/Capture;->success(Lcom/phonegap/api/PluginResult; Ljava/lang/String;)V
+
+onActivityResult-BB@0x5e : 
+	23      (0000005e) return-void          
+
+onActivityResult-BB@0x60 : [ onActivityResult-BB@0x5e ]
+	24      (00000060) invoke-direct        v11, Lcom/phonegap/Capture;->captureAudio()V
+	25      (00000066) goto                 -4h
+
+onActivityResult-BB@0x68 : [ onActivityResult-BB@0x6e onActivityResult-BB@0x1a8 ]
+	26      (00000068) const/4              v7, 1
+	27      (0000006a) if-ne                v12, v7, +09fh
+
+onActivityResult-BB@0x6e : [ onActivityResult-BB@0xa0 ]
+	28      (0000006e) iget-object          v7, v11, Lcom/phonegap/Capture;->ctx Lcom/phonegap/api/PhonegapActivity;
+	29      (00000072) invoke-virtual       v7, Lcom/phonegap/api/PhonegapActivity;->getContentResolver()Landroid/content/ContentResolver;
+	30      (00000078) move-result-object   v7
+	31      (0000007a) iget-object          v8, v11, Lcom/phonegap/Capture;->imageUri Landroid/net/Uri;
+	32      (0000007e) invoke-static        v7, v8, Landroid/provider/MediaStore$Images$Media;->getBitmap(Landroid/content/ContentResolver; Landroid/net/Uri;)Landroid/graphics/Bitmap;
+	33      (00000084) move-result-object   v0
+	34      (00000086) new-instance         v6, Landroid/content/ContentValues;
+	35      (0000008a) invoke-direct        v6, Landroid/content/ContentValues;-><init>()V
+	36      (00000090) const-string         v7, "mime_type"
+	37      (00000094) const-string         v8, "image/jpeg"
+	38      (00000098) invoke-virtual       v6, v7, v8, Landroid/content/ContentValues;->put(Ljava/lang/String; Ljava/lang/String;)V
+	39      (0000009e) const/4              v5, 0
+	6e:9d
+	(Ljava/io/IOException; -> 13c onActivityResult-BB@0x13c)
+
+onActivityResult-BB@0xa0 : [ onActivityResult-BB@0xb8 ]
+	40      (000000a0) iget-object          v7, v11, Lcom/phonegap/Capture;->ctx Lcom/phonegap/api/PhonegapActivity;
+	41      (000000a4) invoke-virtual       v7, Lcom/phonegap/api/PhonegapActivity;->getContentResolver()Landroid/content/ContentResolver;
+	42      (000000aa) move-result-object   v7
+	43      (000000ac) sget-object          v8, Landroid/provider/MediaStore$Images$Media;->EXTERNAL_CONTENT_URI Landroid/net/Uri;
+	44      (000000b0) invoke-virtual       v7, v8, v6, Landroid/content/ContentResolver;->insert(Landroid/net/Uri; Landroid/content/ContentValues;)Landroid/net/Uri;
+	45      (000000b6) move-result-object   v5
+	a0:b5
+	(Ljava/lang/UnsupportedOperationException; -> 152 onActivityResult-BB@0x152)
+	(Ljava/io/IOException; -> 13c onActivityResult-BB@0x13c)
+
+onActivityResult-BB@0xb8 : [ onActivityResult-BB@0x11a onActivityResult-BB@0x19e ]
+	46      (000000b8) iget-object          v7, v11, Lcom/phonegap/Capture;->ctx Lcom/phonegap/api/PhonegapActivity;
+	47      (000000bc) invoke-virtual       v7, Lcom/phonegap/api/PhonegapActivity;->getContentResolver()Landroid/content/ContentResolver;
+	48      (000000c2) move-result-object   v7
+	49      (000000c4) invoke-virtual       v7, v5, Landroid/content/ContentResolver;->openOutputStream(Landroid/net/Uri;)Ljava/io/OutputStream;
+	50      (000000ca) move-result-object   v4
+	51      (000000cc) sget-object          v7, Landroid/graphics/Bitmap$CompressFormat;->JPEG Landroid/graphics/Bitmap$CompressFormat;
+	52      (000000d0) const/16             v8, 100
+	53      (000000d4) invoke-virtual       v0, v7, v8, v4, Landroid/graphics/Bitmap;->compress(Landroid/graphics/Bitmap$CompressFormat; I Ljava/io/OutputStream;)Z
+	54      (000000da) invoke-virtual       v4, Ljava/io/OutputStream;->close()V
+	55      (000000e0) invoke-virtual       v0, Landroid/graphics/Bitmap;->recycle()V
+	56      (000000e6) const/4              v0, 0
+	57      (000000e8) invoke-static        Ljava/lang/System;->gc()V
+	58      (000000ee) iget-object          v7, v11, Lcom/phonegap/Capture;->results Lorg/json/JSONArray;
+	59      (000000f2) invoke-direct        v11, v5, Lcom/phonegap/Capture;->createMediaFile(Landroid/net/Uri;)Lorg/json/JSONObject;
+	60      (000000f8) move-result-object   v8
+	61      (000000fa) invoke-virtual       v7, v8, Lorg/json/JSONArray;->put(Ljava/lang/Object;)Lorg/json/JSONArray;
+	62      (00000100) iget-object          v7, v11, Lcom/phonegap/Capture;->results Lorg/json/JSONArray;
+	63      (00000104) invoke-virtual       v7, Lorg/json/JSONArray;->length()I
+	64      (0000010a) move-result          v7
+	65      (0000010c) int-to-long          v7, v7
+	66      (0000010e) iget-wide            v9, v11, Lcom/phonegap/Capture;->limit J
+	67      (00000112) cmp-long             v7, v7, v9
+	68      (00000116) if-ltz               v7, +044h
+	b8:139
+	(Ljava/io/IOException; -> 13c onActivityResult-BB@0x13c)
+
+onActivityResult-BB@0x11a : [ onActivityResult-BB@0x5e ]
+	69      (0000011a) new-instance         v7, Lcom/phonegap/api/PluginResult;
+	70      (0000011e) sget-object          v8, Lcom/phonegap/api/PluginResult$Status;->OK Lcom/phonegap/api/PluginResult$Status;
+	71      (00000122) iget-object          v9, v11, Lcom/phonegap/Capture;->results Lorg/json/JSONArray;
+	72      (00000126) const-string         v10, "navigator.device.capture._castMediaFile"
+	73      (0000012a) invoke-direct        v7, v8, v9, v10, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; Lorg/json/JSONArray; Ljava/lang/String;)V
+	74      (00000130) iget-object          v8, v11, Lcom/phonegap/Capture;->callbackId Ljava/lang/String;
+	75      (00000134) invoke-virtual       v11, v7, v8, Lcom/phonegap/Capture;->success(Lcom/phonegap/api/PluginResult; Ljava/lang/String;)V
+	76      (0000013a) goto                 -6eh
+
+onActivityResult-BB@0x13c : [ onActivityResult-BB@0x5e ]
+	77      (0000013c) move-exception       v7
+	78      (0000013e) move-object          v2, v7
+	79      (00000140) invoke-virtual       v2, Ljava/io/IOException;->printStackTrace()V
+	80      (00000146) const-string         v7, "Error capturing image."
+	81      (0000014a) invoke-virtual       v11, v7, Lcom/phonegap/Capture;->fail(Ljava/lang/String;)V
+	82      (00000150) goto                 -79h
+
+onActivityResult-BB@0x152 : [ onActivityResult-BB@0x156 ]
+	83      (00000152) move-exception       v7
+	84      (00000154) move-object          v2, v7
+
+onActivityResult-BB@0x156 : [ onActivityResult-BB@0x164 ]
+	85      (00000156) sget-object          v7, Ljava/lang/System;->out Ljava/io/PrintStream;
+	86      (0000015a) const-string         v8, "Can't write to external media storage."
+	87      (0000015e) invoke-virtual       v7, v8, Ljava/io/PrintStream;->println(Ljava/lang/String;)V
+	156:163
+	(Ljava/io/IOException; -> 13c onActivityResult-BB@0x13c)
+
+onActivityResult-BB@0x164 : [ onActivityResult-BB@0xb8 ]
+	88      (00000164) iget-object          v7, v11, Lcom/phonegap/Capture;->ctx Lcom/phonegap/api/PhonegapActivity;
+	89      (00000168) invoke-virtual       v7, Lcom/phonegap/api/PhonegapActivity;->getContentResolver()Landroid/content/ContentResolver;
+	90      (0000016e) move-result-object   v7
+	91      (00000170) sget-object          v8, Landroid/provider/MediaStore$Images$Media;->INTERNAL_CONTENT_URI Landroid/net/Uri;
+	92      (00000174) invoke-virtual       v7, v8, v6, Landroid/content/ContentResolver;->insert(Landroid/net/Uri; Landroid/content/ContentValues;)Landroid/net/Uri;
+	93      (0000017a) move-result-object   v5
+	94      (0000017c) goto                 -62h
+	164:179
+	(Ljava/lang/UnsupportedOperationException; -> 17e onActivityResult-BB@0x17e)
+	(Ljava/io/IOException; -> 13c onActivityResult-BB@0x13c)
+
+onActivityResult-BB@0x17e : [ onActivityResult-BB@0x182 ]
+	95      (0000017e) move-exception       v7
+	96      (00000180) move-object          v3, v7
+
+onActivityResult-BB@0x182 : [ onActivityResult-BB@0x5e ]
+	97      (00000182) sget-object          v7, Ljava/lang/System;->out Ljava/io/PrintStream;
+	98      (00000186) const-string         v8, "Can't write to internal media storage."
+	99      (0000018a) invoke-virtual       v7, v8, Ljava/io/PrintStream;->println(Ljava/lang/String;)V
+	100     (00000190) const-string         v7, "Error capturing image - no media storage found."
+	101     (00000194) invoke-virtual       v11, v7, Lcom/phonegap/Capture;->fail(Ljava/lang/String;)V
+	102     (0000019a) goto/16              -09eh
+	182:1a3
+	(Ljava/io/IOException; -> 13c onActivityResult-BB@0x13c)
+
+onActivityResult-BB@0x19e : [ onActivityResult-BB@0x5e ]
+	103     (0000019e) invoke-direct        v11, Lcom/phonegap/Capture;->captureImage()V
+	104     (000001a4) goto/16              -0a3h
+
+onActivityResult-BB@0x1a8 : [ onActivityResult-BB@0x1ae onActivityResult-BB@0x5e ]
+	105     (000001a8) const/4              v7, 2
+	106     (000001aa) if-ne                v12, v7, -0a6h
+
+onActivityResult-BB@0x1ae : [ onActivityResult-BB@0x1e2 onActivityResult-BB@0x206 ]
+	107     (000001ae) invoke-virtual       v14, Landroid/content/Intent;->getData()Landroid/net/Uri;
+	108     (000001b4) move-result-object   v1
+	109     (000001b6) iget-object          v7, v11, Lcom/phonegap/Capture;->results Lorg/json/JSONArray;
+	110     (000001ba) invoke-direct        v11, v1, Lcom/phonegap/Capture;->createMediaFile(Landroid/net/Uri;)Lorg/json/JSONObject;
+	111     (000001c0) move-result-object   v8
+	112     (000001c2) invoke-virtual       v7, v8, Lorg/json/JSONArray;->put(Ljava/lang/Object;)Lorg/json/JSONArray;
+	113     (000001c8) iget-object          v7, v11, Lcom/phonegap/Capture;->results Lorg/json/JSONArray;
+	114     (000001cc) invoke-virtual       v7, Lorg/json/JSONArray;->length()I
+	115     (000001d2) move-result          v7
+	116     (000001d4) int-to-long          v7, v7
+	117     (000001d6) iget-wide            v9, v11, Lcom/phonegap/Capture;->limit J
+	118     (000001da) cmp-long             v7, v7, v9
+	119     (000001de) if-ltz               v7, +014h
+
+onActivityResult-BB@0x1e2 : [ onActivityResult-BB@0x5e ]
+	120     (000001e2) new-instance         v7, Lcom/phonegap/api/PluginResult;
+	121     (000001e6) sget-object          v8, Lcom/phonegap/api/PluginResult$Status;->OK Lcom/phonegap/api/PluginResult$Status;
+	122     (000001ea) iget-object          v9, v11, Lcom/phonegap/Capture;->results Lorg/json/JSONArray;
+	123     (000001ee) const-string         v10, "navigator.device.capture._castMediaFile"
+	124     (000001f2) invoke-direct        v7, v8, v9, v10, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; Lorg/json/JSONArray; Ljava/lang/String;)V
+	125     (000001f8) iget-object          v8, v11, Lcom/phonegap/Capture;->callbackId Ljava/lang/String;
+	126     (000001fc) invoke-virtual       v11, v7, v8, Lcom/phonegap/Capture;->success(Lcom/phonegap/api/PluginResult; Ljava/lang/String;)V
+	127     (00000202) goto/16              -0d2h
+
+onActivityResult-BB@0x206 : [ onActivityResult-BB@0x5e ]
+	128     (00000206) iget-wide            v7, v11, Lcom/phonegap/Capture;->duration D
+	129     (0000020a) invoke-direct        v11, v7, v8, Lcom/phonegap/Capture;->captureVideo(D)V
+	130     (00000210) goto/16              -0d9h
+
+onActivityResult-BB@0x214 : [ onActivityResult-BB@0x218 onActivityResult-BB@0x25a ]
+	131     (00000214) if-nez               v13, +023h
+
+onActivityResult-BB@0x218 : [ onActivityResult-BB@0x228 onActivityResult-BB@0x24c ]
+	132     (00000218) iget-object          v7, v11, Lcom/phonegap/Capture;->results Lorg/json/JSONArray;
+	133     (0000021c) invoke-virtual       v7, Lorg/json/JSONArray;->length()I
+	134     (00000222) move-result          v7
+	135     (00000224) if-lez               v7, +014h
+
+onActivityResult-BB@0x228 : [ onActivityResult-BB@0x5e ]
+	136     (00000228) new-instance         v7, Lcom/phonegap/api/PluginResult;
+	137     (0000022c) sget-object          v8, Lcom/phonegap/api/PluginResult$Status;->OK Lcom/phonegap/api/PluginResult$Status;
+	138     (00000230) iget-object          v9, v11, Lcom/phonegap/Capture;->results Lorg/json/JSONArray;
+	139     (00000234) const-string         v10, "navigator.device.capture._castMediaFile"
+	140     (00000238) invoke-direct        v7, v8, v9, v10, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; Lorg/json/JSONArray; Ljava/lang/String;)V
+	141     (0000023e) iget-object          v8, v11, Lcom/phonegap/Capture;->callbackId Ljava/lang/String;
+	142     (00000242) invoke-virtual       v11, v7, v8, Lcom/phonegap/Capture;->success(Lcom/phonegap/api/PluginResult; Ljava/lang/String;)V
+	143     (00000248) goto/16              -0f5h
+
+onActivityResult-BB@0x24c : [ onActivityResult-BB@0x5e ]
+	144     (0000024c) const-string         v7, "Canceled."
+	145     (00000250) invoke-virtual       v11, v7, Lcom/phonegap/Capture;->fail(Ljava/lang/String;)V
+	146     (00000256) goto/16              -0fch
+
+onActivityResult-BB@0x25a : [ onActivityResult-BB@0x26a onActivityResult-BB@0x28e ]
+	147     (0000025a) iget-object          v7, v11, Lcom/phonegap/Capture;->results Lorg/json/JSONArray;
+	148     (0000025e) invoke-virtual       v7, Lorg/json/JSONArray;->length()I
+	149     (00000264) move-result          v7
+	150     (00000266) if-lez               v7, +014h
+
+onActivityResult-BB@0x26a : [ onActivityResult-BB@0x5e ]
+	151     (0000026a) new-instance         v7, Lcom/phonegap/api/PluginResult;
+	152     (0000026e) sget-object          v8, Lcom/phonegap/api/PluginResult$Status;->OK Lcom/phonegap/api/PluginResult$Status;
+	153     (00000272) iget-object          v9, v11, Lcom/phonegap/Capture;->results Lorg/json/JSONArray;
+	154     (00000276) const-string         v10, "navigator.device.capture._castMediaFile"
+	155     (0000027a) invoke-direct        v7, v8, v9, v10, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; Lorg/json/JSONArray; Ljava/lang/String;)V
+	156     (00000280) iget-object          v8, v11, Lcom/phonegap/Capture;->callbackId Ljava/lang/String;
+	157     (00000284) invoke-virtual       v11, v7, v8, Lcom/phonegap/Capture;->success(Lcom/phonegap/api/PluginResult; Ljava/lang/String;)V
+	158     (0000028a) goto/16              -116h
+
+onActivityResult-BB@0x28e : [ onActivityResult-BB@0x5e ]
+	159     (0000028e) const-string         v7, "Did not complete!"
+	160     (00000292) invoke-virtual       v11, v7, Lcom/phonegap/Capture;->fail(Ljava/lang/String;)V
+	161     (00000298) goto/16              -11dh
+

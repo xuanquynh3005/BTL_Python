@@ -1,0 +1,12 @@
+# Lcom/phonegap/FileTransfer$2;->checkClientTrusted([Ljava/security/cert/X509Certificate; Ljava/lang/String;)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v0
+# - v1:java.security.cert.X509Certificate[]
+# - v2:java.lang.String
+#
+# - return:void
+
+checkClientTrusted-BB@0x0 : 
+	0       (00000000) return-void          
+

@@ -1,0 +1,15 @@
+# Lcom/phonegap/ContactAccessorSdk3_4;-><init>(Landroid/webkit/WebView; Landroid/app/Activity;)V [access_flags=public constructor]
+#
+# Parameters:
+# - local registers: v0...v0
+# - v1:android.webkit.WebView
+# - v2:android.app.Activity
+#
+# - return:void
+
+<init>-BB@0x0 : 
+	0       (00000000) invoke-direct        v0, Lcom/phonegap/ContactAccessor;-><init>()V
+	1       (00000006) iput-object          v2, v0, Lcom/phonegap/ContactAccessorSdk3_4;->mApp Landroid/app/Activity;
+	2       (0000000a) iput-object          v1, v0, Lcom/phonegap/ContactAccessorSdk3_4;->mView Landroid/webkit/WebView;
+	3       (0000000e) return-void          
+

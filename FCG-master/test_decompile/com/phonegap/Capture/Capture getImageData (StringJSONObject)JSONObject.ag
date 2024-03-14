@@ -1,0 +1,22 @@
+# Lcom/phonegap/Capture;->getImageData(Ljava/lang/String; Lorg/json/JSONObject;)Lorg/json/JSONObject; [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v3
+# - v4:java.lang.String
+# - v5:org.json.JSONObject
+#
+# - return:org.json.JSONObject
+
+getImageData-BB@0x0 : 
+	0       (00000000) invoke-static        v4, Landroid/graphics/BitmapFactory;->decodeFile(Ljava/lang/String;)Landroid/graphics/Bitmap;
+	1       (00000006) move-result-object   v0
+	2       (00000008) const-string         v1, "height"
+	3       (0000000c) invoke-virtual       v0, Landroid/graphics/Bitmap;->getHeight()I
+	4       (00000012) move-result          v2
+	5       (00000014) invoke-virtual       v5, v1, v2, Lorg/json/JSONObject;->put(Ljava/lang/String; I)Lorg/json/JSONObject;
+	6       (0000001a) const-string         v1, "width"
+	7       (0000001e) invoke-virtual       v0, Landroid/graphics/Bitmap;->getWidth()I
+	8       (00000024) move-result          v2
+	9       (00000026) invoke-virtual       v5, v1, v2, Lorg/json/JSONObject;->put(Ljava/lang/String; I)Lorg/json/JSONObject;
+	10      (0000002c) return-object        v5
+

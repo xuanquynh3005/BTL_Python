@@ -1,0 +1,32 @@
+# Lcom/phonegap/AudioHandler;->getDurationAudio(Ljava/lang/String; Ljava/lang/String;)F [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v2
+# - v3:java.lang.String
+# - v4:java.lang.String
+#
+# - return:float
+
+getDurationAudio-BB@0x0 : [ getDurationAudio-BB@0x14 getDurationAudio-BB@0x1e ]
+	0       (00000000) iget-object          v1, v2, Lcom/phonegap/AudioHandler;->players Ljava/util/HashMap;
+	1       (00000004) invoke-virtual       v1, v3, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
+	2       (0000000a) move-result-object   v0
+	3       (0000000c) check-cast           v0, Lcom/phonegap/AudioPlayer;
+	4       (00000010) if-eqz               v0, +007h
+
+getDurationAudio-BB@0x14 : [ getDurationAudio-BB@0x1c ]
+	5       (00000014) invoke-virtual       v0, v4, Lcom/phonegap/AudioPlayer;->getDuration(Ljava/lang/String;)F
+	6       (0000001a) move-result          v1
+
+getDurationAudio-BB@0x1c : 
+	7       (0000001c) return               v1
+
+getDurationAudio-BB@0x1e : [ getDurationAudio-BB@0x1c ]
+	8       (0000001e) new-instance         v0, Lcom/phonegap/AudioPlayer;
+	9       (00000022) invoke-direct        v0, v2, v3, Lcom/phonegap/AudioPlayer;-><init>(Lcom/phonegap/AudioHandler; Ljava/lang/String;)V
+	10      (00000028) iget-object          v1, v2, Lcom/phonegap/AudioHandler;->players Ljava/util/HashMap;
+	11      (0000002c) invoke-virtual       v1, v3, v0, Ljava/util/HashMap;->put(Ljava/lang/Object; Ljava/lang/Object;)Ljava/lang/Object;
+	12      (00000032) invoke-virtual       v0, v4, Lcom/phonegap/AudioPlayer;->getDuration(Ljava/lang/String;)F
+	13      (00000038) move-result          v1
+	14      (0000003a) goto                 -fh
+

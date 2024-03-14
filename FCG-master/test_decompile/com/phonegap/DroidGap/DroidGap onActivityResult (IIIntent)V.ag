@@ -1,0 +1,21 @@
+# Lcom/phonegap/DroidGap;->onActivityResult(I I Landroid/content/Intent;)V [access_flags=protected]
+#
+# Parameters:
+# - local registers: v0...v1
+# - v2:int
+# - v3:int
+# - v4:android.content.Intent
+#
+# - return:void
+
+onActivityResult-BB@0x0 : [ onActivityResult-BB@0xe onActivityResult-BB@0x14 ]
+	0       (00000000) invoke-super         v1, v2, v3, v4, Lcom/phonegap/api/PhonegapActivity;->onActivityResult(I I Landroid/content/Intent;)V
+	1       (00000006) iget-object          v0, v1, Lcom/phonegap/DroidGap;->activityResultCallback Lcom/phonegap/api/Plugin;
+	2       (0000000a) if-eqz               v0, +005h
+
+onActivityResult-BB@0xe : [ onActivityResult-BB@0x14 ]
+	3       (0000000e) invoke-virtual       v0, v2, v3, v4, Lcom/phonegap/api/Plugin;->onActivityResult(I I Landroid/content/Intent;)V
+
+onActivityResult-BB@0x14 : 
+	4       (00000014) return-void          
+

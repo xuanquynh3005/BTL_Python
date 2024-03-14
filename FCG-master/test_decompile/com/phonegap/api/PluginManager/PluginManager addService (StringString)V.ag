@@ -1,0 +1,14 @@
+# Lcom/phonegap/api/PluginManager;->addService(Ljava/lang/String; Ljava/lang/String;)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v1
+# - v2:java.lang.String
+# - v3:java.lang.String
+#
+# - return:void
+
+addService-BB@0x0 : 
+	0       (00000000) iget-object          v0, v1, Lcom/phonegap/api/PluginManager;->services Ljava/util/HashMap;
+	1       (00000004) invoke-virtual       v0, v2, v3, Ljava/util/HashMap;->put(Ljava/lang/Object; Ljava/lang/Object;)Ljava/lang/Object;
+	2       (0000000a) return-void          
+

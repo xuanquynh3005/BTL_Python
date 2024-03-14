@@ -1,0 +1,28 @@
+# Lcom/phonegap/GeoBroker;->getCurrentLocation(Z I I)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v2
+# - v3:boolean
+# - v4:int
+# - v5:int
+#
+# - return:void
+
+getCurrentLocation-BB@0x0 : [ getCurrentLocation-BB@0x8 getCurrentLocation-BB@0x1c ]
+	0       (00000000) iget-object          v0, v2, Lcom/phonegap/GeoBroker;->global Lcom/phonegap/GeoListener;
+	1       (00000004) if-nez               v0, +00ch
+
+getCurrentLocation-BB@0x8 : [ getCurrentLocation-BB@0x1a ]
+	2       (00000008) new-instance         v0, Lcom/phonegap/GeoListener;
+	3       (0000000c) const-string         v1, "global"
+	4       (00000010) invoke-direct        v0, v2, v1, v5, Lcom/phonegap/GeoListener;-><init>(Lcom/phonegap/GeoBroker; Ljava/lang/String; I)V
+	5       (00000016) iput-object          v0, v2, Lcom/phonegap/GeoBroker;->global Lcom/phonegap/GeoListener;
+
+getCurrentLocation-BB@0x1a : 
+	6       (0000001a) return-void          
+
+getCurrentLocation-BB@0x1c : [ getCurrentLocation-BB@0x1a ]
+	7       (0000001c) iget-object          v0, v2, Lcom/phonegap/GeoBroker;->global Lcom/phonegap/GeoListener;
+	8       (00000020) invoke-virtual       v0, v5, Lcom/phonegap/GeoListener;->start(I)V
+	9       (00000026) goto                 -6h
+

@@ -1,0 +1,52 @@
+# Lcom/phonegap/AccelListener;->onSensorChanged(Landroid/hardware/SensorEvent;)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v4
+# - v5:android.hardware.SensorEvent
+#
+# - return:void
+
+onSensorChanged-BB@0x0 : [ onSensorChanged-BB@0x12 onSensorChanged-BB@0x14 ]
+	0       (00000000) const/4              v2, 1
+	1       (00000002) iget-object          v0, v5, Landroid/hardware/SensorEvent;->sensor Landroid/hardware/Sensor;
+	2       (00000006) invoke-virtual       v0, Landroid/hardware/Sensor;->getType()I
+	3       (0000000c) move-result          v0
+	4       (0000000e) if-eq                v0, v2, +003h
+
+onSensorChanged-BB@0x12 : 
+	5       (00000012) return-void          
+
+onSensorChanged-BB@0x14 : [ onSensorChanged-BB@0x20 onSensorChanged-BB@0x12 ]
+	6       (00000014) iget                 v0, v4, Lcom/phonegap/AccelListener;->status I
+	7       (00000018) sget                 v1, Lcom/phonegap/AccelListener;->STOPPED I
+	8       (0000001c) if-eq                v0, v1, -005h
+
+onSensorChanged-BB@0x20 : [ onSensorChanged-BB@0x76 onSensorChanged-BB@0x12 ]
+	9       (00000020) invoke-static        Ljava/lang/System;->currentTimeMillis()J
+	10      (00000026) move-result-wide     v0
+	11      (00000028) iput-wide            v0, v4, Lcom/phonegap/AccelListener;->timestamp J
+	12      (0000002c) iget-object          v0, v5, Landroid/hardware/SensorEvent;->values [F
+	13      (00000030) const/4              v1, 0
+	14      (00000032) aget                 v0, v0, v1
+	15      (00000036) iput                 v0, v4, Lcom/phonegap/AccelListener;->x F
+	16      (0000003a) iget-object          v0, v5, Landroid/hardware/SensorEvent;->values [F
+	17      (0000003e) aget                 v0, v0, v2
+	18      (00000042) iput                 v0, v4, Lcom/phonegap/AccelListener;->y F
+	19      (00000046) iget-object          v0, v5, Landroid/hardware/SensorEvent;->values [F
+	20      (0000004a) const/4              v1, 2
+	21      (0000004c) aget                 v0, v0, v1
+	22      (00000050) iput                 v0, v4, Lcom/phonegap/AccelListener;->z F
+	23      (00000054) sget                 v0, Lcom/phonegap/AccelListener;->RUNNING I
+	24      (00000058) invoke-direct        v4, v0, Lcom/phonegap/AccelListener;->setStatus(I)V
+	25      (0000005e) iget-wide            v0, v4, Lcom/phonegap/AccelListener;->timestamp J
+	26      (00000062) iget-wide            v2, v4, Lcom/phonegap/AccelListener;->lastAccessTime J
+	27      (00000066) sub-long/2addr       v0, v2
+	28      (00000068) long-to-float        v0, v0
+	29      (0000006a) iget                 v1, v4, Lcom/phonegap/AccelListener;->TIMEOUT F
+	30      (0000006e) cmpl-float           v0, v0, v1
+	31      (00000072) if-lez               v0, -030h
+
+onSensorChanged-BB@0x76 : [ onSensorChanged-BB@0x12 ]
+	32      (00000076) invoke-virtual       v4, Lcom/phonegap/AccelListener;->stop()V
+	33      (0000007c) goto                 -35h
+

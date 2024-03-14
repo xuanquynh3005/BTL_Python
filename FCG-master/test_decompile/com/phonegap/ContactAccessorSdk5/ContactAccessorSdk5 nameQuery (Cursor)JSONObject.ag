@@ -1,0 +1,163 @@
+# Lcom/phonegap/ContactAccessorSdk5;->nameQuery(Landroid/database/Cursor;)Lorg/json/JSONObject; [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v10
+# - v11:android.database.Cursor
+#
+# - return:org.json.JSONObject
+
+nameQuery-BB@0x0 : [ nameQuery-BB@0xa ]
+	0       (00000000) new-instance         v0, Lorg/json/JSONObject;
+	1       (00000004) invoke-direct        v0, Lorg/json/JSONObject;-><init>()V
+
+nameQuery-BB@0xa : [ nameQuery-BB@0x80 nameQuery-BB@0xac ]
+	2       (0000000a) const-string         v8, "data3"
+	3       (0000000e) invoke-interface     v11, v8, Landroid/database/Cursor;->getColumnIndex(Ljava/lang/String;)I
+	4       (00000014) move-result          v8
+	5       (00000016) invoke-interface     v11, v8, Landroid/database/Cursor;->getString(I)Ljava/lang/String;
+	6       (0000001c) move-result-object   v2
+	7       (0000001e) const-string         v8, "data2"
+	8       (00000022) invoke-interface     v11, v8, Landroid/database/Cursor;->getColumnIndex(Ljava/lang/String;)I
+	9       (00000028) move-result          v8
+	10      (0000002a) invoke-interface     v11, v8, Landroid/database/Cursor;->getString(I)Ljava/lang/String;
+	11      (00000030) move-result-object   v4
+	12      (00000032) const-string         v8, "data5"
+	13      (00000036) invoke-interface     v11, v8, Landroid/database/Cursor;->getColumnIndex(Ljava/lang/String;)I
+	14      (0000003c) move-result          v8
+	15      (0000003e) invoke-interface     v11, v8, Landroid/database/Cursor;->getString(I)Ljava/lang/String;
+	16      (00000044) move-result-object   v7
+	17      (00000046) const-string         v8, "data4"
+	18      (0000004a) invoke-interface     v11, v8, Landroid/database/Cursor;->getColumnIndex(Ljava/lang/String;)I
+	19      (00000050) move-result          v8
+	20      (00000052) invoke-interface     v11, v8, Landroid/database/Cursor;->getString(I)Ljava/lang/String;
+	21      (00000058) move-result-object   v5
+	22      (0000005a) const-string         v8, "data6"
+	23      (0000005e) invoke-interface     v11, v8, Landroid/database/Cursor;->getColumnIndex(Ljava/lang/String;)I
+	24      (00000064) move-result          v8
+	25      (00000066) invoke-interface     v11, v8, Landroid/database/Cursor;->getString(I)Ljava/lang/String;
+	26      (0000006c) move-result-object   v6
+	27      (0000006e) new-instance         v3, Ljava/lang/StringBuffer;
+	28      (00000072) const-string         v8, ""
+	29      (00000076) invoke-direct        v3, v8, Ljava/lang/StringBuffer;-><init>(Ljava/lang/String;)V
+	30      (0000007c) if-eqz               v5, +018h
+	a:1a7
+	(Lorg/json/JSONException; -> 1aa nameQuery-BB@0x1aa)
+
+nameQuery-BB@0x80 : [ nameQuery-BB@0xac ]
+	31      (00000080) new-instance         v8, Ljava/lang/StringBuilder;
+	32      (00000084) invoke-direct        v8, Ljava/lang/StringBuilder;-><init>()V
+	33      (0000008a) invoke-virtual       v8, v5, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	34      (00000090) move-result-object   v8
+	35      (00000092) const-string         v9, " "
+	36      (00000096) invoke-virtual       v8, v9, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	37      (0000009c) move-result-object   v8
+	38      (0000009e) invoke-virtual       v8, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	39      (000000a4) move-result-object   v8
+	40      (000000a6) invoke-virtual       v3, v8, Ljava/lang/StringBuffer;->append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+	a:1a7
+	(Lorg/json/JSONException; -> 1aa nameQuery-BB@0x1aa)
+
+nameQuery-BB@0xac : [ nameQuery-BB@0xb0 nameQuery-BB@0xdc ]
+	41      (000000ac) if-eqz               v4, +018h
+	a:1a7
+	(Lorg/json/JSONException; -> 1aa nameQuery-BB@0x1aa)
+
+nameQuery-BB@0xb0 : [ nameQuery-BB@0xdc ]
+	42      (000000b0) new-instance         v8, Ljava/lang/StringBuilder;
+	43      (000000b4) invoke-direct        v8, Ljava/lang/StringBuilder;-><init>()V
+	44      (000000ba) invoke-virtual       v8, v4, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	45      (000000c0) move-result-object   v8
+	46      (000000c2) const-string         v9, " "
+	47      (000000c6) invoke-virtual       v8, v9, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	48      (000000cc) move-result-object   v8
+	49      (000000ce) invoke-virtual       v8, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	50      (000000d4) move-result-object   v8
+	51      (000000d6) invoke-virtual       v3, v8, Ljava/lang/StringBuffer;->append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+	a:1a7
+	(Lorg/json/JSONException; -> 1aa nameQuery-BB@0x1aa)
+
+nameQuery-BB@0xdc : [ nameQuery-BB@0xe0 nameQuery-BB@0x10c ]
+	52      (000000dc) if-eqz               v7, +018h
+	a:1a7
+	(Lorg/json/JSONException; -> 1aa nameQuery-BB@0x1aa)
+
+nameQuery-BB@0xe0 : [ nameQuery-BB@0x10c ]
+	53      (000000e0) new-instance         v8, Ljava/lang/StringBuilder;
+	54      (000000e4) invoke-direct        v8, Ljava/lang/StringBuilder;-><init>()V
+	55      (000000ea) invoke-virtual       v8, v7, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	56      (000000f0) move-result-object   v8
+	57      (000000f2) const-string         v9, " "
+	58      (000000f6) invoke-virtual       v8, v9, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	59      (000000fc) move-result-object   v8
+	60      (000000fe) invoke-virtual       v8, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	61      (00000104) move-result-object   v8
+	62      (00000106) invoke-virtual       v3, v8, Ljava/lang/StringBuffer;->append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+	a:1a7
+	(Lorg/json/JSONException; -> 1aa nameQuery-BB@0x1aa)
+
+nameQuery-BB@0x10c : [ nameQuery-BB@0x110 nameQuery-BB@0x13c ]
+	63      (0000010c) if-eqz               v2, +018h
+	a:1a7
+	(Lorg/json/JSONException; -> 1aa nameQuery-BB@0x1aa)
+
+nameQuery-BB@0x110 : [ nameQuery-BB@0x13c ]
+	64      (00000110) new-instance         v8, Ljava/lang/StringBuilder;
+	65      (00000114) invoke-direct        v8, Ljava/lang/StringBuilder;-><init>()V
+	66      (0000011a) invoke-virtual       v8, v2, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	67      (00000120) move-result-object   v8
+	68      (00000122) const-string         v9, " "
+	69      (00000126) invoke-virtual       v8, v9, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	70      (0000012c) move-result-object   v8
+	71      (0000012e) invoke-virtual       v8, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	72      (00000134) move-result-object   v8
+	73      (00000136) invoke-virtual       v3, v8, Ljava/lang/StringBuffer;->append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+	a:1a7
+	(Lorg/json/JSONException; -> 1aa nameQuery-BB@0x1aa)
+
+nameQuery-BB@0x13c : [ nameQuery-BB@0x140 nameQuery-BB@0x16c ]
+	74      (0000013c) if-eqz               v6, +018h
+	a:1a7
+	(Lorg/json/JSONException; -> 1aa nameQuery-BB@0x1aa)
+
+nameQuery-BB@0x140 : [ nameQuery-BB@0x16c ]
+	75      (00000140) new-instance         v8, Ljava/lang/StringBuilder;
+	76      (00000144) invoke-direct        v8, Ljava/lang/StringBuilder;-><init>()V
+	77      (0000014a) invoke-virtual       v8, v6, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	78      (00000150) move-result-object   v8
+	79      (00000152) const-string         v9, " "
+	80      (00000156) invoke-virtual       v8, v9, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	81      (0000015c) move-result-object   v8
+	82      (0000015e) invoke-virtual       v8, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	83      (00000164) move-result-object   v8
+	84      (00000166) invoke-virtual       v3, v8, Ljava/lang/StringBuffer;->append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+	a:1a7
+	(Lorg/json/JSONException; -> 1aa nameQuery-BB@0x1aa)
+
+nameQuery-BB@0x16c : [ nameQuery-BB@0x1a8 ]
+	85      (0000016c) const-string         v8, "familyName"
+	86      (00000170) invoke-virtual       v0, v8, v2, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	87      (00000176) const-string         v8, "givenName"
+	88      (0000017a) invoke-virtual       v0, v8, v4, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	89      (00000180) const-string         v8, "middleName"
+	90      (00000184) invoke-virtual       v0, v8, v7, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	91      (0000018a) const-string         v8, "honorificPrefix"
+	92      (0000018e) invoke-virtual       v0, v8, v5, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	93      (00000194) const-string         v8, "honorificSuffix"
+	94      (00000198) invoke-virtual       v0, v8, v6, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	95      (0000019e) const-string         v8, "formatted"
+	96      (000001a2) invoke-virtual       v0, v8, v3, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	a:1a7
+	(Lorg/json/JSONException; -> 1aa nameQuery-BB@0x1aa)
+
+nameQuery-BB@0x1a8 : 
+	97      (000001a8) return-object        v0
+
+nameQuery-BB@0x1aa : [ nameQuery-BB@0x1a8 ]
+	98      (000001aa) move-exception       v8
+	99      (000001ac) move-object          v1, v8
+	100     (000001ae) const-string         v8, "ContactsAccessor"
+	101     (000001b2) invoke-virtual       v1, Lorg/json/JSONException;->getMessage()Ljava/lang/String;
+	102     (000001b8) move-result-object   v9
+	103     (000001ba) invoke-static        v8, v9, v1, Landroid/util/Log;->e(Ljava/lang/String; Ljava/lang/String; Ljava/lang/Throwable;)I
+	104     (000001c0) goto                 -ch
+

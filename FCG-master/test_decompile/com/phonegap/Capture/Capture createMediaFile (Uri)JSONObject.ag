@@ -1,0 +1,51 @@
+# Lcom/phonegap/Capture;->createMediaFile(Landroid/net/Uri;)Lorg/json/JSONObject; [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v6
+# - v7:android.net.Uri
+#
+# - return:org.json.JSONObject
+
+createMediaFile-BB@0x0 : [ createMediaFile-BB@0x1c ]
+	0       (00000000) new-instance         v1, Ljava/io/File;
+	1       (00000004) invoke-direct        v6, v7, Lcom/phonegap/Capture;->getRealPathFromURI(Landroid/net/Uri;)Ljava/lang/String;
+	2       (0000000a) move-result-object   v3
+	3       (0000000c) invoke-direct        v1, v3, Ljava/io/File;-><init>(Ljava/lang/String;)V
+	4       (00000012) new-instance         v2, Lorg/json/JSONObject;
+	5       (00000016) invoke-direct        v2, Lorg/json/JSONObject;-><init>()V
+
+createMediaFile-BB@0x1c : [ createMediaFile-BB@0x7e ]
+	6       (0000001c) const-string         v3, "name"
+	7       (00000020) invoke-virtual       v1, Ljava/io/File;->getName()Ljava/lang/String;
+	8       (00000026) move-result-object   v4
+	9       (00000028) invoke-virtual       v2, v3, v4, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	10      (0000002e) const-string         v3, "fullPath"
+	11      (00000032) invoke-virtual       v1, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
+	12      (00000038) move-result-object   v4
+	13      (0000003a) invoke-virtual       v2, v3, v4, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	14      (00000040) const-string         v3, "type"
+	15      (00000044) invoke-virtual       v1, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
+	16      (0000004a) move-result-object   v4
+	17      (0000004c) invoke-static        v4, Lcom/phonegap/FileUtils;->getMimeType(Ljava/lang/String;)Ljava/lang/String;
+	18      (00000052) move-result-object   v4
+	19      (00000054) invoke-virtual       v2, v3, v4, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	20      (0000005a) const-string         v3, "lastModifiedDate"
+	21      (0000005e) invoke-virtual       v1, Ljava/io/File;->lastModified()J
+	22      (00000064) move-result-wide     v4
+	23      (00000066) invoke-virtual       v2, v3, v4, v5, Lorg/json/JSONObject;->put(Ljava/lang/String; J)Lorg/json/JSONObject;
+	24      (0000006c) const-string         v3, "size"
+	25      (00000070) invoke-virtual       v1, Ljava/io/File;->length()J
+	26      (00000076) move-result-wide     v4
+	27      (00000078) invoke-virtual       v2, v3, v4, v5, Lorg/json/JSONObject;->put(Ljava/lang/String; J)Lorg/json/JSONObject;
+	1c:7d
+	(Lorg/json/JSONException; -> 80 createMediaFile-BB@0x80)
+
+createMediaFile-BB@0x7e : 
+	28      (0000007e) return-object        v2
+
+createMediaFile-BB@0x80 : [ createMediaFile-BB@0x7e ]
+	29      (00000080) move-exception       v3
+	30      (00000082) move-object          v0, v3
+	31      (00000084) invoke-virtual       v0, Lorg/json/JSONException;->printStackTrace()V
+	32      (0000008a) goto                 -6h
+

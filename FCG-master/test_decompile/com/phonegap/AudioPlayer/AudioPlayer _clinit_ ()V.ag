@@ -1,0 +1,36 @@
+# Lcom/phonegap/AudioPlayer;-><clinit>()V [access_flags=static constructor]
+#
+# Parameters:
+# local registers: v0...v4
+#
+# - return:void
+
+<clinit>-BB@0x0 : 
+	0       (00000000) const/4              v4, 4
+	1       (00000002) const/4              v3, 3
+	2       (00000004) const/4              v2, 2
+	3       (00000006) const/4              v1, 1
+	4       (00000008) const/4              v0, 0
+	5       (0000000a) sput                 v0, Lcom/phonegap/AudioPlayer;->MEDIA_NONE I
+	6       (0000000e) sput                 v1, Lcom/phonegap/AudioPlayer;->MEDIA_STARTING I
+	7       (00000012) sput                 v2, Lcom/phonegap/AudioPlayer;->MEDIA_RUNNING I
+	8       (00000016) sput                 v3, Lcom/phonegap/AudioPlayer;->MEDIA_PAUSED I
+	9       (0000001a) sput                 v4, Lcom/phonegap/AudioPlayer;->MEDIA_STOPPED I
+	10      (0000001e) sput                 v1, Lcom/phonegap/AudioPlayer;->MEDIA_STATE I
+	11      (00000022) sput                 v2, Lcom/phonegap/AudioPlayer;->MEDIA_DURATION I
+	12      (00000026) const/16             v0, 9
+	13      (0000002a) sput                 v0, Lcom/phonegap/AudioPlayer;->MEDIA_ERROR I
+	14      (0000002e) sput                 v1, Lcom/phonegap/AudioPlayer;->MEDIA_ERROR_PLAY_MODE_SET I
+	15      (00000032) sput                 v2, Lcom/phonegap/AudioPlayer;->MEDIA_ERROR_ALREADY_RECORDING I
+	16      (00000036) sput                 v3, Lcom/phonegap/AudioPlayer;->MEDIA_ERROR_STARTING_RECORDING I
+	17      (0000003a) sput                 v4, Lcom/phonegap/AudioPlayer;->MEDIA_ERROR_RECORD_MODE_SET I
+	18      (0000003e) const/4              v0, 5
+	19      (00000040) sput                 v0, Lcom/phonegap/AudioPlayer;->MEDIA_ERROR_STARTING_PLAYBACK I
+	20      (00000044) const/4              v0, 6
+	21      (00000046) sput                 v0, Lcom/phonegap/AudioPlayer;->MEDIA_ERROR_RESUME_STATE I
+	22      (0000004a) const/4              v0, 7
+	23      (0000004c) sput                 v0, Lcom/phonegap/AudioPlayer;->MEDIA_ERROR_PAUSE_STATE I
+	24      (00000050) const/16             v0, 8
+	25      (00000054) sput                 v0, Lcom/phonegap/AudioPlayer;->MEDIA_ERROR_STOP_STATE I
+	26      (00000058) return-void          
+

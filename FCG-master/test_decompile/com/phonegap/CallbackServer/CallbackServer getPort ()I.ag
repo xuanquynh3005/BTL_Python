@@ -1,0 +1,11 @@
+# Lcom/phonegap/CallbackServer;->getPort()I [access_flags=public]
+#
+# Parameters:
+# local registers: v0...v1
+#
+# - return:int
+
+getPort-BB@0x0 : 
+	0       (00000000) iget                 v0, v1, Lcom/phonegap/CallbackServer;->port I
+	1       (00000004) return               v0
+

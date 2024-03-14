@@ -1,0 +1,41 @@
+# Lcom/phonegap/AudioPlayer;->stopRecording()V [access_flags=public]
+#
+# Parameters:
+# local registers: v0...v3
+#
+# - return:void
+
+stopRecording-BB@0x0 : [ stopRecording-BB@0x8 stopRecording-BB@0x32 ]
+	0       (00000000) iget-object          v1, v3, Lcom/phonegap/AudioPlayer;->recorder Landroid/media/MediaRecorder;
+	1       (00000004) if-eqz               v1, +017h
+
+stopRecording-BB@0x8 : [ stopRecording-BB@0x14 stopRecording-BB@0x28 ]
+	2       (00000008) iget                 v1, v3, Lcom/phonegap/AudioPlayer;->state I
+	3       (0000000c) sget                 v2, Lcom/phonegap/AudioPlayer;->MEDIA_RUNNING I
+	4       (00000010) if-ne                v1, v2, +00ch
+	8:31
+	(Ljava/lang/Exception; -> 34 stopRecording-BB@0x34)
+
+stopRecording-BB@0x14 : [ stopRecording-BB@0x28 ]
+	5       (00000014) iget-object          v1, v3, Lcom/phonegap/AudioPlayer;->recorder Landroid/media/MediaRecorder;
+	6       (00000018) invoke-virtual       v1, Landroid/media/MediaRecorder;->stop()V
+	7       (0000001e) sget                 v1, Lcom/phonegap/AudioPlayer;->MEDIA_STOPPED I
+	8       (00000022) invoke-direct        v3, v1, Lcom/phonegap/AudioPlayer;->setState(I)V
+	8:31
+	(Ljava/lang/Exception; -> 34 stopRecording-BB@0x34)
+
+stopRecording-BB@0x28 : [ stopRecording-BB@0x32 ]
+	9       (00000028) iget-object          v1, v3, Lcom/phonegap/AudioPlayer;->audioFile Ljava/lang/String;
+	10      (0000002c) invoke-virtual       v3, v1, Lcom/phonegap/AudioPlayer;->moveFile(Ljava/lang/String;)V
+	8:31
+	(Ljava/lang/Exception; -> 34 stopRecording-BB@0x34)
+
+stopRecording-BB@0x32 : 
+	11      (00000032) return-void          
+
+stopRecording-BB@0x34 : [ stopRecording-BB@0x32 ]
+	12      (00000034) move-exception       v1
+	13      (00000036) move-object          v0, v1
+	14      (00000038) invoke-virtual       v0, Ljava/lang/Exception;->printStackTrace()V
+	15      (0000003e) goto                 -6h
+

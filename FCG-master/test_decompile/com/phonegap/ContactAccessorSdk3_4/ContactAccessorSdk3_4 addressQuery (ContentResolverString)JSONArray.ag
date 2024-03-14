@@ -1,0 +1,68 @@
+# Lcom/phonegap/ContactAccessorSdk3_4;->addressQuery(Landroid/content/ContentResolver; Ljava/lang/String;)Lorg/json/JSONArray; [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v10
+# - v11:android.content.ContentResolver
+# - v12:java.lang.String
+#
+# - return:org.json.JSONArray
+
+addressQuery-BB@0x0 : [ addressQuery-BB@0x36 ]
+	0       (00000000) const/4              v2, 0
+	1       (00000002) const-string         v3, "person = ? AND kind = ?"
+	2       (00000006) const/4              v0, 2
+	3       (00000008) new-array            v4, v0, [Ljava/lang/String;
+	4       (0000000c) const/4              v0, 0
+	5       (0000000e) aput-object          v12, v4, v0
+	6       (00000012) const/4              v0, 1
+	7       (00000014) const-string         v1, "vnd.android.cursor.item/postal-address"
+	8       (00000018) aput-object          v1, v4, v0
+	9       (0000001c) sget-object          v1, Landroid/provider/Contacts$ContactMethods;->CONTENT_URI Landroid/net/Uri;
+	10      (00000020) move-object          v0, v11
+	11      (00000022) move-object          v5, v2
+	12      (00000024) invoke-virtual/range v0 ... v5, Landroid/content/ContentResolver;->query(Landroid/net/Uri; [Ljava/lang/String; Ljava/lang/String; [Ljava/lang/String; Ljava/lang/String;)Landroid/database/Cursor;
+	13      (0000002a) move-result-object   v8
+	14      (0000002c) new-instance         v7, Lorg/json/JSONArray;
+	15      (00000030) invoke-direct        v7, Lorg/json/JSONArray;-><init>()V
+
+addressQuery-BB@0x36 : [ addressQuery-BB@0x42 addressQuery-BB@0xa8 ]
+	16      (00000036) invoke-interface     v8, Landroid/database/Cursor;->moveToNext()Z
+	17      (0000003c) move-result          v0
+	18      (0000003e) if-eqz               v0, +035h
+
+addressQuery-BB@0x42 : [ addressQuery-BB@0x4c ]
+	19      (00000042) new-instance         v6, Lorg/json/JSONObject;
+	20      (00000046) invoke-direct        v6, Lorg/json/JSONObject;-><init>()V
+
+addressQuery-BB@0x4c : [ addressQuery-BB@0x36 ]
+	21      (0000004c) const-string         v0, "id"
+	22      (00000050) const-string         v1, "_id"
+	23      (00000054) invoke-interface     v8, v1, Landroid/database/Cursor;->getColumnIndex(Ljava/lang/String;)I
+	24      (0000005a) move-result          v1
+	25      (0000005c) invoke-interface     v8, v1, Landroid/database/Cursor;->getString(I)Ljava/lang/String;
+	26      (00000062) move-result-object   v1
+	27      (00000064) invoke-virtual       v6, v0, v1, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	28      (0000006a) const-string         v0, "formatted"
+	29      (0000006e) const-string         v1, "data"
+	30      (00000072) invoke-interface     v8, v1, Landroid/database/Cursor;->getColumnIndex(Ljava/lang/String;)I
+	31      (00000078) move-result          v1
+	32      (0000007a) invoke-interface     v8, v1, Landroid/database/Cursor;->getString(I)Ljava/lang/String;
+	33      (00000080) move-result-object   v1
+	34      (00000082) invoke-virtual       v6, v0, v1, Lorg/json/JSONObject;->put(Ljava/lang/String; Ljava/lang/Object;)Lorg/json/JSONObject;
+	35      (00000088) invoke-virtual       v7, v6, Lorg/json/JSONArray;->put(Ljava/lang/Object;)Lorg/json/JSONArray;
+	36      (0000008e) goto                 -2ch
+	4c:8d
+	(Lorg/json/JSONException; -> 90 addressQuery-BB@0x90)
+
+addressQuery-BB@0x90 : [ addressQuery-BB@0x36 ]
+	37      (00000090) move-exception       v0
+	38      (00000092) move-object          v9, v0
+	39      (00000094) const-string         v0, "ContactsAccessor"
+	40      (00000098) invoke-virtual       v9, Lorg/json/JSONException;->getMessage()Ljava/lang/String;
+	41      (0000009e) move-result-object   v1
+	42      (000000a0) invoke-static        v0, v1, v9, Landroid/util/Log;->e(Ljava/lang/String; Ljava/lang/String; Ljava/lang/Throwable;)I
+	43      (000000a6) goto                 -38h
+
+addressQuery-BB@0xa8 : 
+	44      (000000a8) return-object        v7
+

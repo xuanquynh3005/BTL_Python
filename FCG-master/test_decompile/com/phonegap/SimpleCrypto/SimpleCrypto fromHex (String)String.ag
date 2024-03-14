@@ -1,0 +1,15 @@
+# Lcom/phonegap/SimpleCrypto;->fromHex(Ljava/lang/String;)Ljava/lang/String; [access_flags=public static]
+#
+# Parameters:
+# - local registers: v0...v1
+# - v2:java.lang.String
+#
+# - return:java.lang.String
+
+fromHex-BB@0x0 : 
+	0       (00000000) new-instance         v0, Ljava/lang/String;
+	1       (00000004) invoke-static        v2, Lcom/phonegap/SimpleCrypto;->toByte(Ljava/lang/String;)[B
+	2       (0000000a) move-result-object   v1
+	3       (0000000c) invoke-direct        v0, v1, Ljava/lang/String;-><init>([B)V
+	4       (00000012) return-object        v0
+

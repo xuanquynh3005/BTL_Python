@@ -1,0 +1,23 @@
+# Lcom/phonegap/DroidGap$LinearLayoutSoftKeyboardDetect;-><init>(Lcom/phonegap/DroidGap; Landroid/content/Context; I I)V [access_flags=public constructor]
+#
+# Parameters:
+# - local registers: v0...v1
+# - v2:com.phonegap.DroidGap
+# - v3:android.content.Context
+# - v4:int
+# - v5:int
+#
+# - return:void
+
+<init>-BB@0x0 : 
+	0       (00000000) const/4              v0, 0
+	1       (00000002) iput-object          v2, v1, Lcom/phonegap/DroidGap$LinearLayoutSoftKeyboardDetect;->this$0 Lcom/phonegap/DroidGap;
+	2       (00000006) invoke-direct        v1, v3, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
+	3       (0000000c) iput                 v0, v1, Lcom/phonegap/DroidGap$LinearLayoutSoftKeyboardDetect;->oldHeight I
+	4       (00000010) iput                 v0, v1, Lcom/phonegap/DroidGap$LinearLayoutSoftKeyboardDetect;->oldWidth I
+	5       (00000014) iput                 v0, v1, Lcom/phonegap/DroidGap$LinearLayoutSoftKeyboardDetect;->screenWidth I
+	6       (00000018) iput                 v0, v1, Lcom/phonegap/DroidGap$LinearLayoutSoftKeyboardDetect;->screenHeight I
+	7       (0000001c) iput                 v4, v1, Lcom/phonegap/DroidGap$LinearLayoutSoftKeyboardDetect;->screenWidth I
+	8       (00000020) iput                 v5, v1, Lcom/phonegap/DroidGap$LinearLayoutSoftKeyboardDetect;->screenHeight I
+	9       (00000024) return-void          
+

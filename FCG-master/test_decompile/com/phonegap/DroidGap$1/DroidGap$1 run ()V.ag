@@ -1,0 +1,75 @@
+# Lcom/phonegap/DroidGap$1;->run()V [access_flags=public]
+#
+# Parameters:
+# local registers: v0...v14
+#
+# - return:void
+
+run-BB@0x0 : [ run-BB@0x34 run-BB@0xa0 ]
+	0       (00000000) const/4              v3, 0
+	1       (00000002) const/4              v5, 0
+	2       (00000004) iget-object          v0, v14, Lcom/phonegap/DroidGap$1;->val$me Lcom/phonegap/DroidGap;
+	3       (00000008) invoke-static        v0, Lcom/phonegap/DroidGap;->access$000(Lcom/phonegap/DroidGap;)V
+	4       (0000000e) iget-object          v0, v14, Lcom/phonegap/DroidGap$1;->val$me Lcom/phonegap/DroidGap;
+	5       (00000012) iget-object          v0, v0, Lcom/phonegap/DroidGap;->callbackServer Lcom/phonegap/CallbackServer;
+	6       (00000016) iget-object          v1, v14, Lcom/phonegap/DroidGap$1;->val$url Ljava/lang/String;
+	7       (0000001a) invoke-virtual       v0, v1, Lcom/phonegap/CallbackServer;->init(Ljava/lang/String;)V
+	8       (00000020) iget-object          v0, v14, Lcom/phonegap/DroidGap$1;->val$me Lcom/phonegap/DroidGap;
+	9       (00000024) const-string         v1, "loadingDialog"
+	10      (00000028) invoke-virtual       v0, v1, v3, Lcom/phonegap/DroidGap;->getStringProperty(Ljava/lang/String; Ljava/lang/String;)Ljava/lang/String;
+	11      (0000002e) move-result-object   v8
+	12      (00000030) if-eqz               v8, +038h
+
+run-BB@0x34 : [ run-BB@0x48 run-BB@0x6c ]
+	13      (00000034) const-string         v13, ""
+	14      (00000038) const-string         v9, "Loading Application..."
+	15      (0000003c) invoke-virtual       v8, Ljava/lang/String;->length()I
+	16      (00000042) move-result          v0
+	17      (00000044) if-lez               v0, +014h
+
+run-BB@0x48 : [ run-BB@0x58 run-BB@0xda ]
+	18      (00000048) const/16             v0, 44
+	19      (0000004c) invoke-virtual       v8, v0, Ljava/lang/String;->indexOf(I)I
+	20      (00000052) move-result          v6
+	21      (00000054) if-lez               v6, +043h
+
+run-BB@0x58 : [ run-BB@0x6c ]
+	22      (00000058) invoke-virtual       v8, v5, v6, Ljava/lang/String;->substring(I I)Ljava/lang/String;
+	23      (0000005e) move-result-object   v13
+	24      (00000060) add-int/lit8         v0, v6, 1
+	25      (00000064) invoke-virtual       v8, v0, Ljava/lang/String;->substring(I)Ljava/lang/String;
+	26      (0000006a) move-result-object   v9
+
+run-BB@0x6c : [ run-BB@0xa0 ]
+	27      (0000006c) new-instance         v10, Lorg/json/JSONArray;
+	28      (00000070) invoke-direct        v10, Lorg/json/JSONArray;-><init>()V
+	29      (00000076) invoke-virtual       v10, v13, Lorg/json/JSONArray;->put(Ljava/lang/Object;)Lorg/json/JSONArray;
+	30      (0000007c) invoke-virtual       v10, v9, Lorg/json/JSONArray;->put(Ljava/lang/Object;)Lorg/json/JSONArray;
+	31      (00000082) iget-object          v0, v14, Lcom/phonegap/DroidGap$1;->val$me Lcom/phonegap/DroidGap;
+	32      (00000086) iget-object          v0, v0, Lcom/phonegap/DroidGap;->pluginManager Lcom/phonegap/api/PluginManager;
+	33      (0000008a) const-string         v1, "Notification"
+	34      (0000008e) const-string         v2, "activityStart"
+	35      (00000092) invoke-virtual       v10, Lorg/json/JSONArray;->toString()Ljava/lang/String;
+	36      (00000098) move-result-object   v4
+	37      (0000009a) invoke-virtual/range v0 ... v5, Lcom/phonegap/api/PluginManager;->exec(Ljava/lang/String; Ljava/lang/String; Ljava/lang/String; Ljava/lang/String; Z)Ljava/lang/String;
+
+run-BB@0xa0 : 
+	38      (000000a0) iget-object          v0, v14, Lcom/phonegap/DroidGap$1;->val$me Lcom/phonegap/DroidGap;
+	39      (000000a4) invoke-static        v0, Lcom/phonegap/DroidGap;->access$100(Lcom/phonegap/DroidGap;)I
+	40      (000000aa) move-result          v7
+	41      (000000ac) new-instance         v11, Lcom/phonegap/DroidGap$1$1;
+	42      (000000b0) invoke-direct        v11, v14, v7, Lcom/phonegap/DroidGap$1$1;-><init>(Lcom/phonegap/DroidGap$1; I)V
+	43      (000000b6) new-instance         v12, Ljava/lang/Thread;
+	44      (000000ba) invoke-direct        v12, v11, Ljava/lang/Thread;-><init>(Ljava/lang/Runnable;)V
+	45      (000000c0) invoke-virtual       v12, Ljava/lang/Thread;->start()V
+	46      (000000c6) iget-object          v0, v14, Lcom/phonegap/DroidGap$1;->val$me Lcom/phonegap/DroidGap;
+	47      (000000ca) iget-object          v0, v0, Lcom/phonegap/DroidGap;->appView Landroid/webkit/WebView;
+	48      (000000ce) iget-object          v1, v14, Lcom/phonegap/DroidGap$1;->val$url Ljava/lang/String;
+	49      (000000d2) invoke-virtual       v0, v1, Landroid/webkit/WebView;->loadUrl(Ljava/lang/String;)V
+	50      (000000d8) return-void          
+
+run-BB@0xda : [ run-BB@0x6c ]
+	51      (000000da) const-string         v13, ""
+	52      (000000de) move-object          v9, v8
+	53      (000000e0) goto                 -3ah
+

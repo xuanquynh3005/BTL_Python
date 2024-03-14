@@ -1,0 +1,61 @@
+# Lcom/phonegap/Notification;->beep(J)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v11
+# - v12:long
+#
+# - return:void
+
+beep-BB@0x0 : [ beep-BB@0x1e beep-BB@0x66 ]
+	0       (00000000) const-wide/16        v8, 100
+	1       (00000004) const/4              v6, 2
+	2       (00000006) invoke-static        v6, Landroid/media/RingtoneManager;->getDefaultUri(I)Landroid/net/Uri;
+	3       (0000000c) move-result-object   v3
+	4       (0000000e) iget-object          v6, v10, Lcom/phonegap/Notification;->ctx Lcom/phonegap/api/PhonegapActivity;
+	5       (00000012) invoke-static        v6, v3, Landroid/media/RingtoneManager;->getRingtone(Landroid/content/Context; Landroid/net/Uri;)Landroid/media/Ringtone;
+	6       (00000018) move-result-object   v2
+	7       (0000001a) if-eqz               v2, +026h
+
+beep-BB@0x1e : [ beep-BB@0x22 ]
+	8       (0000001e) const-wide/16        v0, 0
+
+beep-BB@0x22 : [ beep-BB@0x2a beep-BB@0x66 ]
+	9       (00000022) cmp-long             v6, v0, v11
+	10      (00000026) if-gez               v6, +020h
+
+beep-BB@0x2a : [ beep-BB@0x34 ]
+	11      (0000002a) invoke-virtual       v2, Landroid/media/Ringtone;->play()V
+	12      (00000030) const-wide/16        v4, 5000
+
+beep-BB@0x34 : [ beep-BB@0x40 beep-BB@0x5e ]
+	13      (00000034) invoke-virtual       v2, Landroid/media/Ringtone;->isPlaying()Z
+	14      (0000003a) move-result          v6
+	15      (0000003c) if-eqz               v6, +011h
+
+beep-BB@0x40 : [ beep-BB@0x4c beep-BB@0x5e ]
+	16      (00000040) const-wide/16        v6, 0
+	17      (00000044) cmp-long             v6, v4, v6
+	18      (00000048) if-lez               v6, +00bh
+
+beep-BB@0x4c : [ beep-BB@0x52 ]
+	19      (0000004c) sub-long/2addr       v4, v8
+	20      (0000004e) const-wide/16        v6, 100
+
+beep-BB@0x52 : [ beep-BB@0x34 ]
+	21      (00000052) invoke-static        v6, v7, Ljava/lang/Thread;->sleep(J)V
+	22      (00000058) goto                 -12h
+	52:57
+	(Ljava/lang/InterruptedException; -> 5a beep-BB@0x5a)
+
+beep-BB@0x5a : [ beep-BB@0x34 ]
+	23      (0000005a) move-exception       v6
+	24      (0000005c) goto                 -14h
+
+beep-BB@0x5e : [ beep-BB@0x22 ]
+	25      (0000005e) const-wide/16        v6, 1
+	26      (00000062) add-long/2addr       v0, v6
+	27      (00000064) goto                 -21h
+
+beep-BB@0x66 : 
+	28      (00000066) return-void          
+

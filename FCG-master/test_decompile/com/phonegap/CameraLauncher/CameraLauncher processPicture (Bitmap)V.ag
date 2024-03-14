@@ -1,0 +1,47 @@
+# Lcom/phonegap/CameraLauncher;->processPicture(Landroid/graphics/Bitmap;)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v7
+# - v8:android.graphics.Bitmap
+#
+# - return:void
+
+processPicture-BB@0x0 : [ processPicture-BB@0xa ]
+	0       (00000000) new-instance         v2, Ljava/io/ByteArrayOutputStream;
+	1       (00000004) invoke-direct        v2, Ljava/io/ByteArrayOutputStream;-><init>()V
+
+processPicture-BB@0xa : [ processPicture-BB@0x1e processPicture-BB@0x54 ]
+	2       (0000000a) sget-object          v5, Landroid/graphics/Bitmap$CompressFormat;->JPEG Landroid/graphics/Bitmap$CompressFormat;
+	3       (0000000e) iget                 v6, v7, Lcom/phonegap/CameraLauncher;->mQuality I
+	4       (00000012) invoke-virtual       v8, v5, v6, v2, Landroid/graphics/Bitmap;->compress(Landroid/graphics/Bitmap$CompressFormat; I Ljava/io/OutputStream;)Z
+	5       (00000018) move-result          v5
+	6       (0000001a) if-eqz               v5, +01dh
+	a:4f
+	(Ljava/lang/Exception; -> 58 processPicture-BB@0x58)
+
+processPicture-BB@0x1e : [ processPicture-BB@0x54 ]
+	7       (0000001e) invoke-virtual       v2, Ljava/io/ByteArrayOutputStream;->toByteArray()[B
+	8       (00000024) move-result-object   v0
+	9       (00000026) invoke-static        v0, Lorg/apache/commons/codec/binary/Base64;->encodeBase64([B)[B
+	10      (0000002c) move-result-object   v4
+	11      (0000002e) new-instance         v3, Ljava/lang/String;
+	12      (00000032) invoke-direct        v3, v4, Ljava/lang/String;-><init>([B)V
+	13      (00000038) new-instance         v5, Lcom/phonegap/api/PluginResult;
+	14      (0000003c) sget-object          v6, Lcom/phonegap/api/PluginResult$Status;->OK Lcom/phonegap/api/PluginResult$Status;
+	15      (00000040) invoke-direct        v5, v6, v3, Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; Ljava/lang/String;)V
+	16      (00000046) iget-object          v6, v7, Lcom/phonegap/CameraLauncher;->callbackId Ljava/lang/String;
+	17      (0000004a) invoke-virtual       v7, v5, v6, Lcom/phonegap/CameraLauncher;->success(Lcom/phonegap/api/PluginResult; Ljava/lang/String;)V
+	18      (00000050) const/4              v3, 0
+	19      (00000052) const/4              v4, 0
+
+processPicture-BB@0x54 : 
+	20      (00000054) const/4              v2, 0
+	21      (00000056) return-void          
+
+processPicture-BB@0x58 : [ processPicture-BB@0x54 ]
+	22      (00000058) move-exception       v5
+	23      (0000005a) move-object          v1, v5
+	24      (0000005c) const-string         v5, "Error compressing image."
+	25      (00000060) invoke-virtual       v7, v5, Lcom/phonegap/CameraLauncher;->failPicture(Ljava/lang/String;)V
+	26      (00000066) goto                 -9h
+

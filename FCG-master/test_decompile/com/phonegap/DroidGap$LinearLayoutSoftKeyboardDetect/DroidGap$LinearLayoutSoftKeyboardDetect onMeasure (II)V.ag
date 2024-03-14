@@ -1,0 +1,123 @@
+# Lcom/phonegap/DroidGap$LinearLayoutSoftKeyboardDetect;->onMeasure(I I)V [access_flags=protected]
+#
+# Parameters:
+# - local registers: v0...v6
+# - v7:int
+# - v8:int
+#
+# - return:void
+
+onMeasure-BB@0x0 : [ onMeasure-BB@0xf4 onMeasure-BB@0xfc ]
+	0       (00000000) invoke-super         v6, v7, v8, Landroid/widget/LinearLayout;->onMeasure(I I)V
+	1       (00000006) const-string         v3, "SoftKeyboardDetect"
+	2       (0000000a) const-string         v4, "We are in our onMeasure method"
+	3       (0000000e) invoke-static        v3, v4, Landroid/util/Log;->d(Ljava/lang/String; Ljava/lang/String;)I
+	4       (00000014) invoke-static        v8, Landroid/view/View$MeasureSpec;->getSize(I)I
+	5       (0000001a) move-result          v0
+	6       (0000001c) invoke-static        v7, Landroid/view/View$MeasureSpec;->getSize(I)I
+	7       (00000022) move-result          v2
+	8       (00000024) const-string         v3, "SoftKeyboardDetect"
+	9       (00000028) new-instance         v4, Ljava/lang/StringBuilder;
+	10      (0000002c) invoke-direct        v4, Ljava/lang/StringBuilder;-><init>()V
+	11      (00000032) const-string         v5, "Old Height = "
+	12      (00000036) invoke-virtual       v4, v5, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	13      (0000003c) move-result-object   v4
+	14      (0000003e) iget                 v5, v6, Lcom/phonegap/DroidGap$LinearLayoutSoftKeyboardDetect;->oldHeight I
+	15      (00000042) invoke-virtual       v4, v5, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+	16      (00000048) move-result-object   v4
+	17      (0000004a) invoke-virtual       v4, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	18      (00000050) move-result-object   v4
+	19      (00000052) invoke-static        v3, v4, Landroid/util/Log;->d(Ljava/lang/String; Ljava/lang/String;)I
+	20      (00000058) const-string         v3, "SoftKeyboardDetect"
+	21      (0000005c) new-instance         v4, Ljava/lang/StringBuilder;
+	22      (00000060) invoke-direct        v4, Ljava/lang/StringBuilder;-><init>()V
+	23      (00000066) const-string         v5, "Height = "
+	24      (0000006a) invoke-virtual       v4, v5, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	25      (00000070) move-result-object   v4
+	26      (00000072) invoke-virtual       v4, v0, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+	27      (00000078) move-result-object   v4
+	28      (0000007a) invoke-virtual       v4, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	29      (00000080) move-result-object   v4
+	30      (00000082) invoke-static        v3, v4, Landroid/util/Log;->d(Ljava/lang/String; Ljava/lang/String;)I
+	31      (00000088) const-string         v3, "SoftKeyboardDetect"
+	32      (0000008c) new-instance         v4, Ljava/lang/StringBuilder;
+	33      (00000090) invoke-direct        v4, Ljava/lang/StringBuilder;-><init>()V
+	34      (00000096) const-string         v5, "Old Width = "
+	35      (0000009a) invoke-virtual       v4, v5, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	36      (000000a0) move-result-object   v4
+	37      (000000a2) iget                 v5, v6, Lcom/phonegap/DroidGap$LinearLayoutSoftKeyboardDetect;->oldWidth I
+	38      (000000a6) invoke-virtual       v4, v5, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+	39      (000000ac) move-result-object   v4
+	40      (000000ae) invoke-virtual       v4, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	41      (000000b4) move-result-object   v4
+	42      (000000b6) invoke-static        v3, v4, Landroid/util/Log;->d(Ljava/lang/String; Ljava/lang/String;)I
+	43      (000000bc) const-string         v3, "SoftKeyboardDetect"
+	44      (000000c0) new-instance         v4, Ljava/lang/StringBuilder;
+	45      (000000c4) invoke-direct        v4, Ljava/lang/StringBuilder;-><init>()V
+	46      (000000ca) const-string         v5, "Width = "
+	47      (000000ce) invoke-virtual       v4, v5, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	48      (000000d4) move-result-object   v4
+	49      (000000d6) invoke-virtual       v4, v2, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+	50      (000000dc) move-result-object   v4
+	51      (000000de) invoke-virtual       v4, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	52      (000000e4) move-result-object   v4
+	53      (000000e6) invoke-static        v3, v4, Landroid/util/Log;->d(Ljava/lang/String; Ljava/lang/String;)I
+	54      (000000ec) iget                 v3, v6, Lcom/phonegap/DroidGap$LinearLayoutSoftKeyboardDetect;->oldHeight I
+	55      (000000f0) if-eqz               v3, +006h
+
+onMeasure-BB@0xf4 : [ onMeasure-BB@0xfc onMeasure-BB@0x114 ]
+	56      (000000f4) iget                 v3, v6, Lcom/phonegap/DroidGap$LinearLayoutSoftKeyboardDetect;->oldHeight I
+	57      (000000f8) if-ne                v3, v0, +00eh
+
+onMeasure-BB@0xfc : [ onMeasure-BB@0x10a ]
+	58      (000000fc) const-string         v3, "SoftKeyboardDetect"
+	59      (00000100) const-string         v4, "Ignore this event"
+	60      (00000104) invoke-static        v3, v4, Landroid/util/Log;->d(Ljava/lang/String; Ljava/lang/String;)I
+
+onMeasure-BB@0x10a : 
+	61      (0000010a) iput                 v0, v6, Lcom/phonegap/DroidGap$LinearLayoutSoftKeyboardDetect;->oldHeight I
+	62      (0000010e) iput                 v2, v6, Lcom/phonegap/DroidGap$LinearLayoutSoftKeyboardDetect;->oldWidth I
+	63      (00000112) return-void          
+
+onMeasure-BB@0x114 : [ onMeasure-BB@0x11c onMeasure-BB@0x13c ]
+	64      (00000114) iget                 v3, v6, Lcom/phonegap/DroidGap$LinearLayoutSoftKeyboardDetect;->screenHeight I
+	65      (00000118) if-ne                v3, v2, +012h
+
+onMeasure-BB@0x11c : [ onMeasure-BB@0x10a ]
+	66      (0000011c) iget                 v1, v6, Lcom/phonegap/DroidGap$LinearLayoutSoftKeyboardDetect;->screenHeight I
+	67      (00000120) iget                 v3, v6, Lcom/phonegap/DroidGap$LinearLayoutSoftKeyboardDetect;->screenWidth I
+	68      (00000124) iput                 v3, v6, Lcom/phonegap/DroidGap$LinearLayoutSoftKeyboardDetect;->screenHeight I
+	69      (00000128) iput                 v1, v6, Lcom/phonegap/DroidGap$LinearLayoutSoftKeyboardDetect;->screenWidth I
+	70      (0000012c) const-string         v3, "SoftKeyboardDetect"
+	71      (00000130) const-string         v4, "Orientation Change"
+	72      (00000134) invoke-static        v3, v4, Landroid/util/Log;->d(Ljava/lang/String; Ljava/lang/String;)I
+	73      (0000013a) goto                 -18h
+
+onMeasure-BB@0x13c : [ onMeasure-BB@0x144 onMeasure-BB@0x166 ]
+	74      (0000013c) iget                 v3, v6, Lcom/phonegap/DroidGap$LinearLayoutSoftKeyboardDetect;->oldHeight I
+	75      (00000140) if-le                v0, v3, +013h
+
+onMeasure-BB@0x144 : [ onMeasure-BB@0x10a ]
+	76      (00000144) const-string         v3, "SoftKeyboardDetect"
+	77      (00000148) const-string         v4, "Throw hide keyboard event"
+	78      (0000014c) invoke-static        v3, v4, Landroid/util/Log;->d(Ljava/lang/String; Ljava/lang/String;)I
+	79      (00000152) iget-object          v3, v6, Lcom/phonegap/DroidGap$LinearLayoutSoftKeyboardDetect;->this$0 Lcom/phonegap/DroidGap;
+	80      (00000156) iget-object          v3, v3, Lcom/phonegap/DroidGap;->callbackServer Lcom/phonegap/CallbackServer;
+	81      (0000015a) const-string         v4, "PhoneGap.fireEvent('hidekeyboard');"
+	82      (0000015e) invoke-virtual       v3, v4, Lcom/phonegap/CallbackServer;->sendJavascript(Ljava/lang/String;)V
+	83      (00000164) goto                 -2dh
+
+onMeasure-BB@0x166 : [ onMeasure-BB@0x16e onMeasure-BB@0x10a ]
+	84      (00000166) iget                 v3, v6, Lcom/phonegap/DroidGap$LinearLayoutSoftKeyboardDetect;->oldHeight I
+	85      (0000016a) if-ge                v0, v3, -030h
+
+onMeasure-BB@0x16e : [ onMeasure-BB@0x10a ]
+	86      (0000016e) const-string         v3, "SoftKeyboardDetect"
+	87      (00000172) const-string         v4, "Throw show keyboard event"
+	88      (00000176) invoke-static        v3, v4, Landroid/util/Log;->d(Ljava/lang/String; Ljava/lang/String;)I
+	89      (0000017c) iget-object          v3, v6, Lcom/phonegap/DroidGap$LinearLayoutSoftKeyboardDetect;->this$0 Lcom/phonegap/DroidGap;
+	90      (00000180) iget-object          v3, v3, Lcom/phonegap/DroidGap;->callbackServer Lcom/phonegap/CallbackServer;
+	91      (00000184) const-string         v4, "PhoneGap.fireEvent('showkeyboard');"
+	92      (00000188) invoke-virtual       v3, v4, Lcom/phonegap/CallbackServer;->sendJavascript(Ljava/lang/String;)V
+	93      (0000018e) goto                 -42h
+

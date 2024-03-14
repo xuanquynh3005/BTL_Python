@@ -1,0 +1,21 @@
+# Lcom/phonegap/NetworkManager;->isAvailable()Z [access_flags=public]
+#
+# Parameters:
+# local registers: v0...v3
+#
+# - return:boolean
+
+isAvailable-BB@0x0 : [ isAvailable-BB@0x12 isAvailable-BB@0x1a ]
+	0       (00000000) iget-object          v2, v3, Lcom/phonegap/NetworkManager;->sockMan Landroid/net/ConnectivityManager;
+	1       (00000004) invoke-virtual       v2, Landroid/net/ConnectivityManager;->getActiveNetworkInfo()Landroid/net/NetworkInfo;
+	2       (0000000a) move-result-object   v1
+	3       (0000000c) const/4              v0, 0
+	4       (0000000e) if-eqz               v1, +006h
+
+isAvailable-BB@0x12 : [ isAvailable-BB@0x1a ]
+	5       (00000012) invoke-virtual       v1, Landroid/net/NetworkInfo;->isConnected()Z
+	6       (00000018) move-result          v0
+
+isAvailable-BB@0x1a : 
+	7       (0000001a) return               v0
+

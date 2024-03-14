@@ -1,0 +1,24 @@
+# Lcom/phonegap/GpsListener;->getLocation()Landroid/location/Location; [access_flags=public]
+#
+# Parameters:
+# local registers: v0...v2
+#
+# - return:android.location.Location
+
+getLocation-BB@0x0 : [ getLocation-BB@0x1c getLocation-BB@0x22 ]
+	0       (00000000) iget-object          v0, v2, Lcom/phonegap/GpsListener;->mLocMan Landroid/location/LocationManager;
+	1       (00000004) const-string         v1, "gps"
+	2       (00000008) invoke-virtual       v0, v1, Landroid/location/LocationManager;->getLastKnownLocation(Ljava/lang/String;)Landroid/location/Location;
+	3       (0000000e) move-result-object   v0
+	4       (00000010) iput-object          v0, v2, Lcom/phonegap/GpsListener;->cLoc Landroid/location/Location;
+	5       (00000014) iget-object          v0, v2, Lcom/phonegap/GpsListener;->cLoc Landroid/location/Location;
+	6       (00000018) if-eqz               v0, +005h
+
+getLocation-BB@0x1c : [ getLocation-BB@0x22 ]
+	7       (0000001c) const/4              v0, 1
+	8       (0000001e) iput-boolean         v0, v2, Lcom/phonegap/GpsListener;->hasData Z
+
+getLocation-BB@0x22 : 
+	9       (00000022) iget-object          v0, v2, Lcom/phonegap/GpsListener;->cLoc Landroid/location/Location;
+	10      (00000026) return-object        v0
+

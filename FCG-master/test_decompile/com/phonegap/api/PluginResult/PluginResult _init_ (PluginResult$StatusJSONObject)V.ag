@@ -1,0 +1,23 @@
+# Lcom/phonegap/api/PluginResult;-><init>(Lcom/phonegap/api/PluginResult$Status; Lorg/json/JSONObject;)V [access_flags=public constructor]
+#
+# Parameters:
+# - local registers: v0...v1
+# - v2:com.phonegap.api.PluginResult$Status
+# - v3:org.json.JSONObject
+#
+# - return:void
+
+<init>-BB@0x0 : 
+	0       (00000000) invoke-direct        v1, Ljava/lang/Object;-><init>()V
+	1       (00000006) const/4              v0, 0
+	2       (00000008) iput-boolean         v0, v1, Lcom/phonegap/api/PluginResult;->keepCallback Z
+	3       (0000000c) const/4              v0, 0
+	4       (0000000e) iput-object          v0, v1, Lcom/phonegap/api/PluginResult;->cast Ljava/lang/String;
+	5       (00000012) invoke-virtual       v2, Lcom/phonegap/api/PluginResult$Status;->ordinal()I
+	6       (00000018) move-result          v0
+	7       (0000001a) iput                 v0, v1, Lcom/phonegap/api/PluginResult;->status I
+	8       (0000001e) invoke-virtual       v3, Lorg/json/JSONObject;->toString()Ljava/lang/String;
+	9       (00000024) move-result-object   v0
+	10      (00000026) iput-object          v0, v1, Lcom/phonegap/api/PluginResult;->message Ljava/lang/String;
+	11      (0000002a) return-void          
+

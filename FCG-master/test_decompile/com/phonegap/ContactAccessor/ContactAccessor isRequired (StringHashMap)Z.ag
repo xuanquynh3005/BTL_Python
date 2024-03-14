@@ -1,0 +1,26 @@
+# Lcom/phonegap/ContactAccessor;->isRequired(Ljava/lang/String; Ljava/util/HashMap;)Z [access_flags=protected]
+#
+# Parameters:
+# - local registers: v0...v2
+# - v3:java.lang.String
+# - v4:java.util.HashMap
+#
+# - return:boolean
+
+isRequired-BB@0x0 : [ isRequired-BB@0x10 isRequired-BB@0x14 ]
+	0       (00000000) invoke-virtual       v4, v3, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
+	1       (00000006) move-result-object   v0
+	2       (00000008) check-cast           v0, Ljava/lang/Boolean;
+	3       (0000000c) if-nez               v0, +004h
+
+isRequired-BB@0x10 : [ isRequired-BB@0x12 ]
+	4       (00000010) const/4              v1, 0
+
+isRequired-BB@0x12 : 
+	5       (00000012) return               v1
+
+isRequired-BB@0x14 : [ isRequired-BB@0x12 ]
+	6       (00000014) invoke-virtual       v0, Ljava/lang/Boolean;->booleanValue()Z
+	7       (0000001a) move-result          v1
+	8       (0000001c) goto                 -5h
+

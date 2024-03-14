@@ -1,0 +1,113 @@
+# Lcom/phonegap/ContactAccessorSdk3_4;->savePhoneNumbers(Lorg/json/JSONObject; Landroid/net/Uri;)V [access_flags=private]
+#
+# Parameters:
+# - local registers: v0...v11
+# - v12:org.json.JSONObject
+# - v13:android.net.Uri
+#
+# - return:void
+
+savePhoneNumbers-BB@0x0 : [ savePhoneNumbers-BB@0x18 ]
+	0       (00000000) new-instance         v7, Landroid/content/ContentValues;
+	1       (00000004) invoke-direct        v7, Landroid/content/ContentValues;-><init>()V
+	2       (0000000a) const-string         v8, "phones"
+	3       (0000000e) invoke-static        v13, v8, Landroid/net/Uri;->withAppendedPath(Landroid/net/Uri; Ljava/lang/String;)Landroid/net/Uri;
+	4       (00000014) move-result-object   v6
+	5       (00000016) const/4              v2, 0
+
+savePhoneNumbers-BB@0x18 : [ savePhoneNumbers-BB@0x28 savePhoneNumbers-BB@0x10a ]
+	6       (00000018) const-string         v8, "phoneNumbers"
+	7       (0000001c) invoke-virtual       v12, v8, Lorg/json/JSONObject;->getJSONArray(Ljava/lang/String;)Lorg/json/JSONArray;
+	8       (00000022) move-result-object   v5
+	9       (00000024) if-eqz               v5, +073h
+	18:cb
+	(Lorg/json/JSONException; -> ce savePhoneNumbers-BB@0xce)
+
+savePhoneNumbers-BB@0x28 : [ savePhoneNumbers-BB@0x34 savePhoneNumbers-BB@0x10a ]
+	10      (00000028) invoke-virtual       v5, Lorg/json/JSONArray;->length()I
+	11      (0000002e) move-result          v8
+	12      (00000030) if-lez               v8, +06dh
+	18:cb
+	(Lorg/json/JSONException; -> ce savePhoneNumbers-BB@0xce)
+
+savePhoneNumbers-BB@0x34 : [ savePhoneNumbers-BB@0x36 ]
+	13      (00000034) const/4              v1, 0
+	18:cb
+	(Lorg/json/JSONException; -> ce savePhoneNumbers-BB@0xce)
+
+savePhoneNumbers-BB@0x36 : [ savePhoneNumbers-BB@0x42 savePhoneNumbers-BB@0x10a ]
+	14      (00000036) invoke-virtual       v5, Lorg/json/JSONArray;->length()I
+	15      (0000003c) move-result          v8
+	16      (0000003e) if-ge                v1, v8, +066h
+	18:cb
+	(Lorg/json/JSONException; -> ce savePhoneNumbers-BB@0xce)
+
+savePhoneNumbers-BB@0x42 : [ savePhoneNumbers-BB@0x96 savePhoneNumbers-BB@0xae ]
+	17      (00000042) invoke-virtual       v5, v1, Lorg/json/JSONArray;->getJSONObject(I)Lorg/json/JSONObject;
+	18      (00000048) move-result-object   v4
+	19      (0000004a) const-string         v8, "id"
+	20      (0000004e) invoke-virtual       v11, v4, v8, Lcom/phonegap/ContactAccessorSdk3_4;->getJsonString(Lorg/json/JSONObject; Ljava/lang/String;)Ljava/lang/String;
+	21      (00000054) move-result-object   v2
+	22      (00000056) const-string         v8, "number"
+	23      (0000005a) const-string         v9, "value"
+	24      (0000005e) invoke-virtual       v11, v4, v9, Lcom/phonegap/ContactAccessorSdk3_4;->getJsonString(Lorg/json/JSONObject; Ljava/lang/String;)Ljava/lang/String;
+	25      (00000064) move-result-object   v9
+	26      (00000066) invoke-virtual       v7, v8, v9, Landroid/content/ContentValues;->put(Ljava/lang/String; Ljava/lang/String;)V
+	27      (0000006c) const-string         v8, "type"
+	28      (00000070) const-string         v9, "type"
+	29      (00000074) invoke-virtual       v11, v4, v9, Lcom/phonegap/ContactAccessorSdk3_4;->getJsonString(Lorg/json/JSONObject; Ljava/lang/String;)Ljava/lang/String;
+	30      (0000007a) move-result-object   v9
+	31      (0000007c) invoke-direct        v11, v9, Lcom/phonegap/ContactAccessorSdk3_4;->getPhoneType(Ljava/lang/String;)I
+	32      (00000082) move-result          v9
+	33      (00000084) invoke-static        v9, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+	34      (0000008a) move-result-object   v9
+	35      (0000008c) invoke-virtual       v7, v8, v9, Landroid/content/ContentValues;->put(Ljava/lang/String; Ljava/lang/Integer;)V
+	36      (00000092) if-nez               v2, +00eh
+	18:cb
+	(Lorg/json/JSONException; -> ce savePhoneNumbers-BB@0xce)
+
+savePhoneNumbers-BB@0x96 : [ savePhoneNumbers-BB@0xa8 ]
+	37      (00000096) iget-object          v8, v11, Lcom/phonegap/ContactAccessorSdk3_4;->mApp Landroid/app/Activity;
+	38      (0000009a) invoke-virtual       v8, Landroid/app/Activity;->getContentResolver()Landroid/content/ContentResolver;
+	39      (000000a0) move-result-object   v8
+	40      (000000a2) invoke-virtual       v8, v6, v7, Landroid/content/ContentResolver;->insert(Landroid/net/Uri; Landroid/content/ContentValues;)Landroid/net/Uri;
+	18:cb
+	(Lorg/json/JSONException; -> ce savePhoneNumbers-BB@0xce)
+
+savePhoneNumbers-BB@0xa8 : [ savePhoneNumbers-BB@0x36 ]
+	41      (000000a8) add-int/lit8         v1, v1, 1
+	42      (000000ac) goto                 -3bh
+	18:cb
+	(Lorg/json/JSONException; -> ce savePhoneNumbers-BB@0xce)
+
+savePhoneNumbers-BB@0xae : [ savePhoneNumbers-BB@0xa8 ]
+	43      (000000ae) invoke-static        v6, v2, Landroid/net/Uri;->withAppendedPath(Landroid/net/Uri; Ljava/lang/String;)Landroid/net/Uri;
+	44      (000000b4) move-result-object   v3
+	45      (000000b6) iget-object          v8, v11, Lcom/phonegap/ContactAccessorSdk3_4;->mApp Landroid/app/Activity;
+	46      (000000ba) invoke-virtual       v8, Landroid/app/Activity;->getContentResolver()Landroid/content/ContentResolver;
+	47      (000000c0) move-result-object   v8
+	48      (000000c2) const/4              v9, 0
+	49      (000000c4) const/4              v10, 0
+	50      (000000c6) invoke-virtual       v8, v3, v7, v9, v10, Landroid/content/ContentResolver;->update(Landroid/net/Uri; Landroid/content/ContentValues; Ljava/lang/String; [Ljava/lang/String;)I
+	51      (000000cc) goto                 -12h
+
+savePhoneNumbers-BB@0xce : [ savePhoneNumbers-BB@0x10a ]
+	52      (000000ce) move-exception       v8
+	53      (000000d0) move-object          v0, v8
+	54      (000000d2) const-string         v8, "ContactsAccessor"
+	55      (000000d6) new-instance         v9, Ljava/lang/StringBuilder;
+	56      (000000da) invoke-direct        v9, Ljava/lang/StringBuilder;-><init>()V
+	57      (000000e0) const-string         v10, "Could not save phones = "
+	58      (000000e4) invoke-virtual       v9, v10, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	59      (000000ea) move-result-object   v9
+	60      (000000ec) invoke-virtual       v0, Lorg/json/JSONException;->getMessage()Ljava/lang/String;
+	61      (000000f2) move-result-object   v10
+	62      (000000f4) invoke-virtual       v9, v10, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+	63      (000000fa) move-result-object   v9
+	64      (000000fc) invoke-virtual       v9, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+	65      (00000102) move-result-object   v9
+	66      (00000104) invoke-static        v8, v9, Landroid/util/Log;->d(Ljava/lang/String; Ljava/lang/String;)I
+
+savePhoneNumbers-BB@0x10a : 
+	67      (0000010a) return-void          
+

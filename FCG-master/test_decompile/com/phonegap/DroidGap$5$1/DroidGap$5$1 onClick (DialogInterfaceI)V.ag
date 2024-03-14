@@ -1,0 +1,23 @@
+# Lcom/phonegap/DroidGap$5$1;->onClick(Landroid/content/DialogInterface; I)V [access_flags=public]
+#
+# Parameters:
+# - local registers: v0...v1
+# - v2:android.content.DialogInterface
+# - v3:int
+#
+# - return:void
+
+onClick-BB@0x0 : [ onClick-BB@0x12 onClick-BB@0x20 ]
+	0       (00000000) invoke-interface     v2, Landroid/content/DialogInterface;->dismiss()V
+	1       (00000006) iget-object          v0, v1, Lcom/phonegap/DroidGap$5$1;->this$1 Lcom/phonegap/DroidGap$5;
+	2       (0000000a) iget-boolean         v0, v0, Lcom/phonegap/DroidGap$5;->val$exit Z
+	3       (0000000e) if-eqz               v0, +009h
+
+onClick-BB@0x12 : [ onClick-BB@0x20 ]
+	4       (00000012) iget-object          v0, v1, Lcom/phonegap/DroidGap$5$1;->this$1 Lcom/phonegap/DroidGap$5;
+	5       (00000016) iget-object          v0, v0, Lcom/phonegap/DroidGap$5;->val$me Lcom/phonegap/DroidGap;
+	6       (0000001a) invoke-virtual       v0, Lcom/phonegap/DroidGap;->finish()V
+
+onClick-BB@0x20 : 
+	7       (00000020) return-void          
+
